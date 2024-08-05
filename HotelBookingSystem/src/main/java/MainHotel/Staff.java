@@ -11,6 +11,8 @@ package MainHotel;
 public class Staff implements ID{
     
     
+ 
+    
     @Override
     public String idGenerator() {
         String output = "STF-";
