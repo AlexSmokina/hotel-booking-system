@@ -15,7 +15,9 @@ public class Guest extends User implements ID{
     public Guest(String name, String phone, String email) {
 
         super(name, phone, email);
+        super.setType(UserType.GUEST);
         this.guestID = idGenerator();
+        
     }
     
     

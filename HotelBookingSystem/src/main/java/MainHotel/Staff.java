@@ -11,9 +11,11 @@ package MainHotel;
 public class Staff extends User implements ID{
     
     private String staffID;
+   
     
     public Staff(String name, String phone, String email) {
         super(name, phone, email);
+        super.setType(UserType.STAFF);
         this.staffID = idGenerator();
     }
  
