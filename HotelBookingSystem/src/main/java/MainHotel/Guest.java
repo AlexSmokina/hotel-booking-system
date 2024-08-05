@@ -8,7 +8,7 @@ package MainHotel;
  *
  * @author alex
  */
-public class Guest implements ID extends User {
+public class Guest extends User implements ID{
 
     private String id;
 
