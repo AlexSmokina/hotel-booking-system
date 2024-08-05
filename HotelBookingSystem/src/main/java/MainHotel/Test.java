@@ -14,6 +14,9 @@ import java.util.Scanner;
 public class Test {
 
     public static void main(String[] args) {
+        
+        Registeration newRegisteration = new Registeration();
+
         UserType type = null;
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter username:");
@@ -47,8 +50,7 @@ public class Test {
         System.out.println("Enter phone:");
         String phone = scan.nextLine();
 
-        Registeration newRegisteration = new Registeration(userName, password, name, phone, email, type);
-
+        
         System.out.println(newRegisteration.newUser.getType());
         
         scan.close();
