@@ -10,11 +10,11 @@ package MainHotel;
  */
 public class Guest extends User implements ID{
 
-    private String guestID;
+    private final String guestID;
 
-    public Guest(String name, String phone, String email) {
+    public Guest(String userName, String password,String name, String phone, String email) {
 
-        super(name, phone, email);
+        super(userName,password, name, phone, email);
         super.setType(UserType.GUEST);
         this.guestID = idGenerator();
         
@@ -23,7 +23,7 @@ public class Guest extends User implements ID{
     
 
     @Override
-    public String idGenerator() {
+    public final String idGenerator() {
         String output = "GS-";
         int id = (int) (Math.random() * 1001);
         return output + id;

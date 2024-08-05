@@ -10,18 +10,18 @@ package MainHotel;
  */
 public class Staff extends User implements ID{
     
-    private String staffID;
+    private final String staffID;
    
     
-    public Staff(String name, String phone, String email) {
-        super(name, phone, email);
+    public Staff(String userName, String password, String name, String phone, String email) {
+        super(userName, password, name, phone, email);
         super.setType(UserType.STAFF);
         this.staffID = idGenerator();
     }
  
     
     @Override
-    public String idGenerator() {
+    public final String idGenerator() {
         String output = "STF-";
         int id = (int) (Math.random() * 1001);
         return output + id;
