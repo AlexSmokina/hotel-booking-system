@@ -10,12 +10,12 @@ package MainHotel;
  */
 public class Guest extends User implements ID{
 
-    private String id;
+    private String guestID;
 
     public Guest(String name, String phone, String email) {
 
         super(name, phone, email);
-        this.id = idGenerator();
+        this.guestID = idGenerator();
     }
     
     
@@ -31,7 +31,7 @@ public class Guest extends User implements ID{
      * @return the id
      */
     public String getId() {
-        return id;
+        return guestID;
     }
 
 }

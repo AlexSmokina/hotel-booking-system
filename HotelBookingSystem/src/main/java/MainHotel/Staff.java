@@ -8,9 +8,14 @@ package MainHotel;
  *
  * @author alex
  */
-public class Staff implements ID{
+public class Staff extends User implements ID{
     
+    private String staffID;
     
+    public Staff(String name, String phone, String email) {
+        super(name, phone, email);
+        this.staffID = idGenerator();
+    }
  
     
     @Override
@@ -18,5 +23,12 @@ public class Staff implements ID{
         String output = "STF-";
         int id = (int) (Math.random() * 1001);
         return output + id;
+    }
+
+    /**
+     * @return the staffID
+     */
+    public String getStaffID() {
+        return staffID;
     }
 }
