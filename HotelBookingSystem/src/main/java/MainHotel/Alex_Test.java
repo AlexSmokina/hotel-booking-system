@@ -11,7 +11,7 @@ import java.util.Scanner;
  *
  * @author minthihakoko
  */
-public class Test {
+public class Alex_Test {
 
     public static void main(String[] args) {
         Authentication auth = new Authentication();
