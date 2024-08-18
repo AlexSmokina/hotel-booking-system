@@ -9,13 +9,14 @@ package MainHotel;
  * @author alex
  */
 public class User {
+
     private String userName;
     private String password;
     private String name;
     private String phone;
     private String email;
     private UserType type;
-    
+
     public User(String userName, String password, String name, String phone, String email) {
         this.userName = userName;
         this.password = password;
@@ -23,8 +24,6 @@ public class User {
         this.phone = phone;
         this.email = email;
     }
-    
-   
 
     /**
      * @return the name
@@ -109,7 +108,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }
