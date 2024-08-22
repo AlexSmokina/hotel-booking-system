@@ -109,4 +109,16 @@ public class User {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+
+        output.append("Username: ").append(this.getUserName()).append("\n");
+        output.append("Name: ").append(this.getName()).append("\n");
+        output.append("Phone: ").append(this.getPhone()).append("\n");
+        output.append("Email: ").append(this.getEmail()).append("\n");
+        output.append("User Type: ").append(this.getType()).append("\n");
+
+        return output.toString();
+    }
 }

@@ -1,0 +1,6 @@
+username,password,name,phone,email,userType
+jane_smith,password1,Jane Smith,0219876543,jane@example.com,STAFF
+lisa_wang,letmein123,Lisa Wang,0217654321,lisa@example.com,GUEST
+mark_taylor,myPassw0rd,Mark Taylor,0223456789,mark@example.com,GUEST
+admin,admin123,Admin User,0210000000,admin@hotel.com,STAFF
+mike_10,1234,Mike,0212231313,mike@example.com,GUEST

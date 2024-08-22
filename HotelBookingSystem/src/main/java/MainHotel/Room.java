@@ -7,13 +7,17 @@ package MainHotel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author alex
  */
 public class Room implements ID {
-
+    
+    private static final Map<String, Integer> counters = new HashMap<>();
+    
     private String roomID;
     private String roomType;
     private double price;
@@ -29,6 +33,15 @@ public class Room implements ID {
         this.isBooked = false;
         this.availabilityDate = null;
     }
+    
+    //Constructor for Parsing Data from file.
+    public Room(String roomID, String roomType, double price) {
+        this.roomType = roomType;
+        this.roomID = idGenerator();
+        this.price = price;
+        this.isBooked = false;
+        this.availabilityDate = null;
+    }
 
     // Checking if the room is not booked or if the requested period is entirely after the current availability date
     public boolean isAvailable(Date startDate, Date endDate) {
@@ -37,16 +50,18 @@ public class Room implements ID {
 
     @Override
     public final String idGenerator() {
+        counters.putIfAbsent(this.roomType, 0);
+        int currentID = counters.get(this.roomType)+1;
+        counters.put(this.roomType, currentID);
         String output = "RM";
-        if (this.roomType.equalsIgnoreCase("suit")) {
+        if (this.roomType.equalsIgnoreCase("suite")) {
             output += "/S-";
         } else if (this.roomType.equalsIgnoreCase("first class")) {
             output += "/FC-";
         } else {
             output += "/E-";
         }
-        int id = (int) (Math.random() * 1001);
-        return output + id;
+        return output + currentID;
     }
 
     public String getRoomID() {
@@ -84,6 +99,9 @@ public class Room implements ID {
     public void setAvailabilityDate(String availabilityDateStr) {
         try {
             this.availabilityDate = dateFormat.parse(availabilityDateStr);
+            if(this.availabilityDate!=null){
+                this.setIsBooked(true);
+            }
         } catch (ParseException e) {
             e.printStackTrace();
         }
