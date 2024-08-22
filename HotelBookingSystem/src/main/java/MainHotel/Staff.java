@@ -19,7 +19,7 @@ public class Staff extends User implements ID{
         this.staffID = idGenerator();
     }
  
-    
+   
     @Override
     public final String idGenerator() {
         String output = "STF-";
