@@ -24,9 +24,9 @@ public class Hotel implements ID {
 
     public Hotel(String name, String location, int numRooms) {
         this.name = name;
+        this.hotelID = idGenerator();
         this.location = location;
         this.numRooms = numRooms;
-        this.hotelID = idGenerator();
         this.rooms = new ArrayList<>();
         this.bookings = new ArrayList<>();
     }
@@ -44,7 +44,7 @@ public class Hotel implements ID {
             if (room.getRoomID().equalsIgnoreCase(roomID)) {
                 iterator.remove();
                 numRooms -= 1;
-                System.out.println("Room ID " + hotelID + " is successfully deleted.");
+                System.out.println("Room ID " + roomID + " is successfully deleted.");
                 found = true;
                 break;
             }
