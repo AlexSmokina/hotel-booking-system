@@ -32,7 +32,7 @@ public class Room implements ID {
         this.roomID = idGenerator();
         this.price = price;
         this.isBooked = false;
-        this.availabilityDate = null;
+        this.availabilityDate = getTodayDate();
         this.hotelID = hotelID;
 
     }
@@ -43,7 +43,8 @@ public class Room implements ID {
         this.roomID = idGenerator();
         this.price = price;
         this.isBooked = false;
-        this.availabilityDate = null;
+        this.availabilityDate = getTodayDate();
+        this.hotelID = hotelID;
     }
 
     // Checking if the room is not booked or if the requested period is entirely after the current availability date
@@ -67,6 +68,15 @@ public class Room implements ID {
         return output + currentID;
     }
 
+    private Date getTodayDate() {
+        String todayStr = dateFormat.format(new Date());
+        try {
+            return dateFormat.parse(todayStr);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null; // Handle exception as needed
+        }
+    }
     public String getRoomID() {
         return roomID;
     }
@@ -106,7 +116,7 @@ public class Room implements ID {
     public void setAvailabilityDate(String availabilityDateStr) {
         try {
             this.availabilityDate = dateFormat.parse(availabilityDateStr);
-            if (this.availabilityDate != null) {
+            if (!this.availabilityDate.equals(getTodayDate())) {
                 this.setIsBooked(true);
             }
         } catch (ParseException e) {
@@ -120,7 +130,8 @@ public class Room implements ID {
                 + "Room ID: " + this.roomID + "\n"
                 + "Price: $" + this.getPrice() + "\n"
                 + "Availability Status: " + (this.isBooked ? "Booked" : "Available") + "\n"
-                + "Available From: " + (this.availabilityDate != null ? dateFormat.format(this.availabilityDate) : "Now") + "\n";
+                + "Available From: " + dateFormat.format(this.availabilityDate) + "\n"
+                + "Hotel ID: " + this.getHotelID()+"\n";
     }
 
 }
