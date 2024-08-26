@@ -15,27 +15,30 @@ import java.util.Map;
  * @author alex
  */
 public class Room implements ID {
-    
+
     private static final Map<String, Integer> counters = new HashMap<>();
-    
+
     private String roomID;
-    private String roomType;
+    private RoomType roomType;
     private double price;
     private boolean isBooked;
     private Date availabilityDate;
+    private String hotelID;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Room(String roomType, double price) {
+    public Room(RoomType roomType, double price, String hotelID) {
         this.roomType = roomType;
         this.roomID = idGenerator();
         this.price = price;
         this.isBooked = false;
         this.availabilityDate = null;
+        this.hotelID = hotelID;
+
     }
-    
+
     //Constructor for Parsing Data from file.
-    public Room(String roomID, String roomType, double price) {
+    public Room(String roomID, RoomType roomType, double price, String hotelID) {
         this.roomType = roomType;
         this.roomID = idGenerator();
         this.price = price;
@@ -50,16 +53,16 @@ public class Room implements ID {
 
     @Override
     public final String idGenerator() {
-        counters.putIfAbsent(this.roomType, 0);
-        int currentID = counters.get(this.roomType)+1;
-        counters.put(this.roomType, currentID);
+        counters.putIfAbsent(this.roomType.name(), 0);
+        int currentID = counters.get(this.roomType.name()) + 1;
+        counters.put(this.roomType.name(), currentID);
         String output = "RM";
-        if (this.roomType.equalsIgnoreCase("suite")) {
-            output += "/S-";
-        } else if (this.roomType.equalsIgnoreCase("premium")) {
-            output += "/P-";
+        if (this.roomType == roomType.SUITE) {
+            output += "/SU-";
+        } else if (this.roomType == roomType.PREMIUM) {
+            output += "/PRM-";
         } else {
-            output += "/E-";
+            output += "/STD-";
         }
         return output + currentID;
     }
@@ -69,10 +72,10 @@ public class Room implements ID {
     }
 
     public String getRoomType() {
-        return roomType;
+        return roomType.toString();
     }
 
-    public void setRoomType(String roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
@@ -96,10 +99,14 @@ public class Room implements ID {
         return availabilityDate;
     }
 
+    public String getHotelID() {
+        return hotelID;
+    }
+
     public void setAvailabilityDate(String availabilityDateStr) {
         try {
             this.availabilityDate = dateFormat.parse(availabilityDateStr);
-            if(this.availabilityDate!=null){
+            if (this.availabilityDate != null) {
                 this.setIsBooked(true);
             }
         } catch (ParseException e) {

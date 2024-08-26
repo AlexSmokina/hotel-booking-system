@@ -46,7 +46,7 @@ public class Mike_Test {
             System.out.println(room);
         }
         
-        Room newRoom = new Room("Suite", 150.00); 
+        Room newRoom = new Room(RoomType.STANDARD, 150.00, "HTL-0101"); 
         newRoom.setAvailabilityDate("2024-08-22"); 
         
         rm.addRoomData(newRoom);

@@ -53,7 +53,7 @@ public class RoomManager implements FileHandler {
         try {
             FileWriter fileWriter = new FileWriter(this.fileName);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println("RoomID,RoomType,Price,AvailabilityStatus,AvailableFrom");
+            printWriter.println("RoomID,RoomType,Price,AvailabilityStatus,AvailableFrom,HotelID");
             for(Room room : roomData.values()){
                 printWriter.println(dataToString(room));
             }
@@ -66,11 +66,10 @@ public class RoomManager implements FileHandler {
 
     private Room parseRoomData(String line) {
         String[] parts = line.split(",");
-        Room room = new Room(parts[0],parts[1], Double.parseDouble(parts[2]));
+        RoomType roomType = RoomType.valueOf(parts[1].toUpperCase());
+        Room room = new Room(parts[0],roomType, Double.parseDouble(parts[2]), parts[5]);
         
-        if (parts.length > 4) {
-            room.setAvailabilityDate(parts[4]);
-        }
+        room.setAvailabilityDate(parts[4]);
         return room;
     }
     
@@ -80,12 +79,13 @@ public class RoomManager implements FileHandler {
             ? dateFormat.format(room.getAvailabilityDate()) 
             : "Now";
         output = String.format(
-                "%s,%s,%.2f,%s,%s", 
+                "%s,%s,%.2f,%s,%s,%s", 
                 room.getRoomID(),
                 room.getRoomType(),
                 room.getPrice(),
                 (room.isBooked()) ? "Booked" : "Available",
-                availabilityDateStr
+                availabilityDateStr,
+                room.getHotelID()
                 );
         return output;
     }
