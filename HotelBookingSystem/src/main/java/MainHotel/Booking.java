@@ -24,13 +24,14 @@ public class Booking implements ID {
     private String hotelID;
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Booking(Room room, Date startDate, Date endDate, String hotelID) {
+    public Booking(String roomID, Date startDate, Date endDate, String hotelID) {
         this.bookingID = idGenerator();
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
         this.status = "active";
         this.hotelID = hotelID;
+        this.totalPrice = calculateTotalCost();
     }
 
 //    public void createBooking(Room room, String startDateStr, String endDateStr, String hotelID) {
@@ -56,7 +57,7 @@ public class Booking implements ID {
     public double calculateTotalCost() {
         long diffInMillis = this.endDate.getTime() - this.startDate.getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
-        return diffInDays * room.getPrice();
+        return diffInDays * this.getRoom().getPrice(); 
     }
 
 //    public void cancelBooking(String bookingID) {
@@ -123,18 +124,19 @@ public class Booking implements ID {
         return output + id;
     }
 
-    public void printInvoice() {
-        double gst = this.getTotalPrice() * 0.15;
-        System.out.println("<<< INVOICE >>>");
-        System.out.println("Booking ID " + this.getBookingID() + ":\n"
-                + "|Hotel ID: " + this.hotelID + "|\n"
-                + "|Room ID: " + getRoom().getRoomID() + "|\n"
-                + "|Start Date: " + this.getStartDate() + "|\n"
-                + "|End Date: " + this.getEndDate() + "|\n"
-                + "|Total Price: $" + this.getTotalPrice() + "|\n"
-                + "|Total GST: $" + gst + "|\n"
-                + "|Total Owing: $" + (this.getTotalPrice() + gst) + "|\n");
-    }
+      // Implement Invoice Class
+//    public void printInvoice() {
+//        double gst = this.getTotalPrice() * 0.15;
+//        System.out.println("<<< INVOICE >>>");
+//        System.out.println("Booking ID " + this.getBookingID() + ":\n"
+//                + "|Hotel ID: " + this.hotelID + "|\n"
+//                + "|Room ID: " + getRoom().getRoomID() + "|\n"
+//                + "|Start Date: " + this.getStartDate() + "|\n"
+//                + "|End Date: " + this.getEndDate() + "|\n"
+//                + "|Total Price: $" + this.getTotalPrice() + "|\n"
+//                + "|Total GST: $" + gst + "|\n"
+//                + "|Total Owing: $" + (this.getTotalPrice() + gst) + "|\n");
+//    }
     
     @Override
     public String toString() {
@@ -199,6 +201,13 @@ public class Booking implements ID {
 
     public String getStatus() {
         return status;
+    }
+
+    /**
+     * @return the hotelID
+     */
+    public String getHotelID() {
+        return hotelID;
     }
     
 }

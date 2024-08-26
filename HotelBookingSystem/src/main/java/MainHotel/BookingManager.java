@@ -19,6 +19,7 @@ public class BookingManager implements FileHandler {
 
     private String fileName;
     private Map<String, Booking> bookingData;
+    private RoomManager rm;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public BookingManager(String fileName) {
@@ -47,7 +48,23 @@ public class BookingManager implements FileHandler {
         String[] parts = line.split(",");
         String bookingID = parts[0];
         
-        //Booking booking = new Booking(bookingID, );
+        Booking booking = new Booking(parts[0]);
+    }
+    
+    private String dataToString(Booking booking) {
+        String output;
+        String startDateStr = dateFormat.format(booking.getStartDate());
+        String endDateStr = dateFormat.format(booking.getEndDate());
+        output = String.format(
+                "%s,%s,%s,%.2f,%s,%s",
+                booking.getBookingID(),
+                startDateStr,
+                endDateStr,
+                booking.getTotalPrice(),
+                booking.getRoom().getRoomID(),
+                booking.getHotelID()
+        );
+        return output;
     }
 
     @Override
