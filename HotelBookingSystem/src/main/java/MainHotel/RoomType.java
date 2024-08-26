@@ -8,6 +8,7 @@ package MainHotel;
  *
  * @author alex
  */
+// Are we going to uitlise enum RoomType or keep current Room Type Classes
 public enum RoomType {
     STANDARD,
     PREMIUM,

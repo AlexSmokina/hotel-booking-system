@@ -8,15 +8,15 @@ package MainHotel;
  *
  * @author alex
  */
-public class Suit extends Room {
+public class Suite extends Room {
     
-    public Suit(String roomType, double price) {
-        super("Suit", price);
+    public Suite(String roomType, double price) {
+        super("Suite", price);
     }
     
     @Override
     public String getRoomType() {
-        return "Suit";
+        return "Suite";
     }
     
 }

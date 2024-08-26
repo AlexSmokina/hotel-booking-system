@@ -56,8 +56,8 @@ public class Room implements ID {
         String output = "RM";
         if (this.roomType.equalsIgnoreCase("suite")) {
             output += "/S-";
-        } else if (this.roomType.equalsIgnoreCase("first class")) {
-            output += "/FC-";
+        } else if (this.roomType.equalsIgnoreCase("premium")) {
+            output += "/P-";
         } else {
             output += "/E-";
         }

@@ -8,14 +8,14 @@ package MainHotel;
  *
  * @author alex
  */
-public class FirstClass extends Room {
+public class Premium extends Room {
     
-    public FirstClass(String roomType, double price) {
-        super("First Class", price);
+    public Premium(String roomType, double price) {
+        super("Premium", price);
     }
     
         @Override
     public String getRoomType() {
-        return "First Class";
+        return "Premium";
     }
 }

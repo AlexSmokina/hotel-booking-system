@@ -1,7 +1,7 @@
 RoomID,RoomType,Price,AvailabilityStatus,AvailableFrom
 RM/S-1,Suite,150.00,Booked,2024-09-01
-RM/S-3,Suite,150.00,Booked,2024-08-22
-RM/E-1,Economy,100.00,Available,Now
-RM/S-2,Suite,150.00,Booked,2024-09-15
-RM/FC-2,First Class,200.00,Available,Now
-RM/FC-1,First Class,200.00,Available,Now
+RM/S-3,Suite,150.00,Booked,2024-09-15
+RM/S-2,Suite,150.00,Booked,2024-08-22
+RM/E-1,First Class,200.00,Available,Now
+RM/E-2,First Class,200.00,Available,Now
+RM/S-4,Suite,150.00,Booked,2024-08-22
