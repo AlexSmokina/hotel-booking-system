@@ -16,7 +16,7 @@ public class Alex_Test {
     public static void main(String[] args) {
 
         Room room1 = new Room("econom", 120);
-        Room room2 = new Room("FirstClass", 150);
+        Room room2 = new Room("premium", 210);
         Room room3 = new Room("suit", 320);
 
         System.out.println(room1);

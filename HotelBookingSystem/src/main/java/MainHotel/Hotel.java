@@ -41,15 +41,15 @@ public class Hotel implements ID {
         boolean found = false;
         while (iterator.hasNext()) {
             Room room = iterator.next();
-            if(room.getRoomID().equalsIgnoreCase(roomID)) {
+            if (room.getRoomID().equalsIgnoreCase(roomID)) {
                 iterator.remove();
                 numRooms -= 1;
                 System.out.println("Room ID " + hotelID + " is successfully deleted.");
                 found = true;
                 break;
             }
-        } 
-        if(!found) {
+        }
+        if (!found) {
             System.out.println("Room ID isn't valid.");
         }
     }
