@@ -15,104 +15,107 @@ import java.util.concurrent.TimeUnit;
  */
 public class Booking implements ID {
 
-    private Room room;
     private String bookingID;
+    private Room room;
     private Date startDate;
     private Date endDate;
     private double totalPrice;
     private String status;
+    private String hotelID;
     private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Booking() {
+    public Booking(Room room, Date startDate, Date endDate, String hotelID) {
         this.bookingID = idGenerator();
+        this.room = room;
+        this.startDate = startDate;
+        this.endDate = endDate;
         this.status = "active";
-
+        this.hotelID = hotelID;
     }
 
-    public void createBooking(Room room, String startDateStr, String endDateStr) {
-        try {
-            Date startDate = dateFormat.parse(startDateStr);
-            Date endDate = dateFormat.parse(endDateStr);
-
-            if (room.isAvailable(startDate, endDate)) {
-                this.setRoom(room);
-                this.startDate = startDate;
-                this.endDate = endDate;
-                this.room.setAvailabilityDate(endDateStr);
-                this.room.setIsBooked(true);
-                this.totalPrice = calculateTotalCost();
-            } else {
-                System.out.println("Room is not available for the selected dates.\n");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-    }
-
+//    public void createBooking(Room room, String startDateStr, String endDateStr, String hotelID) {
+//        try {
+//            Date startDate = dateFormat.parse(startDateStr);
+//            Date endDate = dateFormat.parse(endDateStr);
+//
+//            if (room.isAvailable(startDate, endDate)) {
+//                this.setRoom(room);
+//                this.startDate = startDate;
+//                this.endDate = endDate;
+//                this.room.setAvailabilityDate(endDateStr);
+//                this.room.setIsBooked(true);
+//                this.totalPrice = calculateTotalCost();
+//                this.hotelID = hotelID;
+//            } else {
+//                System.out.println("Room is not available for the selected dates.\n");
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
     public double calculateTotalCost() {
         long diffInMillis = this.endDate.getTime() - this.startDate.getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
         return diffInDays * room.getPrice();
     }
 
-    public void cancelBooking(String bookingID) {
-        if (this.getStatus().equalsIgnoreCase("canceled")) {
-            System.out.println("Booking is already canceled.\n");
-            return;
-        }
-        if (this.bookingID.equalsIgnoreCase(bookingID)) {
-            this.status = "canceled";
-            if (this.room != null) {
-                this.room.setIsBooked(false);
-            }
-            System.out.println("Booking canceled successfully.\n");
-        } else {
-            System.out.println("Booking ID doesn't match.\n");
-        }
-    }
-
-    public void extendBooking(String newEndDateStr) {
-
-        try {
-            Date newEndDate = dateFormat.parse(newEndDateStr);
-
-            if (newEndDate.after(this.endDate) && this.room.getAvailabilityDate().equals(this.endDate)) {
-                this.endDate = newEndDate;
-                this.room.setAvailabilityDate(newEndDateStr);
-                // Recalculating the total price
-                this.totalPrice = calculateTotalCost();
-
-                System.out.println("Booking extended successfully to " + newEndDate + ".\n");
-            } else {
-                System.out.println("Room is not available.\n");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void changeRoom(Room newRoom) {
-        // Checking if the current room is booked
-        if (!this.room.isBooked()) {
-            System.out.println("The current room is NOT booked at all");
-            return;
-        }
-        // Checking if the new room is already booked
-        if (newRoom.isBooked()) {
-            System.out.println("The new room ID " + newRoom.getRoomID() + " is already booked");
-            System.out.println("Swapping is NOT possible. Try another room\n");
-            return;
-        }
-        // Releasing current room
-        this.room.setIsBooked(false);
-        // Assigning new room and price
-        this.setRoom(newRoom);
-        this.room.setIsBooked(true);
-        this.totalPrice = calculateTotalCost();
-        System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
-    }
-
+//    public void cancelBooking(String bookingID) {
+//        if (this.getStatus().equalsIgnoreCase("canceled")) {
+//            System.out.println("Booking is already canceled.\n");
+//            return;
+//        }
+//        if (this.bookingID.equalsIgnoreCase(bookingID)) {
+//            this.status = "canceled";
+//            if (this.room != null) {
+//                this.room.setIsBooked(false);
+//            }
+//            System.out.println("Booking canceled successfully.\n");
+//        } else {
+//            System.out.println("Booking ID doesn't match.\n");
+//        }
+//    }
+//
+//    public void extendBooking(String newEndDateStr) {
+//
+//        try {
+//            Date newEndDate = dateFormat.parse(newEndDateStr);
+//
+//            if (newEndDate.after(this.endDate) && this.room.getAvailabilityDate().equals(this.endDate)) {
+//                this.endDate = newEndDate;
+//                this.room.setAvailabilityDate(newEndDateStr);
+//                // Recalculating the total price
+//                this.totalPrice = calculateTotalCost();
+//
+//                System.out.println("Booking extended successfully to " + newEndDate + ".\n");
+//            } else {
+//                System.out.println("Room is not available.\n");
+//            }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+//
+//    public void changeRoom(Room newRoom) {
+//        // Checking if the current room is booked
+//        if (!this.room.isBooked()) {
+//            System.out.println("The current room is NOT booked at all");
+//            return;
+//        }
+//        // Checking if the new room is already booked
+//        if (newRoom.isBooked()) {
+//            System.out.println("The new room ID " + newRoom.getRoomID() + " is already booked");
+//            System.out.println("Swapping is NOT possible. Try another room\n");
+//            return;
+//        }
+//        // Releasing current room
+//        this.room.setIsBooked(false);
+//        // Assigning new room and price
+//        this.setRoom(newRoom);
+//        this.room.setIsBooked(true);
+//        this.totalPrice = calculateTotalCost();
+//        System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
+//    }
     @Override
     public String idGenerator() {
         String output = "BKG-";
@@ -121,14 +124,47 @@ public class Booking implements ID {
     }
 
     public void printInvoice() {
+        double gst = this.getTotalPrice() * 0.15;
         System.out.println("<<< INVOICE >>>");
         System.out.println("Booking ID " + this.getBookingID() + ":\n"
+                + "|Hotel ID: " + this.hotelID + "|\n"
                 + "|Room ID: " + getRoom().getRoomID() + "|\n"
                 + "|Start Date: " + this.getStartDate() + "|\n"
                 + "|End Date: " + this.getEndDate() + "|\n"
-                + "|Total Price: $" + this.getTotalPrice() + "|\n");
+                + "|Total Price: $" + this.getTotalPrice() + "|\n"
+                + "|Total GST: $" + gst + "|\n"
+                + "|Total Owing: $" + (this.getTotalPrice() + gst) + "|\n");
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+
+        output.append("Booking ID: ").append(this.getBookingID()).append("\n");
+
+        if (this.getRoom() != null) {
+            output.append("Room ID: ").append(getRoom().getRoomID()).append("\n");
+            output.append("Room Type: ").append(getRoom().getRoomType()).append("\n");
+            output.append("Room Price per Night: $").append(getRoom().getPrice()).append("\n");
+        } else {
+            output.append("Room: Not yet assigned\n");
+        }
+
+        if (this.getStartDate() != null) {
+            output.append("Start Date: ").append(this.getStartDate()).append("\n");
+        } else {
+            output.append("Start Date: Not yet set\n");
+        }
+
+        if (this.getEndDate() != null) {
+            output.append("End Date: ").append(this.getEndDate()).append("\n");
+        } else {
+            output.append("End Date: Not yet set\n");
+        }
+        return output.toString();
     }
 
+    
     public Room getRoom() {
         return room;
     }
@@ -164,33 +200,5 @@ public class Booking implements ID {
     public String getStatus() {
         return status;
     }
-
-    @Override
-    public String toString() {
-        StringBuilder output = new StringBuilder();
-
-        output.append("Booking ID: ").append(this.getBookingID()).append("\n");
-
-        if (this.getRoom() != null) {
-            output.append("Room ID: ").append(getRoom().getRoomID()).append("\n");
-            output.append("Room Type: ").append(getRoom().getRoomType()).append("\n");
-            output.append("Room Price per Night: $").append(getRoom().getPrice()).append("\n");
-        } else {
-            output.append("Room: Not yet assigned\n");
-        }
-
-        if (this.getStartDate() != null) {
-            output.append("Start Date: ").append(this.getStartDate()).append("\n");
-        } else {
-            output.append("Start Date: Not yet set\n");
-        }
-
-        if (this.getEndDate() != null) {
-            output.append("End Date: ").append(this.getEndDate()).append("\n");
-        } else {
-            output.append("End Date: Not yet set\n");
-        }
-        return output.toString();
-    }
-
+    
 }
