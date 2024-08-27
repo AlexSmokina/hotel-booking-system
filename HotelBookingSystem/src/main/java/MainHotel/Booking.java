@@ -16,23 +16,38 @@ import java.util.concurrent.TimeUnit;
 public class Booking implements ID {
 
     private String bookingID;
-    private Room room;
     private Date startDate;
     private Date endDate;
+    private Room room;
+    private User user;
     private double totalPrice;
-    private String status;
     private String hotelID;
-    private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    
+    private static int bookingCount = 0;
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Booking(String roomID, Date startDate, Date endDate, String hotelID) {
+
+    public Booking(Date startDate, Date endDate, Room room, User user, String hotelID) {
         this.bookingID = idGenerator();
-        this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.status = "active";
-        this.hotelID = hotelID;
+        this.room = room;
+        this.user = user;
         this.totalPrice = calculateTotalCost();
+        this.hotelID = hotelID;  
     }
+    
+    //Constructor for file handling
+    public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, double totalPrice, String hotelID) {
+        this.bookingID = bookingID;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.room = room;
+        this.user = user;
+        this.totalPrice = totalPrice;
+        this.hotelID = hotelID;  
+    }
+    
 
 //    public void createBooking(Room room, String startDateStr, String endDateStr, String hotelID) {
 //        try {
@@ -54,10 +69,10 @@ public class Booking implements ID {
 //            e.printStackTrace();
 //        }
 //    }
-    public double calculateTotalCost() {
-        long diffInMillis = this.endDate.getTime() - this.startDate.getTime();
+    public final double calculateTotalCost() {
+        long diffInMillis = this.getEndDate().getTime() - this.getStartDate().getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
-        return diffInDays * this.getRoom().getPrice(); 
+        return diffInDays * this.room.getPrice(); 
     }
 
 //    public void cancelBooking(String bookingID) {
@@ -118,10 +133,9 @@ public class Booking implements ID {
 //        System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
 //    }
     @Override
-    public String idGenerator() {
-        String output = "BKG-";
-        int id = (int) (Math.random() * 1001);
-        return output + id;
+    public final String idGenerator() {
+        bookingCount++;
+        return "BKG-" + bookingCount;
     }
 
       // Implement Invoice Class
@@ -141,38 +155,14 @@ public class Booking implements ID {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();
-
         output.append("Booking ID: ").append(this.getBookingID()).append("\n");
-
-        if (this.getRoom() != null) {
-            output.append("Room ID: ").append(getRoom().getRoomID()).append("\n");
-            output.append("Room Type: ").append(getRoom().getRoomType()).append("\n");
-            output.append("Room Price per Night: $").append(getRoom().getPrice()).append("\n");
-        } else {
-            output.append("Room: Not yet assigned\n");
-        }
-
-        if (this.getStartDate() != null) {
-            output.append("Start Date: ").append(this.getStartDate()).append("\n");
-        } else {
-            output.append("Start Date: Not yet set\n");
-        }
-
-        if (this.getEndDate() != null) {
-            output.append("End Date: ").append(this.getEndDate()).append("\n");
-        } else {
-            output.append("End Date: Not yet set\n");
-        }
+        output.append("Start Date: ").append(dateFormat.format(this.getStartDate())).append("\n");
+        output.append("End Date: ").append(dateFormat.format(this.getEndDate())).append("\n");
+        output.append("Room ID: ").append(this.getRoomID()).append("\n");
+        output.append("Total Price: ").append(this.getTotalPrice()).append("\n");
+        output.append("Guest username: ").append(this.getUserName()).append("\n");
+        output.append("Hotel ID: ").append(this.getHotelID()).append("\n");
         return output.toString();
-    }
-
-    
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
     }
 
     public String getBookingID() {
@@ -191,23 +181,26 @@ public class Booking implements ID {
         return endDate;
     }
 
+
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    
+    public String getRoomID(){
+        return this.room.getRoomID();
+    }
+    
+    public String getUserName(){
+        return this.user.getUserName();
     }
 
     public double getTotalPrice() {
         return totalPrice;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    /**
-     * @return the hotelID
-     */
     public String getHotelID() {
         return hotelID;
     }
+
     
 }

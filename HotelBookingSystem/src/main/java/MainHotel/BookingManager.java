@@ -6,10 +6,15 @@ package MainHotel;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -19,12 +24,16 @@ public class BookingManager implements FileHandler {
 
     private String fileName;
     private Map<String, Booking> bookingData;
-    private RoomManager rm;
+    private RoomManager roomManager;
+    private UserManger userManger;
+    
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public BookingManager(String fileName) {
-        this.fileName = fileName;
+    public BookingManager(String bookingFile,String roomFile, String userFile) {
+        this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
+        this.roomManager = new RoomManager(roomFile);
+        this.userManger = new UserManger(userFile);
     }
 
     @Override
@@ -36,19 +45,55 @@ public class BookingManager implements FileHandler {
             String line;
             while ((line = reader.readLine()) != null) {
                 Booking booking = parseBookingData(line);
-                bookingData.put(booking.getBookingID(), booking);
+                if(booking!=null){
+                    bookingData.put(booking.getBookingID(), booking);
+                }else{
+                    System.out.println("Invalid booking data: " + line);
+                }
             }
             reader.close();
         } catch (IOException e) {
             System.out.println("Cannot read from file");
         }
     }
+    
+    @Override
+    public void saveData() {
+        try {
+            FileWriter fileWriter = new FileWriter(this.fileName);
+            PrintWriter printWriter = new PrintWriter(fileWriter);
+            printWriter.println("Booking ID,Start Date,End Date,Room ID,Room Price,Total Price,Hotel ID");
+            for (Booking booking: bookingData.values()) {
+                printWriter.println(dataToString(booking));
+            }
+            printWriter.close();
+        } catch (IOException e) {
+            System.out.println("Cannot write to file");
+        }
+    }
 
     private Booking parseBookingData(String line) {
+        roomManager.loadData();
+        userManger.loadData();
         String[] parts = line.split(",");
-        String bookingID = parts[0];
-        
-        Booking booking = new Booking(parts[0]);
+        Room room = roomManager.getRoomData(parts[3]);
+        User user = userManger.getUserData(parts[4]);
+        if(room==null || user==null) return null;
+        try {
+            Booking booking = new Booking(
+                parts[0], 
+                dateFormat.parse(parts[1]), 
+                dateFormat.parse(parts[2]),
+                room,
+                user,
+                Double.parseDouble(parts[5]),
+                parts[6]);
+            return booking;
+            
+        } catch (ParseException | NumberFormatException e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
     
     private String dataToString(Booking booking) {
@@ -56,20 +101,37 @@ public class BookingManager implements FileHandler {
         String startDateStr = dateFormat.format(booking.getStartDate());
         String endDateStr = dateFormat.format(booking.getEndDate());
         output = String.format(
-                "%s,%s,%s,%.2f,%s,%s",
+                "%s,%s,%s,%s,%s,%.2f,%s",
                 booking.getBookingID(),
                 startDateStr,
                 endDateStr,
+                booking.getRoomID(),
+                booking.getUserName(),
                 booking.getTotalPrice(),
-                booking.getRoom().getRoomID(),
                 booking.getHotelID()
         );
         return output;
     }
-
-    @Override
-    public void saveData() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public Booking getBookingData(String bookingID){
+        return this.bookingData.get(bookingID);
     }
+    
+    public Set<String> getAllBookingID(){
+        return this.bookingData.keySet();
+    }
+    
+    public void creatBooking(String start, String end, Room room, User user, String hotelID){
+        try {
+            Date startDate = dateFormat.parse(start);
+            Date endDate = dateFormat.parse(end);
+            Booking booking = new Booking(startDate, endDate, room, user, hotelID);
+            this.bookingData.put(booking.getBookingID(), booking);
+            
+        } catch (ParseException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
 
 }

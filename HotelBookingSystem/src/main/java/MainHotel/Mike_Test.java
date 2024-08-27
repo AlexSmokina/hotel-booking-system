@@ -52,22 +52,47 @@ public class Mike_Test {
 //            Room room = rm.getRoomData(roomID);
 //            System.out.println(room);
 //        }
-        String filePath = "./database/room.csv";
-
-        RoomManager rm = new RoomManager(filePath);
-
-        rm.loadData();
-
-        System.out.println("---------");
-        System.out.println("Available Rooms");
-        String hotelID = "HTL-0101";
-        String startDate = "2024-08-26";
-
-        List<Room> rooms = rm.filerByDate(startDate, hotelID);
-        for (Room room : rooms) {
-            System.out.println(room);
-        }
+//        String filePath = "./database/room.csv";
+//
+//        RoomManager rm = new RoomManager(filePath);
+//
+//        rm.loadData();
+//
+//        System.out.println("---------");
+//        System.out.println("Available Rooms");
+//        String hotelID = "HTL-0101";
+//        String startDate = "2024-08-26";
+//
+//        List<Room> rooms = rm.filerByDate(startDate, hotelID);
+//        for (Room room : rooms) {
+//            System.out.println(room);
+//        }
 
         //rm.saveData();
+        String userFile = "./database/user.csv";
+        String roomFile = "./database/room.csv";
+        String bookingFile = "./database/booking.csv";
+        
+        BookingManager bm = new BookingManager(bookingFile,roomFile,userFile);
+        
+
+        bm.loadData();
+        
+
+        
+//        String hotelID = "HTL-0101";
+//        String startDate = "2024-08-26";
+//        
+//        System.out.println("Available Rooms");
+//        List<Room> rooms = rm.filerByDate(startDate, hotelID);
+//        for (Room room : rooms) {
+//            System.out.println(room);
+//        }
+        
+        System.out.println("Load bookings from file");
+        for(String bookingID : bm.getAllBookingID()){
+            Booking booking = bm.getBookingData(bookingID);
+            System.out.println(booking);
+        }
     }
 }

@@ -40,7 +40,7 @@ public class Room implements ID {
     //Constructor for Parsing Data from file.
     public Room(String roomID, RoomType roomType, double price, String hotelID) {
         this.roomType = roomType;
-        this.roomID = idGenerator();
+        this.roomID = roomID;
         this.price = price;
         this.isBooked = false;
         this.availabilityDate = getTodayDate();

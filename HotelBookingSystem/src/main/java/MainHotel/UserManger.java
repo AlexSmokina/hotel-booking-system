@@ -75,8 +75,22 @@ public class UserManger implements FileHandler{
         return output;
     }
     
-    public void addUserData(User newUser){
-        usersData.put(newUser.getUserName(), newUser);
+    public void registerUser(String username, String password, String name, String phone, String email, UserType type) {
+        User newUser = (type == UserType.GUEST) ? 
+                new Guest(username, password, name, phone, email) :
+                new Staff(username, password, name, phone, email);
+        usersData.put(username, newUser); 
+    }
+    
+    public User signIn(String username,String password){
+        User user = usersData.get(username);
+        if(user==null){
+            return null;
+        }
+        if(user.getPassword().equals(password)){
+            return user;
+        }
+        return null; 
     }
     
     public User getUserData(String username){
