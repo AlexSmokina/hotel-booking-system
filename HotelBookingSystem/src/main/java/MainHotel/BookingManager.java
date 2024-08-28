@@ -20,20 +20,23 @@ import java.util.Set;
  *
  * @author alex
  */
-public class BookingManager implements FileHandler {
+public class BookingManager implements FileHandler, ID {
 
     private String fileName;
     private Map<String, Booking> bookingData;
     private RoomManager roomManager;
     private UserManger userManger;
-    
+
+    private int bookingCount;
+
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public BookingManager(String bookingFile,String roomFile, String userFile) {
+    public BookingManager(String bookingFile, String roomFile, String userFile) {
         this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
         this.roomManager = new RoomManager(roomFile);
         this.userManger = new UserManger(userFile);
+        this.bookingCount = 0;
     }
 
     @Override
@@ -45,10 +48,10 @@ public class BookingManager implements FileHandler {
             String line;
             while ((line = reader.readLine()) != null) {
                 Booking booking = parseBookingData(line);
-                if(booking!=null){
+                if (booking != null) {
                     bookingData.put(booking.getBookingID(), booking);
-                }else{
-                    System.out.println("Invalid booking data: " + line);
+                    int bookingID = Integer.parseInt(booking.getBookingID().split("-")[1]);
+                    bookingCount = Math.max(bookingCount, bookingID);
                 }
             }
             reader.close();
@@ -56,14 +59,14 @@ public class BookingManager implements FileHandler {
             System.out.println("Cannot read from file");
         }
     }
-    
+
     @Override
     public void saveData() {
         try {
             FileWriter fileWriter = new FileWriter(this.fileName);
             PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.println("Booking ID,Start Date,End Date,Room ID,Room Price,Total Price,Hotel ID");
-            for (Booking booking: bookingData.values()) {
+            printWriter.println("Booking ID,Start Date,End Date,Room ID,Username,Total Price,Hotel ID");
+            for (Booking booking : bookingData.values()) {
                 printWriter.println(dataToString(booking));
             }
             printWriter.close();
@@ -73,29 +76,34 @@ public class BookingManager implements FileHandler {
     }
 
     private Booking parseBookingData(String line) {
+        if (line == null || line.trim().isEmpty()) {
+            return null;
+        }
         roomManager.loadData();
         userManger.loadData();
         String[] parts = line.split(",");
-        Room room = roomManager.getRoomData(parts[3]);
+        Room room = roomManager.getRoomData(parts[3],parts[6]);
         User user = userManger.getUserData(parts[4]);
-        if(room==null || user==null) return null;
+        if (room == null || user == null) {
+            return null;
+        }
         try {
             Booking booking = new Booking(
-                parts[0], 
-                dateFormat.parse(parts[1]), 
-                dateFormat.parse(parts[2]),
-                room,
-                user,
-                Double.parseDouble(parts[5]),
-                parts[6]);
+                    parts[0],
+                    dateFormat.parse(parts[1]),
+                    dateFormat.parse(parts[2]),
+                    room,
+                    user,
+                    Double.parseDouble(parts[5]),
+                    parts[6]);
             return booking;
-            
+
         } catch (ParseException | NumberFormatException e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
-    
+
     private String dataToString(Booking booking) {
         String output;
         String startDateStr = dateFormat.format(booking.getStartDate());
@@ -112,26 +120,36 @@ public class BookingManager implements FileHandler {
         );
         return output;
     }
-    
-    public Booking getBookingData(String bookingID){
-        return this.bookingData.get(bookingID);
-    }
-    
-    public Set<String> getAllBookingID(){
-        return this.bookingData.keySet();
-    }
-    
-    public void creatBooking(String start, String end, Room room, User user, String hotelID){
+
+    public void creatBooking(String start, String end, Room room, User user, String hotelID) {
         try {
             Date startDate = dateFormat.parse(start);
             Date endDate = dateFormat.parse(end);
-            Booking booking = new Booking(startDate, endDate, room, user, hotelID);
-            this.bookingData.put(booking.getBookingID(), booking);
-            
+            if (room.isAvailable(startDate, endDate)) {
+                room.setAvailabilityDate(end);
+                room.setIsBooked(true);
+                String bookingID = idGenerator(null);
+                Booking booking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
+                this.bookingData.put(booking.getBookingID(), booking);
+            }
+
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    @Override
+    public String idGenerator(Object context) {
+        this.bookingCount++;
+        return "BKG-" + this.bookingCount;
+    }
+
+    public Booking getBookingData(String bookingID) {
+        return this.bookingData.get(bookingID);
+    }
+
+    public Set<String> getAllBookingID() {
+        return this.bookingData.keySet();
+    }
 
 }

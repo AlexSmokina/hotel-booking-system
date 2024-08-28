@@ -1,6 +1,1 @@
-RoomID,RoomType,Price,AvailabilityStatus,AvailableFrom,HotelID
-RM/STD-1,STANDARD,150.00,Booked,2024-08-22,HTL-0101
-RM/STD-2,STANDARD,150.00,Available,2024-08-26,HTL-0101
-RM/SU-1,SUITE,150.00,Available,2024-08-26,HTL-0101
-RM/SU-2,SUITE,150.00,Booked,2024-09-01,HTL-0101
-RM/SU-3,SUITE,200.00,Available,2024-08-26,HTL-0102
+Room ID,Room Type,Price,Availability Status,Available From,Hotel ID

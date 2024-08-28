@@ -14,9 +14,8 @@ import java.util.Map;
  *
  * @author alex
  */
-public class Room implements ID {
+public class Room {
 
-    private static final Map<String, Integer> counters = new HashMap<>();
 
     private String roomID;
     private RoomType roomType;
@@ -27,21 +26,10 @@ public class Room implements ID {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public Room(RoomType roomType, double price, String hotelID) {
-        this.roomType = roomType;
-        this.roomID = idGenerator();
-        this.price = price;
-        this.isBooked = false;
-        this.availabilityDate = getTodayDate();
-        this.hotelID = hotelID;
-
-    }
-
-    //Constructor for Parsing Data from file.
-    public Room(String roomID, RoomType roomType, double price, String hotelID) {
+    public Room(String roomID, RoomType roomType, String hotelID) {
         this.roomType = roomType;
         this.roomID = roomID;
-        this.price = price;
+        this.price = roomType.getPrice();
         this.isBooked = false;
         this.availabilityDate = getTodayDate();
         this.hotelID = hotelID;
@@ -52,21 +40,7 @@ public class Room implements ID {
         return !isBooked || (availabilityDate != null && startDate.after(availabilityDate) && endDate.after(availabilityDate));
     }
 
-    @Override
-    public final String idGenerator() {
-        counters.putIfAbsent(this.roomType.name(), 0);
-        int currentID = counters.get(this.roomType.name()) + 1;
-        counters.put(this.roomType.name(), currentID);
-        String output = "RM";
-        if (this.roomType == roomType.SUITE) {
-            output += "/SU-";
-        } else if (this.roomType == roomType.PREMIUM) {
-            output += "/PRM-";
-        } else {
-            output += "/STD-";
-        }
-        return output + currentID;
-    }
+    
 
     private Date getTodayDate() {
         String todayStr = dateFormat.format(new Date());
@@ -82,7 +56,7 @@ public class Room implements ID {
     }
 
     public String getRoomType() {
-        return roomType.toString();
+        return roomType.name();
     }
 
     public void setRoomType(RoomType roomType) {
@@ -116,9 +90,7 @@ public class Room implements ID {
     public void setAvailabilityDate(String availabilityDateStr) {
         try {
             this.availabilityDate = dateFormat.parse(availabilityDateStr);
-            if (!this.availabilityDate.equals(getTodayDate())) {
-                this.setIsBooked(true);
-            }
+            
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -10,18 +10,18 @@ package MainHotel;
  */
 public class Staff extends User implements ID{
     
-    private final String staffID;
+    //private final String staffID;
    
     
     public Staff(String userName, String password, String name, String phone, String email) {
         super(userName, password, name, phone, email);
         super.setType(UserType.STAFF);
-        this.staffID = idGenerator();
+        //this.staffID = idGenerator();
     }
  
    
     @Override
-    public final String idGenerator() {
+    public final String idGenerator(Object context) {
         String output = "STF-";
         int id = (int) (Math.random() * 1001);
         return output + id;
@@ -30,7 +30,5 @@ public class Staff extends User implements ID{
     /**
      * @return the staffID
      */
-    public String getStaffID() {
-        return staffID;
-    }
+
 }

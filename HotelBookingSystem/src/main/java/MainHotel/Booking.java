@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * @author alex
  */
-public class Booking implements ID {
+public class Booking{
 
     private String bookingID;
     private Date startDate;
@@ -23,12 +23,10 @@ public class Booking implements ID {
     private double totalPrice;
     private String hotelID;
     
-    private static int bookingCount = 0;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-
-
-    public Booking(Date startDate, Date endDate, Room room, User user, String hotelID) {
-        this.bookingID = idGenerator();
+    
+    public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, String hotelID) {
+        this.bookingID = bookingID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.room = room;
@@ -37,7 +35,7 @@ public class Booking implements ID {
         this.hotelID = hotelID;  
     }
     
-    //Constructor for file handling
+    
     public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, double totalPrice, String hotelID) {
         this.bookingID = bookingID;
         this.startDate = startDate;
@@ -48,27 +46,6 @@ public class Booking implements ID {
         this.hotelID = hotelID;  
     }
     
-
-//    public void createBooking(Room room, String startDateStr, String endDateStr, String hotelID) {
-//        try {
-//            Date startDate = dateFormat.parse(startDateStr);
-//            Date endDate = dateFormat.parse(endDateStr);
-//
-//            if (room.isAvailable(startDate, endDate)) {
-//                this.setRoom(room);
-//                this.startDate = startDate;
-//                this.endDate = endDate;
-//                this.room.setAvailabilityDate(endDateStr);
-//                this.room.setIsBooked(true);
-//                this.totalPrice = calculateTotalCost();
-//                this.hotelID = hotelID;
-//            } else {
-//                System.out.println("Room is not available for the selected dates.\n");
-//            }
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//    }
     public final double calculateTotalCost() {
         long diffInMillis = this.getEndDate().getTime() - this.getStartDate().getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
@@ -132,11 +109,7 @@ public class Booking implements ID {
 //        this.totalPrice = calculateTotalCost();
 //        System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
 //    }
-    @Override
-    public final String idGenerator() {
-        bookingCount++;
-        return "BKG-" + bookingCount;
-    }
+
 
       // Implement Invoice Class
 //    public void printInvoice() {
@@ -180,7 +153,6 @@ public class Booking implements ID {
     public Date getEndDate() {
         return endDate;
     }
-
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
