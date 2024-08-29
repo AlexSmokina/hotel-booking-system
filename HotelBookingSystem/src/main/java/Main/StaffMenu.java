@@ -15,6 +15,8 @@ import java.util.List;
 import java.util.Scanner;
 import MainHotel.Guest;
 import MainHotel.RoomType;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -93,8 +95,10 @@ public class StaffMenu {
                         updateHotelDetails(scanner);
                         break;
                     case 3:
-                        viewAllHotels(scanner);
+                        viewAllHotels();
                         break;
+                    case 4:
+                        return;
                     default:
                         System.out.println("Invalid choice. Please enter a number (1-3).");
                 }
@@ -143,7 +147,7 @@ public class StaffMenu {
         }
     }
 
-    private void viewAllHotels(Scanner scan) {
+    private void viewAllHotels() {
         System.out.println("Listing all hotels:");
         if (hotelManager.getAllHotels().isEmpty()) {
             System.out.println("No hotels available.");
@@ -181,7 +185,7 @@ public class StaffMenu {
                         updateRoomDetails(scanner);
                         break;
                     case 4:
-                        viewAllRooms(scanner);
+                        viewAllRooms();
                         break;
                     case 5:
                         return;
@@ -256,7 +260,7 @@ public class StaffMenu {
         }
     }
 
-    private void viewAllRooms(Scanner scanner) {
+    private void viewAllRooms() {
         System.out.println("Listing all rooms:");
         for(Room room : roomManager.getAllRooms().values()) {
             System.out.println(roomManager.dataToString(room));
@@ -271,7 +275,7 @@ public class StaffMenu {
             System.out.println("1. Book a Room");
             System.out.println("2. Cancel booking");
             System.out.println("3. Extend booking");
-            System.out.println("4. Logout and Exit");
+            System.out.println("4. Return to Previous Menu");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
@@ -310,9 +314,9 @@ public class StaffMenu {
             return;
         }
 
-        System.out.println("Enter Check-in Date (yyyy-mm-dd): ");
+        System.out.println("Check-in date (yyyy-mm-dd): ");
         String startDate = scan.nextLine();
-        System.out.println("Enter Check-out Date (yyyy-mm-dd): ");
+        System.out.println("Check-out date (yyyy-mm-dd): ");
         String endDate = scan.nextLine();
 
         List<Room> availableRooms = roomManager.filerByDate(startDate, hotel.getHotelID());
@@ -339,7 +343,7 @@ public class StaffMenu {
         roomManager.saveData();
 
         if (booking != null) {
-            System.out.println("\nRoom " + selectedRoom.getRoomID() + " booked successfully for " + guest.getName() + "\nThis is your booking ID: " + booking.getBookingID());
+            System.out.println("\nRoom " + selectedRoom.getRoomID() + " booked successfully for " + guest.getName() + "\nThis is your booking ID: " + booking.getBookingID()+"\n");
             bookingManager.printInvoice(booking.getBookingID());
         } else {
             System.out.println("\nSomething went wrong! Please try again!");
@@ -347,11 +351,81 @@ public class StaffMenu {
     }
 
     public void cancelBooking(Scanner scan) {
-        System.out.println("");
+        if (showBooking()) {
+            System.out.print("Enter booking ID that you want to cancel: ");
+            String bookingID = scan.nextLine();
+            bookingManager.cancelBooking(bookingID);
+            bookingManager.saveData();
+            roomManager.saveData();
+        }
+
     }
 
     public void extendBooking(Scanner scan) {
+        if (showBooking()) {
+            System.out.print("Enter booking ID that you want to extend: ");
+            String bookingID = scan.nextLine();
+            System.out.println("New check-out date: ");
+            String newEndDate = scan.nextLine();
+            bookingManager.extendBooking(bookingID, newEndDate);
+            bookingManager.saveData();
+            roomManager.saveData();
 
+        }
+    }
+
+    public void changeRoom(Scanner scan) {
+        if (showBooking()) {
+            System.out.print("Enter the booking ID for the room you want to change: ");
+            String bookingID = scan.nextLine();
+
+            Booking booking = bookingManager.getBookingData(bookingID);
+            if (booking == null) {
+                System.out.println("Invalid booking ID. Please try again.");
+                return;
+            }
+            Date startDate = booking.getStartDate();
+        
+        
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String startDateString = dateFormat.format(startDate);
+            String hotelID = booking.getHotelID();
+
+            List<Room> availableRooms = roomManager.filerByDate(startDateString, hotelID);
+
+            System.out.println("Available Rooms:");
+            for (int i = 0; i < availableRooms.size(); i++) {
+                Room room = availableRooms.get(i);
+                System.out.println((i + 1) + ". " + room);
+            }
+
+
+            System.out.print("Enter the number of the room you want to switch to: ");
+            int roomChoice = scan.nextInt();
+            scan.nextLine(); 
+
+            if (roomChoice < 1 || roomChoice > availableRooms.size()) {
+                System.out.println("Invalid choice. Room change canceled.");
+                return;
+            }
+
+            Room selectedRoom = availableRooms.get(roomChoice - 1);
+
+            bookingManager.changeRoom(bookingID, selectedRoom);
+            bookingManager.saveData();
+            roomManager.saveData();
+        }
+    }
+
+    public boolean showBooking() {
+        Booking booking = bookingManager.getBookingByUsername(this.guest.getUserName());
+        if (booking != null) {
+            System.out.println(booking);
+            return true;
+        } else {
+            System.out.println("There is no booking under your username.");
+            return false;
+        }
     }
 
 }

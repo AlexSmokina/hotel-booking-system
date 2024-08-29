@@ -43,7 +43,7 @@ public class GuestMenu {
             System.out.println("2. Cancel booking");
             System.out.println("3. Extend booking");
             System.out.println("4. Change Room");
-            System.out.println("5. Log out and exit");
+            System.out.println("5. Logout");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
@@ -85,9 +85,9 @@ public class GuestMenu {
             return;
         }
 
-        System.out.println("Check-in date (yyyy-mm-dd): ");
+        System.out.println("Enter Check-in date (yyyy-mm-dd): ");
         String startDate = scan.nextLine();
-        System.out.println("Check-out date (yyyy-mm-dd): ");
+        System.out.println("Enter Check-out date (yyyy-mm-dd): ");
         String endDate = scan.nextLine();
 
         List<Room> availableRooms = roomManager.filerByDate(startDate, hotel.getHotelID());
