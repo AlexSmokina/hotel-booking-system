@@ -85,9 +85,9 @@ public class GuestMenu {
             return;
         }
 
-        System.out.println("Enter Check-in date (yyyy-mm-dd): ");
+        System.out.print("Enter Check-in date (yyyy-mm-dd): ");
         String startDate = scan.nextLine();
-        System.out.println("Enter Check-out date (yyyy-mm-dd): ");
+        System.out.print("Enter Check-out date (yyyy-mm-dd): ");
         String endDate = scan.nextLine();
 
         List<Room> availableRooms = roomManager.filerByDate(startDate, hotel.getHotelID());

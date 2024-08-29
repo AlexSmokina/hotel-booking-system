@@ -156,5 +156,9 @@ public class HotelManager implements FileHandler, ID {
             return true;
         }
     }
+    
+    public boolean isEmpty(){
+        return hotelData.isEmpty();
+    }
 
 }

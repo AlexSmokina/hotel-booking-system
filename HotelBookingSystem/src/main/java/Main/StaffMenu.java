@@ -13,8 +13,9 @@ import MainHotel.Room;
 import MainHotel.RoomManager;
 import java.util.List;
 import java.util.Scanner;
-import MainHotel.Guest;
 import MainHotel.RoomType;
+import MainHotel.User;
+import MainHotel.UserManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,13 +30,14 @@ public class StaffMenu {
     private HotelManager hotelManager;
     private BookingManager bookingManager;
     private RoomManager roomManager;
-    public Guest guest;
+    private UserManager userManager;
 
-    public StaffMenu(Staff staff, HotelManager hotelManager, BookingManager bookingManager, RoomManager roomManager) {
+    public StaffMenu(Staff staff, HotelManager hotelManager, BookingManager bookingManager, RoomManager roomManager, UserManager userManager) {
         this.staff = staff;
         this.hotelManager = hotelManager;
         this.bookingManager = bookingManager;
         this.roomManager = roomManager;
+        this.userManager = userManager;
     }
 
     public void showMenu() {
@@ -61,9 +63,10 @@ public class StaffMenu {
                         break;
                     case 3:
                         bookingManagement(scanner);
-                        return;
+                        break;
                     case 4:
                         System.out.println("Logging out...");
+                        System.exit(0);
                         return;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 1 and 4.");
@@ -100,9 +103,10 @@ public class StaffMenu {
                     case 4:
                         return;
                     default:
-                        System.out.println("Invalid choice. Please enter a number (1-3).");
+                        System.out.println("Invalid choice. Please enter a number (1-4).");
                 }
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
             }
         }
     }
@@ -120,6 +124,7 @@ public class StaffMenu {
         int suites = Integer.parseInt(scan.nextLine().trim());
 
         hotelManager.createNewHotel(hotelName, hotelLocation, stdRooms, prmRooms, suites);
+        hotelManager.saveData();
         System.out.println("Hotel added successfully!");
     }
 
@@ -141,6 +146,7 @@ public class StaffMenu {
                 hotel.setLocation(newLocation);
             }
             hotelManager.updateHotelData(hotelID, hotel);
+            hotelManager.saveData();
             System.out.println("Hotel details updated successfully!");
         } else {
             System.out.println("No hotel found with ID: " + hotelID);
@@ -262,10 +268,10 @@ public class StaffMenu {
 
     private void viewAllRooms() {
         System.out.println("Listing all rooms:");
-        for(Room room : roomManager.getAllRooms().values()) {
+        for (Room room : roomManager.getAllRooms().values()) {
             System.out.println(roomManager.dataToString(room));
         }
-        
+
     }
 
     // Booking Management Implementation
@@ -275,7 +281,8 @@ public class StaffMenu {
             System.out.println("1. Book a Room");
             System.out.println("2. Cancel booking");
             System.out.println("3. Extend booking");
-            System.out.println("4. Return to Previous Menu");
+            System.out.println("4. View guest booking");
+            System.out.println("5. Return to Previous Menu");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
@@ -293,8 +300,17 @@ public class StaffMenu {
                         extendBooking(scanner);
                         break;
                     case 4:
-                        System.exit(0);
+                        System.out.print("Enter guest username: ");
+                        String username = scan.nextLine();
+                        User user = userManager.getUserData(username);
+                        if (user == null) {
+                            System.out.println("User(Guest) does not exist!");
+                            return;
+                        }
+                        showBooking(username);
                         break;
+                    case 5:
+                        return;
                     default:
                         System.out.println("Invalid choice. Please enter a number (1-4).");
                 }
@@ -305,7 +321,7 @@ public class StaffMenu {
     }
 
     public void bookRoom(Scanner scan) {
-        System.out.println("Choose Hotel: (A,B)");
+        System.out.print("Choose Hotel: (Auckland Skyline,Queenstown Grand)");
         String hotelName = scan.nextLine();
 
         Hotel hotel = hotelManager.searchHotel(hotelName);
@@ -314,9 +330,17 @@ public class StaffMenu {
             return;
         }
 
-        System.out.println("Check-in date (yyyy-mm-dd): ");
+        System.out.print("Enter guest username: ");
+        String username = scan.nextLine();
+        User user = userManager.getUserData(username);
+        if (user == null) {
+            System.out.println("User(Guest) does not exist!");
+            return;
+        }
+
+        System.out.print("Check-in date (yyyy-mm-dd): ");
         String startDate = scan.nextLine();
-        System.out.println("Check-out date (yyyy-mm-dd): ");
+        System.out.print("Check-out date (yyyy-mm-dd): ");
         String endDate = scan.nextLine();
 
         List<Room> availableRooms = roomManager.filerByDate(startDate, hotel.getHotelID());
@@ -338,12 +362,12 @@ public class StaffMenu {
 
         Room selectedRoom = availableRooms.get(roomChoice - 1);
 
-        Booking booking = bookingManager.createBooking(startDate, endDate, selectedRoom, guest, hotel.getHotelID());
+        Booking booking = bookingManager.createBooking(startDate, endDate, selectedRoom, user, hotel.getHotelID());
         bookingManager.saveData();
         roomManager.saveData();
 
         if (booking != null) {
-            System.out.println("\nRoom " + selectedRoom.getRoomID() + " booked successfully for " + guest.getName() + "\nThis is your booking ID: " + booking.getBookingID()+"\n");
+            System.out.println("\nRoom " + selectedRoom.getRoomID() + " booked successfully for " + user.getName() + "\nThis is your booking ID: " + booking.getBookingID() + "\n");
             bookingManager.printInvoice(booking.getBookingID());
         } else {
             System.out.println("\nSomething went wrong! Please try again!");
@@ -351,7 +375,13 @@ public class StaffMenu {
     }
 
     public void cancelBooking(Scanner scan) {
-        if (showBooking()) {
+        System.out.print("Enter guest username: ");
+        String username = scan.nextLine();
+        if (userManager.getUserData(username) == null) {
+            System.out.println("User(Guest) does not exist!");
+            return;
+        }
+        if (showBooking(username)) {
             System.out.print("Enter booking ID that you want to cancel: ");
             String bookingID = scan.nextLine();
             bookingManager.cancelBooking(bookingID);
@@ -362,7 +392,13 @@ public class StaffMenu {
     }
 
     public void extendBooking(Scanner scan) {
-        if (showBooking()) {
+        System.out.print("Enter guest username: ");
+        String username = scan.nextLine();
+        if (userManager.getUserData(username) == null) {
+            System.out.println("User(Guest) does not exist!");
+            return;
+        }
+        if (showBooking(username)) {
             System.out.print("Enter booking ID that you want to extend: ");
             String bookingID = scan.nextLine();
             System.out.println("New check-out date: ");
@@ -375,7 +411,13 @@ public class StaffMenu {
     }
 
     public void changeRoom(Scanner scan) {
-        if (showBooking()) {
+        System.out.print("Enter guest username: ");
+        String username = scan.nextLine();
+        if (userManager.getUserData(username) == null) {
+            System.out.println("User(Guest) does not exist!");
+            return;
+        }
+        if (showBooking(username)) {
             System.out.print("Enter the booking ID for the room you want to change: ");
             String bookingID = scan.nextLine();
 
@@ -385,8 +427,7 @@ public class StaffMenu {
                 return;
             }
             Date startDate = booking.getStartDate();
-        
-        
+
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String startDateString = dateFormat.format(startDate);
             String hotelID = booking.getHotelID();
@@ -399,10 +440,9 @@ public class StaffMenu {
                 System.out.println((i + 1) + ". " + room);
             }
 
-
             System.out.print("Enter the number of the room you want to switch to: ");
             int roomChoice = scan.nextInt();
-            scan.nextLine(); 
+            scan.nextLine();
 
             if (roomChoice < 1 || roomChoice > availableRooms.size()) {
                 System.out.println("Invalid choice. Room change canceled.");
@@ -417,13 +457,13 @@ public class StaffMenu {
         }
     }
 
-    public boolean showBooking() {
-        Booking booking = bookingManager.getBookingByUsername(this.guest.getUserName());
+    public boolean showBooking(String username) {
+        Booking booking = bookingManager.getBookingByUsername(username);
         if (booking != null) {
             System.out.println(booking);
             return true;
         } else {
-            System.out.println("There is no booking under your username.");
+            System.out.println("There is no booking under that username.");
             return false;
         }
     }

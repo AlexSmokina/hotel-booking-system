@@ -32,6 +32,13 @@ public class Start {
         hotelManager.loadData();
         bookingManager.loadData();
         
+        if(hotelManager.isEmpty()){
+            hotelManager.createNewHotel("Auckland Skyline", "Auckland", 2, 2, 1);
+            hotelManager.createNewHotel("Queenstown Grand", "Queenstown", 1, 1, 1);
+            hotelManager.saveData();
+            roomManager.saveData();
+        }
+        
         
 
         Scanner scan = new Scanner(System.in);
@@ -73,7 +80,7 @@ public class Start {
                     guestMenu.showMenu();
                 } else if (currentUser instanceof Staff) {
                     Staff staff = (Staff) currentUser;
-                    StaffMenu staffMenu = new StaffMenu(staff, hotelManager, bookingManager, roomManager);
+                    StaffMenu staffMenu = new StaffMenu(staff, hotelManager, bookingManager, roomManager,userManager);
                     staffMenu.showMenu();
                 }
             } else {
@@ -142,4 +149,5 @@ public class Start {
         return userManager.signIn(username, password);
 
     }
+    
 }
