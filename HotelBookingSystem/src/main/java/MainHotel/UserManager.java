@@ -17,12 +17,12 @@ import java.util.Set;
  *
  * @author minthihakoko
  */
-public class UserManger implements FileHandler {
+public class UserManager implements FileHandler {
 
     private String fileName;
     private Map<String, User> usersData;
 
-    public UserManger(String fileName) {
+    public UserManager(String fileName) {
         this.fileName = fileName;
         usersData = new HashMap<>();
     }
@@ -37,10 +37,10 @@ public class UserManger implements FileHandler {
             String line;
             while ((line = bufferReader.readLine()) != null) {
                 User user = parseUser(line);
-                if(user!=null){
-                    usersData.put(user.getUserName(), user); 
+                if (user != null) {
+                    usersData.put(user.getUserName(), user);
                 }
-                
+
             }
             bufferReader.close();
         } catch (IOException e) {
@@ -68,9 +68,24 @@ public class UserManger implements FileHandler {
             return null;
         }
         String[] parts = line.split(",");
-        User user = new User(parts[0], parts[1], parts[2], parts[3], parts[4]);
-        user.setType(UserType.valueOf(parts[5]));
+        
+        String username = parts[0];
+        String password = parts[1];
+        String name = parts[2];
+        String phone = parts[3];
+        String email = parts[4];
+        UserType userType;
 
+        try {
+            userType = UserType.valueOf(parts[5]);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid user type in data: " + parts[5]);
+            return null;
+        }
+        
+        User user = (userType == UserType.GUEST)
+                ? new Guest(username, password, name, phone, email) 
+                : new Staff(username, password, name, phone, email);
         return user;
     }
 

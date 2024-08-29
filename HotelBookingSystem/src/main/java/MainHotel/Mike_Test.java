@@ -24,7 +24,7 @@ public class Mike_Test {
         String bookingFile = "./database/booking.csv";
         String hotelFile = "./database/hotel.csv";
         
-        UserManger um = new UserManger(userFile);
+        UserManager um = new UserManager(userFile);
         RoomManager rm = new RoomManager(roomFile);
         BookingManager bm = new BookingManager(bookingFile,rm,um);
         HotelManager hm = new HotelManager(hotelFile,rm);
@@ -44,6 +44,7 @@ public class Mike_Test {
         //bm.creatBooking("2024-08-29", "2024-09-03", room, user, "HTL-1");
         //bm.creatBooking("2024-09-04", "2024-09-06", room, user, "HTL-1");
         bm.extendBooking("BKG-1", "2024-09-05");
+       
         
        
                

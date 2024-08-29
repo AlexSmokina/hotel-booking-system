@@ -1,6 +1,4 @@
 Username,Password,Name,Phone,Email,User Type
-alex01,letmein123,Lisa Wang,0217654321,lisa@example.com,GUEST
-mike22,password1,Mike,0219876543,jane@example.com,STAFF
-andrew,admin123,Admin User,0210000000,admin@hotel.com,STAFF
-dan,myPassw0rd,Mark Taylor,0223456789,mark@example.com,GUEST
-
+mike22,mike22,Mike,121313,mike@gmail.com,GUEST
+mike33,mike33,Mike33,25151,maieaa@gama,STAFF
+alex2,alex2,Alex,31313,alex@gmail.com,STAFF

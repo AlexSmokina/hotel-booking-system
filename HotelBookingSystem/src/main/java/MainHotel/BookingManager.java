@@ -25,13 +25,13 @@ public class BookingManager implements FileHandler, ID {
     private String fileName;
     private Map<String, Booking> bookingData;
     private RoomManager roomManager;
-    private UserManger userManger;
+    private UserManager userManger;
 
     private int bookingCount;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public BookingManager(String bookingFile, RoomManager roomManager, UserManger userManger) {
+    public BookingManager(String bookingFile, RoomManager roomManager, UserManager userManger) {
         this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
         this.roomManager = roomManager;
