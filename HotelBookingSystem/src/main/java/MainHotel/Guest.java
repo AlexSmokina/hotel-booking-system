@@ -18,13 +18,7 @@ public class Guest extends User{
         super.setType(UserType.GUEST);
         
     }
-    
-    
-    
-    public void createBooking(String hotelName, String startDate, String endDate){
-        
-    }
-    
+   
 
   
 

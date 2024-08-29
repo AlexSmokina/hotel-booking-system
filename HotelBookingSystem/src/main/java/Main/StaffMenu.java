@@ -24,9 +24,9 @@ public class StaffMenu {
     public void showMenu() {
         while (true) {
             System.out.println("Staff Menu:");
-            System.out.println("1. Manage Rooms");
-            System.out.println("2. View Reports");
-            System.out.println("3. Logout");
+            System.out.println("1. Hotel Management");
+            System.out.println("2. Booking Management");
+            System.out.println("3. Logout and Exit");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();

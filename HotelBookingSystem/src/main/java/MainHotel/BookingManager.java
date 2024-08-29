@@ -125,9 +125,10 @@ public class BookingManager implements FileHandler, ID {
         return output;
     }
 
-    public void createBooking(String start, String end, Room room, User user, String hotelID) {
+    public Booking createBooking(String start, String end, Room room, User user, String hotelID) {
         if (room == null || user == null) {
             System.out.println("No room or user data!");
+            return null;
         }
         try {
             Date startDate = dateFormat.parse(start);
@@ -138,11 +139,17 @@ public class BookingManager implements FileHandler, ID {
                 String bookingID = idGenerator(null);
                 Booking booking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
                 this.bookingData.put(booking.getBookingID(), booking);
+                return booking;
+            }
+            else{
+                System.out.println("Room is not available!");
+                return null;
             }
 
         } catch (ParseException e) {
             System.out.println(e.getMessage());
         }
+        return null;
     }
 
     public void extendBooking(String bookingID, String newEndDateStr) {
@@ -219,7 +226,7 @@ public class BookingManager implements FileHandler, ID {
     //Implementing printInvoice function
     public void printInvoice(String bookingID) {
 
-        Booking booking = this.getBookingData(fileName);
+        Booking booking = this.getBookingData(bookingID);
 
         if (booking == null) {
             System.out.println("No booking found with ID: " + bookingID);
@@ -241,8 +248,7 @@ public class BookingManager implements FileHandler, ID {
     }
 
     @Override
-    public String idGenerator(Object context
-    ) {
+    public String idGenerator(Object context) {
         this.bookingCount++;
         return "BKG-" + this.bookingCount;
     }
