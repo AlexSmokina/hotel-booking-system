@@ -15,7 +15,7 @@ import java.util.Set;
 
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class UserManager implements FileHandler {
 

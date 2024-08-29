@@ -11,7 +11,7 @@ import java.util.List;
 
 /**
  *
- * @author alex
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class Hotel {
 

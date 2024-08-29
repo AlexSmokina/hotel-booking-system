@@ -21,7 +21,7 @@ import java.util.Date;
 
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class StaffMenu {
 

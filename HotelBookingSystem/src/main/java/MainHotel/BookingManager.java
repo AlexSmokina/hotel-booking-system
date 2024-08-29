@@ -18,7 +18,7 @@ import java.util.Set;
 
 /**
  *
- * @author alex
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class BookingManager implements FileHandler, ID {
 

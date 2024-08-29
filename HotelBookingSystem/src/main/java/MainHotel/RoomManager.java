@@ -20,7 +20,7 @@ import java.util.Set;
  */
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class RoomManager implements FileHandler, ID {
 

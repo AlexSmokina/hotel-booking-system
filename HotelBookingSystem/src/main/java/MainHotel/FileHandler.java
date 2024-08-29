@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  * @param <E>
  */
 public interface FileHandler {

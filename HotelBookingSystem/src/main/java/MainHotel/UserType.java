@@ -6,7 +6,7 @@ package MainHotel;
 
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko
  */
 public enum UserType {
    GUEST, 

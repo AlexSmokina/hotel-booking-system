@@ -6,29 +6,18 @@ package MainHotel;
 
 /**
  *
- * @author alex
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
-public class Staff extends User implements ID{
+public class Staff extends User{
     
-    //private final String staffID;
    
     
     public Staff(String userName, String password, String name, String phone, String email) {
         super(userName, password, name, phone, email);
         super.setType(UserType.STAFF);
-        //this.staffID = idGenerator();
     }
  
    
-    @Override
-    public final String idGenerator(Object context) {
-        String output = "STF-";
-        int id = (int) (Math.random() * 1001);
-        return output + id;
-    }
 
-    /**
-     * @return the staffID
-     */
 
 }

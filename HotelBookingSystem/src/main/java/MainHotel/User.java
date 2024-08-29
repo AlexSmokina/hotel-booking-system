@@ -6,7 +6,7 @@ package MainHotel;
 
 /**
  *
- * @author alex
+ * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 public class User {
 

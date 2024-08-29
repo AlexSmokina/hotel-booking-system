@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author minthihakoko
+ * @author Alexander Smokina & Min Thiha Ko Ko
  */
 public class GuestMenu {
 
@@ -76,7 +76,7 @@ public class GuestMenu {
     }
 
     public void bookRoom(Scanner scan) {
-        System.out.println("Choose Hotel: (A,B)");
+        System.out.println("Choose Hotel: (Auckland Skyline,Queenstown Grand)");
         String hotelName = scan.nextLine();
 
         Hotel hotel = hotelManager.searchHotel(hotelName);
