@@ -25,17 +25,17 @@ public class BookingManager implements FileHandler, ID {
     private String fileName;
     private Map<String, Booking> bookingData;
     private RoomManager roomManager;
-    private UserManager userManger;
+    private UserManager userManager;
 
     private int bookingCount;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public BookingManager(String bookingFile, RoomManager roomManager, UserManager userManger) {
+    public BookingManager(String bookingFile, RoomManager roomManager, UserManager userManager) {
         this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
         this.roomManager = roomManager;
-        this.userManger = userManger;
+        this.userManager = userManager;
         this.bookingCount = 0;
     }
 
@@ -80,10 +80,10 @@ public class BookingManager implements FileHandler, ID {
             return null;
         }
         roomManager.loadData();
-        userManger.loadData();
+        userManager.loadData();
         String[] parts = line.split(",");
         Room room = roomManager.getRoomData(parts[3], parts[6]);
-        User user = userManger.getUserData(parts[4]);
+        User user = userManager.getUserData(parts[4]);
         if (room == null || user == null) {
             System.out.println("Room or User not found for data: " + line);
             return null;

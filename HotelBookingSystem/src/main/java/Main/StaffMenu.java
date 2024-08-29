@@ -6,6 +6,9 @@ package Main;
 
 import MainHotel.Staff;
 import java.util.Scanner;
+import MainHotel.BookingManager;
+import MainHotel.HotelManager;
+import MainHotel.RoomManager;
 
 /**
  *
@@ -15,18 +18,25 @@ public class StaffMenu {
 
     private Staff staff;
     private static Scanner scanner = new Scanner(System.in);
+    private HotelManager hotelManager;
+    private BookingManager bookingManager;
+    private RoomManager roomManager;
 
-
-    public StaffMenu(Staff staff) {
+    public StaffMenu(Staff staff, HotelManager hotelManager, BookingManager bookingManager, RoomManager roomManager) {
         this.staff = staff;
+        this.hotelManager = hotelManager;
+        this.bookingManager = bookingManager;
+        this.roomManager = roomManager;
     }
 
     public void showMenu() {
         while (true) {
             System.out.println("Staff Menu:");
-            System.out.println("1. Manage Rooms");
-            System.out.println("2. View Reports");
-            System.out.println("3. Logout");
+            System.out.println("1.");
+            System.out.println("2. Room Management");
+            System.out.println("3. Booking Management");
+            System.out.println("4. View Reports");
+            System.out.println("5. Logout");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
@@ -43,6 +53,12 @@ public class StaffMenu {
                     case 3:
                         System.exit(0);
                         return;
+                    case 4:
+                        System.exit(0);
+                        return;
+                    case 5:
+                        System.exit(0);
+                        return;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 1 and 3.");
                 }
@@ -50,5 +66,46 @@ public class StaffMenu {
                 System.out.println("Invalid input. Please enter a number.");
             }
         }
+    }
+
+    public void manageHotels() {
+
+    }
+
+    public void manageRooms() {
+        while (true) {
+            System.out.println("Room Managemtn Menu:");
+            System.out.println("1. Add Room");
+            System.out.println("2. Remove Room");
+            System.out.println("3. Update Room Details");
+            System.out.println("4. View All Rooms");
+            System.out.println("5. Return to Previous Menu");
+            System.out.println("Enter your choice: ");
+            
+            
+            
+            String choiceString = scanner.nextLine().trim();
+            try {
+                int choice = Integer.parseInt(choiceString);
+
+                switch (choice) {
+                    case 1:
+                        ;
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    default:
+                        System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+    }
+
+    public void manageBookings() {
+
     }
 }
