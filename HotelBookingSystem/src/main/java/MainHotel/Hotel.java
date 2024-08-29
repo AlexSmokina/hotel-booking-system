@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author alex
  */
-public class Hotel implements ID {
+public class Hotel {
 
     private String name;
     private String hotelID;
@@ -103,12 +103,7 @@ public class Hotel implements ID {
                  
     }
 
-    @Override
-    public String idGenerator(Object context) {
-        String output = "HTL-";
-        int id = (int) (Math.random() * 1001);
-        return output + id;
-    }
+
 
     // Getters and Setters
 

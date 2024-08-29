@@ -24,10 +24,10 @@ public class HotelManager implements FileHandler, ID {
     private int hotelCount;
     private RoomManager roomManager;
 
-    public HotelManager(String hotelFile, String roomFile) {
+    public HotelManager(String hotelFile, RoomManager roomManager) {
         this.fileName = hotelFile;
         this.hotelData = new HashMap<>();
-        this.roomManager = new RoomManager(roomFile);
+        this.roomManager = roomManager;
         this.hotelCount = 0;
     }
 
@@ -77,7 +77,9 @@ public class HotelManager implements FileHandler, ID {
         String[] parts = line.split(",");
         
         Hotel hotel = new Hotel(parts[0], parts[1], parts[2]);
-        this.initializeRooms(hotel, Integer.parseInt(parts[3]), Integer.parseInt(parts[4]), Integer.parseInt(parts[5]));
+        hotel.setNumStandardRooms(Integer.parseInt(parts[3]));
+        hotel.setNumPremiumRooms(Integer.parseInt(parts[4]));
+        hotel.setNumSuites(Integer.parseInt(parts[5]));
         return hotel;
     }
     
@@ -103,24 +105,26 @@ public class HotelManager implements FileHandler, ID {
     }
     
     private void initializeRooms(Hotel hotel, int numStandardRooms, int numPremiumRooms, int numSuites) {
-        roomManager.loadData();
         hotel.setNumStandardRooms(numStandardRooms);
         hotel.setNumPremiumRooms(numPremiumRooms);
         hotel.setNumSuites(numSuites);
         
         for (int i = 0; i < numStandardRooms; i++) {
             roomManager.createRoom("STANDARD", hotel.getHotelID());
-            
+
         }
 
         for (int i = 0; i < numPremiumRooms; i++) {
             roomManager.createRoom("PREMIUM", hotel.getHotelID());
+            
         }
 
         for (int i = 0; i < numSuites; i++) {
             roomManager.createRoom("SUITE", hotel.getHotelID());
+            
         }
         roomManager.saveData();
+        
     }
     
     @Override
@@ -131,7 +135,7 @@ public class HotelManager implements FileHandler, ID {
 
     public Hotel getHotelData(String hotelID) {
         return hotelData.get(hotelID);
-    }
+    }   
 
     public boolean updateHotelData(String hotelID, Hotel newHotelData) {
         if (!hotelData.containsKey(hotelID)) {

@@ -31,11 +31,11 @@ public class BookingManager implements FileHandler, ID {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public BookingManager(String bookingFile, String roomFile, String userFile) {
+    public BookingManager(String bookingFile, RoomManager roomManager, UserManger userManger) {
         this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
-        this.roomManager = new RoomManager(roomFile);
-        this.userManger = new UserManger(userFile);
+        this.roomManager = roomManager;
+        this.userManger = userManger;
         this.bookingCount = 0;
     }
 
@@ -122,6 +122,9 @@ public class BookingManager implements FileHandler, ID {
     }
 
     public void creatBooking(String start, String end, Room room, User user, String hotelID) {
+        if(room == null || user == null ){
+            System.out.println("No room or user data!");
+        }
         try {
             Date startDate = dateFormat.parse(start);
             Date endDate = dateFormat.parse(end);
@@ -135,6 +138,27 @@ public class BookingManager implements FileHandler, ID {
 
         } catch (ParseException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    
+    public void extendBooking(String bookingID, String newEndDateStr){
+        Booking booking = this.bookingData.get(bookingID);
+        if(booking!=null){
+            try {
+                Date newEndDate = dateFormat.parse(newEndDateStr);
+                if(newEndDate.after(booking.getEndDate()) && !newEndDate.before(booking.getRoom().getAvailabilityDate())){
+                    booking.setEndDate(newEndDate);
+                    booking.getRoom().setAvailabilityDate(newEndDateStr);
+                    booking.calculateTotalCost();
+                }
+                else{
+                    System.out.println("Room is not available.\n");
+                }
+            } catch (ParseException e) {
+                System.out.println(e.getMessage());
+            }
+        }else{
+            System.out.println("Wrong Booking ID");
         }
     }
 

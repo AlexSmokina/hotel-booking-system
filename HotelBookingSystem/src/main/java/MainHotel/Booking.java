@@ -31,7 +31,7 @@ public class Booking{
         this.endDate = endDate;
         this.room = room;
         this.user = user;
-        this.totalPrice = calculateTotalCost();
+        calculateTotalCost();
         this.hotelID = hotelID;  
     }
     
@@ -46,10 +46,11 @@ public class Booking{
         this.hotelID = hotelID;  
     }
     
-    public final double calculateTotalCost() {
+    public final void calculateTotalCost() {
         long diffInMillis = this.getEndDate().getTime() - this.getStartDate().getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
-        return diffInDays * this.room.getPrice(); 
+        this.totalPrice = diffInDays * this.room.getPrice();
+        
     }
 
 //    public void cancelBooking(String bookingID) {
@@ -156,6 +157,10 @@ public class Booking{
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+    
+    public Room getRoom(){
+        return this.room;
     }
     
     public String getRoomID(){
