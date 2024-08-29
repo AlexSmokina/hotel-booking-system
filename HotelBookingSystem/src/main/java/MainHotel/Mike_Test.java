@@ -24,7 +24,7 @@ public class Mike_Test {
         String bookingFile = "./database/booking.csv";
         String hotelFile = "./database/hotel.csv";
 
-        UserManger um = new UserManger(userFile);
+        UserManager um = new UserManager(userFile);
         RoomManager rm = new RoomManager(roomFile);
         BookingManager bm = new BookingManager(bookingFile, rm, um);
         HotelManager hm = new HotelManager(hotelFile, rm);
