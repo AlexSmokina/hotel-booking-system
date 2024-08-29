@@ -40,7 +40,7 @@ public class Room {
 
     
 
-    private Date getTodayDate() {
+    public Date getTodayDate() {
         String todayStr = dateFormat.format(new Date());
         try {
             return dateFormat.parse(todayStr);

@@ -85,6 +85,7 @@ public class Start {
     }
 
     private static User signInPage(Scanner scan, UserManager userManager) {
+        System.out.println("Sign In!");
         System.out.print("Enter username: ");
         String username = scan.nextLine();
         if (userManager.getUserData(username) == null) {
@@ -105,6 +106,7 @@ public class Start {
     }
 
     private static User register(Scanner scan, UserManager userManager) {
+        System.out.println("Register!");
         System.out.print("Enter username: ");
         String username = scan.nextLine();
 

@@ -58,7 +58,7 @@ public class HotelManager implements FileHandler, ID {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
             PrintWriter printWriter = new PrintWriter(writer);
-            printWriter.println("Hotel Name,Hotel ID,Hotel Address,Standard,Premium,Suite");
+            printWriter.println("Hotel ID,Hotel Name,Hotel Address,Standard,Premium,Suite");
             for (Hotel hotel : hotelData.values()) {
                 printWriter.println(dataToString(hotel));
             }

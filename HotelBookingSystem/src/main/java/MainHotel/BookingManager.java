@@ -112,7 +112,7 @@ public class BookingManager implements FileHandler, ID {
         String startDateStr = dateFormat.format(booking.getStartDate());
         String endDateStr = dateFormat.format(booking.getEndDate());
         output = String.format(
-                "%s,%s,%s,%s,%s,%.2f,%s, %s",
+                "%s,%s,%s,%s,%s,%.2f,%s,%s",
                 booking.getBookingID(),
                 startDateStr,
                 endDateStr,
@@ -147,13 +147,17 @@ public class BookingManager implements FileHandler, ID {
             }
 
         } catch (ParseException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Invalid date format. Please use yyyy-mm-dd. Please Try again\n");
         }
         return null;
     }
 
     public void extendBooking(String bookingID, String newEndDateStr) {
         Booking booking = this.bookingData.get(bookingID);
+        if (booking == null) {
+            System.out.println("Booking ID does NOT exist");
+            return;
+        }
         if (booking != null) {
             try {
                 Date newEndDate = dateFormat.parse(newEndDateStr);
@@ -161,15 +165,14 @@ public class BookingManager implements FileHandler, ID {
                     booking.setEndDate(newEndDate);
                     booking.getRoom().setAvailabilityDate(newEndDateStr);
                     booking.calculateTotalCost();
+                    System.out.println("Booking extend to "+ newEndDateStr +" successfully.\n");
                 } else {
                     System.out.println("Room is not available.\n");
                 }
             } catch (ParseException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Invalid date format. Please use yyyy-mm-dd. Please Try again\n");
             }
-        } else {
-            System.out.println("Wrong Booking ID");
-        }
+        } 
     }
 
     // Implementing cancelBooking function
@@ -177,10 +180,11 @@ public class BookingManager implements FileHandler, ID {
 
         Booking booking = this.bookingData.get(bookingID);
         if (booking == null) {
-            System.out.println("Booking ID " + booking.getBookingID() + " does NOT exist");
+            System.out.println("Booking ID does NOT exist");
+            return;
         }
 
-        if (booking.getStatus().equalsIgnoreCase("canceled")) {
+        if (booking.getStatus().equalsIgnoreCase("cancelled")) {
             System.out.println("Booking is already cancelled.\n");
             return;
         }
@@ -188,9 +192,11 @@ public class BookingManager implements FileHandler, ID {
         Room room = booking.getRoom();
 
         if (booking.getBookingID().equalsIgnoreCase(bookingID)) {
-            booking.setStatus("cancelded");
+            booking.setStatus("cancelled");
             if (room != null) {
                 room.setIsBooked(false);
+                String todayStr = dateFormat.format(new Date());
+                room.setAvailabilityDate(todayStr);
             }
             System.out.println("Booking canceled successfully.\n");
         } else {
@@ -202,23 +208,21 @@ public class BookingManager implements FileHandler, ID {
     public void changeRoom(String bookingID, Room newRoom) {
         
         Booking booking = this.getBookingData(bookingID);
-        // Checking if the current room is booked
+        if (booking == null) {
+            System.out.println("Booking ID does NOT exist");
+            return;
+        }
+        // Remove current room booking
         Room room = booking.getRoom();
-        if (!room.isBooked()) {
-            System.out.println("The current room is NOT booked at all");
-            return;
-        }
-        // Checking if the new room is already booked
-        if (newRoom.isBooked()) {
-            System.out.println("The new room ID " + newRoom.getRoomID() + " is already booked");
-            System.out.println("Swapping is NOT possible. Try another room\n");
-            return;
-        }
-        // Releasing current room
         room.setIsBooked(false);
+        String todayStr = dateFormat.format(new Date());
+        room.setAvailabilityDate(todayStr);
+        
         // Assigning new room and price
         booking.setRoom(newRoom);
-        room.setIsBooked(true);
+        newRoom.setIsBooked(true);
+        String newEndDateStr = dateFormat.format(booking.getEndDate());
+        newRoom.setAvailabilityDate(newEndDateStr);
         booking.calculateTotalCost();
         System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
     }
@@ -259,6 +263,15 @@ public class BookingManager implements FileHandler, ID {
 
     public Set<String> getAllBookingID() {
         return this.bookingData.keySet();
+    }
+    
+    public Booking getBookingByUsername(String username){
+        for(Booking booking : bookingData.values()){
+            if(booking.getUserName().equals(username) && !booking.getStatus().equals("cancelled")){
+                return booking;
+            }
+        }
+        return null;
     }
 
 }
