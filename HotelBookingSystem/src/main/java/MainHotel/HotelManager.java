@@ -40,20 +40,18 @@ public class HotelManager implements FileHandler, ID {
             String line;
             while ((line = reader.readLine()) != null) {
                 Hotel hotel = parseHotelData(line);
-                if(hotel!=null){
+                if (hotel != null) {
                     hotelData.put(hotel.getHotelID(), hotel);
                     int hotelID = Integer.parseInt(hotel.getHotelID().split("-")[1]);
                     this.hotelCount = Math.max(hotelCount, hotelID);
                 }
-                
+
             }
             reader.close();
         } catch (IOException e) {
             System.out.println("Cannot read from file");
         }
     }
-
-    
 
     @Override
     public void saveData() {
@@ -69,31 +67,31 @@ public class HotelManager implements FileHandler, ID {
             System.out.println("Cannot write to file");
         }
     }
-    
+
     private Hotel parseHotelData(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
         }
         String[] parts = line.split(",");
-        
+
         Hotel hotel = new Hotel(parts[0], parts[1], parts[2]);
         hotel.setNumStandardRooms(Integer.parseInt(parts[3]));
         hotel.setNumPremiumRooms(Integer.parseInt(parts[4]));
         hotel.setNumSuites(Integer.parseInt(parts[5]));
         return hotel;
     }
-    
-    private String dataToString(Hotel hotel) {
+
+    public String dataToString(Hotel hotel) {
         String output;
         output = String.format(
                 "%s,%s,%s,%d,%d,%d",
                 hotel.getHotelID(),
                 hotel.getName(),
-                hotel.getLocation(), 
+                hotel.getLocation(),
                 hotel.getNumStandardRooms(),
                 hotel.getNumPremiumRooms(),
                 hotel.getNumSuites()
-        );   
+        );
         return output;
     }
 
@@ -103,12 +101,12 @@ public class HotelManager implements FileHandler, ID {
         this.initializeRooms(newHotel, numStandardRooms, numPremiumRooms, numSuites);
         hotelData.put(newHotel.getHotelID(), newHotel);
     }
-    
+
     private void initializeRooms(Hotel hotel, int numStandardRooms, int numPremiumRooms, int numSuites) {
         hotel.setNumStandardRooms(numStandardRooms);
         hotel.setNumPremiumRooms(numPremiumRooms);
         hotel.setNumSuites(numSuites);
-        
+
         for (int i = 0; i < numStandardRooms; i++) {
             roomManager.createRoom("STANDARD", hotel.getHotelID());
 
@@ -116,26 +114,30 @@ public class HotelManager implements FileHandler, ID {
 
         for (int i = 0; i < numPremiumRooms; i++) {
             roomManager.createRoom("PREMIUM", hotel.getHotelID());
-            
+
         }
 
         for (int i = 0; i < numSuites; i++) {
             roomManager.createRoom("SUITE", hotel.getHotelID());
-            
+
         }
         roomManager.saveData();
-        
+
     }
-    
-    public Hotel searchHotel(String hotelName){
-        for(Hotel hotel : hotelData.values()){
-            if(hotel.getName().equalsIgnoreCase(hotelName)){
+
+    public Hotel searchHotel(String hotelName) {
+        for (Hotel hotel : hotelData.values()) {
+            if (hotel.getName().equalsIgnoreCase(hotelName)) {
                 return hotel;
             }
         }
         return null;
     }
-    
+
+    public Map<String, Hotel> getAllHotels() {
+        return this.hotelData;
+    }
+
     @Override
     public String idGenerator(Object context) {
         this.hotelCount++;
@@ -144,7 +146,7 @@ public class HotelManager implements FileHandler, ID {
 
     public Hotel getHotelData(String hotelID) {
         return hotelData.get(hotelID);
-    }   
+    }
 
     public boolean updateHotelData(String hotelID, Hotel newHotelData) {
         if (!hotelData.containsKey(hotelID)) {

@@ -46,9 +46,9 @@ public class RoomManager implements FileHandler, ID {
             while ((line = bufferReader.readLine()) != null) {
                 Room room = parseRoomData(line);
                 if (room != null) {
-                    String key = room.getHotelID()+ "_" +room.getRoomID();
+                    String key = room.getHotelID() + "_" + room.getRoomID();
                     roomData.put(key, room);
-                    
+
                     String keyCount = room.getHotelID() + "_" + room.getRoomType();
                     int roomID = Integer.parseInt(room.getRoomID().split("-")[1]);
                     int maxNumber = idCounters.getOrDefault(keyCount, 0);
@@ -84,14 +84,14 @@ public class RoomManager implements FileHandler, ID {
         String[] parts = line.split(",");
         RoomType roomType = RoomType.valueOf(parts[1].toUpperCase());
         Room room = new Room(parts[0], roomType, parts[5]);
-        if(parts[3].equals("Booked")){
+        if (parts[3].equals("Booked")) {
             room.setIsBooked(true);
         }
         room.setAvailabilityDate(parts[4]);
         return room;
     }
 
-    private String dataToString(Room room) {
+    public String dataToString(Room room) {
         String output;
         String availabilityDateStr = dateFormat.format(room.getAvailabilityDate());
         output = String.format(
@@ -108,9 +108,9 @@ public class RoomManager implements FileHandler, ID {
 
     public void createRoom(String roomType, String hotelID) {
         RoomType type = RoomType.valueOf(roomType.toUpperCase());
-        String roomID = idGenerator(new Object[]{hotelID,type});
+        String roomID = idGenerator(new Object[]{hotelID, type});
         Room newRoom = new Room(roomID, type, hotelID);
-        String key = newRoom.getHotelID()+ "_" + newRoom.getRoomID();
+        String key = newRoom.getHotelID() + "_" + newRoom.getRoomID();
         roomData.put(key, newRoom);
     }
 
@@ -122,8 +122,8 @@ public class RoomManager implements FileHandler, ID {
         Object[] contextArray = (Object[]) context;
         String hotelID = (String) contextArray[0];
         RoomType roomType = (RoomType) contextArray[1];
-        
-        String key = hotelID + "_"+ roomType.name();
+
+        String key = hotelID + "_" + roomType.name();
         idCounters.putIfAbsent(key, 0);
         int currentID = idCounters.get(key) + 1;
         idCounters.put(key, currentID);
@@ -142,7 +142,7 @@ public class RoomManager implements FileHandler, ID {
         return output + currentID;
     }
 
-    public Room getRoomData(String roomID,String hotelID) {
+    public Room getRoomData(String roomID, String hotelID) {
         String key = hotelID + "_" + roomID;
         return roomData.get(key);
     }
@@ -155,7 +155,6 @@ public class RoomManager implements FileHandler, ID {
             return true;
         }
     }
-    
 
     public List<Room> filterRoomByHotel(String hotelID) {
         List<Room> roomList = new ArrayList<>();
@@ -186,6 +185,10 @@ public class RoomManager implements FileHandler, ID {
 
     public Set<String> getAllRoomID() {
         return roomData.keySet();
+    }
+
+    public Map<String, Room> getAllRooms() {
+        return this.roomData;
     }
 
 }

@@ -73,7 +73,7 @@ public class Start {
                     guestMenu.showMenu();
                 } else if (currentUser instanceof Staff) {
                     Staff staff = (Staff) currentUser;
-                    StaffMenu staffMenu = new StaffMenu(staff);
+                    StaffMenu staffMenu = new StaffMenu(staff, hotelManager, bookingManager, roomManager);
                     staffMenu.showMenu();
                 }
             } else {
