@@ -4,6 +4,7 @@
  */
 package Main;
 
+import MainHotel.BookingManager;
 import java.util.Scanner;
 import MainHotel.UserManager;
 import MainHotel.User;
@@ -24,7 +25,14 @@ public class Start {
         RoomManager roomManager = new RoomManager("./database/room.csv");
         
         HotelManager hotelManager = new HotelManager("./database/hotel.csv", roomManager);
+        BookingManager bookingManager = new BookingManager("./database/booking.csv", roomManager, userManager);
+        
         userManager.loadData();
+        roomManager.loadData();
+        hotelManager.loadData();
+        bookingManager.loadData();
+        
+        
 
         Scanner scan = new Scanner(System.in);
 
@@ -61,7 +69,7 @@ public class Start {
             if (currentUser != null) {
                 if (currentUser instanceof Guest) {
                     Guest guest = (Guest) currentUser;
-                    GuestMenu guestMenu = new GuestMenu(guest);
+                    GuestMenu guestMenu = new GuestMenu(guest,roomManager,bookingManager,hotelManager);
                     guestMenu.showMenu();
                 } else if (currentUser instanceof Staff) {
                     Staff staff = (Staff) currentUser;

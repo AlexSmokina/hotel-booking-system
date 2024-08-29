@@ -39,11 +39,10 @@ public class Mike_Test {
         Room room = rm.getRoomData("RM/STD-1", "HTL-1");
         User user = um.getUserData("mike22");
 
-        bm.createBooking("2024-08-29", "2024-09-03", room, user, "HTL-1");
-        //bm.createBooking("2024-09-04", "2024-09-06", room, user, "HTL-1");
-        //bm.extendBooking("BKG-1", "2024-09-05");
-        Booking bkg1 = bm.getBookingData("BKG-1");
-        System.out.println(bkg1);
+        //bm.createBooking("2024-08-29", "2024-09-03", room, user, "HTL-1");
+        bm.cancelBooking("BKG-1");
+
+        
 
         //bm.printInvoice("BKG-1");
         bm.saveData();

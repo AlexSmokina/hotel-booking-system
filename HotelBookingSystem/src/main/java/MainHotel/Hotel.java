@@ -32,7 +32,6 @@ public class Hotel {
         this.numPremiumRooms = 0;
         this.numSuites = 0;
         
-
     }
 
     

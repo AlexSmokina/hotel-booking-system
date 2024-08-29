@@ -127,6 +127,15 @@ public class HotelManager implements FileHandler, ID {
         
     }
     
+    public Hotel searchHotel(String hotelName){
+        for(Hotel hotel : hotelData.values()){
+            if(hotel.getName().equalsIgnoreCase(hotelName)){
+                return hotel;
+            }
+        }
+        return null;
+    }
+    
     @Override
     public String idGenerator(Object context) {
         this.hotelCount++;
