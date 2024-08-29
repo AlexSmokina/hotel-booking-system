@@ -155,6 +155,7 @@ public class RoomManager implements FileHandler, ID {
             return true;
         }
     }
+    
 
     public List<Room> filterRoomByHotel(String hotelID) {
         List<Room> roomList = new ArrayList<>();

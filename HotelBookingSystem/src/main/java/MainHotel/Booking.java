@@ -4,7 +4,6 @@
  */
 package MainHotel;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +21,7 @@ public class Booking{
     private User user;
     private double totalPrice;
     private String hotelID;
+    private String status;
     
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
@@ -31,19 +31,21 @@ public class Booking{
         this.endDate = endDate;
         this.room = room;
         this.user = user;
-        calculateTotalCost();
-        this.hotelID = hotelID;  
+        this.calculateTotalCost();
+        this.hotelID = hotelID;
+        this.status = "active";
     }
     
-    
-    public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, double totalPrice, String hotelID) {
+    // Constructor for Booking File Manager to save
+    public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, double totalPrice, String hotelID, String status) {
         this.bookingID = bookingID;
         this.startDate = startDate;
         this.endDate = endDate;
         this.room = room;
         this.user = user;
         this.totalPrice = totalPrice;
-        this.hotelID = hotelID;  
+        this.hotelID = hotelID;
+        this.status = status;
     }
     
     public final void calculateTotalCost() {
@@ -52,79 +54,6 @@ public class Booking{
         this.totalPrice = diffInDays * this.room.getPrice();
         
     }
-
-//    public void cancelBooking(String bookingID) {
-//        if (this.getStatus().equalsIgnoreCase("canceled")) {
-//            System.out.println("Booking is already canceled.\n");
-//            return;
-//        }
-//        if (this.bookingID.equalsIgnoreCase(bookingID)) {
-//            this.status = "canceled";
-//            if (this.room != null) {
-//                this.room.setIsBooked(false);
-//            }
-//            System.out.println("Booking canceled successfully.\n");
-//        } else {
-//            System.out.println("Booking ID doesn't match.\n");
-//        }
-//    }
-//
-//    public void extendBooking(String newEndDateStr) {
-//
-//        try {
-//            Date newEndDate = dateFormat.parse(newEndDateStr);
-//
-//            if (newEndDate.after(this.endDate) && this.room.getAvailabilityDate().equals(this.endDate)) {
-//                this.endDate = newEndDate;
-//                this.room.setAvailabilityDate(newEndDateStr);
-//                // Recalculating the total price
-//                this.totalPrice = calculateTotalCost();
-//
-//                System.out.println("Booking extended successfully to " + newEndDate + ".\n");
-//            } else {
-//                System.out.println("Room is not available.\n");
-//            }
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
-//
-//    public void changeRoom(Room newRoom) {
-//        // Checking if the current room is booked
-//        if (!this.room.isBooked()) {
-//            System.out.println("The current room is NOT booked at all");
-//            return;
-//        }
-//        // Checking if the new room is already booked
-//        if (newRoom.isBooked()) {
-//            System.out.println("The new room ID " + newRoom.getRoomID() + " is already booked");
-//            System.out.println("Swapping is NOT possible. Try another room\n");
-//            return;
-//        }
-//        // Releasing current room
-//        this.room.setIsBooked(false);
-//        // Assigning new room and price
-//        this.setRoom(newRoom);
-//        this.room.setIsBooked(true);
-//        this.totalPrice = calculateTotalCost();
-//        System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
-//    }
-
-
-      // Implement Invoice Class
-//    public void printInvoice() {
-//        double gst = this.getTotalPrice() * 0.15;
-//        System.out.println("<<< INVOICE >>>");
-//        System.out.println("Booking ID " + this.getBookingID() + ":\n"
-//                + "|Hotel ID: " + this.hotelID + "|\n"
-//                + "|Room ID: " + getRoom().getRoomID() + "|\n"
-//                + "|Start Date: " + this.getStartDate() + "|\n"
-//                + "|End Date: " + this.getEndDate() + "|\n"
-//                + "|Total Price: $" + this.getTotalPrice() + "|\n"
-//                + "|Total GST: $" + gst + "|\n"
-//                + "|Total Owing: $" + (this.getTotalPrice() + gst) + "|\n");
-//    }
     
     @Override
     public String toString() {
@@ -136,6 +65,7 @@ public class Booking{
         output.append("Total Price: ").append(this.getTotalPrice()).append("\n");
         output.append("Guest username: ").append(this.getUserName()).append("\n");
         output.append("Hotel ID: ").append(this.getHotelID()).append("\n");
+        output.append("Booking Status: ").append(this.getStatus()).append("\n");
         return output.toString();
     }
 
@@ -163,6 +93,10 @@ public class Booking{
         return this.room;
     }
     
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+    
     public String getRoomID(){
         return this.room.getRoomID();
     }
@@ -178,6 +112,13 @@ public class Booking{
     public String getHotelID() {
         return hotelID;
     }
-
+    
+    public String getStatus() {
+        return this.status;
+    }
+    
+    public void setStatus(String status) {
+        this.status = status;
+    }
     
 }

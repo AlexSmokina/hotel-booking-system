@@ -1,3 +1,1 @@
-Booking ID,Start Date,End Date,Room ID,Username,Total Price,Hotel ID
-BKG-2,2024-09-04,2024-09-06,RM/STD-1,mike22,200.00,HTL-1
-BKG-1,2024-08-29,2024-09-03,RM/STD-1,mike22,500.00,HTL-1
+Booking ID,Start Date,End Date,Room ID,Username,Total Price,Hotel ID, Booking Status
