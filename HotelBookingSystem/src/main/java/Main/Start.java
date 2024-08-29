@@ -73,8 +73,8 @@ public class Start {
                     guestMenu.showMenu();
                 } else if (currentUser instanceof Staff) {
                     Staff staff = (Staff) currentUser;
-                    StaffMenu staffMenu = new StaffMenu(staff);
-                    staffMenu.showMenu();
+                    //StaffMenu staffMenu = new StaffMenu(staff);
+                    //staffMenu.showMenu();
                 }
             } else {
                 System.out.println("No user is signed in. Please sign in or register.");
@@ -85,6 +85,7 @@ public class Start {
     }
 
     private static User signInPage(Scanner scan, UserManager userManager) {
+        System.out.println("Sign In!");
         System.out.print("Enter username: ");
         String username = scan.nextLine();
         if (userManager.getUserData(username) == null) {
@@ -105,6 +106,7 @@ public class Start {
     }
 
     private static User register(Scanner scan, UserManager userManager) {
+        System.out.println("Register!");
         System.out.print("Enter username: ");
         String username = scan.nextLine();
 
