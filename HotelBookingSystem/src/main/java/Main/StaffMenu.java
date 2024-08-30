@@ -21,7 +21,13 @@ import java.util.Date;
 
 /**
  *
- * @author Alexander Smokina & Min Thiha Ko Ko 
+ * @author Alexander Smokina & Min Thiha Ko Ko
+ * 
+ * The StaffMenu class provides the user interface for staff members
+ * to manage hotels, rooms, and bookings within the hotel booking system.
+ * This class includes functions for hotel management, room management,
+ * and booking management, integrating with various other classes such
+ * as HotelManager, RoomManager, and BookingManager.
  */
 public class StaffMenu {
 
@@ -32,6 +38,7 @@ public class StaffMenu {
     private RoomManager roomManager;
     private UserManager userManager;
 
+    // Constructor to initialize StaffMenu with the necessary managers and staff details
     public StaffMenu(Staff staff, HotelManager hotelManager, BookingManager bookingManager, RoomManager roomManager, UserManager userManager) {
         this.staff = staff;
         this.hotelManager = hotelManager;
@@ -40,6 +47,7 @@ public class StaffMenu {
         this.userManager = userManager;
     }
 
+    // Displays the main menu for staff and handles user input
     public void showMenu() {
         while (true) {
             System.out.println("Welcome " + this.staff.getName());
@@ -77,7 +85,7 @@ public class StaffMenu {
         }
     }
 
-    // Hotel Management Implementation
+    // Manages hotel-related operations such as adding, updating, and viewing hotels
     public void hotelManagement(Scanner scan) {
         while (true) {
             System.out.println("Hotel Management Menu:");
@@ -111,6 +119,7 @@ public class StaffMenu {
         }
     }
 
+    // Adds new hotel to the system and saves it to the database
     private void addHotel(Scanner scan) {
         System.out.println("Enter Hotel Name: ");
         String hotelName = scanner.nextLine().trim();
@@ -128,6 +137,7 @@ public class StaffMenu {
         System.out.println("Hotel added successfully!");
     }
 
+    // Updates details of an existing hotel
     private void updateHotelDetails(Scanner scan) {
         System.out.print("Enter Hotel ID to Update: ");
         String hotelID = scan.nextLine().trim();
@@ -153,6 +163,7 @@ public class StaffMenu {
         }
     }
 
+    // Displays list of all hotels in the system
     private void viewAllHotels() {
         System.out.println("Listing all hotels:");
         if (hotelManager.getAllHotels().isEmpty()) {
@@ -165,7 +176,7 @@ public class StaffMenu {
         System.out.println();
     }
 
-    // Room Management Implementation
+    // Manages room-related operations such as adding, updating, and viewing rooms
     public void roomManagement(Scanner scan) {
         while (true) {
             System.out.println("Room Management Menu:");
@@ -205,6 +216,7 @@ public class StaffMenu {
         }
     }
 
+    // Adds new room to the specified hotel
     private void addRoom(Scanner scanner) {
 
         System.out.print("Enter Hotel ID: ");
@@ -221,6 +233,7 @@ public class StaffMenu {
         }
     }
 
+    // Removes room from the specified hotel
     private void removeRoom(Scanner scanner) {
 
         System.out.print("Enter Hotel ID: ");
@@ -238,6 +251,7 @@ public class StaffMenu {
         }
     }
 
+    // Updates details of an existing room
     private void updateRoomDetails(Scanner scanner) {
         System.out.print("Enter Hotel ID: ");
         String hotelID = scanner.nextLine().trim();
@@ -266,6 +280,7 @@ public class StaffMenu {
         }
     }
 
+    // Displays list of all rooms in the system
     private void viewAllRooms() {
         System.out.println("Listing all rooms:");
         for (Room room : roomManager.getAllRooms().values()) {
@@ -274,7 +289,7 @@ public class StaffMenu {
 
     }
 
-    // Booking Management Implementation
+    // Manages booking-related operations such as booking, canceling, and extending bookings
     public void bookingManagement(Scanner scan) {
         while (true) {
             System.out.println("Booking Management Menu:");
@@ -320,6 +335,7 @@ public class StaffMenu {
         }
     }
 
+    // Books a room for a guest
     public void bookRoom(Scanner scan) {
         System.out.print("Choose Hotel: (Auckland Skyline,Queenstown Grand)");
         String hotelName = scan.nextLine();
@@ -374,6 +390,7 @@ public class StaffMenu {
         }
     }
 
+    // Cancels a booking for a guest
     public void cancelBooking(Scanner scan) {
         System.out.print("Enter guest username: ");
         String username = scan.nextLine();
@@ -391,6 +408,7 @@ public class StaffMenu {
 
     }
 
+    // Extends a booking for a guest
     public void extendBooking(Scanner scan) {
         System.out.print("Enter guest username: ");
         String username = scan.nextLine();
@@ -410,6 +428,7 @@ public class StaffMenu {
         }
     }
 
+    // Changes the room for an existing booking
     public void changeRoom(Scanner scan) {
         System.out.print("Enter guest username: ");
         String username = scan.nextLine();
@@ -457,6 +476,7 @@ public class StaffMenu {
         }
     }
 
+    // Displays booking information for a specific guest
     public boolean showBooking(String username) {
         Booking booking = bookingManager.getBookingByUsername(username);
         if (booking != null) {

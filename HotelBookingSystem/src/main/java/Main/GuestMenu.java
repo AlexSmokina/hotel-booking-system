@@ -19,6 +19,9 @@ import java.util.Scanner;
 /**
  *
  * @author Alexander Smokina & Min Thiha Ko Ko
+ * 
+ * GuestMenu class handles the user interface for guests interacting with the hotel booking system.
+ * It provides options for booking rooms, canceling bookings, extending bookings, and changing rooms.
  */
 public class GuestMenu {
 
@@ -35,6 +38,7 @@ public class GuestMenu {
         this.hotelManager = hotelManager;
     }
 
+    // Displaying guest menu and handles user input to navigate between different options.
     public void showMenu() {
         while (true) {
             System.out.println("\nWelcome " + this.guest.getName());
@@ -75,6 +79,10 @@ public class GuestMenu {
         }
     }
 
+    /**
+     * Handles the process of booking a room. Prompts the guest to choose a hotel and select a room from the available options.
+     * Saves the booking details once completed.
+     */
     public void bookRoom(Scanner scan) {
         System.out.println("Choose Hotel: (Auckland Skyline,Queenstown Grand)");
         String hotelName = scan.nextLine();
@@ -121,6 +129,10 @@ public class GuestMenu {
         }
     }
 
+    /**
+     * Allows the guest to cancel an existing booking by entering the booking ID.
+     * The booking and room data are updated accordingly.
+     */
     public void cancelBooking(Scanner scan) {
         if (showBooking()) {
             System.out.print("Enter booking ID that you want to cancel: ");
@@ -132,6 +144,10 @@ public class GuestMenu {
 
     }
 
+    /**
+     * Enables the guest to extend an existing booking by providing a new check-out date.
+     * Updates the booking and room data after the extension.
+     */
     public void extendBooking(Scanner scan) {
         if (showBooking()) {
             System.out.print("Enter booking ID that you want to extend: ");
@@ -145,6 +161,10 @@ public class GuestMenu {
         }
     }
 
+    /**
+     * Allows the guest to change their room during an existing booking.
+     * The guest can select a new room from the available options, and the booking is updated accordingly.
+     */
     public void changeRoom(Scanner scan) {
         if (showBooking()) {
             System.out.print("Enter the booking ID for the room you want to change: ");
@@ -188,6 +208,10 @@ public class GuestMenu {
         }
     }
 
+    /**
+     * Displays the guest's current booking details.
+     * Returns true if a booking is found, false otherwise.
+     */
     public boolean showBooking() {
         Booking booking = bookingManager.getBookingByUsername(this.guest.getUserName());
         if (booking != null) {

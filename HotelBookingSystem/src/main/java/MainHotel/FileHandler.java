@@ -6,11 +6,13 @@ package MainHotel;
 
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
- * @param <E>
+ * 
+ * FileHandler interface provides abstract methods for loading and saving data 
+ * to and from files, which can be implemented by various classes handling 
+ * different types of data in the hotel booking system.
  */
 public interface FileHandler {
-    void loadData(); //Abstract Method
-    void saveData(); //Abstract Method
+    void loadData(); // Abstract method for loading data from a file
+    void saveData(); // Abstract method for saving data to a file
 }

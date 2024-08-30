@@ -11,6 +11,11 @@ import java.util.concurrent.TimeUnit;
 /**
  *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The Booking class represents a reservation made by a user for a specific room 
+ * in a hotel. It includes details such as the booking ID, start and end dates, 
+ * the room reserved, the user who made the booking, the total price of the stay, 
+ * the associated hotel, and the status of the booking.
  */
 public class Booking{
 
@@ -25,6 +30,7 @@ public class Booking{
     
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     
+    // Constructor to initialize a new booking with the necessary details.
     public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, String hotelID) {
         this.bookingID = bookingID;
         this.startDate = startDate;
@@ -36,7 +42,8 @@ public class Booking{
         this.status = "active";
     }
     
-    // Constructor for Booking File Manager to save
+    // Constructor used for loading bookings from a file.
+    // Includes all booking details, including total price and status.
     public Booking(String bookingID, Date startDate, Date endDate, Room room, User user, double totalPrice, String hotelID, String status) {
         this.bookingID = bookingID;
         this.startDate = startDate;
@@ -48,6 +55,8 @@ public class Booking{
         this.status = status;
     }
     
+    // Calculating the total cost of the booking based on the duration of the stay
+    // (in days) and the price of the room per day.
     public final void calculateTotalCost() {
         long diffInMillis = this.getEndDate().getTime() - this.getStartDate().getTime();
         long diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis);
@@ -55,6 +64,7 @@ public class Booking{
         
     }
     
+    // Returning String representation of the booking, including all relevant details.
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();

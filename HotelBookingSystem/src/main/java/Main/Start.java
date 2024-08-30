@@ -17,21 +17,28 @@ import MainHotel.Staff;
 /**
  *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * This is the entry point for the Hotel Booking System application. 
+ * It handles user authentication and provides access to different 
+ * functionalities based on the user type (Guest or Staff).
  */
 public class Start {
 
     public static void main(String[] args) {
+        
+        // Initialising managers for users, rooms, hotels, and bookings
         UserManager userManager = new UserManager("./database/user.csv");
         RoomManager roomManager = new RoomManager("./database/room.csv");
-        
         HotelManager hotelManager = new HotelManager("./database/hotel.csv", roomManager);
         BookingManager bookingManager = new BookingManager("./database/booking.csv", roomManager, userManager);
         
+        // Loading existing data from files
         userManager.loadData();
         roomManager.loadData();
         hotelManager.loadData();
         bookingManager.loadData();
         
+        // Initialising system with predefined hotels and rooms if none exist
         if(hotelManager.isEmpty()){
             hotelManager.createNewHotel("Auckland Skyline", "Auckland", 2, 2, 1);
             hotelManager.createNewHotel("Queenstown Grand", "Queenstown", 1, 1, 1);
@@ -40,7 +47,7 @@ public class Start {
         }
         
         
-
+        // Setting up scanner for user input and display initial menu
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to Hotel Booking System");
@@ -48,6 +55,7 @@ public class Start {
         System.out.println("2. Register");
         System.out.println("3. Exit");
         User currentUser = null;
+        // Main loop for handling user input and navigation
         while (true) {
             System.out.print("Enter your choice: ");
             String input = scan.nextLine().trim();
@@ -72,7 +80,7 @@ public class Start {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
             }
-
+            // Checking if a user is signed in and show the appropriate menu
             if (currentUser != null) {
                 if (currentUser instanceof Guest) {
                     Guest guest = (Guest) currentUser;
@@ -91,6 +99,7 @@ public class Start {
 
     }
 
+    // Handling the sign-in process for existing users.
     private static User signInPage(Scanner scan, UserManager userManager) {
         System.out.println("Sign In!");
         System.out.print("Enter username: ");
@@ -112,6 +121,7 @@ public class Start {
         }
     }
 
+    // Handling the registration process for new users.
     private static User register(Scanner scan, UserManager userManager) {
         System.out.println("Register!");
         System.out.print("Enter username: ");
@@ -142,12 +152,11 @@ public class Start {
                 System.out.println("Invalid user type. Please enter 'GUEST' or 'STAFF'.");
             }
         }
+        // Register new user and automatically sign them in
         userManager.registerUser(username, password, name, phone, email, userType);
-
         userManager.saveData();
         System.out.println("Registration successful! You are automatically signed in");
         return userManager.signIn(username, password);
-
     }
     
 }

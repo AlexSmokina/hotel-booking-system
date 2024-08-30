@@ -19,8 +19,11 @@ import java.util.Set;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * This class is responsible for managing room data, including loading and saving room information from/to files,
+ * creating new rooms, and retrieving room data. It implements the FileHandler and ID interfaces to handle file I/O 
+ * operations and generate unique IDs for rooms.
  */
 public class RoomManager implements FileHandler, ID {
 
@@ -35,13 +38,17 @@ public class RoomManager implements FileHandler, ID {
         this.idCounters = new HashMap<>();
     }
 
+    /**
+    * Loads room data from the specified file.
+    * Clears any existing data in roomData and populates it with the data read from the file.
+    */
     @Override
     public void loadData() {
         roomData.clear();
         try {
             FileReader fileReader = new FileReader(this.fileName);
             BufferedReader bufferReader = new BufferedReader(fileReader);
-            bufferReader.readLine();
+            bufferReader.readLine(); // Skip header line
             String line;
             while ((line = bufferReader.readLine()) != null) {
                 Room room = parseRoomData(line);
@@ -61,6 +68,10 @@ public class RoomManager implements FileHandler, ID {
         }
     }
 
+    /**
+    * Saves room data to the specified file.
+    * Writes all the room data from roomData to the file in CSV format.
+    */
     @Override
     public void saveData() {
         try {
@@ -77,6 +88,7 @@ public class RoomManager implements FileHandler, ID {
 
     }
 
+    // Parsing line of CSV data to create a Room object.
     private Room parseRoomData(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
@@ -91,6 +103,7 @@ public class RoomManager implements FileHandler, ID {
         return room;
     }
 
+    // Converting Room object into a CSV-formatted string.
     public String dataToString(Room room) {
         String output;
         String availabilityDateStr = dateFormat.format(room.getAvailabilityDate());
@@ -106,6 +119,7 @@ public class RoomManager implements FileHandler, ID {
         return output;
     }
 
+    // Creating new Room and adds it to the roomData map.
     public void createRoom(String roomType, String hotelID) {
         RoomType type = RoomType.valueOf(roomType.toUpperCase());
         String roomID = idGenerator(new Object[]{hotelID, type});
@@ -114,6 +128,7 @@ public class RoomManager implements FileHandler, ID {
         roomData.put(key, newRoom);
     }
 
+    // Generating unique ID for a room based on the hotel ID and room type.
     @Override
     public final String idGenerator(Object context) {
         if (!(context instanceof Object[])) {
@@ -141,12 +156,14 @@ public class RoomManager implements FileHandler, ID {
         }
         return output + currentID;
     }
-
+    
+    // Retrieving a Room object based on its room ID and hotel ID.
     public Room getRoomData(String roomID, String hotelID) {
         String key = hotelID + "_" + roomID;
         return roomData.get(key);
     }
 
+    // Updating the room data for a specific room ID with new data.
     public boolean updateRoomData(String roomID, Room newRoomData) {
         if (!roomData.containsKey(roomID)) {
             return false;
@@ -155,7 +172,8 @@ public class RoomManager implements FileHandler, ID {
             return true;
         }
     }
-
+    
+    // Filtering rooms based on the hotel ID.
     public List<Room> filterRoomByHotel(String hotelID) {
         List<Room> roomList = new ArrayList<>();
         for (Room room : roomData.values()) {
@@ -166,6 +184,7 @@ public class RoomManager implements FileHandler, ID {
         return roomList;
     }
 
+    // Filtering rooms based on their availability date and hotel ID.
     public List<Room> filerByDate(String date, String hotelID) {
         List<Room> roomList = new ArrayList<>();
         try {
@@ -183,10 +202,12 @@ public class RoomManager implements FileHandler, ID {
 
     }
 
+    // Retrieving the set of all room IDs.
     public Set<String> getAllRoomID() {
         return roomData.keySet();
     }
 
+    // Retrieving a map of all rooms.
     public Map<String, Room> getAllRooms() {
         return this.roomData;
     }

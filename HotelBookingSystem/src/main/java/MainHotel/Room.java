@@ -9,8 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The Room class represents a hotel room with specific attributes such as room type, 
+ * price, availability status, and the hotel it belongs to. This class also includes 
+ * methods to check room availability and manage room details.
  */
 public class Room {
 
@@ -24,6 +27,7 @@ public class Room {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+    // Constructor to initialise a Room object with specific attributes
     public Room(String roomID, RoomType roomType, String hotelID) {
         this.roomType = roomType;
         this.roomID = roomID;
@@ -33,13 +37,12 @@ public class Room {
         this.hotelID = hotelID;
     }
 
-    // Checking if the room is not booked or if the requested period is entirely after the current availability date
+    // Method to check if the room is available within the given date range
     public boolean isAvailable(Date startDate, Date endDate) {
         return !isBooked || (availabilityDate != null && startDate.after(availabilityDate) && endDate.after(availabilityDate));
     }
 
-    
-
+    // Method to get the current date formatted as yyyy-MM-dd
     public Date getTodayDate() {
         String todayStr = dateFormat.format(new Date());
         try {
@@ -93,7 +96,8 @@ public class Room {
             e.printStackTrace();
         }
     }
-
+    
+    // Provide a string representation of the Room object
     @Override
     public String toString() {
         return "Room Type: " + this.getRoomType() + "\n"

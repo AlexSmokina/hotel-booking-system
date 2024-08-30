@@ -5,8 +5,10 @@
 package MainHotel;
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The RoomType enum represents the different types of rooms available in the hotel,
+ * each with a specific price associated with it.
  */
 public enum RoomType {
     STANDARD(100.0),
@@ -15,10 +17,12 @@ public enum RoomType {
     
     private double price;
     
+    // Constructor to initialise the price for each room type
     RoomType(double price) {  
         this.price = price;
     }
     
+    // Method to get the price of the room type
     public double getPrice(){
         return this.price;
     }

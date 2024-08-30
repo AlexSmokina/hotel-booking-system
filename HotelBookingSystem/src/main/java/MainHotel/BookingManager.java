@@ -18,7 +18,11 @@ import java.util.Set;
 
 /**
  *
- * @author Alexander Smokina & Min Thiha Ko Ko 
+ * @author Alexander Smokina & Min Thiha Ko Ko
+ *
+ * The BookingManager class handles all booking-related operations, including
+ * creating, updating, canceling bookings, and managing booking data. It also
+ * includes methods for file input/output and ID generation.
  */
 public class BookingManager implements FileHandler, ID {
 
@@ -31,6 +35,7 @@ public class BookingManager implements FileHandler, ID {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+    // Constructor initializing BookingManager with file name, RoomManager, and UserManager
     public BookingManager(String bookingFile, RoomManager roomManager, UserManager userManager) {
         this.fileName = bookingFile;
         this.bookingData = new HashMap<>();
@@ -39,6 +44,7 @@ public class BookingManager implements FileHandler, ID {
         this.bookingCount = 0;
     }
 
+    // Loading booking data from a file and populates the bookingData map
     @Override
     public void loadData() {
         bookingData.clear();
@@ -60,6 +66,7 @@ public class BookingManager implements FileHandler, ID {
         }
     }
 
+    // Saving booking data to a file from the bookingData map
     @Override
     public void saveData() {
         try {
@@ -75,6 +82,7 @@ public class BookingManager implements FileHandler, ID {
         }
     }
 
+    // Parsing line of booking data from the file into a Booking object
     private Booking parseBookingData(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
@@ -107,6 +115,7 @@ public class BookingManager implements FileHandler, ID {
         return null;
     }
 
+    // Converting Booking object into a string format suitable for saving to a file
     private String dataToString(Booking booking) {
         String output;
         String startDateStr = dateFormat.format(booking.getStartDate());
@@ -125,6 +134,7 @@ public class BookingManager implements FileHandler, ID {
         return output;
     }
 
+    // Creating a new booking if the room is available for the given dates
     public Booking createBooking(String start, String end, Room room, User user, String hotelID) {
         if (room == null || user == null) {
             System.out.println("No room or user data!");
@@ -140,8 +150,7 @@ public class BookingManager implements FileHandler, ID {
                 Booking booking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
                 this.bookingData.put(booking.getBookingID(), booking);
                 return booking;
-            }
-            else{
+            } else {
                 System.out.println("Room is not available!");
                 return null;
             }
@@ -152,30 +161,29 @@ public class BookingManager implements FileHandler, ID {
         return null;
     }
 
+    // Extending the booking by updating the end date and checking room availability
     public void extendBooking(String bookingID, String newEndDateStr) {
         Booking booking = this.bookingData.get(bookingID);
         if (booking == null) {
             System.out.println("Booking ID does NOT exist");
             return;
         }
-        if (booking != null) {
-            try {
-                Date newEndDate = dateFormat.parse(newEndDateStr);
-                if (newEndDate.after(booking.getEndDate()) && !newEndDate.before(booking.getRoom().getAvailabilityDate())) {
-                    booking.setEndDate(newEndDate);
-                    booking.getRoom().setAvailabilityDate(newEndDateStr);
-                    booking.calculateTotalCost();
-                    System.out.println("Booking extend to "+ newEndDateStr +" successfully.\n");
-                } else {
-                    System.out.println("Room is not available.\n");
-                }
-            } catch (ParseException e) {
-                System.out.println("Invalid date format. Please use yyyy-mm-dd. Please Try again\n");
+        try {
+            Date newEndDate = dateFormat.parse(newEndDateStr);
+            if (newEndDate.after(booking.getEndDate()) && !newEndDate.before(booking.getRoom().getAvailabilityDate())) {
+                booking.setEndDate(newEndDate);
+                booking.getRoom().setAvailabilityDate(newEndDateStr);
+                booking.calculateTotalCost();
+                System.out.println("Booking extend to " + newEndDateStr + " successfully.\n");
+            } else {
+                System.out.println("Room is not available.\n");
             }
-        } 
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please use yyyy-mm-dd. Please Try again\n");
+        }
     }
 
-    // Implementing cancelBooking function
+    // Canceling booking by updating its status and resetting room availability
     public void cancelBooking(String bookingID) {
 
         Booking booking = this.bookingData.get(bookingID);
@@ -204,21 +212,21 @@ public class BookingManager implements FileHandler, ID {
         }
     }
 
-    // Implementing changeRoom function
+    // Changing the room for a booking, updating the availability of both the old and new rooms
     public void changeRoom(String bookingID, Room newRoom) {
-        
+
         Booking booking = this.getBookingData(bookingID);
         if (booking == null) {
             System.out.println("Booking ID does NOT exist");
             return;
         }
-        // Remove current room booking
+        // Free up the current room
         Room room = booking.getRoom();
         room.setIsBooked(false);
         String todayStr = dateFormat.format(new Date());
         room.setAvailabilityDate(todayStr);
-        
-        // Assigning new room and price
+
+        // Assign new room to the booking
         booking.setRoom(newRoom);
         newRoom.setIsBooked(true);
         String newEndDateStr = dateFormat.format(booking.getEndDate());
@@ -227,7 +235,7 @@ public class BookingManager implements FileHandler, ID {
         System.out.println("Room changed successfully to Room ID: " + newRoom.getRoomID() + ".\n");
     }
 
-    //Implementing printInvoice function
+    // Printin invoice for a booking, including GST and total amount due
     public void printInvoice(String bookingID) {
 
         Booking booking = this.getBookingData(bookingID);
@@ -251,23 +259,27 @@ public class BookingManager implements FileHandler, ID {
         System.out.printf("%-15s: $%.2f%n", "Total Owing", totalOwing);
     }
 
+    // Generates unique booking ID
     @Override
     public String idGenerator(Object context) {
         this.bookingCount++;
         return "BKG-" + this.bookingCount;
     }
 
+    // Retrieves booking data for a given booking ID
     public Booking getBookingData(String bookingID) {
         return this.bookingData.get(bookingID);
     }
 
+    // Retrieves all booking IDs in the system
     public Set<String> getAllBookingID() {
         return this.bookingData.keySet();
     }
-    
-    public Booking getBookingByUsername(String username){
-        for(Booking booking : bookingData.values()){
-            if(booking.getUserName().equals(username) && !booking.getStatus().equals("cancelled")){
+
+    // Retrieves booking based on the username, ignoring cancelled bookings
+    public Booking getBookingByUsername(String username) {
+        for (Booking booking : bookingData.values()) {
+            if (booking.getUserName().equals(username) && !booking.getStatus().equals("cancelled")) {
                 return booking;
             }
         }

@@ -5,8 +5,11 @@
 package MainHotel;
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The User class represents a user in the Hotel Booking System. 
+ * It stores essential user information such as username, password, 
+ * name, phone, email, and user type (e.g., guest, staff).
  */
 public class User {
 
@@ -17,6 +20,7 @@ public class User {
     private String email;
     private UserType type;
 
+    // Constructor initialises a new User object with the provided details.
     public User(String userName, String password, String name, String phone, String email) {
         this.userName = userName;
         this.password = password;
@@ -109,6 +113,7 @@ public class User {
         this.password = password;
     }
 
+    // String representation of the User object
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder();

@@ -14,19 +14,24 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The UserManager class is responsible for managing user data within the Hotel Booking System.
+ * It handles the loading and saving of user data from/to files, user authentication, 
+ * and the registration and updating of user information.
  */
 public class UserManager implements FileHandler {
 
     private String fileName;
     private Map<String, User> usersData;
 
+    // Constructor to initialise the UserManager with a specified file name
     public UserManager(String fileName) {
         this.fileName = fileName;
         usersData = new HashMap<>();
     }
-
+    
+    // Loads user data from a file and populates the usersData map
     @Override
     public void loadData() {
         usersData.clear();
@@ -48,6 +53,7 @@ public class UserManager implements FileHandler {
         }
     }
 
+    // Saves the current state of usersData to a file
     @Override
     public void saveData() {
         try {
@@ -63,6 +69,7 @@ public class UserManager implements FileHandler {
         }
     }
 
+    // Parses a line of text from the file into a User object
     private User parseUser(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
@@ -89,6 +96,7 @@ public class UserManager implements FileHandler {
         return user;
     }
 
+    // Converts a User object into a string for saving to the file
     private String dataToString(User user) {
         String output;
         output = String.format("%s,%s,%s,%s,%s,%s", user.getUserName(), user.getPassword(),
@@ -96,6 +104,7 @@ public class UserManager implements FileHandler {
         return output;
     }
 
+    // Registers a new user and adds them to the usersData map
     public void registerUser(String username, String password, String name, String phone, String email, UserType type) {
         User newUser = (type == UserType.GUEST)
                 ? new Guest(username, password, name, phone, email)
@@ -103,6 +112,7 @@ public class UserManager implements FileHandler {
         usersData.put(username, newUser);
     }
 
+    // Authenticates a user by checking if the provided username and password match
     public User signIn(String username, String password) {
         User user = usersData.get(username);
         if (user == null) {
@@ -118,6 +128,7 @@ public class UserManager implements FileHandler {
         return usersData.get(username);
     }
 
+    // Updates the user data in the usersData map
     public boolean updateUserData(String username, User newUserData) {
         if (!usersData.containsKey(username)) {
             return false;
@@ -126,7 +137,8 @@ public class UserManager implements FileHandler {
             return true;
         }
     }
-
+    
+    // Retrieves all usernames from the usersData map
     public Set<String> getAllUsernames() {
         return usersData.keySet();
     }

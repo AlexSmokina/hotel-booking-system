@@ -14,8 +14,12 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- *
  * @author Alexander Smokina & Min Thiha Ko Ko 
+ * 
+ * The HotelManager class is responsible for managing hotel data, including
+ * creating new hotels, updating hotel information, loading and saving data to files,
+ * and handling room initialization. It utilizes OOP principles such as abstraction,
+ * encapsulation, inheritance, and polymorphism.
  */
 public class HotelManager implements FileHandler, ID {
 
@@ -24,6 +28,7 @@ public class HotelManager implements FileHandler, ID {
     private int hotelCount;
     private RoomManager roomManager;
 
+    // Constructor for initialising HotelManager with a file name and RoomManager instance.
     public HotelManager(String hotelFile, RoomManager roomManager) {
         this.fileName = hotelFile;
         this.hotelData = new HashMap<>();
@@ -31,6 +36,7 @@ public class HotelManager implements FileHandler, ID {
         this.hotelCount = 0;
     }
 
+    // Loading hotel data from the file and populates the hotelData map.
     @Override
     public void loadData() {
         hotelData.clear();
@@ -53,6 +59,7 @@ public class HotelManager implements FileHandler, ID {
         }
     }
 
+    // Saving the current hotel data to the file.
     @Override
     public void saveData() {
         try {
@@ -68,6 +75,7 @@ public class HotelManager implements FileHandler, ID {
         }
     }
 
+    // Parsing line of hotel data from the file and returns a Hotel object.
     private Hotel parseHotelData(String line) {
         if (line == null || line.trim().isEmpty()) {
             return null;
@@ -81,6 +89,7 @@ public class HotelManager implements FileHandler, ID {
         return hotel;
     }
 
+    // Converting hotel data to a string format for saving to the file.
     public String dataToString(Hotel hotel) {
         String output;
         output = String.format(
@@ -95,6 +104,7 @@ public class HotelManager implements FileHandler, ID {
         return output;
     }
 
+    // Creating a new hotel with the specified details and initializes its rooms.
     public void createNewHotel(String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
         String hotelID = idGenerator(null);
         Hotel newHotel = new Hotel(hotelID, name, location);
@@ -102,6 +112,7 @@ public class HotelManager implements FileHandler, ID {
         hotelData.put(newHotel.getHotelID(), newHotel);
     }
 
+    // Initialising rooms for a hotel based on the number of standard, premium, and suite rooms.
     private void initializeRooms(Hotel hotel, int numStandardRooms, int numPremiumRooms, int numSuites) {
         hotel.setNumStandardRooms(numStandardRooms);
         hotel.setNumPremiumRooms(numPremiumRooms);
@@ -111,20 +122,18 @@ public class HotelManager implements FileHandler, ID {
             roomManager.createRoom("STANDARD", hotel.getHotelID());
 
         }
-
         for (int i = 0; i < numPremiumRooms; i++) {
             roomManager.createRoom("PREMIUM", hotel.getHotelID());
 
         }
-
         for (int i = 0; i < numSuites; i++) {
             roomManager.createRoom("SUITE", hotel.getHotelID());
 
         }
         roomManager.saveData();
-
     }
 
+    // Searching for a hotel by its name and returns the matching Hotel object.
     public Hotel searchHotel(String hotelName) {
         for (Hotel hotel : hotelData.values()) {
             if (hotel.getName().equalsIgnoreCase(hotelName)) {
@@ -133,11 +142,12 @@ public class HotelManager implements FileHandler, ID {
         }
         return null;
     }
-
+    
     public Map<String, Hotel> getAllHotels() {
         return this.hotelData;
     }
 
+    // Generating new unique hotel ID.
     @Override
     public String idGenerator(Object context) {
         this.hotelCount++;
@@ -148,6 +158,7 @@ public class HotelManager implements FileHandler, ID {
         return hotelData.get(hotelID);
     }
 
+    // Updating hotel data with new information and returns true if successful.
     public boolean updateHotelData(String hotelID, Hotel newHotelData) {
         if (!hotelData.containsKey(hotelID)) {
             return false;
@@ -157,6 +168,7 @@ public class HotelManager implements FileHandler, ID {
         }
     }
     
+    // Checking if there are any hotels in the system.
     public boolean isEmpty(){
         return hotelData.isEmpty();
     }
