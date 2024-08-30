@@ -4,7 +4,6 @@
  */
 package MainHotel;
 
-import java.util.Map;
 
 /**
  *
@@ -12,6 +11,6 @@ import java.util.Map;
  * @param <E>
  */
 public interface FileHandler {
-    void loadData();
-    void saveData();
+    void loadData(); //Abstract Method
+    void saveData(); //Abstract Method
 }

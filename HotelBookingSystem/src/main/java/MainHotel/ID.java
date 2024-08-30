@@ -9,5 +9,5 @@ package MainHotel;
  * @author Alexander Smokina & Min Thiha Ko Ko 
  */
 interface ID {
-    public String idGenerator(Object context);
+    public String idGenerator(Object context); //Abstract Method
 }

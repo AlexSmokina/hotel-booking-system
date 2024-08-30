@@ -85,7 +85,7 @@ public class StaffMenu {
             System.out.println("2. Update Hotel Details");
             System.out.println("3. View All Hotels");
             System.out.println("4. Return to Previous Menu");
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
             try {
@@ -174,7 +174,7 @@ public class StaffMenu {
             System.out.println("3. Update Room Details");
             System.out.println("4. View All Rooms");
             System.out.println("5. Return to Previous Menu");
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
             try {
