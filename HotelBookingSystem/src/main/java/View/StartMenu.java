@@ -6,7 +6,7 @@ package View;
 
 /**
  *
- * @author minthihakoko
+ * @author minthihakoko 
  */
 public class StartMenu extends javax.swing.JFrame {
 
@@ -30,15 +30,17 @@ public class StartMenu extends javax.swing.JFrame {
         signIn = new javax.swing.JButton();
         welcome = new javax.swing.JLabel();
         register = new javax.swing.JButton();
+        registerLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 600));
+        setResizable(false);
 
         welcomePanel.setBackground(new java.awt.Color(255, 255, 255));
         welcomePanel.setPreferredSize(new java.awt.Dimension(500, 600));
 
-        signIn.setBackground(new java.awt.Color(255, 51, 255));
-        signIn.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        signIn.setBackground(new java.awt.Color(153, 0, 153));
+        signIn.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         signIn.setForeground(new java.awt.Color(255, 255, 255));
         signIn.setText("Register");
         signIn.addActionListener(new java.awt.event.ActionListener() {
@@ -47,13 +49,13 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
 
-        welcome.setFont(new java.awt.Font("STSong", 1, 30)); // NOI18N
+        welcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         welcome.setForeground(new java.awt.Color(0, 0, 0));
         welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        welcome.setText("Welcome to Hotel Booking System!");
+        welcome.setText("Hotel Booking System");
 
-        register.setBackground(new java.awt.Color(255, 51, 255));
-        register.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        register.setBackground(new java.awt.Color(153, 0, 153));
+        register.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         register.setForeground(new java.awt.Color(255, 255, 255));
         register.setText("Sign In");
         register.addActionListener(new java.awt.event.ActionListener() {
@@ -62,31 +64,51 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
 
+        registerLabel.setBackground(new java.awt.Color(255, 255, 255));
+        registerLabel.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        registerLabel.setForeground(new java.awt.Color(0, 0, 0));
+        registerLabel.setText("Welcome to");
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/hotel.png"))); // NOI18N
+
         javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
         welcomePanel.setLayout(welcomePanelLayout);
         welcomePanelLayout.setHorizontalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
+            .addGroup(welcomePanelLayout.createSequentialGroup()
+                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(welcomePanelLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(signIn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(welcomePanelLayout.createSequentialGroup()
+                        .addGap(131, 131, 131)
+                        .addComponent(registerLabel)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePanelLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(signIn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(149, 149, 149))
         );
         welcomePanelLayout.setVerticalGroup(
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
-                .addGap(172, 172, 172)
-                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(51, 51, 51)
+                .addComponent(registerLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(welcome)
+                .addGap(25, 25, 25)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(signIn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(126, 126, 126))
+                .addGap(101, 101, 101))
         );
 
         getContentPane().add(welcomePanel, java.awt.BorderLayout.CENTER);
@@ -138,7 +160,9 @@ public class StartMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton register;
+    private javax.swing.JLabel registerLabel;
     private javax.swing.JButton signIn;
     private javax.swing.JLabel welcome;
     private javax.swing.JPanel welcomePanel;
