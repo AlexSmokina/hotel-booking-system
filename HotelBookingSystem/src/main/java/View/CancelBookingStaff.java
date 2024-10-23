@@ -8,12 +8,12 @@ package View;
  *
  * @author alex
  */
-public class CancelBooking extends javax.swing.JFrame {
+public class CancelBookingStaff extends javax.swing.JFrame {
 
     /**
      * Creates new form CancelBooking
      */
-    public CancelBooking() {
+    public CancelBookingStaff() {
         initComponents();
     }
 
@@ -26,7 +26,7 @@ public class CancelBooking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cancelBookingPanel = new javax.swing.JPanel();
+        cancelBookingStaffPanel = new javax.swing.JPanel();
         guestUsername = new javax.swing.JTextField();
         bookingID = new javax.swing.JTextField();
         confirmCancel = new javax.swing.JButton();
@@ -71,30 +71,30 @@ public class CancelBooking extends javax.swing.JFrame {
         bookingDetailsPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bookingDetailsPrompt.setText("Enter booking details");
 
-        javax.swing.GroupLayout cancelBookingPanelLayout = new javax.swing.GroupLayout(cancelBookingPanel);
-        cancelBookingPanel.setLayout(cancelBookingPanelLayout);
-        cancelBookingPanelLayout.setHorizontalGroup(
-            cancelBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cancelBookingPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout cancelBookingStaffPanelLayout = new javax.swing.GroupLayout(cancelBookingStaffPanel);
+        cancelBookingStaffPanel.setLayout(cancelBookingStaffPanelLayout);
+        cancelBookingStaffPanelLayout.setHorizontalGroup(
+            cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addGroup(cancelBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingPanelLayout.createSequentialGroup()
-                        .addGroup(cancelBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
+                        .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
                         .addComponent(cancelBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))))
         );
-        cancelBookingPanelLayout.setVerticalGroup(
-            cancelBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cancelBookingPanelLayout.createSequentialGroup()
+        cancelBookingStaffPanelLayout.setVerticalGroup(
+            cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(cancelBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
@@ -108,7 +108,7 @@ public class CancelBooking extends javax.swing.JFrame {
                 .addContainerGap(200, Short.MAX_VALUE))
         );
 
-        getContentPane().add(cancelBookingPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(cancelBookingStaffPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -138,20 +138,21 @@ public class CancelBooking extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CancelBooking().setVisible(true);
+                new CancelBookingStaff().setVisible(true);
             }
         });
     }
@@ -160,7 +161,7 @@ public class CancelBooking extends javax.swing.JFrame {
     private javax.swing.JLabel bookingDetailsPrompt;
     private javax.swing.JTextField bookingID;
     private javax.swing.JLabel cancelBooking;
-    private javax.swing.JPanel cancelBookingPanel;
+    private javax.swing.JPanel cancelBookingStaffPanel;
     private javax.swing.JButton confirmCancel;
     private javax.swing.JTextField guestUsername;
     // End of variables declaration//GEN-END:variables
