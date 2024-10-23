@@ -26,7 +26,7 @@ public class RemoveRoom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        removeRoomPanel = new javax.swing.JPanel();
         hotelID = new javax.swing.JTextField();
         roomType = new javax.swing.JTextField();
         confirmRemove = new javax.swing.JButton();
@@ -36,7 +36,7 @@ public class RemoveRoom extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        removeRoomPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
@@ -73,29 +73,29 @@ public class RemoveRoom extends javax.swing.JFrame {
         createNewHotelPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         createNewHotelPrompt.setText("Enter room details");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout removeRoomPanelLayout = new javax.swing.GroupLayout(removeRoomPanel);
+        removeRoomPanel.setLayout(removeRoomPanelLayout);
+        removeRoomPanelLayout.setHorizontalGroup(
+            removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeRoomPanelLayout.createSequentialGroup()
+                .addGroup(removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(removeRoomPanelLayout.createSequentialGroup()
                         .addGap(166, 166, 166)
                         .addComponent(createNewHotelPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(removeRoomPanelLayout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(removeRoomPanelLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
                         .addComponent(removeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        removeRoomPanelLayout.setVerticalGroup(
+            removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeRoomPanelLayout.createSequentialGroup()
                 .addGap(64, 64, 64)
                 .addComponent(removeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
@@ -109,7 +109,7 @@ public class RemoveRoom extends javax.swing.JFrame {
                 .addContainerGap(235, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(removeRoomPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,8 +161,8 @@ public class RemoveRoom extends javax.swing.JFrame {
     private javax.swing.JButton confirmRemove;
     private javax.swing.JLabel createNewHotelPrompt;
     private javax.swing.JTextField hotelID;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel removeRoom;
+    private javax.swing.JPanel removeRoomPanel;
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 }
