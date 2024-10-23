@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.StartMenuController;
+
 /**
  *
  * @author minthihakoko 
@@ -15,6 +17,7 @@ public class StartMenu extends javax.swing.JFrame {
      */
     public StartMenu() {
         initComponents();
+        StartMenuController startMenuController = new StartMenuController(this);
     }
 
     /**
@@ -43,11 +46,6 @@ public class StartMenu extends javax.swing.JFrame {
         signIn.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         signIn.setForeground(new java.awt.Color(255, 255, 255));
         signIn.setText("Register");
-        signIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signInActionPerformed(evt);
-            }
-        });
 
         welcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         welcome.setForeground(new java.awt.Color(0, 0, 0));
@@ -58,18 +56,13 @@ public class StartMenu extends javax.swing.JFrame {
         register.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         register.setForeground(new java.awt.Color(255, 255, 255));
         register.setText("Sign In");
-        register.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerActionPerformed(evt);
-            }
-        });
 
         registerLabel.setBackground(new java.awt.Color(255, 255, 255));
         registerLabel.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         registerLabel.setForeground(new java.awt.Color(0, 0, 0));
         registerLabel.setText("Welcome to");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/hotel.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/minthihakoko/AUT/2024 S2/COMP603/hotel-booking-system/HotelBookingSystem/resources/hotel.png")); // NOI18N
 
         javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
         welcomePanel.setLayout(welcomePanelLayout);
@@ -116,14 +109,6 @@ public class StartMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signInActionPerformed
-
-    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registerActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -158,6 +143,15 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
     }
+    
+    public javax.swing.JButton getSignInButton(){
+        return this.signIn;
+    }
+    
+    public javax.swing.JButton getRegisterButton(){
+        return this.register;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
