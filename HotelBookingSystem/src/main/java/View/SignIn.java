@@ -26,122 +26,124 @@ public class SignIn extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        SignIn = new javax.swing.JPanel();
-        LoginWelcome = new javax.swing.JLabel();
-        CredentialsMessage = new javax.swing.JLabel();
-        LoginUserName = new javax.swing.JTextField();
-        LoginPassword = new javax.swing.JTextField();
-        Login = new javax.swing.JButton();
-        SignUpOptionPrompt = new javax.swing.JLabel();
-        SignUpOption = new javax.swing.JButton();
+        signInPanel = new javax.swing.JPanel();
+        loginWelcome = new javax.swing.JLabel();
+        credentialsMessage = new javax.swing.JLabel();
+        loginUserName = new javax.swing.JTextField();
+        loginPassword = new javax.swing.JTextField();
+        login = new javax.swing.JButton();
+        signUpOptionPrompt = new javax.swing.JLabel();
+        signUpOption = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        SignIn.setBackground(new java.awt.Color(255, 255, 255));
+        signInPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        LoginWelcome.setBackground(new java.awt.Color(255, 255, 255));
-        LoginWelcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
-        LoginWelcome.setForeground(new java.awt.Color(0, 0, 0));
-        LoginWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        LoginWelcome.setText("Welcome Back");
-        LoginWelcome.setToolTipText("");
+        loginWelcome.setBackground(new java.awt.Color(255, 255, 255));
+        loginWelcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        loginWelcome.setForeground(new java.awt.Color(0, 0, 0));
+        loginWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loginWelcome.setText("Welcome Back");
+        loginWelcome.setToolTipText("");
 
-        CredentialsMessage.setBackground(new java.awt.Color(255, 255, 255));
-        CredentialsMessage.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
-        CredentialsMessage.setForeground(new java.awt.Color(0, 0, 0));
-        CredentialsMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        CredentialsMessage.setText("Enter your credentials to login");
+        credentialsMessage.setBackground(new java.awt.Color(255, 255, 255));
+        credentialsMessage.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        credentialsMessage.setForeground(new java.awt.Color(0, 0, 0));
+        credentialsMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        credentialsMessage.setText("Enter your credentials to login");
 
-        LoginUserName.setBackground(new java.awt.Color(255, 204, 255));
-        LoginUserName.setForeground(new java.awt.Color(102, 102, 102));
-        LoginUserName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        LoginUserName.setText("User Name");
-        LoginUserName.addActionListener(new java.awt.event.ActionListener() {
+        loginUserName.setBackground(new java.awt.Color(255, 204, 255));
+        loginUserName.setForeground(new java.awt.Color(102, 102, 102));
+        loginUserName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        loginUserName.setText("User Name");
+        loginUserName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginUserNameActionPerformed(evt);
+                loginUserNameActionPerformed(evt);
             }
         });
 
-        LoginPassword.setBackground(new java.awt.Color(255, 204, 255));
-        LoginPassword.setForeground(new java.awt.Color(102, 102, 102));
-        LoginPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        LoginPassword.setText("Password");
-        LoginPassword.addActionListener(new java.awt.event.ActionListener() {
+        loginPassword.setBackground(new java.awt.Color(255, 204, 255));
+        loginPassword.setForeground(new java.awt.Color(102, 102, 102));
+        loginPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        loginPassword.setText("Password");
+        loginPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginPasswordActionPerformed(evt);
+                loginPasswordActionPerformed(evt);
             }
         });
 
-        Login.setBackground(new java.awt.Color(255, 51, 255));
-        Login.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
-        Login.setForeground(new java.awt.Color(255, 255, 255));
-        Login.setText("Login");
+        login.setBackground(new java.awt.Color(255, 51, 255));
+        login.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        login.setForeground(new java.awt.Color(255, 255, 255));
+        login.setText("Login");
 
-        SignUpOptionPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        SignUpOptionPrompt.setText("Don't have an account?");
+        signUpOptionPrompt.setBackground(new java.awt.Color(255, 255, 255));
+        signUpOptionPrompt.setForeground(new java.awt.Color(0, 0, 0));
+        signUpOptionPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        signUpOptionPrompt.setText("Don't have an account?");
 
-        SignUpOption.setBackground(new java.awt.Color(255, 255, 255));
-        SignUpOption.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
-        SignUpOption.setForeground(new java.awt.Color(204, 0, 204));
-        SignUpOption.setText("Sign Up");
+        signUpOption.setBackground(new java.awt.Color(255, 255, 255));
+        signUpOption.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        signUpOption.setForeground(new java.awt.Color(204, 0, 204));
+        signUpOption.setText("Sign In");
 
-        javax.swing.GroupLayout SignInLayout = new javax.swing.GroupLayout(SignIn);
-        SignIn.setLayout(SignInLayout);
-        SignInLayout.setHorizontalGroup(
-            SignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SignInLayout.createSequentialGroup()
+        javax.swing.GroupLayout signInPanelLayout = new javax.swing.GroupLayout(signInPanel);
+        signInPanel.setLayout(signInPanelLayout);
+        signInPanelLayout.setHorizontalGroup(
+            signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(signInPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(SignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LoginWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CredentialsMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(SignInLayout.createSequentialGroup()
+                .addGroup(signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(loginWelcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(credentialsMessage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(signInPanelLayout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(SignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(LoginPassword)
-                            .addComponent(LoginUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                            .addComponent(Login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(loginPassword)
+                            .addComponent(loginUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                            .addComponent(login, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(SignInLayout.createSequentialGroup()
+            .addGroup(signInPanelLayout.createSequentialGroup()
                 .addGap(91, 91, 91)
-                .addComponent(SignUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SignUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(97, Short.MAX_VALUE))
         );
-        SignInLayout.setVerticalGroup(
-            SignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(SignInLayout.createSequentialGroup()
+        signInPanelLayout.setVerticalGroup(
+            signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(signInPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(LoginWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(CredentialsMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(credentialsMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
-                .addComponent(LoginUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(LoginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Login, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(SignInLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SignUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(SignUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(loginUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(loginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addGroup(signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(signUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        getContentPane().add(SignIn, java.awt.BorderLayout.CENTER);
+        getContentPane().add(signInPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void LoginUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginUserNameActionPerformed
+    private void loginUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginUserNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LoginUserNameActionPerformed
+    }//GEN-LAST:event_loginUserNameActionPerformed
 
-    private void LoginPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginPasswordActionPerformed
+    private void loginPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_LoginPasswordActionPerformed
+    }//GEN-LAST:event_loginPasswordActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,13 +181,13 @@ public class SignIn extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel CredentialsMessage;
-    private javax.swing.JButton Login;
-    private javax.swing.JTextField LoginPassword;
-    private javax.swing.JTextField LoginUserName;
-    private javax.swing.JLabel LoginWelcome;
-    private javax.swing.JPanel SignIn;
-    private javax.swing.JButton SignUpOption;
-    private javax.swing.JLabel SignUpOptionPrompt;
+    private javax.swing.JLabel credentialsMessage;
+    private javax.swing.JButton login;
+    private javax.swing.JTextField loginPassword;
+    private javax.swing.JTextField loginUserName;
+    private javax.swing.JLabel loginWelcome;
+    private javax.swing.JPanel signInPanel;
+    private javax.swing.JButton signUpOption;
+    private javax.swing.JLabel signUpOptionPrompt;
     // End of variables declaration//GEN-END:variables
 }
