@@ -33,6 +33,7 @@ public class BookingManagement extends javax.swing.JFrame {
         cancelBooking = new javax.swing.JButton();
         extendBooking = new javax.swing.JButton();
         previousMenu = new javax.swing.JButton();
+        changeRoom = new javax.swing.JButton();
         viewGuestBooking = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,7 +57,7 @@ public class BookingManagement extends javax.swing.JFrame {
         bookNewRoom.setBackground(new java.awt.Color(255, 204, 255));
         bookNewRoom.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         bookNewRoom.setForeground(new java.awt.Color(0, 0, 0));
-        bookNewRoom.setText("Book a room");
+        bookNewRoom.setText("Book room");
 
         cancelBooking.setBackground(new java.awt.Color(255, 204, 255));
         cancelBooking.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
@@ -72,6 +73,11 @@ public class BookingManagement extends javax.swing.JFrame {
         previousMenu.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         previousMenu.setForeground(new java.awt.Color(255, 255, 255));
         previousMenu.setText("Return to Previous Menu");
+
+        changeRoom.setBackground(new java.awt.Color(255, 204, 255));
+        changeRoom.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        changeRoom.setForeground(new java.awt.Color(0, 0, 0));
+        changeRoom.setText("Change room");
 
         viewGuestBooking.setBackground(new java.awt.Color(255, 204, 255));
         viewGuestBooking.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
@@ -91,13 +97,14 @@ public class BookingManagement extends javax.swing.JFrame {
                             .addComponent(bookNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(extendBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(previousMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(changeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewGuestBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(bookingManagementPanelLayout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addComponent(chooseOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(bookingManagementPanelLayout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addComponent(hotelManagementMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(hotelManagementMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(bookingManagementPanelLayout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(chooseOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(22, Short.MAX_VALUE))
         );
         bookingManagementPanelLayout.setVerticalGroup(
@@ -105,19 +112,21 @@ public class BookingManagement extends javax.swing.JFrame {
             .addGroup(bookingManagementPanelLayout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(hotelManagementMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(35, 35, 35)
                 .addComponent(chooseOptionPrompt)
-                .addGap(53, 53, 53)
+                .addGap(44, 44, 44)
                 .addComponent(bookNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cancelBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(extendBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(changeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(viewGuestBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(previousMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         getContentPane().add(bookingManagementPanel, java.awt.BorderLayout.CENTER);
@@ -164,6 +173,7 @@ public class BookingManagement extends javax.swing.JFrame {
     private javax.swing.JButton bookNewRoom;
     private javax.swing.JPanel bookingManagementPanel;
     private javax.swing.JButton cancelBooking;
+    private javax.swing.JButton changeRoom;
     private javax.swing.JLabel chooseOptionPrompt;
     private javax.swing.JButton extendBooking;
     private javax.swing.JLabel hotelManagementMenu;
