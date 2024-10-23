@@ -145,6 +145,10 @@ public class SignIn extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginPasswordActionPerformed
 
+    private void SignUpOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOptionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SignUpOptionActionPerformed
+
     /**
      * @param args the command line arguments
      */

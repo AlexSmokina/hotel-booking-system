@@ -26,75 +26,81 @@ public class StartMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        welcomePanel = new javax.swing.JPanel();
+        signIn = new javax.swing.JButton();
+        welcome = new javax.swing.JLabel();
+        register = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(500, 600));
 
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 600));
+        welcomePanel.setBackground(new java.awt.Color(255, 255, 255));
+        welcomePanel.setPreferredSize(new java.awt.Dimension(500, 600));
 
-        jButton2.setFont(new java.awt.Font("Toppan Bunkyu Gothic", 0, 15)); // NOI18N
-        jButton2.setText("Register");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        signIn.setBackground(new java.awt.Color(255, 51, 255));
+        signIn.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        signIn.setForeground(new java.awt.Color(255, 255, 255));
+        signIn.setText("Register");
+        signIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                signInActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("STSong", 1, 30)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Welcome to Hotel Booking System!");
+        welcome.setFont(new java.awt.Font("STSong", 1, 30)); // NOI18N
+        welcome.setForeground(new java.awt.Color(0, 0, 0));
+        welcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcome.setText("Welcome to Hotel Booking System!");
 
-        jButton3.setFont(new java.awt.Font("Toppan Bunkyu Gothic", 0, 15)); // NOI18N
-        jButton3.setText("Sign In");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        register.setBackground(new java.awt.Color(255, 51, 255));
+        register.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        register.setForeground(new java.awt.Color(255, 255, 255));
+        register.setText("Sign In");
+        register.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                registerActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
+        welcomePanel.setLayout(welcomePanelLayout);
+        welcomePanelLayout.setHorizontalGroup(
+            welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePanelLayout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signIn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        welcomePanelLayout.setVerticalGroup(
+            welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(112, 112, 112)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                 .addGap(172, 172, 172)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signIn, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(126, 126, 126))
         );
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(welcomePanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_signInActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_registerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,9 +138,9 @@ public class StartMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton register;
+    private javax.swing.JButton signIn;
+    private javax.swing.JLabel welcome;
+    private javax.swing.JPanel welcomePanel;
     // End of variables declaration//GEN-END:variables
 }

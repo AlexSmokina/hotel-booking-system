@@ -4,18 +4,18 @@
  */
 package Main;
 
-import MainHotel.Booking;
-import MainHotel.BookingManager;
-import MainHotel.Staff;
-import MainHotel.Hotel;
-import MainHotel.HotelManager;
-import MainHotel.Room;
-import MainHotel.RoomManager;
+import Model.Booking;
+import Controller.BookingManager;
+import Model.Staff;
+import Model.Hotel;
+import Controller.HotelManager;
+import Model.Room;
+import Controller.RoomManager;
 import java.util.List;
 import java.util.Scanner;
-import MainHotel.RoomType;
-import MainHotel.User;
-import MainHotel.UserManager;
+import Model.RoomType;
+import Model.User;
+import Controller.UserManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 

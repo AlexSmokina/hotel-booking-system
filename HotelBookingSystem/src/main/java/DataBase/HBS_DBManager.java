@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 public final class HBS_DBManager {
     private static final String USER = "hbs"; // Default user for Derby
     private static final String PASSWORD = "hbs"; // Default password for Derby
-    private static final String URL = "jdbc:derby://localhost:1527/HotelBookingSystemDB;create=true";
+    private static final String URL = "jdbc:derby:derbyDatabase/TestDB;create=true";;
     
     private Connection conn;
 
