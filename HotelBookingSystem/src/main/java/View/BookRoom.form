@@ -62,9 +62,9 @@
                                           <Component id="avaiableRoomsQTY" min="-2" pref="140" max="-2" attributes="0"/>
                                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="checkIn" min="-2" pref="400" max="-2" attributes="0"/>
+                                      <Component id="checkInDate" min="-2" pref="400" max="-2" attributes="0"/>
                                       <Component id="confirmBooking" min="-2" pref="400" max="-2" attributes="0"/>
-                                      <Component id="checkOut" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
+                                      <Component id="checkOutDate" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                       <Component id="numberOfRooms" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -96,9 +96,9 @@
                       <Component id="chooseHotel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="checkIn" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="checkInDate" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="checkOut" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="checkOutDate" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="numberOfRooms" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -146,7 +146,7 @@
             <Property name="text" type="java.lang.String" value="Choose &amp; Enter"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="checkIn">
+        <Component class="javax.swing.JTextField" name="checkInDate">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
@@ -157,10 +157,10 @@
             <Property name="text" type="java.lang.String" value="Check-in date (yyyy-mm-dd)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkInActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkInDateActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="checkOut">
+        <Component class="javax.swing.JTextField" name="checkOutDate">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>

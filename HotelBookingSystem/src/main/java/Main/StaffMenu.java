@@ -372,7 +372,7 @@ public class StaffMenu {
             System.out.println((i + 1) + ". " + room);
         }
 
-        System.out.print("Enter the number of the room you want to book: ");
+        System.out.print("Enter number of the rooms you want to book: ");
         int roomChoice = scan.nextInt();
         scan.nextLine();
 
@@ -442,7 +442,7 @@ public class StaffMenu {
             return;
         }
         if (showBooking(username)) {
-            System.out.print("Enter the booking ID for the room you want to change: ");
+            System.out.print("Enter booking ID for the room you want to change: ");
             String bookingID = scan.nextLine();
 
             Booking booking = bookingManager.getBookingData(bookingID);
