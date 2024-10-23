@@ -4,30 +4,30 @@
  */
 package Main;
 
-import MainHotel.Booking;
-import MainHotel.BookingManager;
-import MainHotel.Staff;
-import MainHotel.Hotel;
-import MainHotel.HotelManager;
-import MainHotel.Room;
-import MainHotel.RoomManager;
+import Model.Booking;
+import Controller.BookingManager;
+import Model.Staff;
+import Model.Hotel;
+import Controller.HotelManager;
+import Model.Room;
+import Controller.RoomManager;
 import java.util.List;
 import java.util.Scanner;
-import MainHotel.RoomType;
-import MainHotel.User;
-import MainHotel.UserManager;
+import Model.RoomType;
+import Model.User;
+import Controller.UserManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
  *
  * @author Alexander Smokina & Min Thiha Ko Ko
- * 
- * The StaffMenu class provides the user interface for staff members
- * to manage hotels, rooms, and bookings within the hotel booking system.
- * This class includes functions for hotel management, room management,
- * and booking management, integrating with various other classes such
- * as HotelManager, RoomManager, and BookingManager.
+ *
+ * The StaffMenu class provides the user interface for staff members to manage
+ * hotels, rooms, and bookings within the hotel booking system. This class
+ * includes functions for hotel management, room management, and booking
+ * management, integrating with various other classes such as HotelManager,
+ * RoomManager, and BookingManager.
  */
 public class StaffMenu {
 
@@ -297,7 +297,8 @@ public class StaffMenu {
             System.out.println("2. Cancel booking");
             System.out.println("3. Extend booking");
             System.out.println("4. View guest booking");
-            System.out.println("5. Return to Previous Menu");
+            System.out.println("5. Change room for existing booking");
+            System.out.println("6. Return to Previous Menu");
             System.out.print("Enter your choice: ");
 
             String choiceString = scanner.nextLine().trim();
@@ -325,9 +326,13 @@ public class StaffMenu {
                         showBooking(username);
                         break;
                     case 5:
-                        return;
+                        // Add the changeRoom option here
+                        changeRoom(scanner);
+                        break;
+                    case 6:
+                        return; // Exit to the previous menu
                     default:
-                        System.out.println("Invalid choice. Please enter a number (1-4).");
+                        System.out.println("Invalid choice. Please enter a number (1-6).");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
@@ -367,7 +372,7 @@ public class StaffMenu {
             System.out.println((i + 1) + ". " + room);
         }
 
-        System.out.print("Enter the number of the room you want to book: ");
+        System.out.print("Enter number of the rooms you want to book: ");
         int roomChoice = scan.nextInt();
         scan.nextLine();
 
@@ -437,7 +442,7 @@ public class StaffMenu {
             return;
         }
         if (showBooking(username)) {
-            System.out.print("Enter the booking ID for the room you want to change: ");
+            System.out.print("Enter booking ID for the room you want to change: ");
             String bookingID = scan.nextLine();
 
             Booking booking = bookingManager.getBookingData(bookingID);

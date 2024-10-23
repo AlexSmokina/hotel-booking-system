@@ -4,15 +4,15 @@
  */
 package Main;
 
-import MainHotel.BookingManager;
+import Controller.BookingManager;
 import java.util.Scanner;
-import MainHotel.UserManager;
-import MainHotel.User;
-import MainHotel.UserType;
-import MainHotel.Guest;
-import MainHotel.HotelManager;
-import MainHotel.RoomManager;
-import MainHotel.Staff;
+import Controller.UserManager;
+import Model.User;
+import Model.UserType;
+import Model.Guest;
+import Controller.HotelManager;
+import Controller.RoomManager;
+import Model.Staff;
 
 /**
  *
