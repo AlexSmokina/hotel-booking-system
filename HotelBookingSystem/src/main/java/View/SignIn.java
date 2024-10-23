@@ -37,16 +37,23 @@ public class SignIn extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        SignIn.setBackground(new java.awt.Color(255, 255, 255));
+
         LoginWelcome.setBackground(new java.awt.Color(255, 255, 255));
         LoginWelcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        LoginWelcome.setForeground(new java.awt.Color(0, 0, 0));
         LoginWelcome.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         LoginWelcome.setText("Welcome Back");
         LoginWelcome.setToolTipText("");
 
+        CredentialsMessage.setBackground(new java.awt.Color(255, 255, 255));
         CredentialsMessage.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        CredentialsMessage.setForeground(new java.awt.Color(0, 0, 0));
         CredentialsMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         CredentialsMessage.setText("Enter your credentials to login");
 
+        LoginUserName.setBackground(new java.awt.Color(255, 204, 255));
+        LoginUserName.setForeground(new java.awt.Color(102, 102, 102));
         LoginUserName.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         LoginUserName.setText("User Name");
         LoginUserName.addActionListener(new java.awt.event.ActionListener() {
@@ -55,6 +62,8 @@ public class SignIn extends javax.swing.JFrame {
             }
         });
 
+        LoginPassword.setBackground(new java.awt.Color(255, 204, 255));
+        LoginPassword.setForeground(new java.awt.Color(102, 102, 102));
         LoginPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         LoginPassword.setText("Password");
         LoginPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -63,13 +72,17 @@ public class SignIn extends javax.swing.JFrame {
             }
         });
 
+        Login.setBackground(new java.awt.Color(255, 51, 255));
         Login.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
+        Login.setForeground(new java.awt.Color(255, 255, 255));
         Login.setText("Login");
 
         SignUpOptionPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         SignUpOptionPrompt.setText("Don't have an account?");
 
+        SignUpOption.setBackground(new java.awt.Color(255, 255, 255));
         SignUpOption.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        SignUpOption.setForeground(new java.awt.Color(204, 0, 204));
         SignUpOption.setText("Sign Up");
 
         javax.swing.GroupLayout SignInLayout = new javax.swing.GroupLayout(SignIn);
