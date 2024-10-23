@@ -32,10 +32,9 @@ public class HotelDetails extends javax.swing.JFrame {
         hotelID = new javax.swing.JTextField();
         newHotelName = new javax.swing.JTextField();
         hotelName2 = new javax.swing.JTextField();
-        signUp = new javax.swing.JButton();
+        confirm = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
         hotelDetailsPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -79,13 +78,13 @@ public class HotelDetails extends javax.swing.JFrame {
             }
         });
 
-        signUp.setBackground(new java.awt.Color(153, 0, 153));
-        signUp.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
-        signUp.setForeground(new java.awt.Color(255, 255, 255));
-        signUp.setText("Confirm");
-        signUp.addActionListener(new java.awt.event.ActionListener() {
+        confirm.setBackground(new java.awt.Color(153, 0, 153));
+        confirm.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        confirm.setForeground(new java.awt.Color(255, 255, 255));
+        confirm.setText("Confirm");
+        confirm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signUpActionPerformed(evt);
+                confirmActionPerformed(evt);
             }
         });
 
@@ -107,7 +106,7 @@ public class HotelDetails extends javax.swing.JFrame {
                             .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(signUp, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         hotelDetailsPanelLayout.setVerticalGroup(
@@ -119,13 +118,13 @@ public class HotelDetails extends javax.swing.JFrame {
                 .addComponent(enterHotelDetailsPrompt)
                 .addGap(43, 43, 43)
                 .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(signUp, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
 
         getContentPane().add(hotelDetailsPanel, java.awt.BorderLayout.CENTER);
@@ -145,9 +144,9 @@ public class HotelDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_hotelName2ActionPerformed
 
-    private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
+    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_signUpActionPerformed
+    }//GEN-LAST:event_confirmActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,12 +184,12 @@ public class HotelDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirm;
     private javax.swing.JLabel enterHotelDetailsPrompt;
     private javax.swing.JLabel hotelDetails;
     private javax.swing.JPanel hotelDetailsPanel;
     private javax.swing.JTextField hotelID;
     private javax.swing.JTextField hotelName2;
     private javax.swing.JTextField newHotelName;
-    private javax.swing.JButton signUp;
     // End of variables declaration//GEN-END:variables
 }

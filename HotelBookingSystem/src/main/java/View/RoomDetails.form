@@ -24,7 +24,7 @@
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="hotelDetailsPanel">
+    <Container class="javax.swing.JPanel" name="roomDetailsPanel">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -39,23 +39,24 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
-                          <Component id="enterHotelDetailsPrompt" min="-2" pref="150" max="-2" attributes="0"/>
+                          <Component id="roomDetailsPrompt" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="hotelDetails" max="-2" attributes="0"/>
+                          <Component id="roomDetails" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="newHotelName" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="hotelID" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="hotelName2" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="roomID" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="hotelID" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="roomType" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                               <Component id="confirm" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="roomPrice" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -67,24 +68,26 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                  <Component id="hotelDetails" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomDetails" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="enterHotelDetailsPrompt" min="-2" max="-2" attributes="0"/>
+                  <Component id="roomDetailsPrompt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                   <Component id="hotelID" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="newHotelName" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="roomID" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="hotelName2" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="roomType" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="roomPrice" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="confirm" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="191" max="32767" attributes="0"/>
+                  <EmptySpace pref="133" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="hotelDetails">
+        <Component class="javax.swing.JLabel" name="roomDetails">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -95,13 +98,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Hotel Details"/>
+            <Property name="text" type="java.lang.String" value="Room Details"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[220, 50]"/>
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="enterHotelDetailsPrompt">
+        <Component class="javax.swing.JLabel" name="roomDetailsPrompt">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -113,7 +116,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Enter Hotel Details"/>
+            <Property name="text" type="java.lang.String" value="Enter Room Details"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="hotelID">
@@ -124,13 +127,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enter hotel ID to update"/>
+            <Property name="text" type="java.lang.String" value="Enter hotel ID"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelIDActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="newHotelName">
+        <Component class="javax.swing.JTextField" name="roomID">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
@@ -138,13 +141,13 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enter new hotel name"/>
+            <Property name="text" type="java.lang.String" value="Enter room ID to update"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newHotelNameActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomIDActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="hotelName2">
+        <Component class="javax.swing.JTextField" name="roomType">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
@@ -152,10 +155,10 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enter new location"/>
+            <Property name="text" type="java.lang.String" value="Enter new room type (STANDARD / PREMIUM / SUITE)"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelName2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomTypeActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="confirm">
@@ -173,6 +176,20 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="roomPrice">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="cc" red="ff" type="rgb"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="66" green="66" red="66" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Enter new price"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomPriceActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

@@ -26,21 +26,101 @@ public class RemoveRoom extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        hotelID = new javax.swing.JTextField();
+        roomType = new javax.swing.JTextField();
+        confirmRemove = new javax.swing.JButton();
+        removeRoom = new javax.swing.JLabel();
+        createNewHotelPrompt = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        hotelID.setBackground(new java.awt.Color(255, 204, 255));
+        hotelID.setForeground(new java.awt.Color(102, 102, 102));
+        hotelID.setText("Enter Hotel ID");
+        hotelID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hotelIDActionPerformed(evt);
+            }
+        });
+
+        roomType.setBackground(new java.awt.Color(255, 204, 255));
+        roomType.setForeground(new java.awt.Color(102, 102, 102));
+        roomType.setText("Enter Room ID to Remove");
+
+        confirmRemove.setBackground(new java.awt.Color(153, 0, 153));
+        confirmRemove.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        confirmRemove.setForeground(new java.awt.Color(255, 255, 255));
+        confirmRemove.setText("Confirm");
+        confirmRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmRemoveActionPerformed(evt);
+            }
+        });
+
+        removeRoom.setBackground(new java.awt.Color(255, 255, 255));
+        removeRoom.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        removeRoom.setForeground(new java.awt.Color(0, 0, 0));
+        removeRoom.setText("Remove Room");
+        removeRoom.setPreferredSize(new java.awt.Dimension(220, 50));
+
+        createNewHotelPrompt.setBackground(new java.awt.Color(255, 255, 255));
+        createNewHotelPrompt.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        createNewHotelPrompt.setForeground(new java.awt.Color(0, 0, 0));
+        createNewHotelPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        createNewHotelPrompt.setText("Enter room details");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(166, 166, 166)
+                        .addComponent(createNewHotelPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(removeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(removeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(createNewHotelPrompt)
+                .addGap(45, 45, 45)
+                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(235, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hotelIDActionPerformed
+
+    private void confirmRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +158,11 @@ public class RemoveRoom extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirmRemove;
+    private javax.swing.JLabel createNewHotelPrompt;
+    private javax.swing.JTextField hotelID;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel removeRoom;
+    private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 }
