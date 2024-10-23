@@ -25,19 +25,19 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" max="32767" attributes="0"/>
+              <Component id="SignIn" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="SignIn" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="SignIn">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -45,14 +45,14 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="LoginWelcomLabel" pref="476" max="32767" attributes="0"/>
-                      <Component id="CredentialsMessageLabel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="LoginWelcome" pref="476" max="32767" attributes="0"/>
+                      <Component id="CredentialsMessage" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="LoginPasswordTextField" max="32767" attributes="0"/>
-                              <Component id="LoginUserNameTextField" pref="400" max="32767" attributes="0"/>
-                              <Component id="LoginButton" max="32767" attributes="0"/>
+                              <Component id="LoginPassword" max="32767" attributes="0"/>
+                              <Component id="LoginUserName" pref="400" max="32767" attributes="0"/>
+                              <Component id="Login" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -61,9 +61,9 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="91" max="-2" attributes="0"/>
-                  <Component id="SignUpOptionPromptLabel" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="SignUpOptionPrompt" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="SignUpOptionButton" min="-2" pref="150" max="-2" attributes="0"/>
+                  <Component id="SignUpOption" min="-2" pref="150" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -72,19 +72,19 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                  <Component id="LoginWelcomLabel" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Component id="LoginWelcome" min="-2" pref="115" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="CredentialsMessageLabel" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="CredentialsMessage" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="LoginUserNameTextField" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="LoginUserName" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="LoginPasswordTextField" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="LoginPassword" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="LoginButton" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="Login" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="SignUpOptionPromptLabel" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                      <Component id="SignUpOptionButton" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="SignUpOptionPrompt" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="SignUpOption" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="52" max="32767" attributes="0"/>
               </Group>
@@ -92,7 +92,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="LoginWelcomLabel">
+        <Component class="javax.swing.JLabel" name="LoginWelcome">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -105,7 +105,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="CredentialsMessageLabel">
+        <Component class="javax.swing.JLabel" name="CredentialsMessage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="STSong" size="18" style="0"/>
@@ -114,25 +114,25 @@
             <Property name="text" type="java.lang.String" value="Enter your credentials to login"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="LoginUserNameTextField">
+        <Component class="javax.swing.JTextField" name="LoginUserName">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="User Name"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginUserNameTextFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginUserNameActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="LoginPasswordTextField">
+        <Component class="javax.swing.JTextField" name="LoginPassword">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="text" type="java.lang.String" value="Password"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginPasswordTextFieldActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoginPasswordActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="LoginButton">
+        <Component class="javax.swing.JButton" name="Login">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="18" style="0"/>
@@ -140,13 +140,13 @@
             <Property name="text" type="java.lang.String" value="Login"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="SignUpOptionPromptLabel">
+        <Component class="javax.swing.JLabel" name="SignUpOptionPrompt">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Don&apos;t have an account?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="SignUpOptionButton">
+        <Component class="javax.swing.JButton" name="SignUpOption">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="sansserif" size="14" style="0"/>
