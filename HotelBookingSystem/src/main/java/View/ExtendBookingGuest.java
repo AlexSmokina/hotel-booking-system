@@ -8,12 +8,12 @@ package View;
  *
  * @author alex
  */
-public class ExtendBooking extends javax.swing.JFrame {
+public class ExtendBookingGuest extends javax.swing.JFrame {
 
     /**
-     * Creates new form ExtendBooking
+     * Creates new form ExtendBookingGuest
      */
-    public ExtendBooking() {
+    public ExtendBookingGuest() {
         initComponents();
     }
 
@@ -26,18 +26,18 @@ public class ExtendBooking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        extendBookingPanel = new javax.swing.JPanel();
+        extendBookingGuestPanel = new javax.swing.JPanel();
         extendBooking = new javax.swing.JLabel();
         bookingDetailsPrompt = new javax.swing.JLabel();
-        guestUsername = new javax.swing.JTextField();
         bookingID = new javax.swing.JTextField();
         confirmExtend = new javax.swing.JButton();
         checkOutDate = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 600));
         setResizable(false);
 
-        extendBookingPanel.setBackground(new java.awt.Color(255, 255, 255));
+        extendBookingGuestPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         extendBooking.setBackground(new java.awt.Color(255, 255, 255));
         extendBooking.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
@@ -51,21 +51,13 @@ public class ExtendBooking extends javax.swing.JFrame {
         bookingDetailsPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bookingDetailsPrompt.setText("Enter booking details");
 
-        guestUsername.setBackground(new java.awt.Color(255, 204, 255));
-        guestUsername.setForeground(new java.awt.Color(102, 102, 102));
-        guestUsername.setText("Enter guest username");
-        guestUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guestUsernameActionPerformed(evt);
-            }
-        });
-
         bookingID.setBackground(new java.awt.Color(255, 204, 255));
+        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         bookingID.setForeground(new java.awt.Color(102, 102, 102));
         bookingID.setText("Enter booking ID you want to extend");
 
         confirmExtend.setBackground(new java.awt.Color(153, 0, 153));
-        confirmExtend.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        confirmExtend.setFont(new java.awt.Font("STSong", 1, 28)); // NOI18N
         confirmExtend.setForeground(new java.awt.Color(255, 255, 255));
         confirmExtend.setText("Confirm");
         confirmExtend.addActionListener(new java.awt.event.ActionListener() {
@@ -75,57 +67,51 @@ public class ExtendBooking extends javax.swing.JFrame {
         });
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
+        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         checkOutDate.setForeground(new java.awt.Color(102, 102, 102));
         checkOutDate.setText("New check-out date");
 
-        javax.swing.GroupLayout extendBookingPanelLayout = new javax.swing.GroupLayout(extendBookingPanel);
-        extendBookingPanel.setLayout(extendBookingPanelLayout);
-        extendBookingPanelLayout.setHorizontalGroup(
-            extendBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(extendBookingPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout extendBookingGuestPanelLayout = new javax.swing.GroupLayout(extendBookingGuestPanel);
+        extendBookingGuestPanel.setLayout(extendBookingGuestPanelLayout);
+        extendBookingGuestPanelLayout.setHorizontalGroup(
+            extendBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extendBookingGuestPanelLayout.createSequentialGroup()
                 .addGap(163, 163, 163)
                 .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingPanelLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingGuestPanelLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
-                .addGroup(extendBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingPanelLayout.createSequentialGroup()
-                        .addGroup(extendBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(extendBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingGuestPanelLayout.createSequentialGroup()
+                        .addGroup(extendBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(confirmExtend, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingGuestPanelLayout.createSequentialGroup()
                         .addComponent(extendBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))))
         );
-        extendBookingPanelLayout.setVerticalGroup(
-            extendBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(extendBookingPanelLayout.createSequentialGroup()
+        extendBookingGuestPanelLayout.setVerticalGroup(
+            extendBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(extendBookingGuestPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(extendBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(bookingDetailsPrompt)
-                .addGap(55, 55, 55)
-                .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65)
+                .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(confirmExtend, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addComponent(confirmExtend, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(130, Short.MAX_VALUE))
         );
 
-        getContentPane().add(extendBookingPanel, java.awt.BorderLayout.CENTER);
+        getContentPane().add(extendBookingGuestPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void guestUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guestUsernameActionPerformed
 
     private void confirmExtendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmExtendActionPerformed
         // TODO add your handling code here:
@@ -148,20 +134,20 @@ public class ExtendBooking extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExtendBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExtendBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExtendBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExtendBooking.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExtendBooking().setVisible(true);
+                new ExtendBookingGuest().setVisible(true);
             }
         });
     }
@@ -172,7 +158,6 @@ public class ExtendBooking extends javax.swing.JFrame {
     private javax.swing.JTextField checkOutDate;
     private javax.swing.JButton confirmExtend;
     private javax.swing.JLabel extendBooking;
-    private javax.swing.JPanel extendBookingPanel;
-    private javax.swing.JTextField guestUsername;
+    private javax.swing.JPanel extendBookingGuestPanel;
     // End of variables declaration//GEN-END:variables
 }
