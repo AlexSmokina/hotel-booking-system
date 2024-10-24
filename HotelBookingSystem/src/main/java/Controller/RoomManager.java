@@ -129,7 +129,7 @@ public class RoomManager implements FileHandler, ID {
         String key = newRoom.getHotelID() + "_" + newRoom.getRoomID();
         roomData.put(key, newRoom);
     }
-
+    
     // Generating unique ID for a room based on the hotel ID and room type.
     @Override
     public final String idGenerator(Object context) {
@@ -158,7 +158,7 @@ public class RoomManager implements FileHandler, ID {
         }
         return output + currentID;
     }
-    
+      
     // Retrieving a Room object based on its room ID and hotel ID.
     public Room getRoomData(String roomID, String hotelID) {
         String key = hotelID + "_" + roomID;
