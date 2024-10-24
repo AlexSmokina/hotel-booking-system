@@ -5,10 +5,6 @@
 package Model;
 
 import DataBase.HotelDB;
-import Model.Guest;
-import Model.Staff;
-import Model.User;
-import Model.UserType;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
