@@ -35,7 +35,6 @@ public class StartMenuController implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        e.getActionCommand();
         String command = e.getActionCommand();
         
         

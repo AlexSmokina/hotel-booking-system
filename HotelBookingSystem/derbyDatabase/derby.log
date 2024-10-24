@@ -1,20 +1,20 @@
-Thu Oct 24 17:33:03 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Thu Oct 24 18:05:01 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Oct 24 17:33:14 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-bccc-ac70-00005954a0f4 
-on database directory /Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@43e45247 
-Loaded from file:/Users/alex/Alex/AUT/4%20Semester/COMP603/Derby/db-derby-10.14.2.0-bin/lib/derby.jar
-java.vendor=Oracle Corporation
-java.runtime.version=22.0.2+9-70
-user.dir=/Users/alex/Alex/AUT/4 Semester/COMP603/Derby/db-derby-10.14.2.0-bin
+Thu Oct 24 18:05:01 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-bce9-f0c4-00000d0aa462 
+on database directory /Users/minthihakoko/AUT/2024 S2/COMP603/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@531d72ca 
+Loaded from file:/Users/minthihakoko/AUT/2024%20S2/COMP603/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.7+7
+user.dir=/Users/minthihakoko/AUT/2024 S2/COMP603/db-derby-10.14.2.0-bin
 os.name=Mac OS X
-os.arch=x86_64
+os.arch=aarch64
 os.version=14.6.1
-derby.system.home=/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase
+derby.system.home=/Users/minthihakoko/AUT/2024 S2/COMP603/hotel-booking-system/HotelBookingSystem/derbyDatabase
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Thu Oct 24 17:59:04 NZDT 2024: Shutting down Derby engine
+Thu Oct 24 18:05:47 NZDT 2024: Shutting down Derby engine
 ----------------------------------------------------------------
-Thu Oct 24 17:59:04 NZDT 2024:
-Shutting down instance a816c00e-0192-bccc-ac70-00005954a0f4 on database directory /Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@43e45247 
+Thu Oct 24 18:05:47 NZDT 2024:
+Shutting down instance a816c00e-0192-bce9-f0c4-00000d0aa462 on database directory /Users/minthihakoko/AUT/2024 S2/COMP603/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@531d72ca 
 ----------------------------------------------------------------

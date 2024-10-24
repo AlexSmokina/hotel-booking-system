@@ -38,59 +38,51 @@ public class SignInController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        e.getActionCommand();
         String command = e.getActionCommand();
         if ("Sign Up".equals(command)) {
             Register registerPage = new Register();
             registerPage.setVisible(true);
             view.dispose();
         } else if ("Login".equals(command)) {
-            String username = view.getLoginUsername().getText();
-            String password = view.getLoginPassward().getText();
-            handleSignIn(username, password);
+
+            handleSignIn();
         }
 
     }
 
-    public void handleSignIn(String username, String password) {
+    public void handleSignIn() {
+        String username = view.getLoginUsername().getText();
+        String password = view.getLoginPassward().getText();
 
-        try {
-            if (username.isEmpty() || password.isEmpty()) {
-                JOptionPane.showMessageDialog(view,
-                        "Username and password cannot be empty.",
-                        "Login Error",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            User user = um.signIn(username, password);
-
-            if (user == null) {
-                JOptionPane.showMessageDialog(view,
-                        "Invalid username or password.",
-                        "Login Failed",
-                        JOptionPane.ERROR_MESSAGE);
-            } else {
-                
-                if (user.getType() == UserType.GUEST) {
-                    GuestMenu guestMenu = new GuestMenu();
-                    guestMenu.setVisible(true);
-
-                } else if (user.getType() == UserType.STAFF) {
-                    StaffMenu staffMenu = new StaffMenu();
-                    staffMenu.setVisible(true);
-                }
-                um.closeConnection();
-                view.dispose();
-            }
-        } catch (Exception e) {
+        if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(view,
-                    "An error occurred during login: " + e.getMessage(),
+                    "Username and password cannot be empty.",
                     "Login Error",
                     JOptionPane.ERROR_MESSAGE);
-        } 
+            return;
+        }
+
+        User user = um.signIn(username, password);
+
+        if (user == null) {
+            JOptionPane.showMessageDialog(view,
+                    "Invalid username or password.",
+                    "Login Failed",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            if (user.getType() == UserType.GUEST) {
+                GuestMenu guestMenu = new GuestMenu();
+                guestMenu.setVisible(true);
+
+            } else if (user.getType() == UserType.STAFF) {
+                StaffMenu staffMenu = new StaffMenu();
+                staffMenu.setVisible(true);
+            }
+            um.closeConnection();
+            view.dispose();
+        }
+
     }
 
 }
-
-

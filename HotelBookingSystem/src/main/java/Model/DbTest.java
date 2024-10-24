@@ -1,7 +1,10 @@
 package Model;
 
+<<<<<<< HEAD
 import java.sql.Date;
 
+=======
+>>>>>>> af3d5c98dbde58d8d45a799eb7a2a9d103999d63
 public class DbTest {
 
     public static void main(String[] args) {
@@ -14,6 +17,7 @@ public class DbTest {
         hm.updateHotelDetails("HTL-3", "Lake Shore", "Rotorua");
 
         UserManager um = new UserManager();
+<<<<<<< HEAD
         User user = um.signIn("Mike_22", "12345");
         if (user == null) {
             System.out.println("null");
@@ -42,6 +46,15 @@ public class DbTest {
 //        );
         
 
+=======
+        um.createDatabase();
+        User newUser = new User("Mike_22", "12345", "Mike", "02153535", "example@gmail.com");
+        
+        newUser.setType(UserType.STAFF);
+        um.registerUser(newUser);
+        um.closeConnection();
+
+>>>>>>> af3d5c98dbde58d8d45a799eb7a2a9d103999d63
     }
 
 }
