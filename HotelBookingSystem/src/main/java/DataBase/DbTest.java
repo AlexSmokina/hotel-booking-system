@@ -1,12 +1,13 @@
 package DataBase;
 
+import Model.HotelManager;
 import java.sql.ResultSet;
 
 public class DbTest {
 
     public static void main(String[] args) {
 
-        HotelDB hotelDB = new HotelDB();
+        HotelManager hotelDB = new HotelManager();
         hotelDB.createHotelDB();
         hotelDB.initializeHotels();
         hotelDB.createNewHotel("HTL-3", "Rotorua Lake", "Rotorua", 5, 7, 3);   

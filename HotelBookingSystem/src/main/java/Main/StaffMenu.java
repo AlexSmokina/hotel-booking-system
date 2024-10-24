@@ -8,7 +8,7 @@ import Model.Booking;
 import Controller.BookingManager;
 import Model.Staff;
 import Model.Hotel;
-import Controller.HotelManager;
+import Model.HotelManager;
 import Model.Room;
 import Controller.RoomManager;
 import java.util.List;

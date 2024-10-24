@@ -1,5 +1,6 @@
-package DataBase;
+package Model;
 
+import DataBase.DbManager;
 import Model.Hotel;
 import java.sql.Connection;
 
@@ -9,13 +10,13 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HotelDB {
+public class HotelManager {
 
     private final DbManager dbManager;
     private final Connection conn;
     private Statement statement;
 
-    public HotelDB() {
+    public HotelManager() {
         dbManager = new DbManager();
         conn = dbManager.getConnection();
     }
@@ -36,7 +37,7 @@ public class HotelDB {
             dbManager.updateDB(createHotelTableSQL);
 
         } catch (SQLException ex) {
-            Logger.getLogger(HotelDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -106,7 +107,7 @@ public class HotelDB {
             rs.close();
 
         } catch (SQLException ex) {
-            Logger.getLogger(HotelDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -130,7 +131,7 @@ public class HotelDB {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(HotelDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

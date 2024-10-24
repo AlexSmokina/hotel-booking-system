@@ -4,7 +4,6 @@
  */
 package Model;
 
-import DataBase.HotelDB;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -50,7 +49,7 @@ public class UserManager {
             System.out.println("USER table created");
 
         } catch (SQLException ex) {
-            Logger.getLogger(HotelDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -75,7 +74,7 @@ public class UserManager {
 
             resultSet.close();
         } catch (SQLException ex) {
-            Logger.getLogger(HotelDB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return user;
