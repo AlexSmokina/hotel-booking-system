@@ -34,7 +34,7 @@ public class StartMenu extends javax.swing.JFrame {
         welcome = new javax.swing.JLabel();
         register = new javax.swing.JButton();
         registerLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        hotelImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -62,7 +62,7 @@ public class StartMenu extends javax.swing.JFrame {
         registerLabel.setForeground(new java.awt.Color(0, 0, 0));
         registerLabel.setText("Welcome to");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/minthihakoko/AUT/2024 S2/COMP603/hotel-booking-system/HotelBookingSystem/resources/hotel.png")); // NOI18N
+        hotelImage.setIcon(new javax.swing.ImageIcon("/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/resources/hotel.png")); // NOI18N
 
         javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
         welcomePanel.setLayout(welcomePanelLayout);
@@ -70,7 +70,7 @@ public class StartMenu extends javax.swing.JFrame {
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -84,8 +84,8 @@ public class StartMenu extends javax.swing.JFrame {
                         .addComponent(registerLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addComponent(hotelImage)
                 .addGap(149, 149, 149))
         );
         welcomePanelLayout.setVerticalGroup(
@@ -96,7 +96,7 @@ public class StartMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(welcome)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(hotelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -154,7 +154,7 @@ public class StartMenu extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel hotelImage;
     private javax.swing.JButton register;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JButton signIn;
