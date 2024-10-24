@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Thu Oct 24 15:36:39 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
 Thu Oct 24 15:36:39 NZDT 2024:
@@ -12,3 +13,9 @@ os.arch=x86_64
 os.version=14.6.1
 derby.system.home=/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase
 Database Class Loader started - derby.database.classpath=''
+=======
+Thu Oct 24 15:39:49 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Thu Oct 24 15:39:50 NZDT 2024: Shutting down Derby engine
+----------------------------------------------------------------
+>>>>>>> 7cc1193 (Implement SignIn controller)

@@ -42,11 +42,14 @@ public class StartMenuController implements ActionListener{
         if ("Sign In".equals(command)) {
             SignIn signInPage = new SignIn();
             signInPage.setVisible(true);
+            view.dispose();
         }
         else if("Register".equals(command)){
             Register registerPage = new Register();
             registerPage.setVisible(true);
+            view.dispose();
         }
+        
     }
     
 }
