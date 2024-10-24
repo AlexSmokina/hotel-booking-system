@@ -1,9 +1,6 @@
 package Model;
 
-import DataBase.DbManager;
-import Model.Hotel;
 import java.sql.Connection;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -28,7 +25,7 @@ public class HotelManager {
                 statement.executeUpdate("DROP TABLE HOTEL");
             }
             String createHotelTableSQL = "CREATE TABLE HOTEL ("
-                    + "HOTELID VARCHAR(10), "
+                    + "HOTEL_ID VARCHAR(10), "
                     + "HOTEL_NAME VARCHAR(50), "
                     + "HOTEL_LOCATION VARCHAR(20), "
                     + "STANDARD INT, "
@@ -58,7 +55,7 @@ public class HotelManager {
 
     public void createNewHotel(String hotelID, String name, String location, int numStandardRooms, int numPremiumRooms, int Suite) {
 
-        String sql = "INSERT INTO HOTEL (HOTELID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
+        String sql = "INSERT INTO HOTEL (HOTEL_ID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
                 + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', " + numStandardRooms + ", " + numPremiumRooms + ", " + Suite + ")";
 
         try {
@@ -74,7 +71,7 @@ public class HotelManager {
         String sql = "UPDATE HOTEL SET "
                 + "HOTEL_NAME = '" + name + "', "
                 + "HOTEL_LOCATION = '" + location + "'"
-                + "WHERE HOTELID = '" + hotelID + "'";
+                + "WHERE HOTEL_ID = '" + hotelID + "'";
 
         try {
             dbManager.updateDB(sql);
@@ -90,7 +87,7 @@ public class HotelManager {
 
         try {
             while (rs.next()) {
-                String hotelID = rs.getString("HOTELID");
+                String hotelID = rs.getString("HOTEL_ID");
                 String hotelName = rs.getString("HOTEL_NAME");
                 String hotelLocation = rs.getString("HOTEL_LOCATION");
                 int standardRooms = rs.getInt("STANDARD");
@@ -113,13 +110,13 @@ public class HotelManager {
 
     public void getHotel(String hotelID) {
         Hotel hotel = null;
-        String hotelQuery = "SELECT * FROM HOTEL WHERE HOTELID = '" + hotelID + "'";
+        String hotelQuery = "SELECT * FROM HOTEL WHERE HOTEL_ID = '" + hotelID + "'";
 
         try {
             ResultSet rs = dbManager.queryDB(hotelQuery);
 
             if (rs.next()) {
-                String id = rs.getString("HOTELID");
+                String id = rs.getString("HOTEL_ID");
                 String name = rs.getString("HOTEL_NAME");
                 String location = rs.getString("HOTEL_LOCATION");
                 int standardRooms = rs.getInt("STANDARD");

@@ -1,8 +1,7 @@
-<<<<<<< HEAD
-Thu Oct 24 15:36:39 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+Thu Oct 24 17:33:03 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Oct 24 15:36:39 NZDT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-bc62-19f7-00005954a0f4 
+Thu Oct 24 17:33:14 NZDT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0192-bccc-ac70-00005954a0f4 
 on database directory /Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@43e45247 
 Loaded from file:/Users/alex/Alex/AUT/4%20Semester/COMP603/Derby/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -13,9 +12,9 @@ os.arch=x86_64
 os.version=14.6.1
 derby.system.home=/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase
 Database Class Loader started - derby.database.classpath=''
-=======
-Thu Oct 24 15:39:49 NZDT 2024 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Thu Oct 24 15:39:50 NZDT 2024: Shutting down Derby engine
+Thu Oct 24 17:59:04 NZDT 2024: Shutting down Derby engine
 ----------------------------------------------------------------
->>>>>>> 7cc1193 (Implement SignIn controller)
+Thu Oct 24 17:59:04 NZDT 2024:
+Shutting down instance a816c00e-0192-bccc-ac70-00005954a0f4 on database directory /Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/derbyDatabase/HotelBookingSystemDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@43e45247 
+----------------------------------------------------------------
