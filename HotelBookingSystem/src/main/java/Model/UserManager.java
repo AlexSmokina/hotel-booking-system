@@ -131,5 +131,10 @@ public class UserManager {
         return true;
     }
     
+    public void closeConnection() {
+        dbManager.closeConnections();
+    }
+    
+    
 
 }

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.SignInController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class SignIn extends javax.swing.JFrame {
      */
     public SignIn() {
         initComponents();
+        new SignInController(this);
     }
 
     /**
@@ -187,6 +190,25 @@ public class SignIn extends javax.swing.JFrame {
             }
         });
     }
+    
+    public javax.swing.JTextField getLoginUsername(){
+        return loginUsername;
+    }
+    
+    public javax.swing.JTextField getLoginPassward(){
+        return loginPassword;
+    }
+    
+    public javax.swing.JButton getSignUpOptionButton(){
+        return signUpOption;
+    }
+    
+    public javax.swing.JButton getLogInButton(){
+        return login;
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel credentialsMessage;
