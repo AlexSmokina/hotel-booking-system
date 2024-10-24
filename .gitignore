@@ -1,3 +1,10 @@
+
 /HotelBookingSystem/target/
+
 .DS_Store
-./HotelBookingSystem/derby.log
+
+/HotelBookingSystem/derby.log
+derby.log
+
+/HotelBookingSystem/derbyDatabase/
+/HotelBookingSystemDB/
