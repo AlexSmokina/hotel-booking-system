@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.UserManager;
 import Model.Booking;
 import Model.Room;
 import Model.User;
@@ -91,7 +92,7 @@ public class BookingManager implements FileHandler, ID {
             return null;
         }
         roomManager.loadData();
-        userManager.loadData();
+        //userManager.loadData();
         String[] parts = line.split(",");
         Room room = roomManager.getRoomData(parts[3], parts[6]);
         User user = userManager.getUserData(parts[4]);

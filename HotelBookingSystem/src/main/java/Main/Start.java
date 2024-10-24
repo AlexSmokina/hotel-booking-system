@@ -6,7 +6,7 @@ package Main;
 
 import Controller.BookingManager;
 import java.util.Scanner;
-import Controller.UserManager;
+import Model.UserManager;
 import Model.User;
 import Model.UserType;
 import Model.Guest;
@@ -22,21 +22,21 @@ import Model.Staff;
  * It handles user authentication and provides access to different 
  * functionalities based on the user type (Guest or Staff).
  */
-public class Start {
+/*public class Start {
 
     public static void main(String[] args) {
         
         // Initialising managers for users, rooms, hotels, and bookings
-        UserManager userManager = new UserManager("./database/user.csv");
+        //UserManager userManager = new UserManager("./database/user.csv");
         RoomManager roomManager = new RoomManager("./database/room.csv");
         HotelManager hotelManager = new HotelManager("./database/hotel.csv", roomManager);
-        BookingManager bookingManager = new BookingManager("./database/booking.csv", roomManager, userManager);
+        //BookingManager bookingManager = new BookingManager("./database/booking.csv", roomManager, userManager);
         
         // Loading existing data from files
-        userManager.loadData();
+        //userManager.loadData();
         roomManager.loadData();
         hotelManager.loadData();
-        bookingManager.loadData();
+        //bookingManager.loadData();
         
         // Initialising system with predefined hotels and rooms if none exist
         if(hotelManager.isEmpty()){
@@ -159,4 +159,4 @@ public class Start {
         return userManager.signIn(username, password);
     }
     
-}
+}*/

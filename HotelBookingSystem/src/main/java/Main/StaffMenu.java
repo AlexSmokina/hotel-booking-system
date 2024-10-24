@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Scanner;
 import Model.RoomType;
 import Model.User;
-import Controller.UserManager;
+import Model.UserManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
