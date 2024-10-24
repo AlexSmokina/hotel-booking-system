@@ -21,7 +21,7 @@ public class HotelManager {
         conn = dbManager.getConnection();
     }
 
-    public void createHotelDB() {
+    public void createDatabase() {
         try {
             statement = conn.createStatement();
             if (dbManager.doesTableExist("HOTEL")) {
@@ -41,7 +41,7 @@ public class HotelManager {
         }
     }
 
-    public void initializeHotels() {
+    public void insertInitialData() {
         try {
             String insertHotelSQL = "INSERT INTO HOTEL VALUES "
                     + "('HTL-1', 'Auckland Skyline', 'Auckland', 5, 3, 2), "
@@ -57,7 +57,9 @@ public class HotelManager {
     }
 
     public void createNewHotel(String hotelID, String name, String location, int numStandardRooms, int numPremiumRooms, int Suite) {
-
+        if(getHotelData(hotelID)!=null){
+            return;
+        }
         String sql = "INSERT INTO HOTEL (HOTELID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
                 + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', " + numStandardRooms + ", " + numPremiumRooms + ", " + Suite + ")";
 
@@ -111,7 +113,7 @@ public class HotelManager {
         }
     }
 
-    public void getHotel(String hotelID) {
+    public Hotel getHotelData(String hotelID) {
         Hotel hotel = null;
         String hotelQuery = "SELECT * FROM HOTEL WHERE HOTELID = '" + hotelID + "'";
 
@@ -127,12 +129,17 @@ public class HotelManager {
                 int suites = rs.getInt("SUITE");
 
                 hotel = new Hotel(id, name, location);
+                hotel.setNumStandardRooms(standardRooms);
+                hotel.setNumPremiumRooms(premiumRooms);
+                hotel.setNumSuites(suites);
                 rs.close();
             }
 
         } catch (SQLException ex) {
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        return hotel;
 
     }
 }

@@ -60,21 +60,11 @@ public class SignIn extends javax.swing.JFrame {
         loginUsername.setForeground(new java.awt.Color(102, 102, 102));
         loginUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         loginUsername.setText("Username");
-        loginUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginUsernameActionPerformed(evt);
-            }
-        });
 
         loginPassword.setBackground(new java.awt.Color(255, 204, 255));
         loginPassword.setForeground(new java.awt.Color(102, 102, 102));
         loginPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         loginPassword.setText("Password");
-        loginPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginPasswordActionPerformed(evt);
-            }
-        });
 
         login.setBackground(new java.awt.Color(153, 0, 153));
         login.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -90,11 +80,6 @@ public class SignIn extends javax.swing.JFrame {
         signUpOption.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
         signUpOption.setForeground(new java.awt.Color(153, 0, 153));
         signUpOption.setText("Sign Up");
-        signUpOption.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SignUpOptionActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout signInPanelLayout = new javax.swing.GroupLayout(signInPanel);
         signInPanel.setLayout(signInPanelLayout);
@@ -142,18 +127,6 @@ public class SignIn extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loginUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginUsernameActionPerformed
-
-    private void loginPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_loginPasswordActionPerformed
-
-    private void SignUpOptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpOptionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SignUpOptionActionPerformed
 
 
     /**

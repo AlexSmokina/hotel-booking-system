@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  * Booking System. It handles the loading and saving of user data from/to files,
  * user authentication, and the registration and updating of user information.
  */
-public class UserManager {
+public class UserManager implements DatabaseCreator{
 
     private final DbManager dbManager;
     private final Connection conn;
@@ -30,7 +30,8 @@ public class UserManager {
         conn = dbManager.getConnection();
     }
 
-    public void createUserDB() {
+    @Override
+    public void createDatabase() {
         try {
             statement = conn.createStatement();
             if (dbManager.doesTableExist("USER")) {
@@ -92,14 +93,6 @@ public class UserManager {
     }
 
     public void registerUser(User user) {
-        if (user == null) {
-            return;
-        }
-        String username = user.getUserName();
-        if(getUserData(username)!=null){
-            return;
-        }
-
         String insertUserSQL = "INSERT INTO USERS VALUES ('"
                 + user.getUserName() + "', '"
                 + user.getPassword() + "', '"
@@ -109,7 +102,8 @@ public class UserManager {
                 + user.getType().toString() + "')";
 
         dbManager.updateDB(insertUserSQL);
-        System.out.println(username+" registered successfully!");
+        System.out.println(user.getUserName()+" registered successfully!");
+        
     }
 
     // Updates the user data in the usersData map
