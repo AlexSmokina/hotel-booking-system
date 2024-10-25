@@ -8,7 +8,7 @@ public class DbTest {
     public static void main(String[] args) {
 
         // RoomManager TESTS
-        RoomManager rm = new RoomManager();
+        RoomManager rm = RoomManager.getInstance();
         rm.createDatabase();
         rm.createRoom("STANDARD", "HTL-1");
         Room standardRoom = rm.getRoomData("RM/STD-1", "HTL-1");
@@ -53,7 +53,7 @@ public class DbTest {
         } else {
             Date startDate = Date.valueOf("2024-10-01");
             Date endDate = Date.valueOf("2024-10-05");
-            bm.createBooking("BKG-1", startDate, endDate, room.getRoomID(), user.getUserName(), room, user, room.getHotelID(), "active");
+            bm.createBooking(startDate, endDate, room.getRoomID(), user.getUserName(), room, user, room.getHotelID(), "active");
             System.out.println("Booking created successfully.");
         }
     }

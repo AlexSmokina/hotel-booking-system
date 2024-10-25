@@ -21,14 +21,22 @@ import java.util.logging.Logger;
  */
 public class RoomManager implements DatabaseCreator {
 
+    private static RoomManager instance = null;
     private final DbManager dbManager;
     private final Connection conn;
     private Statement statement;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public RoomManager() {
+    private RoomManager() {
         dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
+    }
+
+    public static RoomManager getInstance() {
+        if (instance == null) {
+            instance = new RoomManager();
+        }
+        return instance;
     }
 
     // Method to create the ROOM database table
@@ -69,6 +77,21 @@ public class RoomManager implements DatabaseCreator {
         } catch (SQLException ex) {
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public void insertInitialData() {
+        // Insert rooms for hotel HTL-1
+        createRoom("Standard", "HTL-1"); 
+        createRoom("Standard", "HTL-1"); 
+        createRoom("Premium", "HTL-1");  
+        createRoom("Premium", "HTL-1");  
+        createRoom("Suite", "HTL-1");    
+
+        // Insert rooms for hotel HTL-2
+        createRoom("Standard", "HTL-2"); 
+        createRoom("Premium", "HTL-2");  
+        createRoom("Suite", "HTL-2");    
     }
 
     // Method to insert a new room record into the ROOM table

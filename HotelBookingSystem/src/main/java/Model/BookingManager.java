@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.JTextArea;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +31,7 @@ public class BookingManager implements DatabaseCreator {
     public BookingManager() {
         dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
-        roomManager = new RoomManager();
+        roomManager = RoomManager.getInstance();
         userManager = UserManager.getInstance();
     }
 
@@ -65,8 +67,9 @@ public class BookingManager implements DatabaseCreator {
     }
 
     // Method to new booking record in the database
-    public void createBooking(String bookingID, Date startDate, Date endDate, String roomID, String username, Room room, User user, String hotelID, String status) {
-
+    public void createBooking(Date startDate, Date endDate, String roomID, String username, Room room, User user, String hotelID, String status) {
+        
+        String bookingID = idGenerator();
         // Create a new Booking object to calculate the total cost
         Booking newBooking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
         double calculatedPrice = newBooking.getTotalPrice();
@@ -171,6 +174,31 @@ public class BookingManager implements DatabaseCreator {
         dbManager.updateDB(updateBookingSQL);
         booking.setRoom(newRoom);
         booking.calculateTotalCost();
+    }
+
+    // Method to generate a unique booking ID by incrementing a counter
+    public String idGenerator() {
+        // Get the next booking count from the database
+        int currentCount = getNextBookingCount();
+        return "BKG-" + currentCount; // Return the full booking ID
+    }
+
+    // Method to get the next available booking count
+    private int getNextBookingCount() {
+        try {
+            // SQL query to get the current booking count
+            String selectSQL = "SELECT COUNT(*) AS BOOKING_COUNT FROM BOOKING";
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(selectSQL);
+
+            if (rs.next()) {
+                // Return the current count incremented by one
+                return rs.getInt("BOOKING_COUNT") + 1;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookingManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1; // Default to 1 if an error occurs or no bookings exist
     }
 
     // Method to display an invoice for a specific booking

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.DisplayInvoiceController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class DisplayInvoice extends javax.swing.JFrame {
      */
     public DisplayInvoice() {
         initComponents();
+        new DisplayInvoiceController(this);
     }
 
     /**
@@ -29,8 +32,12 @@ public class DisplayInvoice extends javax.swing.JFrame {
         displayInvoicePanel = new javax.swing.JPanel();
         invoice = new javax.swing.JLabel();
         scrollInvoicePanel = new javax.swing.JScrollPane();
+<<<<<<< HEAD
         invoiceDisplayArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
+=======
+        invoiceTextArea = new javax.swing.JTextArea();
+>>>>>>> e9150b2 (Implement Add Hotel)
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -43,6 +50,7 @@ public class DisplayInvoice extends javax.swing.JFrame {
         invoice.setText("Invoice");
         invoice.setPreferredSize(new java.awt.Dimension(220, 50));
 
+<<<<<<< HEAD
         invoiceDisplayArea.setColumns(20);
         invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
         invoiceDisplayArea.setRows(5);
@@ -52,6 +60,12 @@ public class DisplayInvoice extends javax.swing.JFrame {
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
+=======
+        invoiceTextArea.setColumns(20);
+        invoiceTextArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        invoiceTextArea.setRows(5);
+        scrollInvoicePanel.setViewportView(invoiceTextArea);
+>>>>>>> e9150b2 (Implement Add Hotel)
 
         javax.swing.GroupLayout displayInvoicePanelLayout = new javax.swing.GroupLayout(displayInvoicePanel);
         displayInvoicePanel.setLayout(displayInvoicePanelLayout);
@@ -118,12 +132,21 @@ public class DisplayInvoice extends javax.swing.JFrame {
             }
         });
     }
+    
+    public javax.swing.JTextArea getInvoiceTextArea(){
+        return invoiceTextArea;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel displayInvoicePanel;
+<<<<<<< HEAD
     private javax.swing.JLabel invoice;
     private javax.swing.JTextArea invoiceDisplayArea;
     private javax.swing.JButton returnPreviousMenu;
+=======
+    private javax.swing.JTextArea invoiceTextArea;
+>>>>>>> e9150b2 (Implement Add Hotel)
     private javax.swing.JScrollPane scrollInvoicePanel;
     // End of variables declaration//GEN-END:variables
 }

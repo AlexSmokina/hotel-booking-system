@@ -91,7 +91,11 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
+<<<<<<< HEAD
             <Component class="javax.swing.JTextArea" name="invoiceDisplayArea">
+=======
+            <Component class="javax.swing.JTextArea" name="invoiceTextArea">
+>>>>>>> e9150b2 (Implement Add Hotel)
               <Properties>
                 <Property name="columns" type="int" value="20"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">

@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 public class HotelManager implements DatabaseCreator {
 
     private final DbManager dbManager;
+    private final RoomManager roomManager;
     private final Connection conn;
     private Statement statement;
     private static HotelManager instance = null;
@@ -17,6 +18,7 @@ public class HotelManager implements DatabaseCreator {
     private HotelManager() {
         dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
+        roomManager = RoomManager.getInstance();
     }
 
     public static HotelManager getInstance() {
@@ -61,8 +63,8 @@ public class HotelManager implements DatabaseCreator {
         try {
             // SQL query to insert initial data (two hotel entries)
             String insertHotelSQL = "INSERT INTO HOTEL VALUES "
-                    + "('HTL-1', 'Auckland Skyline', 'Auckland', 5, 3, 2), " // First hotel details
-                    + "('HTL-2', 'Queenstown Grand', 'Queenstown', 4, 4, 1) "; // Second hotel details
+                    + "('HTL-1', 'Auckland Skyline', 'Auckland', 2, 2, 1), " // First hotel details
+                    + "('HTL-2', 'Queenstown Grand', 'Queenstown', 1, 1, 1) "; // Second hotel details
 
             // Execute the SQL query to insert the data
             dbManager.updateDB(insertHotelSQL);
@@ -76,7 +78,8 @@ public class HotelManager implements DatabaseCreator {
     }
 
 // Method to create a new hotel entry in the HOTEL table
-    public void createNewHotel(String hotelID, String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
+    public void createNewHotel(String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
+        String hotelID = idGenerator();
         // Check if the hotel already exists by looking up its hotel ID
         if (getHotelData(hotelID) != null) {
             System.out.println("Hotel with ID '" + hotelID + "' already exists.");
@@ -92,9 +95,22 @@ public class HotelManager implements DatabaseCreator {
             // Execute the SQL query to add the new hotel
             dbManager.updateDB(sql);
             System.out.println("Hotel '" + name + "' added successfully.");
+            createRoomsForHotel(hotelID, numStandardRooms, numPremiumRooms, numSuites);
         } catch (Exception e) {
             // Print error message if hotel creation fails
             System.out.println("Error creating new hotel: " + e.getMessage());
+        }
+    }
+
+    private void createRoomsForHotel(String hotelID, int standardRooms, int premiumRooms, int suites) {
+        for (int i = 0; i < standardRooms; i++) {
+            roomManager.createRoom("Standard", hotelID);
+        }
+        for (int i = 0; i < premiumRooms; i++) {
+            roomManager.createRoom("Premium", hotelID);
+        }
+        for (int i = 0; i < suites; i++) {
+            roomManager.createRoom("Suite", hotelID);
         }
     }
 
@@ -179,6 +195,22 @@ public class HotelManager implements DatabaseCreator {
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return hotel; // Return the Hotel object (or null if not found)
+    }
+
+    public String idGenerator() {
+        try {
+            // SQL query to get the highest existing hotel ID number
+            String selectSQL = "SELECT MAX(CAST(SUBSTRING(HOTEL_ID, 5) AS INT)) AS MAX_ID FROM HOTEL";
+            ResultSet rs = dbManager.queryDB(selectSQL);
+
+            if (rs.next()) {
+                int maxId = rs.getInt("MAX_ID");
+                return "HTL-" + (maxId + 1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "HTL-1"; // Default to HTL-1 if no hotels exist or error occurs
     }
 
 }
