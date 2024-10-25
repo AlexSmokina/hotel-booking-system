@@ -143,9 +143,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter Hotel Name"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelNameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="hotelAddress">
           <Properties>
@@ -168,9 +165,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter Number of Standard Rooms"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="standardRoomsNumberActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="premiumRoomsNumber">
           <Properties>
@@ -207,9 +201,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add New Hotel"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNewHotelActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -15,7 +15,7 @@ public class HotelManager implements DatabaseCreator {
     private static HotelManager instance = null;
 
     private HotelManager() {
-        dbManager = new DbManager();
+        dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
     }
 

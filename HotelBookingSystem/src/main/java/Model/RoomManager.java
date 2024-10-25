@@ -27,7 +27,7 @@ public class RoomManager implements DatabaseCreator {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public RoomManager() {
-        dbManager = new DbManager();
+        dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
     }
 

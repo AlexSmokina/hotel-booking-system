@@ -56,11 +56,6 @@ public class AddNewHotel extends javax.swing.JFrame {
         hotelName.setBackground(new java.awt.Color(255, 204, 255));
         hotelName.setForeground(new java.awt.Color(102, 102, 102));
         hotelName.setText("Enter Hotel Name");
-        hotelName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelNameActionPerformed(evt);
-            }
-        });
 
         hotelAddress.setBackground(new java.awt.Color(255, 204, 255));
         hotelAddress.setForeground(new java.awt.Color(102, 102, 102));
@@ -69,11 +64,6 @@ public class AddNewHotel extends javax.swing.JFrame {
         standardRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
         standardRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
         standardRoomsNumber.setText("Enter Number of Standard Rooms");
-        standardRoomsNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                standardRoomsNumberActionPerformed(evt);
-            }
-        });
 
         premiumRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
         premiumRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
@@ -87,11 +77,6 @@ public class AddNewHotel extends javax.swing.JFrame {
         addNewHotel.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         addNewHotel.setForeground(new java.awt.Color(255, 255, 255));
         addNewHotel.setText("Add New Hotel");
-        addNewHotel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewHotelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout newHotelPanelLayout = new javax.swing.GroupLayout(newHotelPanel);
         newHotelPanel.setLayout(newHotelPanelLayout);
@@ -149,18 +134,6 @@ public class AddNewHotel extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void hotelNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelNameActionPerformed
-
-    private void standardRoomsNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardRoomsNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_standardRoomsNumberActionPerformed
-
-    private void addNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewHotelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addNewHotelActionPerformed
 
     /**
      * @param args the command line arguments

@@ -27,8 +27,7 @@ public class StartProgram {
             StartMenu start = new StartMenu();
             start.setVisible(true);
         });
-        DbManager dbManager = new DbManager();
-        dbManager.closeConnections();
+        DbManager dbManager = DbManager.getInstance();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             if (dbManager.getConnection() != null) {
                 dbManager.closeConnections();

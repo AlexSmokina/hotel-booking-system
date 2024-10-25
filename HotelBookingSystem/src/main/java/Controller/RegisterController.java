@@ -102,7 +102,6 @@ public class RegisterController implements ActionListener {
             staffMenu.setVisible(true);
         }
         view.dispose();
-        um.closeConnection();
     }
 
     private boolean isDefaultOrEmpty(String value, String defaultValue) {
