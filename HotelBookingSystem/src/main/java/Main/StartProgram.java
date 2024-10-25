@@ -4,32 +4,72 @@
  */
 package Main;
 
+import Model.DbManager;
 import Model.HotelManager;
 import Model.UserManager;
 import View.StartMenu;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.UIManager;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author minthihakoko
  */
 public class StartProgram {
-    public static void main(String[] args) {
-        
-        StartMenu start = new StartMenu();
-        start.setVisible(true);
-        
-    }
-    
-    private static void databaseSetUp(){
-        
-        UserManager userManager = new UserManager();
-        HotelManager hotelManager = new HotelManager();
-        userManager.createDatabase();
-        
 
+    public static void main(String[] args) {
+        setLookAndFeel();
+        
+        SwingUtilities.invokeLater(() -> {
+            databaseSetUp();
+            StartMenu start = new StartMenu();
+            start.setVisible(true);
+        });
+        DbManager dbManager = new DbManager();
+        dbManager.closeConnections();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            if (dbManager.getConnection() != null) {
+                dbManager.closeConnections();
+                shutdownDatabase();  // Properly shut down Derby database
+            }
+        }));
+    }
+
+    private static void setLookAndFeel() {
+        try {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void databaseSetUp() {
+        UserManager userManager = UserManager.getInstance();
+        HotelManager hotelManager = HotelManager.getInstance();
+        userManager.createDatabase();
+        hotelManager.createDatabase();
+        hotelManager.insertInitialData();
     }
     
-    
-    
+    private static void shutdownDatabase() {
+        try {
+            // Shutdown Derby explicitly
+            DriverManager.getConnection("jdbc:derby:;shutdown=true");
+            System.out.println("Derby database shut down successfully.");
+        } catch (SQLException ex) {
+            if ("XJ015".equals(ex.getSQLState())) {
+                System.out.println("Derby shutdown confirmed.");
+            } else {
+                ex.printStackTrace();
+            }
+        }
+    }
     
 }

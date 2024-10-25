@@ -23,10 +23,11 @@ public class SignInController implements ActionListener {
 
     private SignIn view;
     private UserManager um;
+    
 
     public SignInController(SignIn view) {
         this.view = view;
-        this.um = new UserManager();
+        this.um = UserManager.getInstance();
         initalise();
     }
 

@@ -7,15 +7,23 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HotelManager {
-
+public class HotelManager implements DatabaseCreator{
+    
     private final DbManager dbManager;
     private final Connection conn;
     private Statement statement;
+    private static HotelManager instance = null;
 
-    public HotelManager() {
+    private HotelManager() {
         dbManager = new DbManager();
         conn = dbManager.getConnection();
+    }
+    
+    public static HotelManager getInstance(){
+        if (instance == null) {
+            instance = new HotelManager();
+        }
+        return instance;
     }
 
 // Method to create the HOTEL table in the database
