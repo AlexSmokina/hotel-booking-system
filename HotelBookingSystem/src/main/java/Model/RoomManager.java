@@ -81,20 +81,37 @@ public class RoomManager implements DatabaseCreator {
 
     @Override
     public void insertInitialData() {
-        if (dbManager.doesTableExist("ROOM")) {
-            return;
-        }
-        // Insert rooms for hotel HTL-1
-        createRoom("Standard", "HTL-1");
-        createRoom("Standard", "HTL-1");
-        createRoom("Premium", "HTL-1");
-        createRoom("Premium", "HTL-1");
-        createRoom("Suite", "HTL-1");
+        try {
+            // Check if ROOM table exists
+            if (!dbManager.doesTableExist("ROOM")) {
+                System.out.println("ROOM table does not exist.");
+                return;
+            }
 
-        // Insert rooms for hotel HTL-2
-        createRoom("Standard", "HTL-2");
-        createRoom("Premium", "HTL-2");
-        createRoom("Suite", "HTL-2");
+            // Check if ROOM table has any data
+            String checkDataSQL = "SELECT COUNT(*) FROM ROOM";
+            ResultSet rs = dbManager.queryDB(checkDataSQL);
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("ROOM table already has data.");
+                rs.close();
+                return;
+            }
+            // Insert rooms for hotel HTL-1
+            createRoom("Standard", "HTL-1");
+            createRoom("Standard", "HTL-1");
+            createRoom("Premium", "HTL-1");
+            createRoom("Premium", "HTL-1");
+            createRoom("Suite", "HTL-1");
+
+            // Insert rooms for hotel HTL-2
+            createRoom("Standard", "HTL-2");
+            createRoom("Premium", "HTL-2");
+            createRoom("Suite", "HTL-2");
+        } catch (SQLException e) {
+            System.out.println("Error inserting initial ROOM data: " + e.getMessage());
+
+        }
     }
 
     // Method to insert a new room record into the ROOM table
