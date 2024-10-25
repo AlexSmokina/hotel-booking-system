@@ -248,7 +248,6 @@ public class BookingManager implements DatabaseCreator {
         } catch (Exception e) {
             invoiceTextArea.setText("Error generating invoice: " + e.getMessage());
             System.err.println("Error generating invoice: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
