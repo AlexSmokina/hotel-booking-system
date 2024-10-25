@@ -8,7 +8,6 @@ import Model.DbManager;
 import Model.HotelManager;
 import Model.RoomManager;
 import Model.UserManager;
-import View.RoomManagement;
 import View.StartMenu;
 import java.sql.DriverManager;
 import java.sql.SQLException;

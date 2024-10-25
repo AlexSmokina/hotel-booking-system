@@ -62,7 +62,19 @@ public class HotelManager implements DatabaseCreator {
     @Override
     public void insertInitialData() {
         try {
-            if (dbManager.doesTableExist("HOTEL")) {
+            // Check if HOTEL table exists
+            if (!dbManager.doesTableExist("HOTEL")) {
+                System.out.println("HOTEL table does not exist.");
+                return;
+            }
+
+            // Check if HOTEL table has any data
+            String checkDataSQL = "SELECT COUNT(*) FROM HOTEL";
+            ResultSet rs = dbManager.queryDB(checkDataSQL);
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("HOTEL table already has data.");
+                rs.close();
                 return;
             }
             // SQL query to insert initial data (two hotel entries)
@@ -138,10 +150,14 @@ public class HotelManager implements DatabaseCreator {
     }
 
 // Method to retrieve and display all hotels from the HOTEL table
-    public void viewHotels() {
+    public String viewHotels() {
         // SQL query to select all hotel records from the HOTEL table
         String userQuery = "SELECT * FROM HOTEL";
         ResultSet rs = dbManager.queryDB(userQuery);
+        StringBuilder hotelDetails = new StringBuilder();
+        hotelDetails.append(String.format("%s, %s, %s, %s, %s, %s\n",
+                "Hotel ID", "Name", "Location", "Standard Rooms", "Premium Rooms", "Suites"));
+        hotelDetails.append("===================\n");
 
         try {
             // Iterate through the result set and print each hotel's details
@@ -153,12 +169,8 @@ public class HotelManager implements DatabaseCreator {
                 int premiumRooms = rs.getInt("PREMIUM");
                 int suites = rs.getInt("SUITE");
 
-                // Print the hotel details to the console
-                System.out.println("Hotel ID: " + hotelID + ", Name: " + hotelName
-                        + ", Location: " + hotelLocation
-                        + ", Standard Rooms: " + standardRooms
-                        + ", Premium Rooms: " + premiumRooms
-                        + ", Suites: " + suites);
+                hotelDetails.append(String.format("%s, %s, %s, %d, %d, %d\n",
+                        hotelID, hotelName, hotelLocation, standardRooms, premiumRooms, suites));
             }
             rs.close(); // Close the result set
 
@@ -166,6 +178,7 @@ public class HotelManager implements DatabaseCreator {
             // Log any SQL exceptions that occur while retrieving hotel data
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return hotelDetails.toString();
     }
 
 // Method to retrieve hotel data based on the hotel ID
@@ -218,7 +231,7 @@ public class HotelManager implements DatabaseCreator {
         }
         return "HTL-1"; // Default to HTL-1 if no entries exist or error occurs
     }
-    
+
     // Method to return DbManager instance
     public DbManager getDbManager() {
         return dbManager;

@@ -2,6 +2,7 @@ package Controller;
 
 import Model.HotelManager;
 import View.HotelDetails;
+import View.HotelManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -59,8 +60,14 @@ public class HotelDetailController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        hm.updateHotelDetails(hotelID,name,address);
-        
+        hm.updateHotelDetails(hotelID, name, address);
+        JOptionPane.showMessageDialog(view,
+                "Detail edited successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        HotelManagement hotelManagementMenu = new HotelManagement();
+        hotelManagementMenu.setVisible(true);
+        view.dispose();
     }
 
     private boolean isDefaultOrEmpty(String value, String defaultValue) {

@@ -7,7 +7,6 @@ package Controller;
 import View.AddNewHotel;
 import Model.HotelManager;
 import View.HotelManagement;
-import View.StaffMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -79,8 +78,8 @@ public class AddNewHotelController implements ActionListener {
                 "Hotel created successfully!",
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
-        StaffMenu staffMenu = new StaffMenu();
-        staffMenu.setVisible(true);
+        HotelManagement hotelManagementMenu = new HotelManagement();
+        hotelManagementMenu.setVisible(true);
         view.dispose();
 
     }
