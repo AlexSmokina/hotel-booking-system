@@ -80,7 +80,6 @@ public class SignInController implements ActionListener {
                 StaffMenu staffMenu = new StaffMenu();
                 staffMenu.setVisible(true);
             }
-            um.closeConnection();
             view.dispose();
         }
 

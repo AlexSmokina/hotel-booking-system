@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.DbManager;
 import View.StartMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,7 @@ public class StartMenuController implements ActionListener{
     public StartMenuController(StartMenu view){
         this.view = view;
         initialise();
+        
         
     }
     

@@ -27,7 +27,7 @@ public class UserManager implements DatabaseCreator {
     private static User currentUser; // Make currentUser static
 
     private UserManager() {
-        dbManager = new DbManager();
+        dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
         currentUser = null;
     }
@@ -140,8 +140,5 @@ public class UserManager implements DatabaseCreator {
         return currentUser;
     }
 
-    public void closeConnection() {
-        dbManager.closeConnections();
-    }
 
 }

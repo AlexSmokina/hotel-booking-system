@@ -14,12 +14,21 @@ public final class DbManager {
 
     private static final String USER_NAME = "hbs"; // Default user for Derby
     private static final String PASSWORD = "hbs"; // Default password for Derby
-    private static final String URL = "jdbc:derby:derbyDatabase/HotelBookingSystemDB;create=true";;
+    private static final String URL = "jdbc:derby:derbyDatabase/HotelBookingSystemDB;create=true";
+    ;
 
     Connection conn;
+    private static DbManager instance = null; // Singleton instance
 
-    public DbManager() {
+    private DbManager() {
         establishConnection();
+    }
+
+    public static synchronized DbManager getInstance() { // Synchronized for thread safety
+        if (instance == null) {
+            instance = new DbManager();
+        }
+        return instance;
     }
 
     public Connection getConnection() {
@@ -28,14 +37,13 @@ public final class DbManager {
 
     //Establish connection
     public void establishConnection() {
-        try{
-            conn = DriverManager.getConnection(URL,USER_NAME,PASSWORD);
-            System.out.println(URL+" connected");
-            
-            
-        } catch(SQLException ex) {
-            System.err.println("SQLException: "+ex.getMessage());
-        }   
+        try {
+            conn = DriverManager.getConnection(URL, USER_NAME, PASSWORD);
+            System.out.println(URL + " connected");
+
+        } catch (SQLException ex) {
+            System.err.println("SQLException: " + ex.getMessage());
+        }
     }
 
     public void closeConnections() {
@@ -77,7 +85,7 @@ public final class DbManager {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     public boolean doesTableExist(String tableName) {
         try {
             DatabaseMetaData metaData = conn.getMetaData();

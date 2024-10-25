@@ -27,7 +27,7 @@ public class BookingManager implements DatabaseCreator {
 
     // Constructor to initialize the database connection
     public BookingManager() {
-        dbManager = new DbManager();
+        dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
         roomManager = new RoomManager();
         userManager = UserManager.getInstance();
