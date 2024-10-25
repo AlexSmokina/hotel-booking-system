@@ -46,7 +46,7 @@ public class RoomManager implements DatabaseCreator {
             statement = conn.createStatement();
             // Check if ROOM table exists, if yes, drop it
             if (dbManager.doesTableExist("ROOM")) {
-                statement.executeUpdate("DROP TABLE ROOM");
+                return;
             }
 
             // SQL statement to create the ROOM table with necessary fields
@@ -81,17 +81,20 @@ public class RoomManager implements DatabaseCreator {
 
     @Override
     public void insertInitialData() {
+        if (dbManager.doesTableExist("ROOM")) {
+            return;
+        }
         // Insert rooms for hotel HTL-1
-        createRoom("Standard", "HTL-1"); 
-        createRoom("Standard", "HTL-1"); 
-        createRoom("Premium", "HTL-1");  
-        createRoom("Premium", "HTL-1");  
-        createRoom("Suite", "HTL-1");    
+        createRoom("Standard", "HTL-1");
+        createRoom("Standard", "HTL-1");
+        createRoom("Premium", "HTL-1");
+        createRoom("Premium", "HTL-1");
+        createRoom("Suite", "HTL-1");
 
         // Insert rooms for hotel HTL-2
-        createRoom("Standard", "HTL-2"); 
-        createRoom("Premium", "HTL-2");  
-        createRoom("Suite", "HTL-2");    
+        createRoom("Standard", "HTL-2");
+        createRoom("Premium", "HTL-2");
+        createRoom("Suite", "HTL-2");
     }
 
     // Method to insert a new room record into the ROOM table

@@ -31,7 +31,7 @@ public class HotelDetails extends javax.swing.JFrame {
         enterHotelDetailsPrompt = new javax.swing.JLabel();
         hotelID = new javax.swing.JTextField();
         newHotelName = new javax.swing.JTextField();
-        hotelName2 = new javax.swing.JTextField();
+        hotelLocation = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         returnPreviousMenu = new javax.swing.JButton();
 
@@ -55,39 +55,19 @@ public class HotelDetails extends javax.swing.JFrame {
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter hotel ID to update");
-        hotelID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelIDActionPerformed(evt);
-            }
-        });
 
         newHotelName.setBackground(new java.awt.Color(255, 204, 255));
         newHotelName.setForeground(new java.awt.Color(102, 102, 102));
         newHotelName.setText("Enter new hotel name");
-        newHotelName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newHotelNameActionPerformed(evt);
-            }
-        });
 
-        hotelName2.setBackground(new java.awt.Color(255, 204, 255));
-        hotelName2.setForeground(new java.awt.Color(102, 102, 102));
-        hotelName2.setText("Enter new location");
-        hotelName2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelName2ActionPerformed(evt);
-            }
-        });
+        hotelLocation.setBackground(new java.awt.Color(255, 204, 255));
+        hotelLocation.setForeground(new java.awt.Color(102, 102, 102));
+        hotelLocation.setText("Enter new location");
 
         confirm.setBackground(new java.awt.Color(153, 0, 153));
         confirm.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         confirm.setForeground(new java.awt.Color(255, 255, 255));
         confirm.setText("Confirm");
-        confirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmActionPerformed(evt);
-            }
-        });
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -110,11 +90,14 @@ public class HotelDetails extends javax.swing.JFrame {
                         .addGroup(hotelDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                            .addComponent(hotelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(hotelDetailsPanelLayout.createSequentialGroup()
                         .addGap(207, 207, 207)
                         .addComponent(returnPreviousMenu)))
+
+                            
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         hotelDetailsPanelLayout.setVerticalGroup(
@@ -129,7 +112,7 @@ public class HotelDetails extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hotelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -142,56 +125,6 @@ public class HotelDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelIDActionPerformed
-
-    private void newHotelNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newHotelNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_newHotelNameActionPerformed
-
-    private void hotelName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelName2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelName2ActionPerformed
-
-    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HotelDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HotelDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HotelDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HotelDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HotelDetails().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirm;
@@ -199,8 +132,25 @@ public class HotelDetails extends javax.swing.JFrame {
     private javax.swing.JLabel hotelDetails;
     private javax.swing.JPanel hotelDetailsPanel;
     private javax.swing.JTextField hotelID;
-    private javax.swing.JTextField hotelName2;
+    private javax.swing.JTextField hotelLocation;
     private javax.swing.JTextField newHotelName;
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
+
+   
+    public javax.swing.JButton getConfirm() {
+        return confirm;
+    }
+
+    public javax.swing.JTextField getHotelID() {
+        return hotelID;
+    }
+
+    public javax.swing.JTextField getHotelLocation() {
+        return hotelLocation;
+    }
+
+    public javax.swing.JTextField getNewHotelName() {
+        return newHotelName;
+    }
 }

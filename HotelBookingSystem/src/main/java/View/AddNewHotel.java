@@ -187,4 +187,9 @@ public class AddNewHotel extends javax.swing.JFrame {
     public javax.swing.JTextField getStandardRoomsNumber() {
         return standardRoomsNumber;
     }
+    
+    public javax.swing.JButton returnPreviousMenu(){
+        return returnPreviousMenu;
+    }
+
 }

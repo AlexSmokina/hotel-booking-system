@@ -35,9 +35,9 @@ public class HotelManager implements DatabaseCreator {
             // Create a new SQL statement
             statement = conn.createStatement();
 
-            // Check if the HOTEL table exists, if yes, drop it
+            // Check if the HOTEL table exists, if yes, return
             if (dbManager.doesTableExist("HOTEL")) {
-                statement.executeUpdate("DROP TABLE HOTEL");
+                return;
             }
 
             // SQL query to create the HOTEL table with necessary columns
@@ -61,6 +61,9 @@ public class HotelManager implements DatabaseCreator {
 // Method to insert initial hotel data into the HOTEL table
     public void insertInitialData() {
         try {
+            if (dbManager.doesTableExist("HOTEL")) {
+                return;
+            }
             // SQL query to insert initial data (two hotel entries)
             String insertHotelSQL = "INSERT INTO HOTEL VALUES "
                     + "('HTL-1', 'Auckland Skyline', 'Auckland', 2, 2, 1), " // First hotel details
@@ -197,29 +200,22 @@ public class HotelManager implements DatabaseCreator {
         return hotel; // Return the Hotel object (or null if not found)
     }
 
-    // Method to generate a unique hotel ID by incrementing a counter
     public String idGenerator() {
-        // Get the next hotel count from the database
-        int currentCount = getNextHotelCount();
-        return "HTL-" + currentCount; // Return the full hotel ID
-    }
-
-// Method to get the next available hotel count
-    private int getNextHotelCount() {
+        String selectSQL = "SELECT MAX(HOTEL_ID) AS MAX_ID FROM HOTEL";
         try {
-            // SQL query to get the current hotel count
-            String selectSQL = "SELECT COUNT(*) AS HOTEL_COUNT FROM HOTEL";
-
             ResultSet rs = dbManager.queryDB(selectSQL);
 
             if (rs.next()) {
-                // Return the current count incremented by one
-                return rs.getInt("HOTEL_COUNT") + 1;
+                String maxId = rs.getString("MAX_ID");
+                if (maxId != null) {
+                    int nextId = Integer.parseInt(maxId.split("-")[1]) + 1;
+                    return "HTL-" + nextId;
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 1; // Default to 1 if an error occurs or no hotels exist
+        return "HTL-1"; // Default to HTL-1 if no entries exist or error occurs
     }
     
     // Method to return DbManager instance

@@ -9,7 +9,7 @@ import View.BookRoomStaff;
 import View.CancelBookingStaff;
 import View.ChangeRoomStaff;
 import View.DisplayBooking;
-import View.StartMenu;
+import View.StaffMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -57,7 +57,7 @@ public class BookingManagementController implements ActionListener {
                 showView(new DisplayBooking());
                 break;
             case "Return to Previous Menu":
-                showView(new StartMenu());
+                showView(new StaffMenu());
                 break;
             default:
                 throw new AssertionError();
