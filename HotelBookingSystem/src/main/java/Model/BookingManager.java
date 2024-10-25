@@ -175,32 +175,53 @@ public class BookingManager implements DatabaseCreator {
 
     // Method to display an invoice for a specific booking
     public void printInvoice(String bookingID, JTextArea invoiceTextArea) {
-        Booking booking = this.getBookingData(bookingID);
-        if (booking == null) {
-            invoiceTextArea.setText("No booking found with ID: " + bookingID);
-            return;
+        try {
+            Booking booking = this.getBookingData(bookingID);
+            if (booking == null) {
+                invoiceTextArea.setText("No booking found with ID: " + bookingID);
+                return;
+            }
+
+            // Safely get room ID, handling null room case
+            String roomID = "No Room Assigned";
+            double roomPrice = 0.0;
+            if (booking.getRoom() != null) {
+                roomID = booking.getRoom().getRoomID();
+                roomPrice = booking.getRoom().getPrice();
+            }
+
+            double totalPrice = booking.getTotalPrice();
+            double gst = totalPrice * 0.15;
+            double totalOwing = totalPrice + gst;
+
+            // Build the invoice string with proper formatting and null checks
+            StringBuilder invoiceText = new StringBuilder();
+            invoiceText.append("=================================\n");
+            invoiceText.append("            INVOICE              \n");
+            invoiceText.append("=================================\n");
+            invoiceText.append(String.format("%-15s: %s\n", "Booking ID", booking.getBookingID()));
+            invoiceText.append(String.format("%-15s: %s\n", "Hotel ID", booking.getHotelID()));
+            invoiceText.append(String.format("%-15s: %s\n", "Room ID", roomID));
+            invoiceText.append(String.format("%-15s: %s\n", "Guest", booking.getUserName()));
+            invoiceText.append(String.format("%-15s: %s\n", "Start Date", dateFormat.format(booking.getStartDate())));
+            invoiceText.append(String.format("%-15s: %s\n", "End Date", dateFormat.format(booking.getEndDate())));
+            invoiceText.append("---------------------------------\n");
+            invoiceText.append(String.format("%-15s: $%.2f\n", "Room Rate", roomPrice));
+            invoiceText.append(String.format("%-15s: $%.2f\n", "Subtotal", totalPrice));
+            invoiceText.append(String.format("%-15s: $%.2f\n", "GST (15%)", gst));
+            invoiceText.append("---------------------------------\n");
+            invoiceText.append(String.format("%-15s: $%.2f\n", "Total Owing", totalOwing));
+            invoiceText.append(String.format("%-15s: %s\n", "Status", booking.getStatus()));
+            invoiceText.append("=================================\n");
+
+            // Display the invoice in the JTextArea
+            invoiceTextArea.setText(invoiceText.toString());
+
+        } catch (Exception e) {
+            invoiceTextArea.setText("Error generating invoice: " + e.getMessage());
+            System.err.println("Error generating invoice: " + e.getMessage());
+            e.printStackTrace();
         }
-
-        double gst = booking.getTotalPrice() * 0.15;
-        double totalOwing = booking.getTotalPrice() + gst;
-
-        // Check if the room is null before attempting to access room details
-        String roomID = (booking.getRoom() != null) ? booking.getRoom().getRoomID() : "No Room Assigned";
-
-        // Build the invoice string
-        StringBuilder invoiceText = new StringBuilder();
-        invoiceText.append("<<< INVOICE >>>\n");
-        invoiceText.append(String.format("%-15s: %s\n", "Booking ID", booking.getBookingID()));
-        invoiceText.append(String.format("%-15s: %s\n", "Hotel ID", booking.getHotelID()));
-        invoiceText.append(String.format("%-15s: %s\n", "Room ID", booking.getRoomID()));
-        invoiceText.append(String.format("%-15s: %s\n", "Start Date", booking.getStartDate()));
-        invoiceText.append(String.format("%-15s: %s\n", "End Date", booking.getEndDate()));
-        invoiceText.append(String.format("%-15s: $%.2f\n", "Total Price", booking.getTotalPrice()));
-        invoiceText.append(String.format("%-15s: $%.2f\n", "Total GST", gst));
-        invoiceText.append(String.format("%-15s: $%.2f\n", "Total Owing", totalOwing));
-
-        // Display the invoice in the JTextArea
-        invoiceTextArea.setText(invoiceText.toString());
     }
 
 }
