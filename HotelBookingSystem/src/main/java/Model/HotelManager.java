@@ -59,6 +59,7 @@ public class HotelManager implements DatabaseCreator {
     }
 
 // Method to insert initial hotel data into the HOTEL table
+    @Override
     public void insertInitialData() {
         try {
             if (dbManager.doesTableExist("HOTEL")) {

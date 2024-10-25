@@ -35,7 +35,7 @@ public class RoomManagerTest {
             roomManager.createDatabase();
 
             // Clear existing data
-            clearRoomData();
+            roomManager.clearRoomData();
 
         } catch (Exception e) {
             System.err.println("Error in setup: " + e.getMessage());
@@ -46,40 +46,40 @@ public class RoomManagerTest {
     @AfterEach
     public void tearDown() {
         try {
-            clearRoomData();
+            roomManager.clearRoomData();
         } catch (Exception e) {
             System.err.println("Error in teardown: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    private void clearRoomData() {
-        try {
-            // Check if tables exist before trying to clear them
-            if (tableExists("ROOM")) {
-                dbManager.updateDB("DELETE FROM ROOM");
-            }
+//    private void clearRoomData() {
+//        try {
+//            // Check if tables exist before trying to clear them
+//            if (dbManager.doesTableExist("ROOM")) {
+//                dbManager.updateDB("DELETE FROM ROOM");
+//            }
+//
+//            if (dbManager.doesTableExist("ROOM_COUNTER")) {
+//                dbManager.updateDB("DELETE FROM ROOM_COUNTER");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
+//            }
+//        } catch (Exception e) {
+//            System.err.println("Error clearing room data: " + e.getMessage());
+//            e.printStackTrace();
+//        }
+//    }
 
-            if (tableExists("ROOM_COUNTER")) {
-                dbManager.updateDB("DELETE FROM ROOM_COUNTER");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
-            }
-        } catch (Exception e) {
-            System.err.println("Error clearing room data: " + e.getMessage());
-            e.printStackTrace();
-        }
-    }
-
-    private boolean tableExists(String tableName) {
-        try {
-            dbManager.queryDB("SELECT 1 FROM " + tableName + " WHERE 1 = 0");
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
+//    private boolean tableExists(String tableName) {
+//        try {
+//            dbManager.queryDB("SELECT 1 FROM " + tableName + " WHERE 1 = 0");
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+//    }
 
     @Test
     public void testGetInstance() {
