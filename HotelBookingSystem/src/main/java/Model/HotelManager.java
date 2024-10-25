@@ -221,5 +221,10 @@ public class HotelManager implements DatabaseCreator {
         }
         return 1; // Default to 1 if an error occurs or no hotels exist
     }
+    
+    // Method to return DbManager instance
+    public DbManager getDbManager() {
+        return dbManager;
+    }
 
 }

@@ -48,10 +48,10 @@ public class UserManager implements DatabaseCreator {
             }
 
             String createUserDB = "CREATE TABLE USERS ("
-                    + "USERNAME VARCHAR(10), "
-                    + "PASSWORD VARCHAR(10), "
+                    + "USERNAME VARCHAR(20), "
+                    + "PASSWORD VARCHAR(30), "
                     + "NAME VARCHAR(30), "
-                    + "PHONE VARCHAR(10), "
+                    + "PHONE VARCHAR(20), "
                     + "EMAIL VARCHAR(40), "
                     + "USER_TYPE VARCHAR(10))";
             dbManager.updateDB(createUserDB);
@@ -123,12 +123,12 @@ public class UserManager implements DatabaseCreator {
             return false;
         }
         String updateUserSQL = "UPDATE USERS SET "
-                + "PASSWORD = '" + user.getPassword() + "', "
-                + "NAME = '" + user.getName() + "', "
-                + "PHONE = '" + user.getPhone() + "', "
-                + "EMAIL = '" + user.getEmail() + "', "
-                + "USER_TYPE = '" + user.getType().toString() + "' "
-                + "WHERE USERNAME = '" + user.getUserName() + "'";
+                + "PASSWORD = '" + newUserData.getPassword() + "', "
+                + "NAME = '" + newUserData.getName() + "', "
+                + "PHONE = '" + newUserData.getPhone() + "', "
+                + "EMAIL = '" + newUserData.getEmail() + "', "
+                + "USER_TYPE = '" + newUserData.getType().toString() + "' "
+                + "WHERE USERNAME = '" + newUserData.getUserName() + "'";
 
         dbManager.updateDB(updateUserSQL);
 
@@ -140,5 +140,20 @@ public class UserManager implements DatabaseCreator {
         return currentUser;
     }
 
+    // Method to delete current user
+    public boolean deleteUser(String username) {
+        if (username == null || username.isEmpty()) {
+            return false;
+        }
+
+        String deleteUserSQL = "DELETE FROM USERS WHERE USERNAME = '" + username + "'";
+        try {
+            dbManager.updateDB(deleteUserSQL);
+            return true; // Return true *only* if the update was successful.
+        } catch (Exception ex) {
+            Logger.getLogger(UserManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 
 }
