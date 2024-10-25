@@ -123,7 +123,7 @@ public class DisplayInvoice extends javax.swing.JFrame {
     }
     
     public javax.swing.JTextArea getInvoiceTextArea(){
-        return invoiceTextArea;
+        return invoiceDisplayArea;
     }
     
 
