@@ -27,37 +27,19 @@ public class ViewAllRooms extends javax.swing.JFrame {
     private void initComponents() {
 
         viewRoomsPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        setResizable(false);
 
         javax.swing.GroupLayout viewRoomsPanelLayout = new javax.swing.GroupLayout(viewRoomsPanel);
         viewRoomsPanel.setLayout(viewRoomsPanelLayout);
         viewRoomsPanelLayout.setHorizontalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 500, Short.MAX_VALUE)
         );
         viewRoomsPanelLayout.setVerticalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 594, Short.MAX_VALUE))
+            .addGap(0, 600, Short.MAX_VALUE)
         );
 
         getContentPane().add(viewRoomsPanel, java.awt.BorderLayout.CENTER);
@@ -101,8 +83,6 @@ public class ViewAllRooms extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel viewRoomsPanel;
     // End of variables declaration//GEN-END:variables
 }

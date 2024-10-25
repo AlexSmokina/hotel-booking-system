@@ -98,7 +98,6 @@ public class Register extends javax.swing.JFrame {
         loginOptionPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loginOptionPrompt.setText("Already have an account?");
 
-        loginOption.setBackground(new java.awt.Color(255, 255, 255));
         loginOption.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         loginOption.setForeground(new java.awt.Color(153, 0, 153));
         loginOption.setText("Login");

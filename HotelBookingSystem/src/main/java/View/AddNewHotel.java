@@ -35,6 +35,7 @@ public class AddNewHotel extends javax.swing.JFrame {
         premiumRoomsNumber = new javax.swing.JTextField();
         numberOfSuites = new javax.swing.JTextField();
         addNewHotel = new javax.swing.JButton();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -78,6 +79,10 @@ public class AddNewHotel extends javax.swing.JFrame {
         addNewHotel.setForeground(new java.awt.Color(255, 255, 255));
         addNewHotel.setText("Add New Hotel");
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+
         javax.swing.GroupLayout newHotelPanelLayout = new javax.swing.GroupLayout(newHotelPanel);
         newHotelPanel.setLayout(newHotelPanelLayout);
         newHotelPanelLayout.setHorizontalGroup(
@@ -99,6 +104,10 @@ public class AddNewHotel extends javax.swing.JFrame {
                             .addComponent(standardRoomsNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newHotelPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(207, 207, 207))
             .addGroup(newHotelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(newHotelPanelLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
@@ -122,7 +131,9 @@ public class AddNewHotel extends javax.swing.JFrame {
                 .addComponent(numberOfSuites, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addNewHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addGap(62, 62, 62))
             .addGroup(newHotelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(newHotelPanelLayout.createSequentialGroup()
                     .addGap(188, 188, 188)
@@ -180,6 +191,7 @@ public class AddNewHotel extends javax.swing.JFrame {
     private javax.swing.JPanel newHotelPanel;
     private javax.swing.JTextField numberOfSuites;
     private javax.swing.JTextField premiumRoomsNumber;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextField standardRoomsNumber;
     // End of variables declaration//GEN-END:variables
 }

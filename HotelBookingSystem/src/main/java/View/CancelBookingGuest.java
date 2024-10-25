@@ -31,6 +31,8 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         confirmCancel = new javax.swing.JButton();
         cancelBooking = new javax.swing.JLabel();
         bookingDetailsPrompt = new javax.swing.JLabel();
+        returnPreviousMenu = new javax.swing.JButton();
+        returnPreviousMenu1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -64,14 +66,18 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         bookingDetailsPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bookingDetailsPrompt.setText("Enter booking details");
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+
+        returnPreviousMenu1.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu1.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu1.setText("Return");
+
         javax.swing.GroupLayout CaneclBookingGuestPanelLayout = new javax.swing.GroupLayout(CaneclBookingGuestPanel);
         CaneclBookingGuestPanel.setLayout(CaneclBookingGuestPanelLayout);
         CaneclBookingGuestPanelLayout.setHorizontalGroup(
             CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CaneclBookingGuestPanelLayout.createSequentialGroup()
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,6 +89,20 @@ public class CancelBookingGuest extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CaneclBookingGuestPanelLayout.createSequentialGroup()
                         .addComponent(cancelBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))))
+            .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
+                .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
+                        .addGap(205, 205, 205)
+                        .addComponent(returnPreviousMenu1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
+                    .addGap(208, 208, 208)
+                    .addComponent(returnPreviousMenu)
+                    .addContainerGap(208, Short.MAX_VALUE)))
         );
         CaneclBookingGuestPanelLayout.setVerticalGroup(
             CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,11 +111,18 @@ public class CancelBookingGuest extends javax.swing.JFrame {
                 .addComponent(cancelBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
                 .addComponent(bookingDetailsPrompt)
-                .addGap(83, 83, 83)
+                .addGap(77, 77, 77)
                 .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu1)
+                .addContainerGap(149, Short.MAX_VALUE))
+            .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
+                    .addGap(285, 285, 285)
+                    .addComponent(returnPreviousMenu)
+                    .addContainerGap(286, Short.MAX_VALUE)))
         );
 
         getContentPane().add(CaneclBookingGuestPanel, java.awt.BorderLayout.CENTER);
@@ -148,5 +175,7 @@ public class CancelBookingGuest extends javax.swing.JFrame {
     private javax.swing.JTextField bookingID;
     private javax.swing.JLabel cancelBooking;
     private javax.swing.JButton confirmCancel;
+    private javax.swing.JButton returnPreviousMenu;
+    private javax.swing.JButton returnPreviousMenu1;
     // End of variables declaration//GEN-END:variables
 }

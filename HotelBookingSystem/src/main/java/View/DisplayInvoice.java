@@ -27,47 +27,55 @@ public class DisplayInvoice extends javax.swing.JFrame {
     private void initComponents() {
 
         displayInvoicePanel = new javax.swing.JPanel();
-        bookingRoom = new javax.swing.JLabel();
+        invoice = new javax.swing.JLabel();
         scrollInvoicePanel = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        invoiceDisplayArea = new javax.swing.JTextArea();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         displayInvoicePanel.setBackground(new java.awt.Color(255, 204, 255));
 
-        bookingRoom.setBackground(new java.awt.Color(255, 204, 255));
-        bookingRoom.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
-        bookingRoom.setForeground(new java.awt.Color(0, 0, 0));
-        bookingRoom.setText("Invoice");
-        bookingRoom.setPreferredSize(new java.awt.Dimension(220, 50));
+        invoice.setBackground(new java.awt.Color(255, 204, 255));
+        invoice.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        invoice.setForeground(new java.awt.Color(0, 0, 0));
+        invoice.setText("Invoice");
+        invoice.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
-        jTextArea1.setRows(5);
-        scrollInvoicePanel.setViewportView(jTextArea1);
+        invoiceDisplayArea.setColumns(20);
+        invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        invoiceDisplayArea.setRows(5);
+        invoiceDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        scrollInvoicePanel.setViewportView(invoiceDisplayArea);
+
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
 
         javax.swing.GroupLayout displayInvoicePanelLayout = new javax.swing.GroupLayout(displayInvoicePanel);
         displayInvoicePanel.setLayout(displayInvoicePanelLayout);
         displayInvoicePanelLayout.setHorizontalGroup(
             displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayInvoicePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayInvoicePanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(bookingRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(172, 172, 172)
+                .addComponent(invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayInvoicePanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(207, 207, 207))
+            .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         displayInvoicePanelLayout.setVerticalGroup(
             displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(displayInvoicePanelLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(bookingRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
+                .addComponent(invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returnPreviousMenu)
                 .addContainerGap())
         );
 
@@ -112,9 +120,10 @@ public class DisplayInvoice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel bookingRoom;
     private javax.swing.JPanel displayInvoicePanel;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel invoice;
+    private javax.swing.JTextArea invoiceDisplayArea;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JScrollPane scrollInvoicePanel;
     // End of variables declaration//GEN-END:variables
 }
