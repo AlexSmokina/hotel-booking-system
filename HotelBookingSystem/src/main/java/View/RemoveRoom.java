@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.RemoveRoomController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class RemoveRoom extends javax.swing.JFrame {
      */
     public RemoveRoom() {
         initComponents();
+        new RemoveRoomController(this);
     }
 
     /**
@@ -28,7 +31,7 @@ public class RemoveRoom extends javax.swing.JFrame {
 
         removeRoomPanel = new javax.swing.JPanel();
         hotelID = new javax.swing.JTextField();
-        roomType = new javax.swing.JTextField();
+        roomID = new javax.swing.JTextField();
         confirmRemove = new javax.swing.JButton();
         removeRoom = new javax.swing.JLabel();
         createNewHotelPrompt = new javax.swing.JLabel();
@@ -43,26 +46,16 @@ public class RemoveRoom extends javax.swing.JFrame {
         hotelID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter Hotel ID");
-        hotelID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelIDActionPerformed(evt);
-            }
-        });
 
-        roomType.setBackground(new java.awt.Color(255, 204, 255));
-        roomType.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        roomType.setForeground(new java.awt.Color(102, 102, 102));
-        roomType.setText("Enter Room ID to Remove");
+        roomID.setBackground(new java.awt.Color(255, 204, 255));
+        roomID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        roomID.setForeground(new java.awt.Color(102, 102, 102));
+        roomID.setText("Enter Room ID to Remove");
 
         confirmRemove.setBackground(new java.awt.Color(153, 0, 153));
         confirmRemove.setFont(new java.awt.Font("STSong", 1, 28)); // NOI18N
         confirmRemove.setForeground(new java.awt.Color(255, 255, 255));
         confirmRemove.setText("Confirm");
-        confirmRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmRemoveActionPerformed(evt);
-            }
-        });
 
         removeRoom.setBackground(new java.awt.Color(255, 255, 255));
         removeRoom.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
@@ -79,11 +72,6 @@ public class RemoveRoom extends javax.swing.JFrame {
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
-        returnPreviousMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnPreviousMenuActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout removeRoomPanelLayout = new javax.swing.GroupLayout(removeRoomPanel);
         removeRoomPanel.setLayout(removeRoomPanelLayout);
@@ -98,7 +86,7 @@ public class RemoveRoom extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(removeRoomPanelLayout.createSequentialGroup()
                         .addGap(103, 103, 103)
@@ -119,7 +107,7 @@ public class RemoveRoom extends javax.swing.JFrame {
                 .addGap(45, 45, 45)
                 .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -132,53 +120,7 @@ public class RemoveRoom extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelIDActionPerformed
-
-    private void confirmRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmRemoveActionPerformed
-
-    private void returnPreviousMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnPreviousMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_returnPreviousMenuActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RemoveRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RemoveRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RemoveRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RemoveRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RemoveRoom().setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmRemove;
     private javax.swing.JLabel createNewHotelPrompt;
@@ -186,6 +128,22 @@ public class RemoveRoom extends javax.swing.JFrame {
     private javax.swing.JLabel removeRoom;
     private javax.swing.JPanel removeRoomPanel;
     private javax.swing.JButton returnPreviousMenu;
-    private javax.swing.JTextField roomType;
+    private javax.swing.JTextField roomID;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getConfirmRemove() {
+        return confirmRemove;
+    }
+
+    public javax.swing.JTextField getHotelID() {
+        return hotelID;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+    public javax.swing.JTextField getRoomID() {
+        return roomID;
+    }
 }

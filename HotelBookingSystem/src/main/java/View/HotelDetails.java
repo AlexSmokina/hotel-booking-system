@@ -156,4 +156,8 @@ public class HotelDetails extends javax.swing.JFrame {
     public javax.swing.JTextField getNewHotelName() {
         return newHotelName;
     }
+    
+    public javax.swing.JButton getReturnPreviousMenu(){
+        return returnPreviousMenu;
+    }
 }
