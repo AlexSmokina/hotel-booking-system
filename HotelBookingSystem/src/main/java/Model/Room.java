@@ -18,12 +18,12 @@ import java.util.Date;
 public class Room {
 
 
-    private String roomID;
+    private final String roomID;
     private RoomType roomType;
     private double price;
     private boolean isBooked;
     private Date availabilityDate;
-    private String hotelID;
+    private final String hotelID;
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -43,12 +43,11 @@ public class Room {
     }
 
     // Method to get the current date formatted as yyyy-MM-dd
-    public Date getTodayDate() {
+    public final Date getTodayDate() {
         String todayStr = dateFormat.format(new Date());
         try {
             return dateFormat.parse(todayStr);
         } catch (ParseException e) {
-            e.printStackTrace();
             return null; // Handle exception as needed
         }
     }
