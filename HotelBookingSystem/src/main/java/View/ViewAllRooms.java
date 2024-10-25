@@ -27,19 +27,57 @@ public class ViewAllRooms extends javax.swing.JFrame {
     private void initComponents() {
 
         viewRoomsPanel = new javax.swing.JPanel();
+        rooms = new javax.swing.JLabel();
+        scrollRoomPanel = new javax.swing.JScrollPane();
+        roomDisplayArea = new javax.swing.JTextArea();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+
+        viewRoomsPanel.setBackground(new java.awt.Color(255, 204, 255));
+
+        rooms.setBackground(new java.awt.Color(255, 204, 255));
+        rooms.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        rooms.setForeground(new java.awt.Color(0, 0, 0));
+        rooms.setText("Rooms");
+        rooms.setPreferredSize(new java.awt.Dimension(220, 50));
+
+        roomDisplayArea.setColumns(20);
+        roomDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        roomDisplayArea.setRows(5);
+        roomDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        scrollRoomPanel.setViewportView(roomDisplayArea);
+
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
 
         javax.swing.GroupLayout viewRoomsPanelLayout = new javax.swing.GroupLayout(viewRoomsPanel);
         viewRoomsPanel.setLayout(viewRoomsPanelLayout);
         viewRoomsPanelLayout.setHorizontalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
+                .addGap(0, 182, Short.MAX_VALUE)
+                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
+                        .addComponent(returnPreviousMenu)
+                        .addGap(207, 207, 207))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
+                        .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180))))
         );
         viewRoomsPanelLayout.setVerticalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollRoomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap())
         );
 
         getContentPane().add(viewRoomsPanel, java.awt.BorderLayout.CENTER);
@@ -83,6 +121,10 @@ public class ViewAllRooms extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton returnPreviousMenu;
+    private javax.swing.JTextArea roomDisplayArea;
+    private javax.swing.JLabel rooms;
+    private javax.swing.JScrollPane scrollRoomPanel;
     private javax.swing.JPanel viewRoomsPanel;
     // End of variables declaration//GEN-END:variables
 }

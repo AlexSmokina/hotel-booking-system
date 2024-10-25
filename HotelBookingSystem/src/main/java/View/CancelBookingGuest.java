@@ -32,7 +32,6 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         cancelBooking = new javax.swing.JLabel();
         bookingDetailsPrompt = new javax.swing.JLabel();
         returnPreviousMenu = new javax.swing.JButton();
-        returnPreviousMenu1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -40,7 +39,7 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         CaneclBookingGuestPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         bookingID.setBackground(new java.awt.Color(255, 204, 255));
-        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         bookingID.setForeground(new java.awt.Color(102, 102, 102));
         bookingID.setText("Enter booking ID you want to cancel");
 
@@ -70,10 +69,6 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
 
-        returnPreviousMenu1.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
-        returnPreviousMenu1.setForeground(new java.awt.Color(153, 0, 153));
-        returnPreviousMenu1.setText("Return");
-
         javax.swing.GroupLayout CaneclBookingGuestPanelLayout = new javax.swing.GroupLayout(CaneclBookingGuestPanel);
         CaneclBookingGuestPanel.setLayout(CaneclBookingGuestPanelLayout);
         CaneclBookingGuestPanelLayout.setHorizontalGroup(
@@ -96,13 +91,8 @@ public class CancelBookingGuest extends javax.swing.JFrame {
                         .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
                         .addGap(205, 205, 205)
-                        .addComponent(returnPreviousMenu1)))
+                        .addComponent(returnPreviousMenu)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
-                    .addGap(208, 208, 208)
-                    .addComponent(returnPreviousMenu)
-                    .addContainerGap(208, Short.MAX_VALUE)))
         );
         CaneclBookingGuestPanelLayout.setVerticalGroup(
             CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,13 +106,8 @@ public class CancelBookingGuest extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(returnPreviousMenu1)
+                .addComponent(returnPreviousMenu)
                 .addContainerGap(149, Short.MAX_VALUE))
-            .addGroup(CaneclBookingGuestPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(CaneclBookingGuestPanelLayout.createSequentialGroup()
-                    .addGap(285, 285, 285)
-                    .addComponent(returnPreviousMenu)
-                    .addContainerGap(286, Short.MAX_VALUE)))
         );
 
         getContentPane().add(CaneclBookingGuestPanel, java.awt.BorderLayout.CENTER);
@@ -176,6 +161,5 @@ public class CancelBookingGuest extends javax.swing.JFrame {
     private javax.swing.JLabel cancelBooking;
     private javax.swing.JButton confirmCancel;
     private javax.swing.JButton returnPreviousMenu;
-    private javax.swing.JButton returnPreviousMenu1;
     // End of variables declaration//GEN-END:variables
 }

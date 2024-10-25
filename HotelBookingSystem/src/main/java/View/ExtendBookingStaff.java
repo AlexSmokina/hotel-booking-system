@@ -33,7 +33,7 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
         bookingID = new javax.swing.JTextField();
         confirmExtend = new javax.swing.JButton();
         checkOutDate = new javax.swing.JTextField();
-        returnPreviousMenu1 = new javax.swing.JButton();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -53,6 +53,7 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
         bookingDetailsPrompt.setText("Enter booking details");
 
         guestUsername.setBackground(new java.awt.Color(255, 204, 255));
+        guestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         guestUsername.setForeground(new java.awt.Color(102, 102, 102));
         guestUsername.setText("Enter guest username");
         guestUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +63,7 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
         });
 
         bookingID.setBackground(new java.awt.Color(255, 204, 255));
+        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         bookingID.setForeground(new java.awt.Color(102, 102, 102));
         bookingID.setText("Enter booking ID you want to extend");
 
@@ -76,12 +78,13 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
         });
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
+        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkOutDate.setForeground(new java.awt.Color(102, 102, 102));
         checkOutDate.setText("New check-out date");
 
-        returnPreviousMenu1.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
-        returnPreviousMenu1.setForeground(new java.awt.Color(153, 0, 153));
-        returnPreviousMenu1.setText("Return");
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
 
         javax.swing.GroupLayout extendBookingStaffPanelLayout = new javax.swing.GroupLayout(extendBookingStaffPanel);
         extendBookingStaffPanel.setLayout(extendBookingStaffPanelLayout);
@@ -105,7 +108,7 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
                         .addComponent(extendBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, extendBookingStaffPanelLayout.createSequentialGroup()
-                        .addComponent(returnPreviousMenu1)
+                        .addComponent(returnPreviousMenu)
                         .addGap(207, 207, 207))))
         );
         extendBookingStaffPanelLayout.setVerticalGroup(
@@ -116,16 +119,16 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
                 .addGap(54, 54, 54)
                 .addComponent(bookingDetailsPrompt)
                 .addGap(55, 55, 55)
-                .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(confirmExtend, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmExtend, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(returnPreviousMenu1)
-                .addContainerGap(95, Short.MAX_VALUE))
+                .addComponent(returnPreviousMenu)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         getContentPane().add(extendBookingStaffPanel, java.awt.BorderLayout.CENTER);
@@ -185,6 +188,6 @@ public class ExtendBookingStaff extends javax.swing.JFrame {
     private javax.swing.JLabel extendBooking;
     private javax.swing.JPanel extendBookingStaffPanel;
     private javax.swing.JTextField guestUsername;
-    private javax.swing.JButton returnPreviousMenu1;
+    private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
 }

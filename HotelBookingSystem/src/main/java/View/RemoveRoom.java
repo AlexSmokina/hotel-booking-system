@@ -32,6 +32,7 @@ public class RemoveRoom extends javax.swing.JFrame {
         confirmRemove = new javax.swing.JButton();
         removeRoom = new javax.swing.JLabel();
         createNewHotelPrompt = new javax.swing.JLabel();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -39,6 +40,7 @@ public class RemoveRoom extends javax.swing.JFrame {
         removeRoomPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
+        hotelID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter Hotel ID");
         hotelID.addActionListener(new java.awt.event.ActionListener() {
@@ -48,11 +50,12 @@ public class RemoveRoom extends javax.swing.JFrame {
         });
 
         roomType.setBackground(new java.awt.Color(255, 204, 255));
+        roomType.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         roomType.setForeground(new java.awt.Color(102, 102, 102));
         roomType.setText("Enter Room ID to Remove");
 
         confirmRemove.setBackground(new java.awt.Color(153, 0, 153));
-        confirmRemove.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        confirmRemove.setFont(new java.awt.Font("STSong", 1, 28)); // NOI18N
         confirmRemove.setForeground(new java.awt.Color(255, 255, 255));
         confirmRemove.setText("Confirm");
         confirmRemove.addActionListener(new java.awt.event.ActionListener() {
@@ -73,6 +76,15 @@ public class RemoveRoom extends javax.swing.JFrame {
         createNewHotelPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         createNewHotelPrompt.setText("Enter room details");
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+        returnPreviousMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnPreviousMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout removeRoomPanelLayout = new javax.swing.GroupLayout(removeRoomPanel);
         removeRoomPanel.setLayout(removeRoomPanelLayout);
         removeRoomPanelLayout.setHorizontalGroup(
@@ -92,6 +104,10 @@ public class RemoveRoom extends javax.swing.JFrame {
                         .addGap(103, 103, 103)
                         .addComponent(removeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(53, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeRoomPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(207, 207, 207))
         );
         removeRoomPanelLayout.setVerticalGroup(
             removeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,12 +117,14 @@ public class RemoveRoom extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addComponent(createNewHotelPrompt)
                 .addGap(45, 45, 45)
-                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(235, Short.MAX_VALUE))
+                .addComponent(confirmRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap(128, Short.MAX_VALUE))
         );
 
         getContentPane().add(removeRoomPanel, java.awt.BorderLayout.CENTER);
@@ -121,6 +139,10 @@ public class RemoveRoom extends javax.swing.JFrame {
     private void confirmRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_confirmRemoveActionPerformed
+
+    private void returnPreviousMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnPreviousMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_returnPreviousMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,6 +185,7 @@ public class RemoveRoom extends javax.swing.JFrame {
     private javax.swing.JTextField hotelID;
     private javax.swing.JLabel removeRoom;
     private javax.swing.JPanel removeRoomPanel;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 }

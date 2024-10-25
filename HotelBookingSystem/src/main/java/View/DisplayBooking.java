@@ -26,25 +26,61 @@ public class DisplayBooking extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        displayBooking = new javax.swing.JPanel();
+        displayBookingPanel = new javax.swing.JPanel();
+        bookings = new javax.swing.JLabel();
+        scrollBookingsPanel = new javax.swing.JScrollPane();
+        invoiceDisplayArea = new javax.swing.JTextArea();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        displayBooking.setBackground(new java.awt.Color(255, 255, 255));
+        displayBookingPanel.setBackground(new java.awt.Color(255, 204, 255));
 
-        javax.swing.GroupLayout displayBookingLayout = new javax.swing.GroupLayout(displayBooking);
-        displayBooking.setLayout(displayBookingLayout);
-        displayBookingLayout.setHorizontalGroup(
-            displayBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+        bookings.setBackground(new java.awt.Color(255, 204, 255));
+        bookings.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
+        bookings.setForeground(new java.awt.Color(0, 0, 0));
+        bookings.setText("Bookings");
+        bookings.setPreferredSize(new java.awt.Dimension(220, 50));
+
+        invoiceDisplayArea.setColumns(20);
+        invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        invoiceDisplayArea.setRows(5);
+        invoiceDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        scrollBookingsPanel.setViewportView(invoiceDisplayArea);
+
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+
+        javax.swing.GroupLayout displayBookingPanelLayout = new javax.swing.GroupLayout(displayBookingPanel);
+        displayBookingPanel.setLayout(displayBookingPanelLayout);
+        displayBookingPanelLayout.setHorizontalGroup(
+            displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
+                .addGap(0, 159, Short.MAX_VALUE)
+                .addGroup(displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
+                        .addComponent(returnPreviousMenu)
+                        .addGap(207, 207, 207))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
+                        .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(156, 156, 156))))
         );
-        displayBookingLayout.setVerticalGroup(
-            displayBookingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+        displayBookingPanelLayout.setVerticalGroup(
+            displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(displayBookingPanelLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap())
         );
 
-        getContentPane().add(displayBooking, java.awt.BorderLayout.CENTER);
+        getContentPane().add(displayBookingPanel, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -85,6 +121,10 @@ public class DisplayBooking extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel displayBooking;
+    private javax.swing.JLabel bookings;
+    private javax.swing.JPanel displayBookingPanel;
+    private javax.swing.JTextArea invoiceDisplayArea;
+    private javax.swing.JButton returnPreviousMenu;
+    private javax.swing.JScrollPane scrollBookingsPanel;
     // End of variables declaration//GEN-END:variables
 }

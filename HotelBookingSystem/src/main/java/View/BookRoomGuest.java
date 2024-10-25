@@ -42,7 +42,7 @@ public class BookRoomGuest extends javax.swing.JFrame {
         bookRoomGuestPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
-        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkOutDate.setForeground(new java.awt.Color(102, 102, 102));
         checkOutDate.setText("Check-out date (yyyy-mm-dd)");
 
@@ -69,7 +69,7 @@ public class BookRoomGuest extends javax.swing.JFrame {
         chooseEnterPrompt.setText("Choose & Enter");
 
         checkInDate.setBackground(new java.awt.Color(255, 204, 255));
-        checkInDate.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        checkInDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkInDate.setForeground(new java.awt.Color(102, 102, 102));
         checkInDate.setText("Check-in date (yyyy-mm-dd)");
         checkInDate.addActionListener(new java.awt.event.ActionListener() {

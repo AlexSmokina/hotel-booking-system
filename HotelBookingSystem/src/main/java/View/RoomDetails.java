@@ -34,6 +34,7 @@ public class RoomDetails extends javax.swing.JFrame {
         roomType = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
         roomPrice = new javax.swing.JTextField();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -98,6 +99,15 @@ public class RoomDetails extends javax.swing.JFrame {
             }
         });
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+        returnPreviousMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                returnPreviousMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roomDetailsPanelLayout = new javax.swing.GroupLayout(roomDetailsPanel);
         roomDetailsPanel.setLayout(roomDetailsPanelLayout);
         roomDetailsPanelLayout.setHorizontalGroup(
@@ -117,7 +127,10 @@ public class RoomDetails extends javax.swing.JFrame {
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(roomDetailsPanelLayout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(returnPreviousMenu)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         roomDetailsPanelLayout.setVerticalGroup(
@@ -137,7 +150,9 @@ public class RoomDetails extends javax.swing.JFrame {
                 .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         getContentPane().add(roomDetailsPanel, java.awt.BorderLayout.CENTER);
@@ -164,6 +179,10 @@ public class RoomDetails extends javax.swing.JFrame {
     private void roomPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomPriceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_roomPriceActionPerformed
+
+    private void returnPreviousMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnPreviousMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_returnPreviousMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,6 +222,7 @@ public class RoomDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirm;
     private javax.swing.JTextField hotelID;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JLabel roomDetails;
     private javax.swing.JPanel roomDetailsPanel;
     private javax.swing.JLabel roomDetailsPrompt;

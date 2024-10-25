@@ -25,6 +25,11 @@
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="cancelBookingStaffPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>
@@ -55,7 +60,7 @@
                           <EmptySpace min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="returnPreviousMenu1" min="-2" max="-2" attributes="0"/>
+                          <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="205" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -76,7 +81,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="confirmCancel" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="returnPreviousMenu1" min="-2" max="-2" attributes="0"/>
+                  <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -157,7 +162,7 @@
             <Property name="text" type="java.lang.String" value="Enter booking details"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="returnPreviousMenu1">
+        <Component class="javax.swing.JButton" name="returnPreviousMenu">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="STSong" size="18" style="1"/>

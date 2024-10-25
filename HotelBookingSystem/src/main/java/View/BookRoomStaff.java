@@ -56,7 +56,7 @@ public class BookRoomStaff extends javax.swing.JFrame {
         chooseEnterPrompt.setText("Choose & Enter");
 
         checkInDate.setBackground(new java.awt.Color(255, 204, 255));
-        checkInDate.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        checkInDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkInDate.setForeground(new java.awt.Color(102, 102, 102));
         checkInDate.setText("Check-in date (yyyy-mm-dd)");
         checkInDate.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +66,7 @@ public class BookRoomStaff extends javax.swing.JFrame {
         });
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
-        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkOutDate.setForeground(new java.awt.Color(102, 102, 102));
         checkOutDate.setText("Check-out date (yyyy-mm-dd)");
 
@@ -91,7 +91,7 @@ public class BookRoomStaff extends javax.swing.JFrame {
         chooseHotel.setText("Choose Hotel");
 
         checkInDate1.setBackground(new java.awt.Color(255, 204, 255));
-        checkInDate1.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
+        checkInDate1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkInDate1.setForeground(new java.awt.Color(102, 102, 102));
         checkInDate1.setText("Enter guest username");
         checkInDate1.addActionListener(new java.awt.event.ActionListener() {
