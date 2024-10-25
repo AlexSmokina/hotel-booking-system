@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.HotelDetailController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class HotelDetails extends javax.swing.JFrame {
      */
     public HotelDetails() {
         initComponents();
+        new HotelDetailController(this);
     }
 
     /**
