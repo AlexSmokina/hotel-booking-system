@@ -144,11 +144,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="hotelImage">
-          <Properties>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/resources/hotel.png"/>
-            </Property>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

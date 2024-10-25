@@ -31,7 +31,7 @@ public class RegisterController implements ActionListener {
 
     public RegisterController(Register view) {
         this.view = view;
-        this.um = new UserManager();
+        this.um = UserManager.getInstance();
         initalise();
     }
 

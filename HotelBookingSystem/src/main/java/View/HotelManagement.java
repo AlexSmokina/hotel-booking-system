@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.HotelManagementController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class HotelManagement extends javax.swing.JFrame {
      */
     public HotelManagement() {
         initComponents();
+        new HotelManagementController(this);
     }
 
     /**
@@ -114,40 +117,22 @@ public class HotelManagement extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HotelManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HotelManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HotelManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HotelManagement.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HotelManagement().setVisible(true);
-            }
-        });
+    public javax.swing.JButton getAddNewHotelButton() {
+        return addNewHotel;
     }
+
+    public javax.swing.JButton getPreviousMenuButton() {
+        return previousMenu;
+    }
+
+    public javax.swing.JButton getUpdateHotelDetailsButton() {
+        return updateHotelDetails;
+    }
+
+    public javax.swing.JButton getViewAllHotelsButton() {
+        return viewAllHotels;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewHotel;
@@ -158,4 +143,7 @@ public class HotelManagement extends javax.swing.JFrame {
     private javax.swing.JButton updateHotelDetails;
     private javax.swing.JButton viewAllHotels;
     // End of variables declaration//GEN-END:variables
+
+    
+    
 }

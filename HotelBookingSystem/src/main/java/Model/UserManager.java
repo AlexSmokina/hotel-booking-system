@@ -18,15 +18,25 @@ import java.util.logging.Logger;
  * Booking System. It handles the loading and saving of user data from/to files,
  * user authentication, and the registration and updating of user information.
  */
-public class UserManager implements DatabaseCreator{
+public class UserManager implements DatabaseCreator {
 
+    private static UserManager instance = null;
     private final DbManager dbManager;
     private final Connection conn;
     private Statement statement;
+    private static User currentUser; // Make currentUser static
 
-    public UserManager() {
+    private UserManager() {
         dbManager = new DbManager();
         conn = dbManager.getConnection();
+        currentUser = null;
+    }
+
+    public static UserManager getInstance() {
+        if (instance == null) {
+            instance = new UserManager();
+        }
+        return instance;
     }
 
     @Override
@@ -85,6 +95,7 @@ public class UserManager implements DatabaseCreator{
         User user = getUserData(username);
 
         if (user != null && user.getPassword().equals(password)) {
+            currentUser = user;
             return user; // Sign-in successful
         } else {
             return null; // Invalid username or password
@@ -101,8 +112,8 @@ public class UserManager implements DatabaseCreator{
                 + user.getType().toString() + "')";
 
         dbManager.updateDB(insertUserSQL);
-        System.out.println(user.getUserName()+" registered successfully!");
-        
+        System.out.println(user.getUserName() + " registered successfully!");
+
     }
 
     // Updates the user data in the usersData map
@@ -120,14 +131,17 @@ public class UserManager implements DatabaseCreator{
                 + "WHERE USERNAME = '" + user.getUserName() + "'";
 
         dbManager.updateDB(updateUserSQL);
-        
+
         return true;
     }
-    
+
+    // Return current logged in user
+    public User getCurrentUser() {
+        return currentUser;
+    }
+
     public void closeConnection() {
         dbManager.closeConnections();
     }
-    
-    
 
 }
