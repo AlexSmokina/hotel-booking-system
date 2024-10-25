@@ -174,7 +174,7 @@ public class BookingManager implements DatabaseCreator {
     }
 
     // Method to display an invoice for a specific booking
-    public void printInvoice(String bookingID, JTextArea invoiceTextArea) {
+    public void displayInvoice(String bookingID, JTextArea invoiceTextArea) {
         try {
             Booking booking = this.getBookingData(bookingID);
             if (booking == null) {
