@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class HotelManager implements DatabaseCreator{
-    
+public class HotelManager implements DatabaseCreator {
+
     private final DbManager dbManager;
     private final Connection conn;
     private Statement statement;
@@ -18,8 +18,8 @@ public class HotelManager implements DatabaseCreator{
         dbManager = new DbManager();
         conn = dbManager.getConnection();
     }
-    
-    public static HotelManager getInstance(){
+
+    public static HotelManager getInstance() {
         if (instance == null) {
             instance = new HotelManager();
         }
@@ -27,6 +27,7 @@ public class HotelManager implements DatabaseCreator{
     }
 
 // Method to create the HOTEL table in the database
+    @Override
     public void createDatabase() {
         try {
             // Create a new SQL statement
