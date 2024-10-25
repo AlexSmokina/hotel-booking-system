@@ -30,7 +30,7 @@ public class BookingManager implements DatabaseCreator {
         dbManager = new DbManager();
         conn = dbManager.getConnection();
         roomManager = new RoomManager();
-        userManager = new UserManager();
+        userManager = UserManager.getInstance();
     }
 
     // Method to create the Booking table in the database

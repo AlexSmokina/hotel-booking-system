@@ -17,7 +17,7 @@ public class DbTest {
         }
 
         // UserManager TESTS
-        UserManager um = new UserManager();
+        UserManager um = UserManager.getInstance();
         um.createDatabase();
         User newUser = new User("Mike_22", "12345", "Mike", "02153535", "example@gmail.com");
         newUser.setType(UserType.STAFF);
