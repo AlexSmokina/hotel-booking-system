@@ -88,7 +88,8 @@ public class DbTest {
     }
 
     public static void testPrintInvoice(BookingManager bm, JTextArea textArea) {
-        bm.printInvoice("BKG-1", textArea);
+        bm.displayInvoice("BKG-1", textArea);
         System.out.println(textArea.getText());
     }
 }
+ 
