@@ -18,14 +18,14 @@ import javax.swing.JOptionPane;
 public class HotelDetailController implements ActionListener {
 
     HotelDetails view;
-    private HotelManager hm;
+    private HotelManager hotelManager;
     private static final String DEFAULT_ID = "Enter hotel ID to update";
     private static final String DEFAULT_NAME = "Enter new hotel name";
     private static final String DEFAULT_ADDRESS = "Enter new location";
 
     public HotelDetailController(HotelDetails view) {
         this.view = view;
-        this.hm = HotelManager.getInstance();
+        this.hotelManager = HotelManager.getInstance();
         initialise();
     }
 
@@ -43,7 +43,7 @@ public class HotelDetailController implements ActionListener {
 
     private void handleChangeDetails() {
         String hotelID = view.getHotelID().getText();
-        if (hm.getHotelData(hotelID) == null) {
+        if (hotelManager.getHotelData(hotelID) == null) {
             JOptionPane.showMessageDialog(view,
                     "Wrong Hotel ID",
                     "Failed",
@@ -60,7 +60,7 @@ public class HotelDetailController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        hm.updateHotelDetails(hotelID, name, address);
+        hotelManager.updateHotelDetails(hotelID, name, address);
         JOptionPane.showMessageDialog(view,
                 "Detail edited successfully!",
                 "Success",

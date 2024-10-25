@@ -134,9 +134,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter Hotel ID"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="roomType">
           <Properties>
@@ -162,9 +159,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Add New Room"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addNewRoomActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="returnPreviousMenu">
           <Properties>

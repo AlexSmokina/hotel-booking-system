@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class RegisterController implements ActionListener {
 
     private Register view;
-    private UserManager um;
+    private UserManager userManager;
     private static final String DEFAULT_USERNAME = "Username";
     private static final String DEFAULT_PASSWORD = "Password";
     private static final String DEFAULT_NAME = "Name";
@@ -31,7 +31,7 @@ public class RegisterController implements ActionListener {
 
     public RegisterController(Register view) {
         this.view = view;
-        this.um = UserManager.getInstance();
+        this.userManager = UserManager.getInstance();
         initalise();
     }
 
@@ -57,7 +57,7 @@ public class RegisterController implements ActionListener {
 
     private void handleRegister() {
         String username = view.getRegisterUsername().getText();
-        if (um.getUserData(username) != null) {
+        if (userManager.getUserData(username) != null) {
             JOptionPane.showMessageDialog(view,
                     "Username already exists",
                     "Registeration Failed",
@@ -92,7 +92,8 @@ public class RegisterController implements ActionListener {
 
         }
         newUser.setType(userType);
-        um.registerUser(newUser);
+        userManager.registerUser(newUser);
+        
         if (userType == UserType.GUEST) {
             GuestMenu guestMenu = new GuestMenu();
             guestMenu.setVisible(true);

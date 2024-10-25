@@ -18,13 +18,13 @@ import javax.swing.JOptionPane;
 public class AddNewHotelController implements ActionListener {
 
     AddNewHotel view;
-    private HotelManager hm;
+    private HotelManager hotelManager;
     private static final String DEFAULT_NAME = "Enter Hotel Name";
     private static final String DEFAULT_ADDRESS = "Enter Hotel Address";
 
     public AddNewHotelController(AddNewHotel view) {
         this.view = view;
-        this.hm = HotelManager.getInstance();
+        this.hotelManager = HotelManager.getInstance();
         initalise();
     }
 
@@ -72,7 +72,7 @@ public class AddNewHotelController implements ActionListener {
             return;
         }
         // Create the new hotel
-        hm.createNewHotel(name, address, standardRooms, premiumRooms, suites);
+        hotelManager.createNewHotel(name, address, standardRooms, premiumRooms, suites);
 
         JOptionPane.showMessageDialog(view,
                 "Hotel created successfully!",

@@ -16,17 +16,17 @@ import java.awt.event.ActionListener;
  */
 public class ViewAllHotelsController implements ActionListener{
     ViewAllHotels view;
-    HotelManager hm;
+    HotelManager hotelManager;
     
     public ViewAllHotelsController(ViewAllHotels view){
         this.view = view;
-        hm = HotelManager.getInstance();
+        this.hotelManager = HotelManager.getInstance();
         initialise();
     }
     
     private void initialise(){
         view.getReturnPreviousMenu().addActionListener(this);
-        String hotelDetails = hm.viewHotels();
+        String hotelDetails = hotelManager.viewHotels();
         view.getHotelDisplayArea().setText(hotelDetails);        
     }
 

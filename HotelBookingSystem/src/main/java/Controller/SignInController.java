@@ -22,12 +22,12 @@ import javax.swing.JOptionPane;
 public class SignInController implements ActionListener {
 
     private SignIn view;
-    private UserManager um;
+    private UserManager userManager;
     
 
     public SignInController(SignIn view) {
         this.view = view;
-        this.um = UserManager.getInstance();
+        this.userManager = UserManager.getInstance();
         initalise();
     }
 
@@ -63,7 +63,7 @@ public class SignInController implements ActionListener {
             return;
         }
 
-        User user = um.signIn(username, password);
+        User user = userManager.signIn(username, password);
 
         if (user == null) {
             JOptionPane.showMessageDialog(view,

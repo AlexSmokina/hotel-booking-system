@@ -58,6 +58,7 @@ public class RoomManagementController implements ActionListener{
         
         } else if("View All Rooms".equals(command)){
             ViewAllRooms viewAllRoomsPage = new ViewAllRooms();
+            viewAllRoomsPage.setVisible(true);
             view.dispose();
             
         }  

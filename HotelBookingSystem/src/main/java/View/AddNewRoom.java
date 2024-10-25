@@ -15,6 +15,7 @@ public class AddNewRoom extends javax.swing.JFrame {
      */
     public AddNewRoom() {
         initComponents();
+        
     }
 
     /**
@@ -54,11 +55,6 @@ public class AddNewRoom extends javax.swing.JFrame {
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter Hotel ID");
-        hotelID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelIDActionPerformed(evt);
-            }
-        });
 
         roomType.setBackground(new java.awt.Color(255, 204, 255));
         roomType.setForeground(new java.awt.Color(102, 102, 102));
@@ -68,11 +64,6 @@ public class AddNewRoom extends javax.swing.JFrame {
         addNewRoom.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         addNewRoom.setForeground(new java.awt.Color(255, 255, 255));
         addNewRoom.setText("Add New Room");
-        addNewRoom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewRoomActionPerformed(evt);
-            }
-        });
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -127,49 +118,7 @@ public class AddNewRoom extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelIDActionPerformed
-
-    private void addNewRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewRoomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addNewRoomActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddNewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddNewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddNewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddNewRoom.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddNewRoom().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewRoom;
@@ -180,4 +129,32 @@ public class AddNewRoom extends javax.swing.JFrame {
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * @return the addNewRoom
+     */
+    public javax.swing.JButton getAddNewRoom() {
+        return addNewRoom;
+    }
+
+    /**
+     * @return the hotelID
+     */
+    public javax.swing.JTextField getHotelID() {
+        return hotelID;
+    }
+
+    /**
+     * @return the returnPreviousMenu
+     */
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+    /**
+     * @return the roomType
+     */
+    public javax.swing.JTextField getRoomType() {
+        return roomType;
+    }
 }
