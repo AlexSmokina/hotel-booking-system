@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.AddNewHotelController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class AddNewHotel extends javax.swing.JFrame {
      */
     public AddNewHotel() {
         initComponents();
+        new AddNewHotelController(this);
     }
 
     /**
@@ -35,6 +38,7 @@ public class AddNewHotel extends javax.swing.JFrame {
         premiumRoomsNumber = new javax.swing.JTextField();
         numberOfSuites = new javax.swing.JTextField();
         addNewHotel = new javax.swing.JButton();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -56,11 +60,6 @@ public class AddNewHotel extends javax.swing.JFrame {
         hotelName.setBackground(new java.awt.Color(255, 204, 255));
         hotelName.setForeground(new java.awt.Color(102, 102, 102));
         hotelName.setText("Enter Hotel Name");
-        hotelName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelNameActionPerformed(evt);
-            }
-        });
 
         hotelAddress.setBackground(new java.awt.Color(255, 204, 255));
         hotelAddress.setForeground(new java.awt.Color(102, 102, 102));
@@ -69,11 +68,6 @@ public class AddNewHotel extends javax.swing.JFrame {
         standardRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
         standardRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
         standardRoomsNumber.setText("Enter Number of Standard Rooms");
-        standardRoomsNumber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                standardRoomsNumberActionPerformed(evt);
-            }
-        });
 
         premiumRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
         premiumRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
@@ -87,11 +81,10 @@ public class AddNewHotel extends javax.swing.JFrame {
         addNewHotel.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         addNewHotel.setForeground(new java.awt.Color(255, 255, 255));
         addNewHotel.setText("Add New Hotel");
-        addNewHotel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewHotelActionPerformed(evt);
-            }
-        });
+
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
 
         javax.swing.GroupLayout newHotelPanelLayout = new javax.swing.GroupLayout(newHotelPanel);
         newHotelPanel.setLayout(newHotelPanelLayout);
@@ -114,6 +107,10 @@ public class AddNewHotel extends javax.swing.JFrame {
                             .addComponent(standardRoomsNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newHotelPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(207, 207, 207))
             .addGroup(newHotelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(newHotelPanelLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
@@ -137,7 +134,9 @@ public class AddNewHotel extends javax.swing.JFrame {
                 .addComponent(numberOfSuites, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addNewHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(109, 109, 109))
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addGap(62, 62, 62))
             .addGroup(newHotelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(newHotelPanelLayout.createSequentialGroup()
                     .addGap(188, 188, 188)
@@ -150,53 +149,7 @@ public class AddNewHotel extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hotelNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelNameActionPerformed
-
-    private void standardRoomsNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standardRoomsNumberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_standardRoomsNumberActionPerformed
-
-    private void addNewHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewHotelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_addNewHotelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddNewHotel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddNewHotel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddNewHotel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddNewHotel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddNewHotel().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewHotel;
@@ -207,6 +160,31 @@ public class AddNewHotel extends javax.swing.JFrame {
     private javax.swing.JPanel newHotelPanel;
     private javax.swing.JTextField numberOfSuites;
     private javax.swing.JTextField premiumRoomsNumber;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextField standardRoomsNumber;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getAddNewHotel() {
+        return addNewHotel;
+    }
+
+    public javax.swing.JTextField getHotelAddress() {
+        return hotelAddress;
+    }
+
+    public javax.swing.JTextField getHotelName() {
+        return hotelName;
+    }
+
+    public javax.swing.JTextField getNumberOfSuites() {
+        return numberOfSuites;
+    }
+
+    public javax.swing.JTextField getPremiumRoomsNumber() {
+        return premiumRoomsNumber;
+    }
+
+    public javax.swing.JTextField getStandardRoomsNumber() {
+        return standardRoomsNumber;
+    }
 }

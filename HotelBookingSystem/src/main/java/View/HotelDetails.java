@@ -33,6 +33,7 @@ public class HotelDetails extends javax.swing.JFrame {
         newHotelName = new javax.swing.JTextField();
         hotelName2 = new javax.swing.JTextField();
         confirm = new javax.swing.JButton();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -88,6 +89,10 @@ public class HotelDetails extends javax.swing.JFrame {
             }
         });
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+
         javax.swing.GroupLayout hotelDetailsPanelLayout = new javax.swing.GroupLayout(hotelDetailsPanel);
         hotelDetailsPanel.setLayout(hotelDetailsPanelLayout);
         hotelDetailsPanelLayout.setHorizontalGroup(
@@ -106,7 +111,10 @@ public class HotelDetails extends javax.swing.JFrame {
                             .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(hotelDetailsPanelLayout.createSequentialGroup()
+                        .addGap(207, 207, 207)
+                        .addComponent(returnPreviousMenu)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         hotelDetailsPanelLayout.setVerticalGroup(
@@ -124,7 +132,9 @@ public class HotelDetails extends javax.swing.JFrame {
                 .addComponent(hotelName2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(191, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         getContentPane().add(hotelDetailsPanel, java.awt.BorderLayout.CENTER);
@@ -191,5 +201,6 @@ public class HotelDetails extends javax.swing.JFrame {
     private javax.swing.JTextField hotelID;
     private javax.swing.JTextField hotelName2;
     private javax.swing.JTextField newHotelName;
+    private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
 }

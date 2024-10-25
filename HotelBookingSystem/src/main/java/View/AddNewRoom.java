@@ -32,6 +32,7 @@ public class AddNewRoom extends javax.swing.JFrame {
         hotelID = new javax.swing.JTextField();
         roomType = new javax.swing.JTextField();
         addNewRoom = new javax.swing.JButton();
+        returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -73,6 +74,10 @@ public class AddNewRoom extends javax.swing.JFrame {
             }
         });
 
+        returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
+        returnPreviousMenu.setText("Return");
+
         javax.swing.GroupLayout addNewRoomPanelLayout = new javax.swing.GroupLayout(addNewRoomPanel);
         addNewRoomPanel.setLayout(addNewRoomPanelLayout);
         addNewRoomPanelLayout.setHorizontalGroup(
@@ -90,8 +95,13 @@ public class AddNewRoom extends javax.swing.JFrame {
                         .addComponent(newRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(139, 139, 139))))
             .addGroup(addNewRoomPanelLayout.createSequentialGroup()
-                .addGap(171, 171, 171)
-                .addComponent(createNewRoomPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addNewRoomPanelLayout.createSequentialGroup()
+                        .addGap(171, 171, 171)
+                        .addComponent(createNewRoomPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(addNewRoomPanelLayout.createSequentialGroup()
+                        .addGap(208, 208, 208)
+                        .addComponent(returnPreviousMenu)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         addNewRoomPanelLayout.setVerticalGroup(
@@ -99,15 +109,17 @@ public class AddNewRoom extends javax.swing.JFrame {
             .addGroup(addNewRoomPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(newRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addComponent(createNewRoomPrompt)
-                .addGap(45, 45, 45)
-                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(addNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addComponent(addNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(returnPreviousMenu)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         getContentPane().add(addNewRoomPanel, java.awt.BorderLayout.CENTER);
@@ -165,6 +177,7 @@ public class AddNewRoom extends javax.swing.JFrame {
     private javax.swing.JLabel createNewRoomPrompt;
     private javax.swing.JTextField hotelID;
     private javax.swing.JLabel newRoom;
+    private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 }

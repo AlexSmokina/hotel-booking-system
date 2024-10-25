@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.StartMenuController;
+
 /**
  *
  * @author minthihakoko 
@@ -15,6 +17,7 @@ public class StartMenu extends javax.swing.JFrame {
      */
     public StartMenu() {
         initComponents();
+        StartMenuController startMenuController = new StartMenuController(this);
     }
 
     /**
@@ -31,7 +34,7 @@ public class StartMenu extends javax.swing.JFrame {
         welcome = new javax.swing.JLabel();
         register = new javax.swing.JButton();
         registerLabel = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        hotelImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -43,11 +46,6 @@ public class StartMenu extends javax.swing.JFrame {
         signIn.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         signIn.setForeground(new java.awt.Color(255, 255, 255));
         signIn.setText("Register");
-        signIn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signInActionPerformed(evt);
-            }
-        });
 
         welcome.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         welcome.setForeground(new java.awt.Color(0, 0, 0));
@@ -58,18 +56,13 @@ public class StartMenu extends javax.swing.JFrame {
         register.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         register.setForeground(new java.awt.Color(255, 255, 255));
         register.setText("Sign In");
-        register.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registerActionPerformed(evt);
-            }
-        });
 
         registerLabel.setBackground(new java.awt.Color(255, 255, 255));
         registerLabel.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         registerLabel.setForeground(new java.awt.Color(0, 0, 0));
         registerLabel.setText("Welcome to");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/hotel.png"))); // NOI18N
+        hotelImage.setIcon(new javax.swing.ImageIcon("/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/resources/hotel.png")); // NOI18N
 
         javax.swing.GroupLayout welcomePanelLayout = new javax.swing.GroupLayout(welcomePanel);
         welcomePanel.setLayout(welcomePanelLayout);
@@ -77,7 +70,7 @@ public class StartMenu extends javax.swing.JFrame {
             welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addComponent(welcome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
             .addGroup(welcomePanelLayout.createSequentialGroup()
                 .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,8 +84,8 @@ public class StartMenu extends javax.swing.JFrame {
                         .addComponent(registerLabel)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addComponent(hotelImage)
                 .addGap(149, 149, 149))
         );
         welcomePanelLayout.setVerticalGroup(
@@ -103,7 +96,7 @@ public class StartMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(welcome)
                 .addGap(25, 25, 25)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addComponent(hotelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(welcomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(register, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,51 +109,18 @@ public class StartMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void signInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_signInActionPerformed
-
-    private void registerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_registerActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StartMenu().setVisible(true);
-            }
-        });
+    
+    public javax.swing.JButton getSignInButton(){
+        return this.signIn;
     }
+    
+    public javax.swing.JButton getRegisterButton(){
+        return this.register;
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel hotelImage;
     private javax.swing.JButton register;
     private javax.swing.JLabel registerLabel;
     private javax.swing.JButton signIn;
