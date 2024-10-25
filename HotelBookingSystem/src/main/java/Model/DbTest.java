@@ -1,106 +1,94 @@
 package Model;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
+import javax.swing.JTextArea;
 
 public class DbTest {
 
     public static void main(String[] args) {
-        
+
+        // RoomManager TESTS
         RoomManager rm = new RoomManager();
         rm.createDatabase();
         rm.createRoom("STANDARD", "HTL-1");
-        rm.createRoom("PREMIUM", "HTL-1");
-        
         Room standardRoom = rm.getRoomData("RM/STD-1", "HTL-1");
         if (standardRoom != null) {
             System.out.println("Room found: " + standardRoom);
-        } else {
-            System.out.println("Room not found.");
-        }
-        
-        standardRoom.setIsBooked(true);
-        boolean isUpdated = rm.updateRoomData("RM/STD-1", standardRoom);
-        if (isUpdated) {
-            System.out.println("Room updated successfully.");
-        } else {
-            System.out.println("Failed to update room.");
-        }
-        
-        List<Room> roomsByHotel = rm.filterRoomByHotel("HTL-1");
-        if (!roomsByHotel.isEmpty()) {
-            System.out.println("Rooms found in hotel HTL-1: " + roomsByHotel.size());
-            for (Room room : roomsByHotel) {
-                System.out.println(room);
-            }
-        } else {
-            System.out.println("No rooms found in hotel HTL-1.");
-        }
-        
-        String today = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
-        List<Room> roomsByDate = rm.filterByDate(today, "HTL-1");
-        if (!roomsByDate.isEmpty()) {
-            System.out.println("Rooms available from today in hotel HTL-1: " + roomsByDate.size());
-            for (Room room : roomsByDate) {
-                System.out.println(room);
-            }
-        } else {
-            System.out.println("No rooms available from today in hotel HTL-1.");
-        }
-        
-        List<String> roomIDs = rm.getAllRoomIDs();
-        if (!roomIDs.isEmpty()) {
-            System.out.println("Room IDs found: " + roomIDs.size());
-            for (String id : roomIDs) {
-                System.out.println("Room ID: " + id);
-            }
-        } else {
-            System.out.println("No room IDs found.");
-        }
-        
-        List<Room> allRooms = rm.getAllRooms();
-        if (!allRooms.isEmpty()) {
-            System.out.println("Total rooms found: " + allRooms.size());
-            for (Room room : allRooms) {
-                System.out.println(room);
-            }
-        } else {
-            System.out.println("No rooms found.");
         }
 
-//        HotelManager hm = new HotelManager();
-//        hm.createDatabase();
-//        hm.insertInitialData();
-//        hm.viewHotels();
-//        hm.createNewHotel("HTL-3", "Rotorua Lake", "Rotorua", 5, 3, 1);
-//        hm.updateHotelDetails("HTL-3", "Lake Shore", "Rotorua");
+        // UserManager TESTS
+        UserManager um = new UserManager();
+        um.createDatabase();
+        User newUser = new User("Mike_22", "12345", "Mike", "02153535", "example@gmail.com");
+        newUser.setType(UserType.STAFF);
+        um.registerUser(newUser);
 
-//        UserManager um = new UserManager();
-//        User user = um.signIn("Mike_22", "12345");
-//        if (user == null) {
-//            System.out.println("null");
-//        } else {
-//            System.out.println("true");
-//        }
-//        um.createDatabase();
-//        User newUser = new User("Mike_22", "12345", "Mike", "02153535", "example@gmail.com");
-//        newUser.setType(UserType.STAFF);
-//        um.registerUser(newUser);
-//        um.closeConnection();
-//        BookingDB bm = new BookingDB();       
-//        bm.createBookingDB();
-//        Date startDate = Date.valueOf("2024-10-01");
-//        Date endDate = Date.valueOf("2024-10-03");
-//        bm.createBooking(
-//                "BKG-1",
-//                startDate,
-//                endDate,
-//                "RM/STD-2",
-//                "mike_22", 
-//                room,
-//                "HTL-1",
-//                "active"
-//        );
+        BookingManager bm = new BookingManager();
+        bm.createDatabase();
+
+        // BookingManager TETS
+        testCreateBookingDB(bm);
+        testCreateBooking(bm, rm, "RM/STD-1", "HTL-1", newUser);
+        testGetBookingData(bm);
+        testExtendBooking(bm);
+        testCancelBooking(bm);
+
+        Room newRoom = rm.getRoomData("RM/STD-2", "HTL-1");
+        testChangeRoom(bm, rm, "RM/STD-2", "HTL-1");
+
+        JTextArea invoiceTextArea = new JTextArea();
+        testPrintInvoice(bm, invoiceTextArea);
+    }
+
+    // BookingManager tests functions
+    public static void testCreateBookingDB(BookingManager bm) {
+        bm.createDatabase();
+        System.out.println("Booking database created successfully.");
+    }
+
+    public static void testCreateBooking(BookingManager bm, RoomManager roomManager, String roomID, String hotelID, User user) {
+        Room room = roomManager.getRoomData(roomID, hotelID);
+        if (room == null) {
+            System.out.println("Room not found for Room ID: " + roomID + " and Hotel ID: " + hotelID);
+        } else {
+            Date startDate = Date.valueOf("2024-10-01");
+            Date endDate = Date.valueOf("2024-10-05");
+            bm.createBooking("BKG-1", startDate, endDate, room.getRoomID(), user.getUserName(), room, user, room.getHotelID(), "active");
+            System.out.println("Booking created successfully.");
+        }
+    }
+
+    public static void testGetBookingData(BookingManager bm) {
+        Booking booking = bm.getBookingData("BKG-1");
+        if (booking != null) {
+            System.out.println("Booking found: " + booking);
+        } else {
+            System.out.println("Booking not found.");
+        }
+    }
+
+    public static void testExtendBooking(BookingManager bm) {
+        bm.extendBooking("BKG-1", "2024-10-10");
+        System.out.println("Booking extended successfully.");
+    }
+
+    public static void testCancelBooking(BookingManager bm) {
+        bm.cancelBooking("BKG-1");
+        System.out.println("Booking cancelled successfully.");
+    }
+
+    public static void testChangeRoom(BookingManager bm, RoomManager roomManager, String newRoomID, String hotelID) {
+        Room newRoom = roomManager.getRoomData(newRoomID, hotelID);
+        if (newRoom == null) {
+            System.out.println("Room not found for Room ID: " + newRoomID + " and Hotel ID: " + hotelID);
+        } else {
+            bm.changeRoom("BKG-1", newRoom);
+            System.out.println("Room changed successfully.");
+        }
+    }
+
+    public static void testPrintInvoice(BookingManager bm, JTextArea textArea) {
+        bm.printInvoice("BKG-1", textArea);
+        System.out.println(textArea.getText());
     }
 }

@@ -4,8 +4,6 @@
  */
 package Model;
 
-import Controller.RoomManager;
-
 /**
  * @author Alexander Smokina & Min Thiha Ko Ko 
  * 
