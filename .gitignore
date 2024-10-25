@@ -6,5 +6,5 @@
 /HotelBookingSystem/derby.log
 derby.log
 
-HotelBookingSystem/derbyDatabase/derby.log
+/HotelBookingSystem/derbyDatabase/
 *.log
