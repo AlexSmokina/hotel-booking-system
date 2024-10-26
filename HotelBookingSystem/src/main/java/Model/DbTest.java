@@ -23,7 +23,7 @@ public class DbTest {
         newUser.setType(UserType.STAFF);
         um.registerUser(newUser);
 
-        BookingManager bm = new BookingManager();
+        BookingManager bm = BookingManager.getInstance();
         bm.createDatabase();
 
         // BookingManager TETS
@@ -53,7 +53,7 @@ public class DbTest {
         } else {
             Date startDate = Date.valueOf("2024-10-01");
             Date endDate = Date.valueOf("2024-10-05");
-            bm.createBooking(startDate, endDate, room.getRoomID(), user.getUserName(), room, user, room.getHotelID(), "active");
+            //bm.createBooking(startDate, endDate, room.getRoomID(), user.getUserName(), room, user, room.getHotelID(), "active");
             System.out.println("Booking created successfully.");
         }
     }

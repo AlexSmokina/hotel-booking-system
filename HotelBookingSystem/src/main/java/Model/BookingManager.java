@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JTextArea;
 import java.util.logging.Level;
@@ -26,24 +27,32 @@ public class BookingManager implements DatabaseCreator {
     RoomManager roomManager;
     UserManager userManager;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static BookingManager instance = null;
 
     // Constructor to initialize the database connection
-    public BookingManager() {
+    private BookingManager() {
         dbManager = DbManager.getInstance();
         conn = dbManager.getConnection();
         roomManager = RoomManager.getInstance();
         userManager = UserManager.getInstance();
     }
 
+    public static BookingManager getInstance() {
+        if (instance == null) {
+            instance = new BookingManager();
+        }
+        return instance;
+    }
+
     // Method to create the Booking table in the database
     @Override
     public void createDatabase() {
         try {
+            
             statement = conn.createStatement();
-            // Drop the BOOKING table if it exists
+            // Return if BOOKING exists
             if (dbManager.doesTableExist("BOOKING")) {
-                statement.executeUpdate("DROP TABLE BOOKING");
-                System.out.println("Existing BOOKING table dropped.");
+                return;
             }
 
             // SQL statement to create the BOOKING table
@@ -66,25 +75,56 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
-    // Method to new booking record in the database
-    public void createBooking(Date startDate, Date endDate, String roomID, String username, Room room, User user, String hotelID, String status) {
-
-        String bookingID = idGenerator();
-        // Create a new Booking object to calculate the total cost
-        Booking newBooking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
-        double calculatedPrice = newBooking.getTotalPrice();
-
-        // Insert the new booking into the database using the calculated price
-        String sql = String.format("INSERT INTO BOOKING (BOOKING_ID, START_DATE, END_DATE, ROOM_ID, USERNAME, TOTAL_PRICE, HOTEL_ID, BOOKING_STATUS) "
-                + "VALUES ('%s', '%s', '%s', '%s', '%s', %.2f, '%s', '%s')",
-                bookingID, startDate, endDate, roomID, username, calculatedPrice, hotelID, status);
+    public boolean createBooking(String start, String end, Room room, User user, String hotelID) {
+        // Validate room and user
+        if (room == null || user == null) {
+            System.out.println("No room or user data!");
+            return false;
+        }
 
         try {
-            dbManager.updateDB(sql);
-            System.out.println("Booking '" + bookingID + "' created successfully with total price: " + calculatedPrice);
+            java.sql.Date startDate = convertToSqlDate(start);
+            java.sql.Date endDate = convertToSqlDate(end);
+            
+
+            // Check if the room is available for the given dates
+            if (room.isAvailable(startDate, endDate)) {
+                room.setAvailabilityDate(end); // Update availability date
+                room.setIsBooked(true); // Mark the room as booked
+                String bookingID = idGenerator(); // Generate a new booking ID
+
+                // Create a new Booking object to calculate the total cost
+                Booking newBooking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
+                double calculatedPrice = newBooking.getTotalPrice();
+
+                // Insert the new booking into the database
+                String sqlBooking = String.format("INSERT INTO BOOKING (BOOKING_ID, START_DATE, END_DATE, ROOM_ID, USERNAME, TOTAL_PRICE, HOTEL_ID, BOOKING_STATUS) "
+                        + "VALUES ('%s', '%s', '%s', '%s', '%s', %.2f, '%s', '%s')",
+                        bookingID, startDate, endDate, room.getRoomID(), user.getUserName(), calculatedPrice, hotelID, "Booked");
+
+                // SQL statement to update the ROOM table
+                String sqlUpdateRoom = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
+                    endDate, room.getRoomID(), hotelID);
+
+                // Execute the SQL statements
+                dbManager.updateDB(sqlBooking); // Insert new booking
+                dbManager.updateDB(sqlUpdateRoom); // Update room status
+
+                System.out.println("Booking '" + bookingID + "' created successfully with total price: " + calculatedPrice);
+                return true;
+
+            } else {
+                System.out.println("Room is not available!");
+                return false;
+            }
+
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please use yyyy-mm-dd. Please try again.");
         } catch (Exception e) {
             System.out.println("Error creating new booking: " + e.getMessage());
         }
+
+        return false; // Return false if the booking could not be created
     }
 
     // Method to get booking data
@@ -178,27 +218,21 @@ public class BookingManager implements DatabaseCreator {
 
     // Method to generate a unique booking ID by incrementing a counter
     public String idGenerator() {
-        // Get the next booking count from the database
-        int currentCount = getNextBookingCount();
-        return "BKG-" + currentCount; // Return the full booking ID
-    }
-
-    // Method to get the next available booking count
-    private int getNextBookingCount() {
+        String selectSQL = "SELECT MAX(BOOKING_ID) AS MAX_ID FROM BOOKING";
         try {
-            // SQL query to get the current booking count
-            String selectSQL = "SELECT COUNT(*) AS BOOKING_COUNT FROM BOOKING";
-            Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery(selectSQL);
+            ResultSet rs = dbManager.queryDB(selectSQL);
 
             if (rs.next()) {
-                // Return the current count incremented by one
-                return rs.getInt("BOOKING_COUNT") + 1;
+                String maxId = rs.getString("MAX_ID");
+                if (maxId != null) {
+                    int nextId = Integer.parseInt(maxId.split("-")[1]) + 1;
+                    return "BKG-" + nextId;
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(BookingManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 1; // Default to 1 if an error occurs or no bookings exist
+        return "BKG-1"; // Default to BK-1 if no entries exist or error occurs
     }
 
     // Method to display an invoice for a specific booking
@@ -260,6 +294,11 @@ public class BookingManager implements DatabaseCreator {
         } catch (Exception e) {
             System.err.println("Error clearing booking data: " + e.getMessage());
         }
+    }
+    
+    private java.sql.Date convertToSqlDate(String dateStr) throws ParseException {
+        java.util.Date utilDate = dateFormat.parse(dateStr);
+        return new java.sql.Date(utilDate.getTime());
     }
 
 }

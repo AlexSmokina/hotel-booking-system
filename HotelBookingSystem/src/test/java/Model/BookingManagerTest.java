@@ -25,7 +25,7 @@ public class BookingManagerTest {
     @BeforeEach
     public void setUp() {
         // Initialising all required managers
-        bookingManager = new BookingManager();
+        bookingManager = BookingManager.getInstance();
         roomManager = RoomManager.getInstance();
         userManager = UserManager.getInstance();
         hotelManager = HotelManager.getInstance();
@@ -68,12 +68,13 @@ public class BookingManagerTest {
         assertNotNull(room, "Test room should exist");
 
         // Create booking dates
-        Date startDate = Date.valueOf("2024-12-01");
-        Date endDate = Date.valueOf("2024-12-05");
+        String start = "2024-12-01";
+        String end = "2024-12-05";
+  
 
         // Create the booking (using testUser from setUp)
-        bookingManager.createBooking(startDate, endDate, room.getRoomID(),
-                testUser.getUserName(), room, testUser, "HTL-1", "active");
+        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        
 
         // Verify booking was created
         Booking booking = bookingManager.getBookingData("BKG-1");
@@ -92,11 +93,10 @@ public class BookingManagerTest {
         Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
         assertNotNull(room, "Test room should exist");
 
-        Date startDate = Date.valueOf("2024-12-01");
-        Date endDate = Date.valueOf("2024-12-05");
+        String start = "2024-12-01";
+        String end = "2024-12-05";
 
-        bookingManager.createBooking(startDate, endDate, room.getRoomID(),
-                testUser.getUserName(), room, testUser, "HTL-1", "active");
+        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
 
         bookingManager.cancelBooking("BKG-1");
 
@@ -112,11 +112,11 @@ public class BookingManagerTest {
         Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
         assertNotNull(room, "Test room should exist");
 
-        Date startDate = Date.valueOf("2024-12-01");
-        Date endDate = Date.valueOf("2024-12-05");
+        String start = "2024-12-01";
+        String end= "2024-12-05";
 
-        bookingManager.createBooking(startDate, endDate, room.getRoomID(),
-                testUser.getUserName(), room, testUser, "HTL-1", "active");
+        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        
 
         String newEndDate = "2024-12-10";
         bookingManager.extendBooking("BKG-1", newEndDate);
@@ -136,10 +136,10 @@ public class BookingManagerTest {
 
         // Create a booking and check next ID
         Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
-        Date startDate = Date.valueOf("2024-12-01");
-        Date endDate = Date.valueOf("2024-12-05");
-        bookingManager.createBooking(startDate, endDate, room.getRoomID(),
-                testUser.getUserName(), room, testUser, "HTL-1", "active");
+        String start = "2024-12-01";
+        String end = "2024-12-05";
+        
+        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
 
         String secondId = bookingManager.idGenerator();
         assertEquals("BKG-2", secondId, "Second booking ID should be BKG-2");
@@ -154,12 +154,11 @@ public class BookingManagerTest {
         Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
         assertNotNull(room, "Test room should exist");
 
-        Date startDate = Date.valueOf("2024-12-01");
-        Date endDate = Date.valueOf("2024-12-05");
-
-        bookingManager.createBooking(startDate, endDate, room.getRoomID(),
-                testUser.getUserName(), room, testUser, "HTL-1", "active");
-
+        String start = "2024-12-01";
+        String end= "2024-12-05";
+        
+        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+       
         // Create text area and generate invoice
         JTextArea invoiceArea = new JTextArea();
         bookingManager.displayInvoice("BKG-1", invoiceArea);

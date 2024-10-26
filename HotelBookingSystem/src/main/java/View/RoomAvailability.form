@@ -85,7 +85,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="chooseConfirmPrompt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="roomOptionScroll" pref="374" max="32767" attributes="0"/>
+                  <Component id="roomOptionScroll" pref="378" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="roomNumber" pref="40" max="32767" attributes="0"/>
@@ -130,7 +130,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Enter Room Number"/>
+            <Property name="text" type="java.lang.String" value="Enter Room ID:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="chooseConfirmPrompt">
@@ -161,9 +161,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirm Booking"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmBookingActionPerformed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="roomOptionScroll">
           <AuxValues>
@@ -198,9 +195,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Return"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnPreviousMenuActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="roomNumber">
           <Properties>
@@ -216,9 +210,6 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="?"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomNumberActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

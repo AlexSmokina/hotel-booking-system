@@ -130,7 +130,7 @@ public class RoomManager implements DatabaseCreator {
                 + "'" + hotelID + "')";
 
         dbManager.updateDB(insertRoomSQL);
-        
+
         String roomCountColumn = getRoomColumnName(roomType);
 
     }
@@ -158,7 +158,7 @@ public class RoomManager implements DatabaseCreator {
 
             // Determine which room count column to decrement in the HOTEL table
             String roomCountColumn = getRoomColumnName(roomType);
-            
+
             // Update the hotel room count in the HOTEL table
             String updateHotelSQL = "UPDATE HOTEL SET " + roomCountColumn + " = " + roomCountColumn + " - 1 WHERE HOTEL_ID = '" + hotelID + "'";
             dbManager.updateDB(updateHotelSQL);
@@ -318,10 +318,25 @@ public class RoomManager implements DatabaseCreator {
     }
 
     // Method to filter rooms by availability date and hotel ID
-    public List<Room> filterByDate(String date, String hotelID) {
+    public List<Room> filterByDate(String date, String hotelName) {
         List<Room> roomList = new ArrayList<>();
+
+        // First, get the hotel ID from hotel name
         try {
             Statement stmt = conn.createStatement();
+
+            String hotelQuery = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet hotelRs = stmt.executeQuery(hotelQuery);
+
+            // Check if hotel exists and get its ID
+            String hotelID = null;
+            if (hotelRs.next()) {
+                hotelID = hotelRs.getString("HOTEL_ID");
+            } else {
+                // If hotel not found, return empty list
+                return roomList;
+            }
+            hotelRs.close();
             // SQL query to filter rooms by availability date and hotel ID
             String query = "SELECT * FROM ROOM WHERE DATE_FROM = '" + date
                     + "' AND HOTEL_ID = '" + hotelID + "'";
@@ -335,7 +350,6 @@ public class RoomManager implements DatabaseCreator {
         }
         return roomList; // Return the list of rooms
     }
-
 
     public String viewRooms() {
         // SQL query to select all room records from the ROOM table
@@ -399,20 +413,19 @@ public class RoomManager implements DatabaseCreator {
             e.printStackTrace();
         }
     }
-    
+
     // Helper method to get the column name
     private String getRoomColumnName(String roomType) {
-    switch (roomType.toUpperCase()) {
-        case "STANDARD":
-            return "STANDARD";
-        case "PREMIUM":
-            return "PREMIUM";
-        case "SUITE":
-            return "SUITE";
-        default:
-            throw new IllegalArgumentException("Invalid room type: " + roomType);
+        switch (roomType.toUpperCase()) {
+            case "STANDARD":
+                return "STANDARD";
+            case "PREMIUM":
+                return "PREMIUM";
+            case "SUITE":
+                return "SUITE";
+            default:
+                throw new IllegalArgumentException("Invalid room type: " + roomType);
+        }
     }
-}
-
 
 }
