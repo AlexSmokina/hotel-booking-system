@@ -84,8 +84,8 @@ public class RoomDetails extends javax.swing.JFrame {
         chooseRoomType.setText("Choose Room Type");
 
         roomType.setBackground(new java.awt.Color(255, 204, 255));
-        roomType.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        roomType.setForeground(new java.awt.Color(102, 102, 102));
+        roomType.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        roomType.setForeground(new java.awt.Color(0, 0, 0));
         roomType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "STANDARD", "PREMIUM", "SUITE" }));
         roomType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,9 +100,6 @@ public class RoomDetails extends javax.swing.JFrame {
             .addGroup(roomDetailsPanelLayout.createSequentialGroup()
                 .addGroup(roomDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roomDetailsPanelLayout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(roomDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roomDetailsPanelLayout.createSequentialGroup()
                         .addGap(118, 118, 118)
                         .addComponent(roomDetails, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roomDetailsPanelLayout.createSequentialGroup()
@@ -110,39 +107,42 @@ public class RoomDetails extends javax.swing.JFrame {
                         .addGroup(roomDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(confirmUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(roomPrice, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roomDetailsPanelLayout.createSequentialGroup()
                                 .addComponent(chooseRoomType, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(roomDetailsPanelLayout.createSequentialGroup()
-                        .addGap(207, 207, 207)
+                        .addGap(172, 172, 172)
+                        .addComponent(roomDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roomDetailsPanelLayout.createSequentialGroup()
+                        .addGap(205, 205, 205)
                         .addComponent(returnPreviousMenu)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         roomDetailsPanelLayout.setVerticalGroup(
             roomDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roomDetailsPanelLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(35, 35, 35)
                 .addComponent(roomDetails, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(roomDetailsPrompt)
-                .addGap(43, 43, 43)
-                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(roomDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(chooseRoomType, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(roomType))
-                .addGap(31, 31, 31)
-                .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(roomDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chooseRoomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(roomPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(returnPreviousMenu)
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         getContentPane().add(roomDetailsPanel, java.awt.BorderLayout.CENTER);

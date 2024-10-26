@@ -57,17 +57,19 @@ public class SignIn extends javax.swing.JFrame {
         credentialsMessage.setText("Enter your credentials to login");
 
         loginUsername.setBackground(new java.awt.Color(255, 204, 255));
+        loginUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         loginUsername.setForeground(new java.awt.Color(102, 102, 102));
         loginUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         loginUsername.setText("Username");
 
         loginPassword.setBackground(new java.awt.Color(255, 204, 255));
+        loginPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         loginPassword.setForeground(new java.awt.Color(102, 102, 102));
         loginPassword.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         loginPassword.setText("Password");
 
         login.setBackground(new java.awt.Color(153, 0, 153));
-        login.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        login.setFont(new java.awt.Font("STSong", 0, 24)); // NOI18N
         login.setForeground(new java.awt.Color(255, 255, 255));
         login.setText("Login");
 
@@ -77,7 +79,7 @@ public class SignIn extends javax.swing.JFrame {
         signUpOptionPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         signUpOptionPrompt.setText("Don't have an account?");
 
-        signUpOption.setFont(new java.awt.Font("sansserif", 0, 14)); // NOI18N
+        signUpOption.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         signUpOption.setForeground(new java.awt.Color(153, 0, 153));
         signUpOption.setText("Sign Up");
 
@@ -108,19 +110,19 @@ public class SignIn extends javax.swing.JFrame {
             .addGroup(signInPanelLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addComponent(loginWelcome, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(credentialsMessage)
-                .addGap(52, 52, 52)
-                .addComponent(loginUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(loginUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(loginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loginPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(105, 105, 105)
+                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                 .addGroup(signInPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(signUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(signUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                    .addComponent(signUpOption, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(signUpOptionPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
 
         getContentPane().add(signInPanel, java.awt.BorderLayout.CENTER);

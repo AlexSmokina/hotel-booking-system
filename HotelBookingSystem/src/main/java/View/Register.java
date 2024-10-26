@@ -62,22 +62,27 @@ public class Register extends javax.swing.JFrame {
         createAccountPrompt.setText("Create your account");
 
         registerUsername.setBackground(new java.awt.Color(255, 204, 255));
+        registerUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registerUsername.setForeground(new java.awt.Color(102, 102, 102));
         registerUsername.setText("Username");
 
         registerPassword.setBackground(new java.awt.Color(255, 204, 255));
+        registerPassword.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registerPassword.setForeground(new java.awt.Color(102, 102, 102));
         registerPassword.setText("Password");
 
         registerName.setBackground(new java.awt.Color(255, 204, 255));
+        registerName.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registerName.setForeground(new java.awt.Color(102, 102, 102));
         registerName.setText("Name");
 
         registerPhone.setBackground(new java.awt.Color(255, 204, 255));
+        registerPhone.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registerPhone.setForeground(new java.awt.Color(102, 102, 102));
         registerPhone.setText("Phone");
 
         registerEmail.setBackground(new java.awt.Color(255, 204, 255));
+        registerEmail.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         registerEmail.setForeground(new java.awt.Color(102, 102, 102));
         registerEmail.setText("Email");
 

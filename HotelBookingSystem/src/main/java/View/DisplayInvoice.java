@@ -34,6 +34,8 @@ public class DisplayInvoice extends javax.swing.JFrame {
         scrollInvoicePanel = new javax.swing.JScrollPane();
         invoiceDisplayArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
+        enterBookingID = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -49,12 +51,26 @@ public class DisplayInvoice extends javax.swing.JFrame {
         invoiceDisplayArea.setColumns(20);
         invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
         invoiceDisplayArea.setRows(5);
-        invoiceDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Invoice Print", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollInvoicePanel.setViewportView(invoiceDisplayArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
+
+        enterBookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        enterBookingID.setForeground(new java.awt.Color(102, 102, 102));
+        enterBookingID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterBookingID.setText("Enter booking ID to view invoice");
+        enterBookingID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterBookingIDActionPerformed(evt);
+            }
+        });
+
+        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 0, 153));
+        search.setText("Search");
 
         javax.swing.GroupLayout displayInvoicePanelLayout = new javax.swing.GroupLayout(displayInvoicePanel);
         displayInvoicePanel.setLayout(displayInvoicePanelLayout);
@@ -69,6 +85,12 @@ public class DisplayInvoice extends javax.swing.JFrame {
                 .addComponent(returnPreviousMenu)
                 .addGap(207, 207, 207))
             .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayInvoicePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enterBookingID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         displayInvoicePanelLayout.setVerticalGroup(
             displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +98,11 @@ public class DisplayInvoice extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addGroup(displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(enterBookingID))
+                .addGap(8, 8, 8)
+                .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
@@ -86,6 +112,10 @@ public class DisplayInvoice extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enterBookingIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBookingIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterBookingIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,9 +159,11 @@ public class DisplayInvoice extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel displayInvoicePanel;
+    private javax.swing.JTextField enterBookingID;
     private javax.swing.JLabel invoice;
     private javax.swing.JTextArea invoiceDisplayArea;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JScrollPane scrollInvoicePanel;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

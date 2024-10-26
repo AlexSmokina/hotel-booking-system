@@ -42,7 +42,15 @@
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
+                          <Component id="guestMenu" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="173" max="-2" attributes="0"/>
+                          <Component id="choseOptionPrompt" min="-2" pref="150" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="roomManagement" min="-2" pref="406" max="-2" attributes="0"/>
                               <Component id="hotelManagement" min="-2" pref="406" max="-2" attributes="0"/>
@@ -50,16 +58,8 @@
                               <Component id="logoutStaffMenu" alignment="0" min="-2" pref="406" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
-                          <Component id="choseOptionPrompt" min="-2" pref="150" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="140" max="-2" attributes="0"/>
-                          <Component id="guestMenu" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace pref="47" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -68,17 +68,17 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
                   <Component id="guestMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="choseOptionPrompt" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                  <Component id="hotelManagement" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="hotelManagement" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="roomManagement" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="roomManagement" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="bookingManagement" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="bookingManagement" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="logoutStaffMenu" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="146" max="32767" attributes="0"/>
+                  <Component id="logoutStaffMenu" min="-2" pref="60" max="-2" attributes="0"/>
+                  <EmptySpace pref="102" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

@@ -31,6 +31,8 @@ public class DisplayBooking extends javax.swing.JFrame {
         scrollBookingsPanel = new javax.swing.JScrollPane();
         invoiceDisplayArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
+        enterBookingID = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,12 +48,26 @@ public class DisplayBooking extends javax.swing.JFrame {
         invoiceDisplayArea.setColumns(20);
         invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
         invoiceDisplayArea.setRows(5);
-        invoiceDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollBookingsPanel.setViewportView(invoiceDisplayArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
+
+        enterBookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        enterBookingID.setForeground(new java.awt.Color(102, 102, 102));
+        enterBookingID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterBookingID.setText("Enter your booking ID to view details");
+        enterBookingID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enterBookingIDActionPerformed(evt);
+            }
+        });
+
+        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 0, 153));
+        search.setText("Search");
 
         javax.swing.GroupLayout displayBookingPanelLayout = new javax.swing.GroupLayout(displayBookingPanel);
         displayBookingPanel.setLayout(displayBookingPanelLayout);
@@ -67,6 +83,12 @@ public class DisplayBooking extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
                         .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(156, 156, 156))))
+            .addGroup(displayBookingPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(enterBookingID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         displayBookingPanelLayout.setVerticalGroup(
             displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,7 +96,11 @@ public class DisplayBooking extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addGroup(displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(enterBookingID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
@@ -84,6 +110,10 @@ public class DisplayBooking extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void enterBookingIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBookingIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_enterBookingIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,8 +153,10 @@ public class DisplayBooking extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookings;
     private javax.swing.JPanel displayBookingPanel;
+    private javax.swing.JTextField enterBookingID;
     private javax.swing.JTextArea invoiceDisplayArea;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JScrollPane scrollBookingsPanel;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

@@ -46,10 +46,6 @@
                           <Component id="enterHotelDetailsPrompt" min="-2" pref="150" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="hotelDetails" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="newHotelName" min="-2" pref="400" max="-2" attributes="0"/>
@@ -62,6 +58,10 @@
                           <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
                           <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="117" max="-2" attributes="0"/>
+                          <Component id="hotelDetails" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="51" max="32767" attributes="0"/>
               </Group>
@@ -70,21 +70,21 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Component id="hotelDetails" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                   <Component id="enterHotelDetailsPrompt" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                  <Component id="hotelID" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="hotelID" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="newHotelName" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="newHotelName" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="hotelLocation" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="hotelLocation" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="confirmUpdate" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="confirmUpdate" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="144" max="32767" attributes="0"/>
+                  <EmptySpace pref="64" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -127,6 +127,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
@@ -138,6 +141,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
@@ -148,6 +154,9 @@
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Helvetica Neue" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
