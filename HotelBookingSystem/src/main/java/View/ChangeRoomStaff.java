@@ -26,14 +26,18 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         changeRoomPanel = new javax.swing.JPanel();
         changeRoom = new javax.swing.JLabel();
-        guestUsername = new javax.swing.JTextField();
+        enterGuestUsername = new javax.swing.JTextField();
         enterBookingID = new javax.swing.JTextField();
         checkAvailabilityRoom = new javax.swing.JButton();
         returnPreviousMenu = new javax.swing.JButton();
         bookingScrollArea = new javax.swing.JScrollPane();
         bookingTextArea = new javax.swing.JTextArea();
+        search = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,13 +50,13 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         changeRoom.setText("Change Room");
         changeRoom.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        guestUsername.setBackground(new java.awt.Color(255, 204, 255));
-        guestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        guestUsername.setForeground(new java.awt.Color(102, 102, 102));
-        guestUsername.setText("Enter guest username");
-        guestUsername.addActionListener(new java.awt.event.ActionListener() {
+        enterGuestUsername.setBackground(new java.awt.Color(255, 204, 255));
+        enterGuestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        enterGuestUsername.setForeground(new java.awt.Color(102, 102, 102));
+        enterGuestUsername.setText("Enter guest username");
+        enterGuestUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guestUsernameActionPerformed(evt);
+                enterGuestUsernameActionPerformed(evt);
             }
         });
 
@@ -80,6 +84,10 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         bookingTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Bookings", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         bookingScrollArea.setViewportView(bookingTextArea);
 
+        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 0, 153));
+        search.setText("Search");
+
         javax.swing.GroupLayout changeRoomPanelLayout = new javax.swing.GroupLayout(changeRoomPanel);
         changeRoomPanel.setLayout(changeRoomPanelLayout);
         changeRoomPanelLayout.setHorizontalGroup(
@@ -87,29 +95,40 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
             .addGroup(changeRoomPanelLayout.createSequentialGroup()
                 .addGroup(changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(changeRoomPanelLayout.createSequentialGroup()
-                        .addGap(50, 50, 50)
                         .addGroup(changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(guestUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(checkAvailabilityRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterBookingID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(changeRoomPanelLayout.createSequentialGroup()
+                                .addGap(50, 50, 50)
+                                .addGroup(changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(checkAvailabilityRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(enterBookingID, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(changeRoomPanelLayout.createSequentialGroup()
+                                .addGap(110, 110, 110)
+                                .addComponent(changeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(changeRoomPanelLayout.createSequentialGroup()
+                                .addGap(207, 207, 207)
+                                .addComponent(returnPreviousMenu))
+                            .addGroup(changeRoomPanelLayout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(enterGuestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(search)))
+                        .addGap(0, 44, Short.MAX_VALUE))
                     .addGroup(changeRoomPanelLayout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(changeRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(changeRoomPanelLayout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(returnPreviousMenu)))
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addComponent(bookingScrollArea, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addContainerGap()
+                        .addComponent(bookingScrollArea)))
+                .addContainerGap())
         );
         changeRoomPanelLayout.setVerticalGroup(
             changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(changeRoomPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(changeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(95, 95, 95)
-                .addComponent(bookingScrollArea, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(enterGuestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bookingScrollArea, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enterBookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -124,9 +143,9 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guestUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestUsernameActionPerformed
+    private void enterGuestUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterGuestUsernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_guestUsernameActionPerformed
+    }//GEN-LAST:event_enterGuestUsernameActionPerformed
 
     private void checkAvailabilityRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailabilityRoomActionPerformed
         // TODO add your handling code here:
@@ -175,7 +194,9 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
     private javax.swing.JPanel changeRoomPanel;
     private javax.swing.JButton checkAvailabilityRoom;
     private javax.swing.JTextField enterBookingID;
-    private javax.swing.JTextField guestUsername;
+    private javax.swing.JTextField enterGuestUsername;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton returnPreviousMenu;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }
