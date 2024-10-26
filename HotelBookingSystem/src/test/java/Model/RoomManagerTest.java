@@ -5,6 +5,7 @@
 package Model;
 
 import java.util.List;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,18 +29,17 @@ public class RoomManagerTest {
                 dbManager.establishConnection();
             }
 
-            // Then initialize RoomManager
+            // Initialising RoomManager
             roomManager = RoomManager.getInstance();
 
-            // Create database tables if they don't exist
+            // Creating database tables if they don't exist
             roomManager.createDatabase();
 
-            // Clear existing data
+            // Clearing existing data
             roomManager.clearRoomData();
 
         } catch (Exception e) {
             System.err.println("Error in setup: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -49,7 +49,6 @@ public class RoomManagerTest {
             roomManager.clearRoomData();
         } catch (Exception e) {
             System.err.println("Error in teardown: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -146,8 +145,8 @@ public class RoomManagerTest {
         assertEquals(3, hotel2Rooms.size(), "Hotel 2 should have 3 rooms");
 
         long standardRoomsH1 = hotel1Rooms.stream()
-            .filter(r -> r.getRoomType().equals("STANDARD"))
-            .count();
+                .filter(r -> r.getRoomType().equals("STANDARD"))
+                .count();
 
         assertEquals(2, standardRoomsH1, "Hotel 1 should have 2 standard rooms");
     }

@@ -76,7 +76,7 @@ public class BookingManager implements DatabaseCreator {
 
         // Insert the new booking into the database using the calculated price
         String sql = String.format("INSERT INTO BOOKING (BOOKING_ID, START_DATE, END_DATE, ROOM_ID, USERNAME, TOTAL_PRICE, HOTEL_ID, BOOKING_STATUS) "
-                + "VALUES ('%s', '%s', '%s',' %s', '%s', %.2f, '%s', '%s')",
+                + "VALUES ('%s', '%s', '%s', '%s', '%s', %.2f, '%s', '%s')",
                 bookingID, startDate, endDate, roomID, username, calculatedPrice, hotelID, status);
 
         try {

@@ -133,10 +133,6 @@ public class RoomManager implements DatabaseCreator {
         
         String roomCountColumn = getRoomColumnName(roomType);
 
-        // SQL query to update the room count in the HOTEL table
-        String updateHotelSQL = "UPDATE HOTEL SET " + roomCountColumn + " = " + roomCountColumn + " + 1 WHERE HOTEL_ID = '" + hotelID + "'";
-        dbManager.updateDB(updateHotelSQL);
-        System.out.printf("Room %s created successfully.%n", roomID);
     }
 
     // Method to delete ROOM
@@ -397,9 +393,6 @@ public class RoomManager implements DatabaseCreator {
 
             if (dbManager.doesTableExist("ROOM_COUNTER")) {
                 dbManager.updateDB("DELETE FROM ROOM_COUNTER");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
             }
         } catch (Exception e) {
             System.err.println("Error clearing room data: " + e.getMessage());

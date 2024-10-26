@@ -1,13 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package Model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+/**
+ *
+ * @author alex
+ */
+public class test {
 
-public class HotelManager implements DatabaseCreator {
+    /*
+    
+    public class HotelManager implements DatabaseCreator {
 
     private final DbManager dbManager;
     private final RoomManager roomManager;
@@ -95,77 +100,56 @@ public class HotelManager implements DatabaseCreator {
 
     // Method to create a new hotel entry in the HOTEL table
     public void createNewHotel(String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
-        // Input validation
-        if (name == null || location == null
-                || numStandardRooms < 0 || numPremiumRooms < 0 || numSuites < 0) {
-            System.out.println("Invalid hotel data provided");
-            return;
-        }
-
         String hotelID = idGenerator();
-        // Check if the hotel already exists
+        // Check if the hotel already exists by looking up its hotel ID
         if (getHotelData(hotelID) != null) {
             System.out.println("Hotel with ID '" + hotelID + "' already exists.");
-            return;
+            return; // Exit the method if hotel already exists
         }
 
-        try {
-            // Create the hotel record with initial room counts
-            String sql = "INSERT INTO HOTEL (HOTEL_ID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
-                    + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', "
-                    + numStandardRooms + ", " + numPremiumRooms + ", " + numSuites + ")";
+        // SQL query to insert the new hotel data into the HOTEL table
+        String sql = "INSERT INTO HOTEL (HOTEL_ID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
+                + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', "
+                + numStandardRooms + ", " + numPremiumRooms + ", " + numSuites + ")";
 
+        try {
+            // Execute the SQL query to add the new hotel
             dbManager.updateDB(sql);
             System.out.println("Hotel '" + name + "' added successfully.");
-
-            // Create the rooms without updating counts
             createRoomsForHotel(hotelID, numStandardRooms, numPremiumRooms, numSuites);
         } catch (Exception e) {
+            // Print error message if hotel creation fails
             System.out.println("Error creating new hotel: " + e.getMessage());
         }
     }
 
     private void createRoomsForHotel(String hotelID, int standardRooms, int premiumRooms, int suites) {
-        try {
-            // Just create the rooms without updating counts
-            for (int i = 0; i < standardRooms; i++) {
-                roomManager.createRoom("Standard", hotelID);
-            }
-            for (int i = 0; i < premiumRooms; i++) {
-                roomManager.createRoom("Premium", hotelID);
-            }
-            for (int i = 0; i < suites; i++) {
-                roomManager.createRoom("Suite", hotelID);
-            }
-        } catch (Exception e) {
-            System.out.println("Error creating rooms: " + e.getMessage());
+        for (int i = 0; i < standardRooms; i++) {
+            roomManager.createRoom("Standard", hotelID);
+        }
+        for (int i = 0; i < premiumRooms; i++) {
+            roomManager.createRoom("Premium", hotelID);
+        }
+        for (int i = 0; i < suites; i++) {
+            roomManager.createRoom("Suite", hotelID);
         }
     }
 
     // Method to update the name and location of a specific hotel in the HOTEL table
     public void updateHotelDetails(String hotelID, String name, String location) {
-        // Input validation
-        if (hotelID == null || name == null || location == null) {
-            System.out.println("Invalid update data provided");
-            return;
-        }
 
-        // Verify hotel exists
-        if (getHotelData(hotelID) == null) {
-            System.out.println("Hotel with ID '" + hotelID + "' does not exist.");
-            return;
-        }
+        // SQL query to update the hotel's name and location based on its hotel ID
+        String sql = "UPDATE HOTEL SET "
+                + "HOTEL_NAME = '" + name + "', "
+                + "HOTEL_LOCATION = '" + location + "'"
+                + "WHERE HOTEL_ID = '" + hotelID + "'";
 
         try {
-            // Only update name and location
-            String sql = "UPDATE HOTEL SET "
-                    + "HOTEL_NAME = '" + name + "', "
-                    + "HOTEL_LOCATION = '" + location + "' "
-                    + "WHERE HOTEL_ID = '" + hotelID + "'";
-
+            // Execute the SQL query to update the hotel details
             dbManager.updateDB(sql);
             System.out.println("Hotel ID: '" + hotelID + "' updated successfully");
         } catch (Exception e) {
+            // Print error message if hotel update fails
             System.out.println("Error updating hotel: " + e.getMessage());
         }
     }
@@ -267,4 +251,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
+}
+    
+     */
 }
