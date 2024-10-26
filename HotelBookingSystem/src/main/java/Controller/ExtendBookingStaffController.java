@@ -77,7 +77,7 @@ public class ExtendBookingStaffController implements ActionListener{
             view.dispose();
         } else {
             JOptionPane.showMessageDialog(view,
-                    "Failled to extend booking",
+                    "Failled to extend booking, This booking has been cancelled",
                     "Failed",
                     JOptionPane.ERROR_MESSAGE);
         }
