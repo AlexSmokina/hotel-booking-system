@@ -25,7 +25,7 @@ public class HotelManagerTest {
         dbManager = hotelManager.getDbManager();
 
         // Clear existing data instead of dropping tables
-        clearHotelData();
+        hotelManager.clearHotelData();
 
         // Ensure tables exist
         hotelManager.createDatabase();
@@ -34,17 +34,9 @@ public class HotelManagerTest {
     @AfterEach
     public void tearDown() {
         // Clear data without dropping tables
-        clearHotelData();
+        hotelManager.clearHotelData();
     }
-
-    private void clearHotelData() {
-        try {
-            // Delete all records instead of dropping the table
-            dbManager.updateDB("DELETE FROM HOTEL");
-        } catch (Exception e) {
-            System.out.println("Error clearing hotel data: " + e.getMessage());
-        }
-    }
+    
 
     /**
      * Test singleton pattern implementation

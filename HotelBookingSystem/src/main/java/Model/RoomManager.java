@@ -352,9 +352,9 @@ public class RoomManager implements DatabaseCreator {
 
             if (dbManager.doesTableExist("ROOM_COUNTER")) {
                 dbManager.updateDB("DELETE FROM ROOM_COUNTER");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
-                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
+//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
             }
         } catch (Exception e) {
             System.err.println("Error clearing room data: " + e.getMessage());

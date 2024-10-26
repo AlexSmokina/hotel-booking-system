@@ -68,7 +68,7 @@ public class BookingManager implements DatabaseCreator {
 
     // Method to new booking record in the database
     public void createBooking(Date startDate, Date endDate, String roomID, String username, Room room, User user, String hotelID, String status) {
-        
+
         String bookingID = idGenerator();
         // Create a new Booking object to calculate the total cost
         Booking newBooking = new Booking(bookingID, startDate, endDate, room, user, hotelID);
@@ -248,6 +248,17 @@ public class BookingManager implements DatabaseCreator {
         } catch (Exception e) {
             invoiceTextArea.setText("Error generating invoice: " + e.getMessage());
             System.err.println("Error generating invoice: " + e.getMessage());
+        }
+    }
+
+    public void clearBookingData() {
+        try {
+            // Check if table exist before trying to clear it
+            if (dbManager.doesTableExist("BOOKING")) {
+                dbManager.updateDB("DELETE FROM BOOKING");
+            }
+        } catch (Exception e) {
+            System.err.println("Error clearing booking data: " + e.getMessage());
         }
     }
 

@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BookingManagerTest {
     
     private BookingManager bookingManager;
+    private DbManager dbManager;
     private static final String TEST_HOTEL_ID = "HTL-001";
     private static final String TEST_ROOM_ID = "RM-101";
     private static final String TEST_USERNAME = "testuser";

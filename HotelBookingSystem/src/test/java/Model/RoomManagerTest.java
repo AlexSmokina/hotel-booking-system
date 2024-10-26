@@ -53,34 +53,9 @@ public class RoomManagerTest {
         }
     }
 
-//    private void clearRoomData() {
-//        try {
-//            // Check if tables exist before trying to clear them
-//            if (dbManager.doesTableExist("ROOM")) {
-//                dbManager.updateDB("DELETE FROM ROOM");
-//            }
-//
-//            if (dbManager.doesTableExist("ROOM_COUNTER")) {
-//                dbManager.updateDB("DELETE FROM ROOM_COUNTER");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('STANDARD', 0)");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('PREMIUM', 0)");
-//                dbManager.updateDB("INSERT INTO ROOM_COUNTER (ROOM_TYPE, CURRENT_COUNT) VALUES ('SUITE', 0)");
-//            }
-//        } catch (Exception e) {
-//            System.err.println("Error clearing room data: " + e.getMessage());
-//            e.printStackTrace();
-//        }
-//    }
-
-//    private boolean tableExists(String tableName) {
-//        try {
-//            dbManager.queryDB("SELECT 1 FROM " + tableName + " WHERE 1 = 0");
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//        }
-//    }
-
+    /**
+     * Test getting room instance
+     */
     @Test
     public void testGetInstance() {
         assertNotNull(roomManager, "RoomManager instance should not be null");
@@ -88,6 +63,9 @@ public class RoomManagerTest {
         assertSame(roomManager, instance2, "getInstance should return the same instance");
     }
 
+    /**
+     * Test creating new room data
+     */
     @Test
     public void testCreateRoom() {
         try {
