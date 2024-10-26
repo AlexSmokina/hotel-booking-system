@@ -193,7 +193,7 @@ public class AddNewHotel extends javax.swing.JFrame {
         return standardRoomsNumber;
     }
     
-    public javax.swing.JButton returnPreviousMenu(){
+    public javax.swing.JButton getReturnPreviousMenu(){
         return returnPreviousMenu;
     }
 

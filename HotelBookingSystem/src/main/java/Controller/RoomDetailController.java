@@ -8,6 +8,7 @@ import Model.Room;
 import View.RoomDetails;
 import View.RoomManagement;
 import Model.RoomManager;
+import Model.RoomType;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -39,7 +40,7 @@ public class RoomDetailController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if ("Confirm".equals(command)) {
+        if ("Confirm Update".equals(command)) {
             handleEditDetail();
         } else if ("Return".equals(command)) {
             RoomManagement roomManagementMenu = new RoomManagement();
@@ -52,6 +53,7 @@ public class RoomDetailController implements ActionListener {
         String hotelID = view.getHotelID().getText();
         String roomID = view.getRoomID().getText();
         String price = view.getRoomPrice().getText();
+        String roomTypeString  = view.getRoomType().getSelectedItem().toString();
 
         if (isDefaultOrEmpty(hotelID, DEFAULT_HOTELID) || isDefaultOrEmpty(roomID, DEFAULT_ROOMID) || isDefaultOrEmpty(price, DEFAULT_PRICE)) {
             JOptionPane.showMessageDialog(view,
@@ -60,6 +62,22 @@ public class RoomDetailController implements ActionListener {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        
+        Room room = roomManager.getRoomData(roomID, hotelID);
+        RoomType roomType = RoomType.valueOf(roomTypeString.toUpperCase());
+        room.setRoomType(roomType);
+        room.setPrice(Double.parseDouble(price));
+        roomManager.updateRoomData(roomID, room);
+        
+        JOptionPane.showMessageDialog(view,
+                "Detail edited successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        RoomManagement roomManagementMenu = new RoomManagement();
+        roomManagementMenu.setVisible(true);
+        view.dispose();
+        
     }
 
     private boolean isDefaultOrEmpty(String value, String defaultValue) {

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.RoomDetailController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class RoomDetails extends javax.swing.JFrame {
      */
     public RoomDetails() {
         initComponents();
+        new RoomDetailController(this);
     }
 
     /**
@@ -188,7 +191,9 @@ public class RoomDetails extends javax.swing.JFrame {
         return roomPrice;
     }
 
-    public String getRoomType() {
-        return (String) roomType.getSelectedItem();
+    public javax.swing.JComboBox<String> getRoomType() {
+        return roomType;
     }
+    
+    
 }

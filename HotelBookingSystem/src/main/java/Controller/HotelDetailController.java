@@ -37,7 +37,7 @@ public class HotelDetailController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if ("Confirm".equals(command)) {
+        if ("Confirm Update".equals(command)) {
             handleChangeDetails();
         } else if ("Return".equals(command)) {
             HotelManagement hotelManagementMenu = new HotelManagement();

@@ -158,7 +158,10 @@ public class AddNewRoom extends javax.swing.JFrame {
         return returnPreviousMenu;
     }
 
-    public String getRoomType() {
-        return (String) roomType.getSelectedItem();
+ 
+    public javax.swing.JComboBox<String> getRoomType() {
+        return roomType;
     }
+
+    
 }

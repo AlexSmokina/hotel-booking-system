@@ -129,30 +129,18 @@ public class CancelBookingStaff extends javax.swing.JFrame {
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the bookingID
-     */
     public javax.swing.JTextField getBookingID() {
         return bookingID;
     }
 
-    /**
-     * @return the confirmCancel
-     */
     public javax.swing.JButton getConfirmCancel() {
         return confirmCancel;
     }
 
-    /**
-     * @return the guestUsername
-     */
     public javax.swing.JTextField getGuestUsername() {
         return guestUsername;
     }
 
-    /**
-     * @return the returnPreviousMenu
-     */
     public javax.swing.JButton getReturnPreviousMenu() {
         return returnPreviousMenu;
     }

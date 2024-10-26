@@ -30,7 +30,7 @@ public class AddNewHotelController implements ActionListener {
 
     private void initalise() {
         view.getAddNewHotel().addActionListener(this);
-
+        view.getReturnPreviousMenu().addActionListener(this);
     }
 
     @Override

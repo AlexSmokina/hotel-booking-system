@@ -21,7 +21,6 @@ public class AddNewRoomController implements ActionListener {
     RoomManager roomManager;
 
     private static final String DEFAULT_ID = "Enter Hotel ID";
-    private static final String DEFAULT_TYPE = "Enter Room Type (STANDARD / PREMIUM / SUITE)";
 
     public AddNewRoomController(AddNewRoom view) {
         this.view = view;
@@ -51,9 +50,9 @@ public class AddNewRoomController implements ActionListener {
 
     private void handleAddRoom() {
         String hotelID = view.getHotelID().getText();
-        String roomType = view.getRoomType().getText();
+        String roomType = view.getRoomType().getSelectedItem().toString();
 
-        if (isDefaultOrEmpty(hotelID, DEFAULT_ID) || isDefaultOrEmpty(roomType, DEFAULT_TYPE)) {
+        if (isDefaultOrEmpty(hotelID, DEFAULT_ID)) {
             JOptionPane.showMessageDialog(view,
                     "Please fill in all fields with valid information",
                     "Failed",
