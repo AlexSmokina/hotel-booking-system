@@ -30,7 +30,7 @@ public class BookingManagerTest {
         hotelManager = HotelManager.getInstance();
 
         // Clearinganager.clearBookingData();
-        hotelManager.clearHotelData();
+        hotelManager.clearHotelData("Test Hotel");
         roomManager.clearRoomData();
 
         // Creating fresh tables
@@ -48,7 +48,7 @@ public class BookingManagerTest {
     @AfterEach
     public void tearDown() {
         bookingManager.clearBookingData();
-        hotelManager.clearHotelData();
+        hotelManager.clearHotelData("Test Hotel");
         roomManager.clearRoomData();
         
         if(testUser != null) {

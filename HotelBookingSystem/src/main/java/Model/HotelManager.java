@@ -276,10 +276,10 @@ public class HotelManager implements DatabaseCreator {
         return dbManager;
     }
 
-    public void clearHotelData() {
+    public void clearHotelData(String hotelName) {
         try {
             // Delete all records instead of dropping the table
-            dbManager.updateDB("DELETE FROM HOTEL");
+            dbManager.updateDB("DELETE FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'");
         } catch (Exception e) {
             System.out.println("Error clearing hotel data: " + e.getMessage());
         }
