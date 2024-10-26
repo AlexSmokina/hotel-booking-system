@@ -87,7 +87,7 @@ public class GuestMenu extends javax.swing.JFrame {
         viewBookings.setBackground(new java.awt.Color(255, 204, 255));
         viewBookings.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         viewBookings.setForeground(new java.awt.Color(0, 0, 0));
-        viewBookings.setText("View Booking");
+        viewBookings.setText("View Bookings");
 
         displayInvoice.setBackground(new java.awt.Color(255, 204, 255));
         displayInvoice.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
@@ -171,6 +171,14 @@ public class GuestMenu extends javax.swing.JFrame {
 
     public javax.swing.JButton getLogoutGuestMenuButton() {
         return logoutGuestMenu;
+    }
+    
+    public javax.swing.JButton getViewBookings() {
+        return viewBookings;
+    }
+    
+    public javax.swing.JButton getDisplayInvoice() {
+        return displayInvoice;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

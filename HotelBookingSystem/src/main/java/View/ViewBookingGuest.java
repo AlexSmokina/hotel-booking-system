@@ -29,7 +29,7 @@ public class ViewBookingGuest extends javax.swing.JFrame {
         displayBookingPanel = new javax.swing.JPanel();
         bookings = new javax.swing.JLabel();
         scrollBookingsPanel = new javax.swing.JScrollPane();
-        invoiceDisplayArea = new javax.swing.JTextArea();
+        bookingViewArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,11 +43,11 @@ public class ViewBookingGuest extends javax.swing.JFrame {
         bookings.setText("Bookings");
         bookings.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        invoiceDisplayArea.setColumns(20);
-        invoiceDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        invoiceDisplayArea.setRows(5);
-        invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
-        scrollBookingsPanel.setViewportView(invoiceDisplayArea);
+        bookingViewArea.setColumns(20);
+        bookingViewArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingViewArea.setRows(5);
+        bookingViewArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
+        scrollBookingsPanel.setViewportView(bookingViewArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -123,10 +123,19 @@ public class ViewBookingGuest extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea bookingViewArea;
     private javax.swing.JLabel bookings;
     private javax.swing.JPanel displayBookingPanel;
-    private javax.swing.JTextArea invoiceDisplayArea;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JScrollPane scrollBookingsPanel;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+    
+    public javax.swing.JTextArea getBookingViewArea() {
+        return bookingViewArea;
+    }
+
 }
