@@ -33,9 +33,10 @@ public class AddNewRoom extends javax.swing.JFrame {
         newRoom = new javax.swing.JLabel();
         createNewRoomPrompt = new javax.swing.JLabel();
         hotelID = new javax.swing.JTextField();
-        roomType = new javax.swing.JTextField();
         addNewRoom = new javax.swing.JButton();
         returnPreviousMenu = new javax.swing.JButton();
+        roomType = new javax.swing.JComboBox<>();
+        chooseRoomType = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -55,12 +56,9 @@ public class AddNewRoom extends javax.swing.JFrame {
         createNewRoomPrompt.setText("Create new room");
 
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
+        hotelID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter Hotel ID");
-
-        roomType.setBackground(new java.awt.Color(255, 204, 255));
-        roomType.setForeground(new java.awt.Color(102, 102, 102));
-        roomType.setText("Enter Room Type (STANDARD / PREMIUM / SUITE)");
 
         addNewRoom.setBackground(new java.awt.Color(153, 0, 153));
         addNewRoom.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
@@ -71,6 +69,16 @@ public class AddNewRoom extends javax.swing.JFrame {
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
 
+        roomType.setBackground(new java.awt.Color(255, 204, 255));
+        roomType.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        roomType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "STANDARD", "PREMIUM", "SUITE" }));
+
+        chooseRoomType.setBackground(new java.awt.Color(255, 255, 255));
+        chooseRoomType.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        chooseRoomType.setForeground(new java.awt.Color(0, 0, 0));
+        chooseRoomType.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chooseRoomType.setText("Choose Room Type");
+
         javax.swing.GroupLayout addNewRoomPanelLayout = new javax.swing.GroupLayout(addNewRoomPanel);
         addNewRoomPanel.setLayout(addNewRoomPanelLayout);
         addNewRoomPanelLayout.setHorizontalGroup(
@@ -79,14 +87,18 @@ public class AddNewRoom extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewRoomPanelLayout.createSequentialGroup()
-                        .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewRoomPanelLayout.createSequentialGroup()
                         .addComponent(newRoom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139))))
+                        .addGap(139, 139, 139))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addNewRoomPanelLayout.createSequentialGroup()
+                        .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addNewRoomPanelLayout.createSequentialGroup()
+                                .addComponent(chooseRoomType, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(48, 48, 48))))
             .addGroup(addNewRoomPanelLayout.createSequentialGroup()
                 .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(addNewRoomPanelLayout.createSequentialGroup()
@@ -104,11 +116,13 @@ public class AddNewRoom extends javax.swing.JFrame {
                 .addComponent(newRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(createNewRoomPrompt)
-                .addGap(44, 44, 44)
+                .addGap(50, 50, 50)
+                .addGroup(addNewRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chooseRoomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(roomType, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(addNewRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(returnPreviousMenu)
@@ -120,18 +134,17 @@ public class AddNewRoom extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addNewRoom;
     private javax.swing.JPanel addNewRoomPanel;
+    private javax.swing.JLabel chooseRoomType;
     private javax.swing.JLabel createNewRoomPrompt;
     private javax.swing.JTextField hotelID;
     private javax.swing.JLabel newRoom;
     private javax.swing.JButton returnPreviousMenu;
-    private javax.swing.JTextField roomType;
+    private javax.swing.JComboBox<String> roomType;
     // End of variables declaration//GEN-END:variables
-
 
     public javax.swing.JButton getAddNewRoom() {
         return addNewRoom;
@@ -141,13 +154,11 @@ public class AddNewRoom extends javax.swing.JFrame {
         return hotelID;
     }
 
- 
     public javax.swing.JButton getReturnPreviousMenu() {
         return returnPreviousMenu;
     }
 
-    
-    public javax.swing.JTextField getRoomType() {
-        return roomType;
+    public String getRoomType() {
+        return (String) roomType.getSelectedItem();
     }
 }

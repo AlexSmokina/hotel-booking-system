@@ -47,6 +47,7 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         changeRoom.setPreferredSize(new java.awt.Dimension(220, 50));
 
         guestUsername.setBackground(new java.awt.Color(255, 204, 255));
+        guestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         guestUsername.setForeground(new java.awt.Color(102, 102, 102));
         guestUsername.setText("Enter guest username");
         guestUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -56,6 +57,7 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         });
 
         enterBookingID.setBackground(new java.awt.Color(255, 204, 255));
+        enterBookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         enterBookingID.setForeground(new java.awt.Color(102, 102, 102));
         enterBookingID.setText("Enter your booking ID");
 

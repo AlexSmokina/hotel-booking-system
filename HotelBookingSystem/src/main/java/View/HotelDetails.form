@@ -55,7 +55,7 @@
                               <Component id="newHotelName" min="-2" pref="400" max="-2" attributes="0"/>
                               <Component id="hotelID" min="-2" pref="400" max="-2" attributes="0"/>
                               <Component id="hotelLocation" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="confirm" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
+                              <Component id="confirmUpdate" alignment="0" min="-2" pref="400" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -81,7 +81,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="hotelLocation" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="confirm" min="-2" pref="40" max="-2" attributes="0"/>
+                  <Component id="confirmUpdate" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="144" max="32767" attributes="0"/>
@@ -155,7 +155,7 @@
             <Property name="text" type="java.lang.String" value="Enter new location"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="confirm">
+        <Component class="javax.swing.JButton" name="confirmUpdate">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>

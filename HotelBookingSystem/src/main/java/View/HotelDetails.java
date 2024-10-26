@@ -35,7 +35,7 @@ public class HotelDetails extends javax.swing.JFrame {
         hotelID = new javax.swing.JTextField();
         newHotelName = new javax.swing.JTextField();
         hotelLocation = new javax.swing.JTextField();
-        confirm = new javax.swing.JButton();
+        confirmUpdate = new javax.swing.JButton();
         returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,10 +67,10 @@ public class HotelDetails extends javax.swing.JFrame {
         hotelLocation.setForeground(new java.awt.Color(102, 102, 102));
         hotelLocation.setText("Enter new location");
 
-        confirm.setBackground(new java.awt.Color(153, 0, 153));
-        confirm.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
-        confirm.setForeground(new java.awt.Color(255, 255, 255));
-        confirm.setText("Confirm");
+        confirmUpdate.setBackground(new java.awt.Color(153, 0, 153));
+        confirmUpdate.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        confirmUpdate.setForeground(new java.awt.Color(255, 255, 255));
+        confirmUpdate.setText("Confirm");
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -93,14 +93,11 @@ public class HotelDetails extends javax.swing.JFrame {
                         .addGroup(hotelDetailsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(newHotelName, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(hotelID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-
                             .addComponent(hotelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(hotelDetailsPanelLayout.createSequentialGroup()
                         .addGap(207, 207, 207)
                         .addComponent(returnPreviousMenu)))
-
-                            
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         hotelDetailsPanelLayout.setVerticalGroup(
@@ -117,7 +114,7 @@ public class HotelDetails extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(hotelLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(confirmUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap(144, Short.MAX_VALUE))
@@ -130,7 +127,7 @@ public class HotelDetails extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton confirm;
+    private javax.swing.JButton confirmUpdate;
     private javax.swing.JLabel enterHotelDetailsPrompt;
     private javax.swing.JLabel hotelDetails;
     private javax.swing.JPanel hotelDetailsPanel;
@@ -142,7 +139,7 @@ public class HotelDetails extends javax.swing.JFrame {
 
    
     public javax.swing.JButton getConfirm() {
-        return confirm;
+        return confirmUpdate;
     }
 
     public javax.swing.JTextField getHotelID() {

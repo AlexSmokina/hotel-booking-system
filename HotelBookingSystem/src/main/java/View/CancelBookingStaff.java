@@ -40,6 +40,7 @@ public class CancelBookingStaff extends javax.swing.JFrame {
         cancelBookingStaffPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         guestUsername.setBackground(new java.awt.Color(255, 204, 255));
+        guestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         guestUsername.setForeground(new java.awt.Color(102, 102, 102));
         guestUsername.setText("Enter guest username");
         guestUsername.addActionListener(new java.awt.event.ActionListener() {
@@ -49,6 +50,7 @@ public class CancelBookingStaff extends javax.swing.JFrame {
         });
 
         bookingID.setBackground(new java.awt.Color(255, 204, 255));
+        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         bookingID.setForeground(new java.awt.Color(102, 102, 102));
         bookingID.setText("Enter booking ID you want to cancel");
 
