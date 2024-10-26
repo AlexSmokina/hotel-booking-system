@@ -8,7 +8,7 @@ import View.BookingManagement;
 import View.BookRoomStaff;
 import View.CancelBookingStaff;
 import View.ChangeRoomStaff;
-import View.DisplayBooking;
+import View.ViewBooking;
 import View.StaffMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -54,7 +54,7 @@ public class BookingManagementController implements ActionListener {
                 showView(new ChangeRoomStaff());
                 break;
             case "View guest booking":
-                showView(new DisplayBooking());
+                showView(new ViewBooking());
                 break;
             case "Return to Previous Menu":
                 showView(new StaffMenu());
