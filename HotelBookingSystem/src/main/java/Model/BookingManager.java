@@ -80,6 +80,7 @@ public class BookingManager implements DatabaseCreator {
             System.out.println("No room or user data!");
             return false;
         }
+        
 
         try {
             java.sql.Date startDate = convertToSqlDate(start);
@@ -137,6 +138,20 @@ public class BookingManager implements DatabaseCreator {
         }
         return null;
     }
+    
+    public Booking getBookingByUser(String username) {
+        String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                // Create a Booking object using the retrieved data
+                return extractBookingFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving booking: " + e.getMessage());
+        }
+        return null;
+    }
 
     // Method to extract booking from result set
     private Booking extractBookingFromResultSet(ResultSet rs) throws SQLException {
@@ -161,7 +176,7 @@ public class BookingManager implements DatabaseCreator {
     public boolean extendBooking(String bookingID, String newEndDate) {
         Booking booking = getBookingData(bookingID);
 
-        if (booking == null || "cancelled".equals(booking.getStatus())) {
+        if ("cancelled".equals(booking.getStatus())) {
             return false;
         }
 
@@ -171,6 +186,7 @@ public class BookingManager implements DatabaseCreator {
 
         String sql = "UPDATE BOOKING SET END_DATE = '" + newEndDate + "', BOOKING_STATUS = 'active' WHERE BOOKING_ID = '" + bookingID + "'";
         dbManager.updateDB(sql);
+        
 
         java.sql.Date checkOut = convertToSqlDate(newEndDate);
 
@@ -187,9 +203,7 @@ public class BookingManager implements DatabaseCreator {
     // Method to cancel current booking
     public boolean cancelBooking(String bookingID) {
         Booking booking = getBookingData(bookingID);
-        if (booking == null) {
-            return false;
-        }
+       
         Room room = booking.getRoom();
         String roomID = room.getRoomID();
         String hotelID = room.getHotelID();
@@ -205,6 +219,7 @@ public class BookingManager implements DatabaseCreator {
         // Update booking status
         String bookingSQL = "UPDATE BOOKING SET BOOKING_STATUS = 'cancelled' WHERE BOOKING_ID = '" + bookingID + "'";
         dbManager.updateDB(bookingSQL);
+        booking.setStatus("cancelled");
 
         // Update room status - include HOTEL_ID in WHERE clause
         String updateRoomSQL = String.format(
@@ -314,6 +329,8 @@ public class BookingManager implements DatabaseCreator {
         }
         return bookingDetails.toString();
     }
+    
+    
 
     // Method to display an invoice for a specific booking
     public String displayInvoice(String bookingID) {
@@ -363,11 +380,11 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
-    public void clearBookingData() {
+    public void clearBookingData(String username) {
         try {
-            // Check if table exist before trying to clear it
+           
             if (dbManager.doesTableExist("BOOKING")) {
-                dbManager.updateDB("DELETE FROM BOOKING");
+                dbManager.updateDB("DELETE FROM BOOKING WHERE USERNAME = '" + username + "'");
             }
         } catch (Exception e) {
             System.err.println("Error clearing booking data: " + e.getMessage());
