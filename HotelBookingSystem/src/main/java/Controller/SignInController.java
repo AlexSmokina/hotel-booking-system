@@ -71,6 +71,10 @@ public class SignInController implements ActionListener {
                     "Login Failed",
                     JOptionPane.ERROR_MESSAGE);
         } else {
+            JOptionPane.showMessageDialog(view,
+                username+" signed in successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
 
             if (user.getType() == UserType.GUEST) {
                 GuestMenu guestMenu = new GuestMenu();

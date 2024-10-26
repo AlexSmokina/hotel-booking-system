@@ -338,10 +338,10 @@ public class RoomManager implements DatabaseCreator {
             }
             hotelRs.close();
             // SQL query to filter rooms by availability date and hotel ID
-            String query = "SELECT * FROM ROOM WHERE DATE_FROM = '" + date
-                    + "' AND HOTEL_ID = '" + hotelID + "'";
+            String query = "SELECT * FROM ROOM WHERE DATE_FROM <= '" + date
+                + "' AND HOTEL_ID = '" + hotelID + "' AND AVAILABILITY_STATUS != 'Booked'";
 
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = dbManager.queryDB(query);
             while (rs.next()) {
                 roomList.add(extractRoomFromResultSet(rs)); // Add each room to the list
             }

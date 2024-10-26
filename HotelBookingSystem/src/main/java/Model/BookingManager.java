@@ -11,7 +11,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import javax.swing.JTextArea;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -117,8 +116,6 @@ public class BookingManager implements DatabaseCreator {
                 return false;
             }
 
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please use yyyy-mm-dd. Please try again.");
         } catch (Exception e) {
             System.out.println("Error creating new booking: " + e.getMessage());
         }
@@ -161,18 +158,65 @@ public class BookingManager implements DatabaseCreator {
     }
 
     //  Method to extened current booking
-    public void extendBooking(String bookingID, String newEndDate) {
+    public boolean extendBooking(String bookingID, String newEndDate) {
+        Booking booking = getBookingData(bookingID);
+
+        if (booking == null || "cancelled".equals(booking.getStatus())) {
+            return false;
+        }
+
+        Room room = booking.getRoom();
+        String roomID = room.getRoomID();
+        String hotelID = room.getHotelID();
 
         String sql = "UPDATE BOOKING SET END_DATE = '" + newEndDate + "', BOOKING_STATUS = 'active' WHERE BOOKING_ID = '" + bookingID + "'";
         dbManager.updateDB(sql);
+
+        java.sql.Date checkOut = convertToSqlDate(newEndDate);
+
+        String updateRoomSQL = String.format(
+                "UPDATE ROOM SET DATE_FROM = '%s' "
+                + "WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
+                checkOut, roomID, hotelID
+        );
+        dbManager.updateDB(updateRoomSQL);
         System.out.printf("Booking %s extend succesfully\n", bookingID);
+        return true;
     }
 
     // Method to cancel current booking
-    public void cancelBooking(String bookingID) {
-        String sql = "UPDATE BOOKING SET BOOKING_STATUS = 'cancelled' WHERE BOOKING_ID = '" + bookingID + "'";
-        dbManager.updateDB(sql);
-        System.out.printf("Booking %s cancelled succesfully\n", bookingID);
+    public boolean cancelBooking(String bookingID) {
+        Booking booking = getBookingData(bookingID);
+        if (booking == null) {
+            return false;
+        }
+        Room room = booking.getRoom();
+        String roomID = room.getRoomID();
+        String hotelID = room.getHotelID();
+
+        // Set room as not booked
+        room.setIsBooked(false);
+
+        // Get today's date and convert it
+        String today = dateFormat.format(room.getTodayDate());  // Use new Date() directly
+        java.sql.Date todayDate = convertToSqlDate(today);
+        room.setAvailabilityDate(today);
+
+        // Update booking status
+        String bookingSQL = "UPDATE BOOKING SET BOOKING_STATUS = 'cancelled' WHERE BOOKING_ID = '" + bookingID + "'";
+        dbManager.updateDB(bookingSQL);
+
+        // Update room status - include HOTEL_ID in WHERE clause
+        String updateRoomSQL = String.format(
+                "UPDATE ROOM SET AVAILABILITY_STATUS = 'Available', DATE_FROM = '%s' "
+                + "WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
+                todayDate, roomID, hotelID
+        );
+        dbManager.updateDB(updateRoomSQL);
+
+        System.out.printf("Booking %s cancelled successfully\n", bookingID);
+        return true;
+
     }
 
     //Method to change current room
@@ -234,6 +278,43 @@ public class BookingManager implements DatabaseCreator {
         return "BKG-1"; // Default to BK-1 if no entries exist or error occurs
     }
 
+    public String viewBookingsByUser(String username) {
+        StringBuilder bookingDetails = new StringBuilder();
+        bookingDetails.append(String.format("%s, %s, %s, %s, %s, %s, %s, %s\n",
+                "Booking ID", "Start Date", "End Date", "Room ID", "Username",
+                "Total Price", "Hotel ID", "Booking Status"));
+        bookingDetails.append("===================\n");
+        // Search booking using username
+        String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                String bookingID = rs.getString("BOOKING_ID");
+                Date startDate = rs.getDate("START_DATE");
+                Date endDate = rs.getDate("END_DATE");
+                String roomID = rs.getString("ROOM_ID");
+                double totalPrice = rs.getDouble("TOTAL_PRICE");
+                String hotelID = rs.getString("HOTEL_ID");
+                String bookingStatus = rs.getString("BOOKING_STATUS");
+
+                // Append booking details to the StringBuilder
+                bookingDetails.append(String.format("%s, %s, %s, %s, %s, %.2f, %s, %s\n",
+                        bookingID,
+                        (startDate != null ? startDate.toString() : "N/A"),
+                        (endDate != null ? endDate.toString() : "N/A"),
+                        roomID,
+                        username,
+                        totalPrice,
+                        hotelID,
+                        bookingStatus));
+            }
+            rs.close();
+        } catch (SQLException e) {
+            System.out.println("Error retrieving booking: " + e.getMessage());
+        }
+        return bookingDetails.toString();
+    }
+
     // Method to display an invoice for a specific booking
     public String displayInvoice(String bookingID) {
         try {
@@ -293,9 +374,15 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
-    private java.sql.Date convertToSqlDate(String dateStr) throws ParseException {
-        java.util.Date utilDate = dateFormat.parse(dateStr);
-        return new java.sql.Date(utilDate.getTime());
+    private java.sql.Date convertToSqlDate(String dateStr) {
+        try {
+            java.util.Date utilDate = dateFormat.parse(dateStr);
+            return new java.sql.Date(utilDate.getTime());
+        } catch (ParseException e) {
+            System.err.println("Error coverting data");
+            return null;
+        }
+
     }
 
 }

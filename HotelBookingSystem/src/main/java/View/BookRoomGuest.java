@@ -156,7 +156,8 @@ public class BookRoomGuest extends javax.swing.JFrame {
     private void checkAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailabilityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkAvailabilityActionPerformed
-
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookRoomGuestPanel;

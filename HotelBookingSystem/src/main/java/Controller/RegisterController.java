@@ -94,6 +94,11 @@ public class RegisterController implements ActionListener {
         newUser.setType(userType);
         userManager.registerUser(newUser);
         
+        JOptionPane.showMessageDialog(view,
+                username+" registered successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
+        
         if (userType == UserType.GUEST) {
             GuestMenu guestMenu = new GuestMenu();
             guestMenu.setVisible(true);

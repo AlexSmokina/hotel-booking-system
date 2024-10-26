@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.HotelManager;
 import Model.Room;
 import View.RoomDetails;
 import View.RoomManagement;
@@ -21,6 +22,7 @@ public class RoomDetailController implements ActionListener {
 
     RoomDetails view;
     RoomManager roomManager;
+    HotelManager hotelManager;
     
     private static final String DEFAULT_HOTELID = "Enter hotel ID";
     private static final String DEFAULT_ROOMID = "Enter Room Type (STANDARD / PREMIUM / SUITE)";
@@ -29,6 +31,7 @@ public class RoomDetailController implements ActionListener {
     public RoomDetailController(RoomDetails view) {
         this.view = view;
         this.roomManager = RoomManager.getInstance();
+        this.hotelManager = HotelManager.getInstance();
         initialise();
     }
 
@@ -58,6 +61,14 @@ public class RoomDetailController implements ActionListener {
         if (isDefaultOrEmpty(hotelID, DEFAULT_HOTELID) || isDefaultOrEmpty(roomID, DEFAULT_ROOMID) || isDefaultOrEmpty(price, DEFAULT_PRICE)) {
             JOptionPane.showMessageDialog(view,
                     "Please fill in all fields with valid information",
+                    "Failed",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+       
+        if(roomManager.getRoomData(roomID, hotelID)==null){
+            JOptionPane.showMessageDialog(view,
+                    "Hotel ID and Room ID do not exist",
                     "Failed",
                     JOptionPane.ERROR_MESSAGE);
             return;

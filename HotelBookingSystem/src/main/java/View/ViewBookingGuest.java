@@ -4,20 +4,17 @@
  */
 package View;
 
-import Controller.ViewBookingController;
-
 /**
  *
  * @author alex
  */
-public class ViewBooking extends javax.swing.JFrame {
+public class ViewBookingGuest extends javax.swing.JFrame {
 
     /**
      * Creates new form DisplayBooking
      */
-    public ViewBooking() {
+    public ViewBookingGuest() {
         initComponents();
-        new ViewBookingController(this);
     }
 
     /**
@@ -32,10 +29,8 @@ public class ViewBooking extends javax.swing.JFrame {
         displayBookingPanel = new javax.swing.JPanel();
         bookings = new javax.swing.JLabel();
         scrollBookingsPanel = new javax.swing.JScrollPane();
-        bookingViewArea = new javax.swing.JTextArea();
+        invoiceDisplayArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
-        enterGuestName = new javax.swing.JTextField();
-        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -48,24 +43,15 @@ public class ViewBooking extends javax.swing.JFrame {
         bookings.setText("Bookings");
         bookings.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        bookingViewArea.setColumns(20);
-        bookingViewArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
-        bookingViewArea.setRows(5);
-        bookingViewArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
-        scrollBookingsPanel.setViewportView(bookingViewArea);
+        invoiceDisplayArea.setColumns(20);
+        invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        invoiceDisplayArea.setRows(5);
+        invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
+        scrollBookingsPanel.setViewportView(invoiceDisplayArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
-
-        enterGuestName.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        enterGuestName.setForeground(new java.awt.Color(102, 102, 102));
-        enterGuestName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        enterGuestName.setText("Enter your guest username to view details");
-
-        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
-        search.setForeground(new java.awt.Color(153, 0, 153));
-        search.setText("Search");
 
         javax.swing.GroupLayout displayBookingPanelLayout = new javax.swing.GroupLayout(displayBookingPanel);
         displayBookingPanel.setLayout(displayBookingPanelLayout);
@@ -81,12 +67,6 @@ public class ViewBooking extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
                         .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(156, 156, 156))))
-            .addGroup(displayBookingPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(enterGuestName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
         );
         displayBookingPanelLayout.setVerticalGroup(
             displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,12 +74,8 @@ public class ViewBooking extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(enterGuestName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollBookingsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
         );
@@ -109,32 +85,49 @@ public class ViewBooking extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-   
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(ViewBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ViewBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ViewBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ViewBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new ViewBookingGuest().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea bookingViewArea;
     private javax.swing.JLabel bookings;
     private javax.swing.JPanel displayBookingPanel;
-    private javax.swing.JTextField enterGuestName;
+    private javax.swing.JTextArea invoiceDisplayArea;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JScrollPane scrollBookingsPanel;
-    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
-
-    
-    public javax.swing.JTextField getEnterGuestName() {
-        return enterGuestName;
-    }
-
-    public javax.swing.JTextArea getBookingViewArea() {
-        return bookingViewArea;
-    }
-
-    public javax.swing.JButton getReturnPreviousMenu() {
-        return returnPreviousMenu;
-    }
-
-    public javax.swing.JButton getSearch() {
-        return search;
-    }
 }
