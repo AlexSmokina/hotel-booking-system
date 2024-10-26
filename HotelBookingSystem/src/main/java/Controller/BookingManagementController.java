@@ -8,6 +8,7 @@ import View.BookingManagement;
 import View.BookRoomStaff;
 import View.CancelBookingStaff;
 import View.ChangeRoomStaff;
+import View.DisplayInvoice;
 import View.ViewBooking;
 import View.StaffMenu;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,7 @@ import javax.swing.JFrame;
  */
 public class BookingManagementController implements ActionListener {
 
-    private BookingManagement view;
+    private final BookingManagement view;
 
     public BookingManagementController(BookingManagement view) {
         this.view = view;
@@ -34,13 +35,14 @@ public class BookingManagementController implements ActionListener {
         view.getExtendBookingButton().addActionListener(this);
         view.getPreviousMenuButton().addActionListener(this);
         view.getViewGuestBookingButton().addActionListener(this);
+        view.getDisplayInvoice().addActionListener(this);
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        
+
         switch (command) {
             case "Book room":
                 showView(new BookRoomStaff());
@@ -56,13 +58,16 @@ public class BookingManagementController implements ActionListener {
             case "View guest booking":
                 showView(new ViewBooking());
                 break;
+            case "Display Invoice":
+                showView(new DisplayInvoice());
+                break;
             case "Return to Previous Menu":
                 showView(new StaffMenu());
                 break;
             default:
                 throw new AssertionError();
         }
-        
+
     }
 
     private void showView(JFrame newView) {

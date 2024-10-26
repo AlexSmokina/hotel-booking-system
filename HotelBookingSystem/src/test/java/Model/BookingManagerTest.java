@@ -4,7 +4,6 @@
  */
 package Model;
 
-import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JTextArea;
 import org.junit.jupiter.api.*;
@@ -161,7 +160,7 @@ public class BookingManagerTest {
        
         // Create text area and generate invoice
         JTextArea invoiceArea = new JTextArea();
-        bookingManager.displayInvoice("BKG-1", invoiceArea);
+        bookingManager.displayInvoice("BKG-1");
 
         // Printing invoice to console for visual verification
         System.out.println("\nGenerated Invoice:");

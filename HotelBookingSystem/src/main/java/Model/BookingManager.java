@@ -48,7 +48,7 @@ public class BookingManager implements DatabaseCreator {
     @Override
     public void createDatabase() {
         try {
-            
+
             statement = conn.createStatement();
             // Return if BOOKING exists
             if (dbManager.doesTableExist("BOOKING")) {
@@ -85,7 +85,6 @@ public class BookingManager implements DatabaseCreator {
         try {
             java.sql.Date startDate = convertToSqlDate(start);
             java.sql.Date endDate = convertToSqlDate(end);
-            
 
             // Check if the room is available for the given dates
             if (room.isAvailable(startDate, endDate)) {
@@ -104,7 +103,7 @@ public class BookingManager implements DatabaseCreator {
 
                 // SQL statement to update the ROOM table
                 String sqlUpdateRoom = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
-                    endDate, room.getRoomID(), hotelID);
+                        endDate, room.getRoomID(), hotelID);
 
                 // Execute the SQL statements
                 dbManager.updateDB(sqlBooking); // Insert new booking
@@ -236,12 +235,12 @@ public class BookingManager implements DatabaseCreator {
     }
 
     // Method to display an invoice for a specific booking
-    public void displayInvoice(String bookingID, JTextArea invoiceTextArea) {
+    public String displayInvoice(String bookingID) {
         try {
             Booking booking = this.getBookingData(bookingID);
+
             if (booking == null) {
-                invoiceTextArea.setText("No booking found with ID: " + bookingID);
-                return;
+                return "No booking found with ID: " + bookingID;
             }
 
             // Safely get room ID, handling null room case
@@ -276,12 +275,10 @@ public class BookingManager implements DatabaseCreator {
             invoiceText.append(String.format("%-15s: %s\n", "Status", booking.getStatus()));
             invoiceText.append("=================================\n");
 
-            // Display the invoice in the JTextArea
-            invoiceTextArea.setText(invoiceText.toString());
-
+            return invoiceText.toString();
         } catch (Exception e) {
-            invoiceTextArea.setText("Error generating invoice: " + e.getMessage());
             System.err.println("Error generating invoice: " + e.getMessage());
+            return "Error generating invoice: " + e.getMessage();
         }
     }
 
@@ -295,7 +292,7 @@ public class BookingManager implements DatabaseCreator {
             System.err.println("Error clearing booking data: " + e.getMessage());
         }
     }
-    
+
     private java.sql.Date convertToSqlDate(String dateStr) throws ParseException {
         java.util.Date utilDate = dateFormat.parse(dateStr);
         return new java.sql.Date(utilDate.getTime());

@@ -1,7 +1,6 @@
 package Model;
 
 import java.sql.Date;
-import javax.swing.JTextArea;
 
 public class DbTest {
 
@@ -36,8 +35,7 @@ public class DbTest {
         Room newRoom = rm.getRoomData("RM/STD-2", "HTL-1");
         testChangeRoom(bm, rm, "RM/STD-2", "HTL-1");
 
-        JTextArea invoiceTextArea = new JTextArea();
-        testPrintInvoice(bm, invoiceTextArea);
+        //testPrintInvoice(bm);
     }
 
     // BookingManager tests functions
@@ -87,9 +85,8 @@ public class DbTest {
         }
     }
 
-    public static void testPrintInvoice(BookingManager bm, JTextArea textArea) {
-        bm.displayInvoice("BKG-1", textArea);
-        System.out.println(textArea.getText());
+    public static void testPrintInvoice(BookingManager bm) {
+        bm.displayInvoice("BKG-1");
     }
 }
  

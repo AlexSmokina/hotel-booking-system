@@ -151,11 +151,26 @@ public class DisplayInvoice extends javax.swing.JFrame {
             }
         });
     }
-    
-    public javax.swing.JTextArea getInvoiceTextArea(){
+
+    // Gets the text area component used to display invoice details
+    public javax.swing.JTextArea getInvoiceTextArea() {
         return invoiceDisplayArea;
     }
-    
+
+// Gets the search button used to initiate invoice lookup 
+    public javax.swing.JButton getSearch() {
+        return search;
+    }
+
+// Gets the return button used to navigate back to previous menu
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+// Gets the text field used for entering booking ID
+    public javax.swing.JTextField getEnterBookingID() {
+        return enterBookingID;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel displayInvoicePanel;
