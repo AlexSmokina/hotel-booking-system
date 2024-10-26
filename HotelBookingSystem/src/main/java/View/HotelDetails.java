@@ -70,7 +70,7 @@ public class HotelDetails extends javax.swing.JFrame {
         confirmUpdate.setBackground(new java.awt.Color(153, 0, 153));
         confirmUpdate.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         confirmUpdate.setForeground(new java.awt.Color(255, 255, 255));
-        confirmUpdate.setText("Confirm");
+        confirmUpdate.setText("Confirm Update");
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
