@@ -360,7 +360,7 @@ public class RoomManager implements DatabaseCreator {
         // Header for the room details
         roomDetails.append(String.format("%s, %s, %s, %s, %s, %s\n",
                 "Room ID", "Room Type", "Price", "Availability Status", "Date From", "Hotel ID"));
-        roomDetails.append("===================\n");
+        roomDetails.append("==================================================\n");
 
         try {
             // Iterate through the result set and print each room's details

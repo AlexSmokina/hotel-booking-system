@@ -48,7 +48,7 @@ public class ViewAllHotels extends javax.swing.JFrame {
         hotels.setPreferredSize(new java.awt.Dimension(220, 50));
 
         hotelDisplayArea.setColumns(20);
-        hotelDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        hotelDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         hotelDisplayArea.setRows(5);
         hotelDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         scrollHotelPanel.setViewportView(hotelDisplayArea);
@@ -61,15 +61,16 @@ public class ViewAllHotels extends javax.swing.JFrame {
         hotelViewPanel.setLayout(hotelViewPanelLayout);
         hotelViewPanelLayout.setHorizontalGroup(
             hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
-                .addGap(0, 209, Short.MAX_VALUE)
-                .addComponent(returnPreviousMenu)
-                .addGap(207, 207, 207))
             .addComponent(scrollHotelPanel, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(hotelViewPanelLayout.createSequentialGroup()
-                .addGap(185, 185, 185)
-                .addComponent(hotels, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
+                .addContainerGap(237, Short.MAX_VALUE)
+                .addGroup(hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
+                        .addComponent(hotels, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(235, 235, 235))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
+                        .addComponent(returnPreviousMenu)
+                        .addGap(257, 257, 257))))
         );
         hotelViewPanelLayout.setVerticalGroup(
             hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

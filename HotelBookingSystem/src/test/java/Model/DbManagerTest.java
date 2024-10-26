@@ -7,6 +7,7 @@ package Model;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -28,36 +29,61 @@ public class DbManagerTest {
 
     @BeforeAll
     public static void setUpClass() {
-        // Initialise the DbManager instance before all tests
-        dbManager = DbManager.getInstance();
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-        // Clean up by closing connections
-        if (dbManager != null) {
-            dbManager.closeConnections();
+        // First make sure any existing instance is cleaned up
+        if (DbManager.getInstance() != null) {
+            DbManager.getInstance().closeConnections();
         }
+
+        // Create fresh instance
+        dbManager = DbManager.getInstance();
+        // Ensure connection is established
+        dbManager.establishConnection();
+
+        // Verify connection
+        assertNotNull(dbManager.getConnection(), "Database connection should be established");
     }
 
     @BeforeEach
     public void setUp() {
-        // Drop the test table if it already exists
-        if (dbManager.doesTableExist(TEST_TABLE)) {
-            dbManager.updateDB("DROP TABLE " + TEST_TABLE);
+        // Ensure we have a connection
+        if (dbManager.getConnection() == null) {
+            dbManager.establishConnection();
         }
-        // Create a new test table before each test
-        String createTableSQL = "CREATE TABLE " + TEST_TABLE + " ("
-                + "ID INTEGER PRIMARY KEY, "
-                + "NAME VARCHAR(50))";
-        dbManager.updateDB(createTableSQL);
+
+        try {
+            // Create test table
+            Statement stmt = dbManager.getConnection().createStatement();
+
+            // Drop table if exists
+            try {
+                stmt.executeUpdate("DROP TABLE " + TEST_TABLE);
+            } catch (SQLException e) {
+            }
+
+            // Create new test table
+            String createTableSQL = "CREATE TABLE " + TEST_TABLE + " ("
+                    + "ID INTEGER PRIMARY KEY, "
+                    + "NAME VARCHAR(50))";
+            stmt.executeUpdate(createTableSQL);
+
+        } catch (SQLException e) {
+            fail("Failed to set up test table: " + e.getMessage());
+        }
     }
 
     @AfterEach
     public void tearDown() {
-        // Drop the test table after each test
-        if (dbManager.doesTableExist(TEST_TABLE)) {
+        try {
+            // Drop test table
             dbManager.updateDB("DROP TABLE " + TEST_TABLE);
+        } catch (Exception e) {
+        }
+    }
+
+    @AfterAll
+    public static void tearDownClass() {
+        if (dbManager != null) {
+            dbManager.closeConnections();
         }
     }
 

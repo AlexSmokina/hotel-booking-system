@@ -47,7 +47,7 @@ public class ViewAllRooms extends javax.swing.JFrame {
         rooms.setPreferredSize(new java.awt.Dimension(220, 50));
 
         roomDisplayArea.setColumns(20);
-        roomDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        roomDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         roomDisplayArea.setRows(5);
         roomDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         scrollRoomPanel.setViewportView(roomDisplayArea);
@@ -61,15 +61,14 @@ public class ViewAllRooms extends javax.swing.JFrame {
         viewRoomsPanelLayout.setHorizontalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                .addGap(231, 231, 231)
+                .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(231, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                .addGap(0, 182, Short.MAX_VALUE)
-                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                        .addComponent(returnPreviousMenu)
-                        .addGap(207, 207, 207))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                        .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(257, 257, 257))
         );
         viewRoomsPanelLayout.setVerticalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

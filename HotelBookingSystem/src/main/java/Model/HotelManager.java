@@ -180,7 +180,7 @@ public class HotelManager implements DatabaseCreator {
         StringBuilder hotelDetails = new StringBuilder();
         hotelDetails.append(String.format("%s, %s, %s, %s, %s, %s\n",
                 "Hotel ID", "Name", "Location", "Standard Rooms", "Premium Rooms", "Suites"));
-        hotelDetails.append("===================\n");
+        hotelDetails.append("===================================================\n");
 
         try {
             // Iterate through the result set and print each hotel's details
@@ -203,7 +203,7 @@ public class HotelManager implements DatabaseCreator {
         }
         return hotelDetails.toString();
     }
-
+    
     // Method to retrieve hotel data based on the hotel ID
     public Hotel getHotelData(String hotelID) {
         Hotel hotel = null;
@@ -284,6 +284,7 @@ public class HotelManager implements DatabaseCreator {
             System.out.println("Error clearing hotel data: " + e.getMessage());
         }
     }
+
     public String getHotelIDByName(String hotelName) {
         String hotelID = null;
 

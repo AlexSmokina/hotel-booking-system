@@ -283,7 +283,7 @@ public class BookingManager implements DatabaseCreator {
         bookingDetails.append(String.format("%s, %s, %s, %s, %s, %s, %s, %s\n",
                 "Booking ID", "Start Date", "End Date", "Room ID", "Username",
                 "Total Price", "Hotel ID", "Booking Status"));
-        bookingDetails.append("===================\n");
+        bookingDetails.append("====================================================\n");
         // Search booking using username
         String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
         try {
@@ -338,23 +338,23 @@ public class BookingManager implements DatabaseCreator {
 
             // Build the invoice string with proper formatting and null checks
             StringBuilder invoiceText = new StringBuilder();
-            invoiceText.append("=================================\n");
+            invoiceText.append("====================\n");
             invoiceText.append("            INVOICE              \n");
-            invoiceText.append("=================================\n");
+            invoiceText.append("====================\n");
             invoiceText.append(String.format("%-15s: %s\n", "Booking ID", booking.getBookingID()));
             invoiceText.append(String.format("%-15s: %s\n", "Hotel ID", booking.getHotelID()));
             invoiceText.append(String.format("%-15s: %s\n", "Room ID", roomID));
             invoiceText.append(String.format("%-15s: %s\n", "Guest", booking.getUserName()));
             invoiceText.append(String.format("%-15s: %s\n", "Start Date", dateFormat.format(booking.getStartDate())));
             invoiceText.append(String.format("%-15s: %s\n", "End Date", dateFormat.format(booking.getEndDate())));
-            invoiceText.append("---------------------------------\n");
-            invoiceText.append(String.format("%-15s: $%.2f\n", "Room Rate", roomPrice));
-            invoiceText.append(String.format("%-15s: $%.2f\n", "Subtotal", totalPrice));
+            invoiceText.append("--------------------\n");
+            invoiceText.append(String.format("%-15s: $%.2f\n", "$Room Rate", roomPrice));
+            invoiceText.append(String.format("%-15s: $%.2f\n", "$Subtotal", totalPrice));
             invoiceText.append(String.format("%-15s: $%.2f\n", "GST (15%)", gst));
-            invoiceText.append("---------------------------------\n");
-            invoiceText.append(String.format("%-15s: $%.2f\n", "Total Owing", totalOwing));
+            invoiceText.append("--------------------\n");
+            invoiceText.append(String.format("%-15s: $%.2f\n", "$Total Owing", totalOwing));
             invoiceText.append(String.format("%-15s: %s\n", "Status", booking.getStatus()));
-            invoiceText.append("=================================\n");
+            invoiceText.append("====================\n");
 
             return invoiceText.toString();
         } catch (Exception e) {
