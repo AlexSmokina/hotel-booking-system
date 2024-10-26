@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -253,6 +255,22 @@ public class HotelManager implements DatabaseCreator {
         return "HTL-1"; // Default to HTL-1 if no entries exist or error occurs
     }
 
+    public List<String> getHotelNames() {
+        List<String> hotelNames = new ArrayList<>();
+        String query = "SELECT HOTEL_NAME FROM HOTEL";
+
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            while (rs.next()) {
+                hotelNames.add(rs.getString("HOTEL_NAME"));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hotelNames;
+    }
+
     // Method to return DbManager instance
     public DbManager getDbManager() {
         return dbManager;
@@ -265,6 +283,23 @@ public class HotelManager implements DatabaseCreator {
         } catch (Exception e) {
             System.out.println("Error clearing hotel data: " + e.getMessage());
         }
+    }
+    public String getHotelIDByName(String hotelName) {
+        String hotelID = null;
+
+        try {
+            // Create the prepared statement with the hotel name
+            String query = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet rs = dbManager.queryDB(query);
+
+            if (rs.next()) {
+                hotelID = rs.getString("HOTEL_ID");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hotelID;
     }
 
 }

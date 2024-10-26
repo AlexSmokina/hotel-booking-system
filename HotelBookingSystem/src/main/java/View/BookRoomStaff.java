@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.BookRoomStaffController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class BookRoomStaff extends javax.swing.JFrame {
      */
     public BookRoomStaff() {
         initComponents();
+        new BookRoomStaffController(this);
     }
 
     /**
@@ -31,10 +34,10 @@ public class BookRoomStaff extends javax.swing.JFrame {
         chooseEnterPrompt = new javax.swing.JLabel();
         checkInDate = new javax.swing.JTextField();
         checkOutDate = new javax.swing.JTextField();
-        confirmBooking = new javax.swing.JButton();
+        checkAvailability = new javax.swing.JButton();
         hotelChoice = new javax.swing.JComboBox<>();
         chooseHotel = new javax.swing.JLabel();
-        checkInDate1 = new javax.swing.JTextField();
+        username = new javax.swing.JTextField();
         returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,26 +62,16 @@ public class BookRoomStaff extends javax.swing.JFrame {
         checkInDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkInDate.setForeground(new java.awt.Color(102, 102, 102));
         checkInDate.setText("Check-in date (yyyy-mm-dd)");
-        checkInDate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkInDateActionPerformed(evt);
-            }
-        });
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
         checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         checkOutDate.setForeground(new java.awt.Color(102, 102, 102));
         checkOutDate.setText("Check-out date (yyyy-mm-dd)");
 
-        confirmBooking.setBackground(new java.awt.Color(153, 0, 153));
-        confirmBooking.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
-        confirmBooking.setForeground(new java.awt.Color(255, 255, 255));
-        confirmBooking.setText("Check Availability");
-        confirmBooking.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmBookingActionPerformed(evt);
-            }
-        });
+        checkAvailability.setBackground(new java.awt.Color(153, 0, 153));
+        checkAvailability.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        checkAvailability.setForeground(new java.awt.Color(255, 255, 255));
+        checkAvailability.setText("Check Availability");
 
         hotelChoice.setBackground(new java.awt.Color(255, 204, 255));
         hotelChoice.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
@@ -90,15 +83,10 @@ public class BookRoomStaff extends javax.swing.JFrame {
         chooseHotel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         chooseHotel.setText("Choose Hotel");
 
-        checkInDate1.setBackground(new java.awt.Color(255, 204, 255));
-        checkInDate1.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
-        checkInDate1.setForeground(new java.awt.Color(102, 102, 102));
-        checkInDate1.setText("Enter guest username");
-        checkInDate1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkInDate1ActionPerformed(evt);
-            }
-        });
+        username.setBackground(new java.awt.Color(255, 204, 255));
+        username.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        username.setForeground(new java.awt.Color(102, 102, 102));
+        username.setText("Enter guest username");
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -118,9 +106,9 @@ public class BookRoomStaff extends javax.swing.JFrame {
                                 .addGap(53, 53, 53))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bookRoomStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(checkInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(confirmBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(checkAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(checkInDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(bookRoomStaffPanelLayout.createSequentialGroup()
                                     .addComponent(chooseHotel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -144,13 +132,13 @@ public class BookRoomStaff extends javax.swing.JFrame {
                     .addComponent(hotelChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chooseHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(checkInDate1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(username, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(checkInDate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(checkOutDate, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(confirmBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(checkAvailability, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(returnPreviousMenu)
                 .addGap(38, 38, 38))
@@ -161,64 +149,42 @@ public class BookRoomStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkInDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInDateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkInDateActionPerformed
-
-    private void confirmBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBookingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmBookingActionPerformed
-
-    private void checkInDate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInDate1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkInDate1ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BookRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BookRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BookRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BookRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BookRoomStaff().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookRoomStaffPanel;
     private javax.swing.JLabel bookingRoom;
+    private javax.swing.JButton checkAvailability;
     private javax.swing.JTextField checkInDate;
-    private javax.swing.JTextField checkInDate1;
     private javax.swing.JTextField checkOutDate;
     private javax.swing.JLabel chooseEnterPrompt;
     private javax.swing.JLabel chooseHotel;
-    private javax.swing.JButton confirmBooking;
     private javax.swing.JComboBox<String> hotelChoice;
     private javax.swing.JButton returnPreviousMenu;
+    private javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextField getCheckInDate() {
+        return checkInDate;
+    }
+
+    public javax.swing.JTextField getUsername() {
+        return username;
+    }
+
+    public javax.swing.JTextField getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public javax.swing.JButton getCheckAvailability() {
+        return checkAvailability;
+    }
+
+    public javax.swing.JComboBox<String> getHotelChoice() {
+        return hotelChoice;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
 }
