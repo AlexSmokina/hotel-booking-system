@@ -135,9 +135,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter hotel ID"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="hotelIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="roomID">
           <Properties>
@@ -149,9 +146,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter room ID to update"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="roomType">
           <Properties>
@@ -163,9 +157,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter new room type (STANDARD / PREMIUM / SUITE)"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomTypeActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="confirm">
           <Properties>
@@ -180,9 +171,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirm"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="roomPrice">
           <Properties>
@@ -194,9 +182,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter new price"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="roomPriceActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="returnPreviousMenu">
           <Properties>
@@ -208,9 +193,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Return"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="returnPreviousMenuActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>

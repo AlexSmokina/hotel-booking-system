@@ -4,9 +4,10 @@
  */
 package Controller;
 
-import Model.RoomManager;
-import View.AddNewRoom;
+import Model.Room;
+import View.RoomDetails;
 import View.RoomManagement;
+import Model.RoomManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -15,63 +16,50 @@ import javax.swing.JOptionPane;
  *
  * @author minthihakoko
  */
-public class AddNewRoomController implements ActionListener {
+public class RoomDetailController implements ActionListener {
 
-    AddNewRoom view;
+    RoomDetails view;
     RoomManager roomManager;
+    
+    private static final String DEFAULT_HOTELID = "Enter hotel ID";
+    private static final String DEFAULT_ROOMID = "Enter Room Type (STANDARD / PREMIUM / SUITE)";
+    private static final String DEFAULT_PRICE = "Enter new price";
 
-    private static final String DEFAULT_ID = "Enter Hotel ID";
-    private static final String DEFAULT_TYPE = "Enter Room Type (STANDARD / PREMIUM / SUITE)";
-
-    public AddNewRoomController(AddNewRoom view) {
+    public RoomDetailController(RoomDetails view) {
         this.view = view;
         this.roomManager = RoomManager.getInstance();
-        initalise();
-
+        initialise();
     }
 
-    private void initalise() {
-        view.getAddNewRoom().addActionListener(this);
+    private void initialise() {
+        view.getConfirm().addActionListener(this);
         view.getReturnPreviousMenu().addActionListener(this);
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
-        if ("Add New Room".equals(command)) {
-            handleAddRoom();
+        if ("Confirm".equals(command)) {
+            handleEditDetail();
         } else if ("Return".equals(command)) {
             RoomManagement roomManagementMenu = new RoomManagement();
             roomManagementMenu.setVisible(true);
             view.dispose();
         }
-
     }
 
-    private void handleAddRoom() {
+    private void handleEditDetail() {
         String hotelID = view.getHotelID().getText();
-        String roomType = view.getRoomType().getText();
+        String roomID = view.getRoomID().getText();
+        String price = view.getRoomPrice().getText();
 
-        if (isDefaultOrEmpty(hotelID, DEFAULT_ID) || isDefaultOrEmpty(roomType, DEFAULT_TYPE)) {
+        if (isDefaultOrEmpty(hotelID, DEFAULT_HOTELID) || isDefaultOrEmpty(roomID, DEFAULT_ROOMID) || isDefaultOrEmpty(price, DEFAULT_PRICE)) {
             JOptionPane.showMessageDialog(view,
                     "Please fill in all fields with valid information",
                     "Failed",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Create the new room
-        roomManager.createRoom(roomType, hotelID);
-
-        JOptionPane.showMessageDialog(view,
-                "Room created successfully!",
-                "Success",
-                JOptionPane.INFORMATION_MESSAGE);
-        RoomManagement roomManagementMenu = new RoomManagement();
-        roomManagementMenu.setVisible(true);
-        view.dispose();
-
     }
 
     private boolean isDefaultOrEmpty(String value, String defaultValue) {

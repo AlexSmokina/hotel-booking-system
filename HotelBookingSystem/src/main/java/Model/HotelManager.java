@@ -28,7 +28,7 @@ public class HotelManager implements DatabaseCreator {
         return instance;
     }
 
-// Method to create the HOTEL table in the database
+    // Method to create the HOTEL table in the database
     @Override
     public void createDatabase() {
         try {
@@ -58,7 +58,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to insert initial hotel data into the HOTEL table
+    // Method to insert initial hotel data into the HOTEL table
     @Override
     public void insertInitialData() {
         try {
@@ -93,7 +93,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to create a new hotel entry in the HOTEL table
+    // Method to create a new hotel entry in the HOTEL table
     public void createNewHotel(String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
         String hotelID = idGenerator();
         // Check if the hotel already exists by looking up its hotel ID
@@ -130,7 +130,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to update the name and location of a specific hotel in the HOTEL table
+    // Method to update the name and location of a specific hotel in the HOTEL table
     public void updateHotelDetails(String hotelID, String name, String location) {
 
         // SQL query to update the hotel's name and location based on its hotel ID
@@ -149,7 +149,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to retrieve and display all hotels from the HOTEL table
+    // Method to retrieve and display all hotels from the HOTEL table
     public String viewHotels() {
         // SQL query to select all hotel records from the HOTEL table
         String userQuery = "SELECT * FROM HOTEL";
@@ -181,7 +181,7 @@ public class HotelManager implements DatabaseCreator {
         return hotelDetails.toString();
     }
 
-// Method to retrieve hotel data based on the hotel ID
+    // Method to retrieve hotel data based on the hotel ID
     public Hotel getHotelData(String hotelID) {
         Hotel hotel = null;
         // SQL query to select a hotel by its hotel ID

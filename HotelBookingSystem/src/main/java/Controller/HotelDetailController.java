@@ -31,6 +31,7 @@ public class HotelDetailController implements ActionListener {
 
     private void initialise() {
         view.getConfirm().addActionListener(this);
+        view.getReturnPreviousMenu().addActionListener(this);
     }
 
     @Override
@@ -38,6 +39,10 @@ public class HotelDetailController implements ActionListener {
         String command = e.getActionCommand();
         if ("Confirm".equals(command)) {
             handleChangeDetails();
+        } else if ("Return".equals(command)) {
+            HotelManagement hotelManagementMenu = new HotelManagement();
+            hotelManagementMenu.setVisible(true);
+            view.dispose();
         }
     }
 

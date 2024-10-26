@@ -56,57 +56,27 @@ public class RoomDetails extends javax.swing.JFrame {
         hotelID.setBackground(new java.awt.Color(255, 204, 255));
         hotelID.setForeground(new java.awt.Color(102, 102, 102));
         hotelID.setText("Enter hotel ID");
-        hotelID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                hotelIDActionPerformed(evt);
-            }
-        });
 
         roomID.setBackground(new java.awt.Color(255, 204, 255));
         roomID.setForeground(new java.awt.Color(102, 102, 102));
         roomID.setText("Enter room ID to update");
-        roomID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roomIDActionPerformed(evt);
-            }
-        });
 
         roomType.setBackground(new java.awt.Color(255, 204, 255));
         roomType.setForeground(new java.awt.Color(102, 102, 102));
         roomType.setText("Enter new room type (STANDARD / PREMIUM / SUITE)");
-        roomType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roomTypeActionPerformed(evt);
-            }
-        });
 
         confirm.setBackground(new java.awt.Color(153, 0, 153));
         confirm.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         confirm.setForeground(new java.awt.Color(255, 255, 255));
         confirm.setText("Confirm");
-        confirm.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmActionPerformed(evt);
-            }
-        });
 
         roomPrice.setBackground(new java.awt.Color(255, 204, 255));
         roomPrice.setForeground(new java.awt.Color(102, 102, 102));
         roomPrice.setText("Enter new price");
-        roomPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roomPriceActionPerformed(evt);
-            }
-        });
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
-        returnPreviousMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                returnPreviousMenuActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout roomDetailsPanelLayout = new javax.swing.GroupLayout(roomDetailsPanel);
         roomDetailsPanel.setLayout(roomDetailsPanelLayout);
@@ -160,64 +130,6 @@ public class RoomDetails extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void hotelIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hotelIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hotelIDActionPerformed
-
-    private void roomIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roomIDActionPerformed
-
-    private void roomTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roomTypeActionPerformed
-
-    private void confirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmActionPerformed
-
-    private void roomPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_roomPriceActionPerformed
-
-    private void returnPreviousMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnPreviousMenuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_returnPreviousMenuActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RoomDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RoomDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RoomDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RoomDetails.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RoomDetails().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirm;
@@ -230,4 +142,28 @@ public class RoomDetails extends javax.swing.JFrame {
     private javax.swing.JTextField roomPrice;
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JButton getConfirm() {
+        return confirm;
+    }
+
+    public javax.swing.JTextField getHotelID() {
+        return hotelID;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+    public javax.swing.JTextField getRoomID() {
+        return roomID;
+    }
+
+    public javax.swing.JTextField getRoomPrice() {
+        return roomPrice;
+    }
+
+    public javax.swing.JTextField getRoomType() {
+        return roomType;
+    }
 }

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.AddNewRoomController;
+
 /**
  *
  * @author alex
@@ -15,7 +17,7 @@ public class AddNewRoom extends javax.swing.JFrame {
      */
     public AddNewRoom() {
         initComponents();
-        
+        new AddNewRoomController(this);
     }
 
     /**
@@ -130,30 +132,21 @@ public class AddNewRoom extends javax.swing.JFrame {
     private javax.swing.JTextField roomType;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * @return the addNewRoom
-     */
+
     public javax.swing.JButton getAddNewRoom() {
         return addNewRoom;
     }
 
-    /**
-     * @return the hotelID
-     */
     public javax.swing.JTextField getHotelID() {
         return hotelID;
     }
 
-    /**
-     * @return the returnPreviousMenu
-     */
+ 
     public javax.swing.JButton getReturnPreviousMenu() {
         return returnPreviousMenu;
     }
 
-    /**
-     * @return the roomType
-     */
+    
     public javax.swing.JTextField getRoomType() {
         return roomType;
     }
