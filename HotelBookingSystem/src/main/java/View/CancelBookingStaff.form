@@ -101,9 +101,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter guest username"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guestUsernameActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="bookingID">
           <Properties>
@@ -132,9 +129,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirm"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmCancelActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="cancelBooking">
           <Properties>

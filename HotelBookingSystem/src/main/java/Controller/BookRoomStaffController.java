@@ -57,6 +57,7 @@ public class BookRoomStaffController implements ActionListener {
             BookingManagement bookingManagementPage = new BookingManagement();
             bookingManagementPage.setVisible(true);
             updateHotelChoices();
+            view.dispose();
         }
     }
     
