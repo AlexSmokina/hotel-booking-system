@@ -29,7 +29,6 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         changeRoomPanel = new javax.swing.JPanel();
         changeRoom = new javax.swing.JLabel();
         enterGuestUsername = new javax.swing.JTextField();
@@ -39,8 +38,6 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         bookingScrollArea = new javax.swing.JScrollPane();
         bookingTextArea = new javax.swing.JTextArea();
         search = new javax.swing.JButton();
-
-        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -146,7 +143,6 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
     private javax.swing.JButton checkAvailabilityRoom;
     private javax.swing.JTextField enterBookingID;
     private javax.swing.JTextField enterGuestUsername;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables

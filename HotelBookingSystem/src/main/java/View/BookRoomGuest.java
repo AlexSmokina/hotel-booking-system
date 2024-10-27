@@ -17,8 +17,8 @@ public class BookRoomGuest extends javax.swing.JFrame {
      */
     public BookRoomGuest() {
         initComponents();
-        new BookRoomGuestController();
-    }
+        new BookRoomGuestController(this);
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

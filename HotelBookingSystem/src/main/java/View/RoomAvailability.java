@@ -26,7 +26,6 @@ public class RoomAvailability extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jSpinner1 = new javax.swing.JSpinner();
         roomAvailabilityPanel = new javax.swing.JPanel();
         roomAvailability = new javax.swing.JLabel();
         enterRoomNumber = new javax.swing.JLabel();
@@ -142,7 +141,6 @@ public class RoomAvailability extends javax.swing.JFrame {
     private javax.swing.JLabel chooseConfirmPrompt;
     private javax.swing.JButton confirmBooking;
     private javax.swing.JLabel enterRoomNumber;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JLabel roomAvailability;
     private javax.swing.JPanel roomAvailabilityPanel;

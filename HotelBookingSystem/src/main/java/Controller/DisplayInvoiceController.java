@@ -58,8 +58,7 @@ public class DisplayInvoiceController implements ActionListener {
             
             GuestMenu guestMenuPage = new GuestMenu();
             guestMenuPage.setVisible(true);
-            view.dispose();
-            
+            view.dispose();  
         }
     }
 }

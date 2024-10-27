@@ -10,8 +10,11 @@ import Model.RoomManager;
 import Model.User;
 import Model.UserManager;
 import Model.HotelManager;
+import Model.UserType;
+import View.BookRoomGuest;
 import View.BookRoomStaff;
 import View.BookingManagement;
+import View.GuestMenu;
 import View.RoomAvailability;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -58,13 +61,19 @@ public class RoomAvailabilityController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        String userType = userManager.getCurrentUser().getType().toString();
         String command = e.getActionCommand();
 
         if ("Confirm Booking".equals(command)) {
             handleBookingConfirmation();
-        } else if ("Return".equals(command)) {
+        } else if (userType.equalsIgnoreCase("STAFF") && "Return".equals(command)) {
             BookRoomStaff bookRoomStaff = new BookRoomStaff();
             bookRoomStaff.setVisible(true);
+            view.dispose();
+        } else if (userType.equalsIgnoreCase("GUEST") && "Return".equals(command)) {
+            BookRoomGuest bookRoomGuest = new BookRoomGuest();
+            bookRoomGuest.setVisible(true);
             view.dispose();
         }
     }
@@ -110,9 +119,7 @@ public class RoomAvailabilityController implements ActionListener {
                     JOptionPane.INFORMATION_MESSAGE);
 
             // Return to booking management page
-            BookingManagement bookingManagement = new BookingManagement();
-            bookingManagement.setVisible(true);
-            view.dispose();
+            navigateAfterSuccess();
 
         } else {
             JOptionPane.showMessageDialog(view,
@@ -141,6 +148,18 @@ public class RoomAvailabilityController implements ActionListener {
                     .append(room.getHotelID()).append("\n");
         }
         view.getRoomOptionArea().setText(roomInfo.toString());
+    }
+    
+    private void navigateAfterSuccess() {
+        if(userManager.getCurrentUser().getType().equals(UserType.GUEST)) {
+            GuestMenu guestMenu = new GuestMenu();
+            guestMenu.setVisible(true);
+            view.dispose();
+        } else {
+            BookingManagement bookingManagement = new BookingManagement();
+            bookingManagement.setVisible(true);
+            view.dispose();
+        }
     }
 
 }

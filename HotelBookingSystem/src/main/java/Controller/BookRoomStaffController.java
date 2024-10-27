@@ -7,7 +7,6 @@ package Controller;
 import View.BookRoomStaff;
 import Model.BookingManager;
 import Model.HotelManager;
-import Model.Room;
 import Model.RoomManager;
 import Model.User;
 import Model.UserManager;
