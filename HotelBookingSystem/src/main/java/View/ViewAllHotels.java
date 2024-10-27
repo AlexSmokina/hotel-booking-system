@@ -33,7 +33,7 @@ public class ViewAllHotels extends javax.swing.JFrame {
         hotelViewPanel = new javax.swing.JPanel();
         hotels = new javax.swing.JLabel();
         scrollHotelPanel = new javax.swing.JScrollPane();
-        hotelDisplayArea = new javax.swing.JTextArea();
+        hotelViewArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,11 +47,11 @@ public class ViewAllHotels extends javax.swing.JFrame {
         hotels.setText("Hotels");
         hotels.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        hotelDisplayArea.setColumns(20);
-        hotelDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        hotelDisplayArea.setRows(5);
-        hotelDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        scrollHotelPanel.setViewportView(hotelDisplayArea);
+        hotelViewArea.setColumns(20);
+        hotelViewArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        hotelViewArea.setRows(5);
+        hotelViewArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        scrollHotelPanel.setViewportView(hotelViewArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -62,15 +62,14 @@ public class ViewAllHotels extends javax.swing.JFrame {
         hotelViewPanelLayout.setHorizontalGroup(
             hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(scrollHotelPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(hotelViewPanelLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(hotels, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(187, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addGroup(hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
-                        .addComponent(hotels, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(235, 235, 235))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hotelViewPanelLayout.createSequentialGroup()
-                        .addComponent(returnPreviousMenu)
-                        .addGap(257, 257, 257))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(returnPreviousMenu)
+                .addGap(207, 207, 207))
         );
         hotelViewPanelLayout.setVerticalGroup(
             hotelViewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,8 +88,8 @@ public class ViewAllHotels extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public javax.swing.JTextArea getHotelDisplayArea(){
-        return hotelDisplayArea;
+    public javax.swing.JTextArea getHotelViewArea(){
+        return hotelViewArea;
     }
     
     public javax.swing.JButton getReturnPreviousMenu(){
@@ -101,7 +100,7 @@ public class ViewAllHotels extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea hotelDisplayArea;
+    private javax.swing.JTextArea hotelViewArea;
     private javax.swing.JPanel hotelViewPanel;
     private javax.swing.JLabel hotels;
     private javax.swing.JButton returnPreviousMenu;

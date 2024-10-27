@@ -27,7 +27,7 @@ public class ViewAllHotelsController implements ActionListener{
     private void initialise(){
         view.getReturnPreviousMenu().addActionListener(this);
         String hotelDetails = hotelManager.viewHotels();
-        view.getHotelDisplayArea().setText(hotelDetails);        
+        view.getHotelViewArea().setText(hotelDetails);        
     }
 
     @Override

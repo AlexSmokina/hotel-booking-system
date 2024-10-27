@@ -19,17 +19,19 @@ public class ViewBookingGuestController implements ActionListener {
 
     ViewBookingGuest view;
     UserManager user;
-    BookingManager booking;
+    BookingManager bookingManager;
     
     public ViewBookingGuestController (ViewBookingGuest view) {
         this.view = view;
         this.user = UserManager.getInstance();
-        this.booking = BookingManager.getInstance();
+        this.bookingManager = BookingManager.getInstance();
         initialise();
     }
     
     private void initialise() {
         view.getReturnPreviousMenu();
+        String bookingDetails = bookingManager.viewBookingsByUser(user.getCurrentUser().getUserName());
+        view.getBookingViewArea().setText(bookingDetails);
     }
 
     @Override

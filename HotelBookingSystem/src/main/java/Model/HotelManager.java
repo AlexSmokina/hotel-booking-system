@@ -174,13 +174,11 @@ public class HotelManager implements DatabaseCreator {
 
     // Method to retrieve and display all hotels from the HOTEL table
     public String viewHotels() {
+        
         // SQL query to select all hotel records from the HOTEL table
         String userQuery = "SELECT * FROM HOTEL";
         ResultSet rs = dbManager.queryDB(userQuery);
         StringBuilder hotelDetails = new StringBuilder();
-        hotelDetails.append(String.format("%s, %s, %s, %s, %s, %s\n",
-                "Hotel ID", "Name", "Location", "Standard Rooms", "Premium Rooms", "Suites"));
-        hotelDetails.append("===================================================\n");
 
         try {
             // Iterate through the result set and print each hotel's details
@@ -191,9 +189,14 @@ public class HotelManager implements DatabaseCreator {
                 int standardRooms = rs.getInt("STANDARD");
                 int premiumRooms = rs.getInt("PREMIUM");
                 int suites = rs.getInt("SUITE");
-
-                hotelDetails.append(String.format("%s, %s, %s, %d, %d, %d\n",
-                        hotelID, hotelName, hotelLocation, standardRooms, premiumRooms, suites));
+                
+                hotelDetails.append(String.format("Hotel ID         : %s\n", hotelID));
+                hotelDetails.append(String.format("Hotel Name       : %s\n", hotelName));
+                hotelDetails.append(String.format("Hotel Location   : %s\n", hotelLocation));
+                hotelDetails.append(String.format("Standard Rooms   : %d\n", standardRooms));
+                hotelDetails.append(String.format("Premium Rooms    : %d\n", premiumRooms));
+                hotelDetails.append(String.format("Suites           : %d\n", suites));
+                hotelDetails.append("----------------------------------------\n");
             }
             rs.close(); // Close the result set
 
@@ -203,7 +206,7 @@ public class HotelManager implements DatabaseCreator {
         }
         return hotelDetails.toString();
     }
-    
+
     // Method to retrieve hotel data based on the hotel ID
     public Hotel getHotelData(String hotelID) {
         Hotel hotel = null;

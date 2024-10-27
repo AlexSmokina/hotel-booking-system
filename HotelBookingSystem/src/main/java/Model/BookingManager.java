@@ -80,7 +80,6 @@ public class BookingManager implements DatabaseCreator {
             System.out.println("No room or user data!");
             return false;
         }
-        
 
         try {
             java.sql.Date startDate = convertToSqlDate(start);
@@ -138,7 +137,7 @@ public class BookingManager implements DatabaseCreator {
         }
         return null;
     }
-    
+
     public Booking getBookingByUser(String username) {
         String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
         try {
@@ -186,7 +185,6 @@ public class BookingManager implements DatabaseCreator {
 
         String sql = "UPDATE BOOKING SET END_DATE = '" + newEndDate + "', BOOKING_STATUS = 'active' WHERE BOOKING_ID = '" + bookingID + "'";
         dbManager.updateDB(sql);
-        
 
         java.sql.Date checkOut = convertToSqlDate(newEndDate);
 
@@ -203,7 +201,7 @@ public class BookingManager implements DatabaseCreator {
     // Method to cancel current booking
     public boolean cancelBooking(String bookingID) {
         Booking booking = getBookingData(bookingID);
-       
+
         Room room = booking.getRoom();
         String roomID = room.getRoomID();
         String hotelID = room.getHotelID();
@@ -293,17 +291,16 @@ public class BookingManager implements DatabaseCreator {
         return "BKG-1"; // Default to BK-1 if no entries exist or error occurs
     }
 
+    // Method to view booking details based on username
     public String viewBookingsByUser(String username) {
+        
         StringBuilder bookingDetails = new StringBuilder();
-        bookingDetails.append(String.format("%s, %s, %s, %s, %s, %s, %s, %s\n",
-                "Booking ID", "Start Date", "End Date", "Room ID", "Username",
-                "Total Price", "Hotel ID", "Booking Status"));
-        bookingDetails.append("====================================================\n");
-        // Search booking using username
+        // Searching booking using username
         String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
+
+        ResultSet rs = dbManager.queryDB(query);
         try {
-            ResultSet rs = dbManager.queryDB(query);
-            if (rs.next()) {
+            while (rs.next()) {
                 String bookingID = rs.getString("BOOKING_ID");
                 Date startDate = rs.getDate("START_DATE");
                 Date endDate = rs.getDate("END_DATE");
@@ -312,25 +309,28 @@ public class BookingManager implements DatabaseCreator {
                 String hotelID = rs.getString("HOTEL_ID");
                 String bookingStatus = rs.getString("BOOKING_STATUS");
 
-                // Append booking details to the StringBuilder
-                bookingDetails.append(String.format("%s, %s, %s, %s, %s, %.2f, %s, %s\n",
-                        bookingID,
-                        (startDate != null ? startDate.toString() : "N/A"),
-                        (endDate != null ? endDate.toString() : "N/A"),
-                        roomID,
-                        username,
-                        totalPrice,
-                        hotelID,
-                        bookingStatus));
+                // Formatting each booking with labeled fields
+                bookingDetails.append(String.format("Booking ID     : %s\n", bookingID));
+                bookingDetails.append(String.format("Start Date     : %s\n", startDate != null ? startDate.toString() : "N/A"));
+                bookingDetails.append(String.format("End Date       : %s\n", endDate != null ? endDate.toString() : "N/A"));
+                bookingDetails.append(String.format("Room ID        : %s\n", roomID));
+                bookingDetails.append(String.format("Guest          : %s\n", username));
+                bookingDetails.append(String.format("Total Price    : $%.2f\n", totalPrice));
+                bookingDetails.append(String.format("Hotel ID       : %s\n", hotelID));
+                bookingDetails.append(String.format("Booking Status : %s\n", bookingStatus));
+                bookingDetails.append("------------------------------\n");
             }
             rs.close();
         } catch (SQLException e) {
             System.out.println("Error retrieving booking: " + e.getMessage());
         }
+
+        if (bookingDetails.length() == 0) {
+            bookingDetails.append("No bookings found for this user.\n");
+        }
+
         return bookingDetails.toString();
     }
-    
-    
 
     // Method to display an invoice for a specific booking
     public String displayInvoice(String bookingID) {
@@ -382,7 +382,7 @@ public class BookingManager implements DatabaseCreator {
 
     public void clearBookingData(String username) {
         try {
-           
+
             if (dbManager.doesTableExist("BOOKING")) {
                 dbManager.updateDB("DELETE FROM BOOKING WHERE USERNAME = '" + username + "'");
             }

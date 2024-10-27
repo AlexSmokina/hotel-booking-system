@@ -103,7 +103,7 @@ public class HotelManagerTest {
     @Test
     public void testUpdateHotelWithNullValues() {
         // Create a valid hotel first
-        hotelManager.createNewHotel("Test Hotel", "Original Location", 1, 1, 1);
+        hotelManager.createNewHotel("Test", "Original Location", 1, 1, 1);
 
         // Try to update with null values
         hotelManager.updateHotelDetails("HTL-1", null, null);
