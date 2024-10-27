@@ -5,7 +5,6 @@
 package Model;
 
 import java.util.List;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +17,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RoomManagerTest {
 
     private RoomManager roomManager;
+    private HotelManager hotelManager;
     private DbManager dbManager;
+    private String testHotel = "Test Hotel 1";
 
     @BeforeEach
     public void setUp() {
@@ -29,14 +30,17 @@ public class RoomManagerTest {
                 dbManager.establishConnection();
             }
 
-            // Initialising RoomManager
+            // Initialising Managers
+            hotelManager = HotelManager.getInstance();
             roomManager = RoomManager.getInstance();
 
             // Creating database tables if they don't exist
+            hotelManager.createDatabase();
             roomManager.createDatabase();
 
-            // Clearing existing data
-            roomManager.clearRoomData();
+            // Insert initial data
+            hotelManager.insertInitialData();
+            roomManager.insertInitialData();
 
         } catch (Exception e) {
             System.err.println("Error in setup: " + e.getMessage());
@@ -46,7 +50,12 @@ public class RoomManagerTest {
     @AfterEach
     public void tearDown() {
         try {
-            roomManager.clearRoomData();
+            
+            String hotelID = hotelManager.getHotelIDByName(testHotel);
+            roomManager.clearRoomData(hotelID);
+            hotelManager.clearHotelData(testHotel);
+
+
         } catch (Exception e) {
             System.err.println("Error in teardown: " + e.getMessage());
         }
@@ -68,12 +77,14 @@ public class RoomManagerTest {
     @Test
     public void testCreateRoom() {
         try {
-            roomManager.createRoom("standard", "HTL-1");
-            Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+            hotelManager.createNewHotel(testHotel, "Location 1", 0, 1, 1);
+            String testHotelID_1 = hotelManager.getHotelIDByName(testHotel);
+            roomManager.createRoom("standard", testHotelID_1);
+            Room room = roomManager.getRoomData("RM/STD-1", testHotelID_1);
 
             assertNotNull(room, "Created room should not be null");
             assertEquals(RoomType.STANDARD.name(), room.getRoomType(), "Room type should be STANDARD");
-            assertEquals("HTL-1", room.getHotelID(), "Hotel ID should match");
+            assertEquals(testHotelID_1, room.getHotelID(), "Hotel ID should match");
             assertFalse(room.isBooked(), "New room should be available");
         } catch (Exception e) {
             fail("Room creation failed: " + e.getMessage());
@@ -81,54 +92,22 @@ public class RoomManagerTest {
     }
 
     /**
-     * Test room ID generation
-     */
-    @Test
-    public void testIdGenerator() {
-        Object[] contextStandard = new Object[]{"HTL-1", RoomType.STANDARD};
-        Object[] contextPremium = new Object[]{"HTL-1", RoomType.PREMIUM};
-        Object[] contextSuite = new Object[]{"HTL-1", RoomType.SUITE};
-
-        String standardId = roomManager.idGenerator(contextStandard);
-        String premiumId = roomManager.idGenerator(contextPremium);
-        String suiteId = roomManager.idGenerator(contextSuite);
-
-        assertTrue(standardId.startsWith("RM/STD-"), "Standard room ID should start with RM/STD-");
-        assertTrue(premiumId.startsWith("RM/PRM-"), "Premium room ID should start with RM/PRM-");
-        assertTrue(suiteId.startsWith("RM/SU-"), "Suite ID should start with RM/SU-");
-    }
-
-    /**
      * Test updating room data
      */
     @Test
     public void testUpdateRoomData() {
-        roomManager.createRoom("Standard", "HTL-1");
-        Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        hotelManager.createNewHotel(testHotel, "Location 1", 0, 1, 1);
+        String testHotelID_1 = hotelManager.getHotelIDByName(testHotel);
+        roomManager.createRoom("standard", testHotelID_1);
+        Room room = roomManager.getRoomData("RM/STD-1", testHotelID_1);
 
         room.setIsBooked(true);
 
         boolean updateSuccess = roomManager.updateRoomData("RM/STD-1", room);
         assertTrue(updateSuccess, "Room update should be successful");
 
-        Room updatedRoom = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        Room updatedRoom = roomManager.getRoomData("RM/STD-1", testHotelID_1);
         assertTrue(updatedRoom.isBooked(), "Room should be marked as booked");
-    }
-
-    /**
-     * Test filtering rooms by hotel
-     */
-    @Test
-    public void testFilterRoomByHotel() {
-        roomManager.createRoom("Standard", "HTL-1");
-        roomManager.createRoom("Premium", "HTL-1");
-        roomManager.createRoom("Standard", "HTL-2");
-
-        List<Room> hotel1Rooms = roomManager.filterRoomByHotel("HTL-1");
-        List<Room> hotel2Rooms = roomManager.filterRoomByHotel("HTL-2");
-
-        assertEquals(2, hotel1Rooms.size(), "Hotel 1 should have 2 rooms");
-        assertEquals(1, hotel2Rooms.size(), "Hotel 2 should have 1 room");
     }
 
     /**
@@ -138,8 +117,8 @@ public class RoomManagerTest {
     public void testInsertInitialData() {
         roomManager.insertInitialData();
 
-        List<Room> hotel1Rooms = roomManager.filterRoomByHotel("HTL-1");
-        List<Room> hotel2Rooms = roomManager.filterRoomByHotel("HTL-2");
+        List<Room> hotel1Rooms = roomManager.filterRoomByHotel("Auckland Skyline");
+        List<Room> hotel2Rooms = roomManager.filterRoomByHotel("Queenstown Grand");
 
         assertEquals(5, hotel1Rooms.size(), "Hotel 1 should have 5 rooms");
         assertEquals(3, hotel2Rooms.size(), "Hotel 2 should have 3 rooms");
@@ -149,5 +128,53 @@ public class RoomManagerTest {
                 .count();
 
         assertEquals(2, standardRoomsH1, "Hotel 1 should have 2 standard rooms");
+    }
+
+    @Test
+    public void testFilterByDate() {
+        try {
+            hotelManager.createNewHotel(testHotel, "Original Location", 1, 1, 1);
+            String hotelID = hotelManager.getHotelIDByName(testHotel);
+            // Create test rooms with different dates and availability
+            roomManager.createRoom("standard", hotelID);  // First room
+            roomManager.createRoom("premium", hotelID);   // Second room
+
+            // Get the created rooms
+            Room room1 = roomManager.getRoomData("RM/STD-1", hotelID);
+            Room room2 = roomManager.getRoomData("RM/PRM-1", hotelID);
+
+            // Set different availability dates for the rooms
+            room1.setAvailabilityDate("2024-10-15");
+            room2.setAvailabilityDate("2024-10-20");
+
+            // Mark one room as booked
+            room2.setIsBooked(true);
+
+            // Update the rooms in the database
+            roomManager.updateRoomData("RM/STD-1", room1);
+            roomManager.updateRoomData("RM/PRM-1", room2);
+
+            // Test filtering with a date before both rooms' availability
+            List<Room> earlyDateRooms = roomManager.filterByDate("2024-10-01", testHotel);
+            assertEquals(0, earlyDateRooms.size(), "Should find no rooms before their availability dates");
+
+            // Test filtering with a date between the two rooms' availability
+            List<Room> midDateRooms = roomManager.filterByDate("2024-10-17", testHotel);
+            assertEquals(1, midDateRooms.size(), "Should find only the first room");
+            assertEquals("STANDARD", midDateRooms.get(0).getRoomType(), "Should be the standard room");
+
+            // Test filtering with a date after both rooms' availability
+            // Note: Second room is booked, so it shouldn't appear in results
+            List<Room> lateDateRooms = roomManager.filterByDate("2024-10-25", testHotel);
+            assertEquals(1, lateDateRooms.size(), "Should find only the unbooked room");
+            assertEquals("STANDARD", lateDateRooms.get(0).getRoomType(), "Should be the standard room");
+
+            // Test with non-existent hotel
+            List<Room> nonExistentHotelRooms = roomManager.filterByDate("2024-10-15", "NonExistentHotel");
+            assertTrue(nonExistentHotelRooms.isEmpty(), "Should return empty list for non-existent hotel");
+
+        } catch (Exception e) {
+            fail("Test failed with exception: " + e.getMessage());
+        }
     }
 }

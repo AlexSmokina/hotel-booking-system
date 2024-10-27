@@ -5,7 +5,6 @@
 package Model;
 
 import java.text.SimpleDateFormat;
-import javax.swing.JTextArea;
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,6 +18,7 @@ public class BookingManagerTest {
     private UserManager userManager;
     private HotelManager hotelManager;
     private User testUser;
+    private String testHotel = "Test Hotel 1";
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     @BeforeEach
@@ -29,16 +29,14 @@ public class BookingManagerTest {
         userManager = UserManager.getInstance();
         hotelManager = HotelManager.getInstance();
 
-        // Clearinganager.clearBookingData();
-        hotelManager.clearHotelData("Test Hotel");
-        roomManager.clearRoomData();
-
         // Creating fresh tables
-        bookingManager.createDatabase();
         hotelManager.createDatabase();
+        roomManager.createDatabase();
+        bookingManager.createDatabase();
 
-        // Creating test hotel with rooms
-        hotelManager.createNewHotel("Test Hotel", "Test Location", 1, 1, 1);
+        // Creating initialise data
+        hotelManager.insertInitialData();
+        roomManager.insertInitialData();
 
         // Creating test user
         testUser = new Guest("testUser", "password", "Test Name", "1234567", "test@test.com");
@@ -48,8 +46,10 @@ public class BookingManagerTest {
     @AfterEach
     public void tearDown() {
         bookingManager.clearBookingData(testUser.getUserName());
-        hotelManager.clearHotelData("Test Hotel");
-        roomManager.clearRoomData();
+
+        String hotelID = hotelManager.getHotelIDByName(testHotel);
+        roomManager.clearRoomData(hotelID);
+        hotelManager.clearHotelData(testHotel);
 
         if (testUser != null) {
             userManager.deleteUser(testUser.getUserName());
@@ -63,7 +63,9 @@ public class BookingManagerTest {
     @Test
     public void testCreateBooking() {
         // Get a room for booking - add verification
-        Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        hotelManager.createNewHotel(testHotel, "Test Location", 1, 1, 1);
+        String hotelID = hotelManager.getHotelIDByName(testHotel);
+        Room room = roomManager.getRoomData("RM/STD-1", hotelID);
         assertNotNull(room, "Test room should exist");
 
         // Create booking dates
@@ -71,14 +73,14 @@ public class BookingManagerTest {
         String end = "2024-12-05";
 
         // Create the booking (using testUser from setUp)
-        boolean success = bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        boolean success = bookingManager.createBooking(start, end, room, testUser, hotelID);
 
         Booking booking = bookingManager.getBookingByUser(testUser.getUserName());
 
         // Verify booking was created
         if (success) {
             assertNotNull(booking, "Booking should be created");
-            assertEquals("Booked", booking.getStatus(), "Booking should be Booked");
+            assertEquals("active", booking.getStatus(), "Booking should be Active");
             assertNotNull(booking.getRoom(), "Booking should have a room assigned");
             assertEquals(room.getRoomID(), booking.getRoom().getRoomID(), "Room ID should match");
             assertEquals(testUser.getUserName(), booking.getUserName(), "User should match");
@@ -93,18 +95,20 @@ public class BookingManagerTest {
      */
     @Test
     public void testCancelBooking() {
-        Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        hotelManager.createNewHotel(testHotel, "Test Location", 1, 1, 1);
+        String hotelID = hotelManager.getHotelIDByName(testHotel);
+        Room room = roomManager.getRoomData("RM/STD-1", hotelID);
         assertNotNull(room, "Test room should exist");
 
         String start = "2024-12-01";
         String end = "2024-12-05";
 
-        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        bookingManager.createBooking(start, end, room, testUser, hotelID);
 
         String bookingID = bookingManager.getBookingByUser(testUser.getUserName()).getBookingID();
         bookingManager.cancelBooking(bookingID);
         Booking booking = bookingManager.getBookingData(bookingID);
-        
+
         assertEquals("cancelled", booking.getStatus(), "Booking should be cancelled");
     }
 
@@ -113,17 +117,19 @@ public class BookingManagerTest {
      */
     @Test
     public void testExtendBooking() {
-        Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        hotelManager.createNewHotel(testHotel, "Test Location", 1, 1, 1);
+        String hotelID = hotelManager.getHotelIDByName(testHotel);
+        Room room = roomManager.getRoomData("RM/STD-1", hotelID);
         assertNotNull(room, "Test room should exist");
 
         String start = "2024-12-01";
         String end = "2024-12-05";
 
-        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        bookingManager.createBooking(start, end, room, testUser, hotelID);
 
         String newEndDate = "2024-12-10";
         String bookingID = bookingManager.getBookingByUser(testUser.getUserName()).getBookingID();
-        System.out.println("Extend"+bookingID);
+        System.out.println("Extend" + bookingID);
 
         bookingManager.extendBooking(bookingID, newEndDate);
         Booking booking = bookingManager.getBookingData(bookingID);
@@ -138,13 +144,15 @@ public class BookingManagerTest {
     @Test
     public void testDisplayInvoice() {
 
-        Room room = roomManager.getRoomData("RM/STD-1", "HTL-1");
+        hotelManager.createNewHotel(testHotel, "Test Location", 1, 1, 1);
+        String hotelID = hotelManager.getHotelIDByName(testHotel);
+        Room room = roomManager.getRoomData("RM/STD-1", hotelID);
         assertNotNull(room, "Test room should exist");
 
         String start = "2024-12-01";
         String end = "2024-12-05";
 
-        bookingManager.createBooking(start, end, room, testUser, "HTL-1");
+        bookingManager.createBooking(start, end, room, testUser, hotelID);
         Booking booking = bookingManager.getBookingByUser(testUser.getUserName());
 
         String invoice = bookingManager.displayInvoice(booking.getBookingID());

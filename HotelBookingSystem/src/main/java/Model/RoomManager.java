@@ -373,17 +373,25 @@ public class RoomManager implements DatabaseCreator {
         room.setAvailabilityDate(rs.getDate("DATE_FROM").toString()); // Set availability date
         return room; // Return the Room object
     }
-
-    public void clearRoomData() {
+    public Room getBookingByHotelID(String hotelID) {
+        String query = "SELECT * FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'";
         try {
-            // Check if tables exist before trying to clear them
-            if (dbManager.doesTableExist("ROOM")) {
-                dbManager.updateDB("DELETE FROM ROOM");
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                // Create a Booking object using the retrieved data
+                return extractRoomFromResultSet(rs);
             }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving booking: " + e.getMessage());
+        }
+        return null;
+    }
 
-            if (dbManager.doesTableExist("ROOM_COUNTER")) {
-                dbManager.updateDB("DELETE FROM ROOM_COUNTER");
-            }
+    public void clearRoomData(String hotelID) {
+        try {
+            dbManager.updateDB("DELETE FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'");
+            dbManager.updateDB("DELETE FROM ROOM_COUNTER WHERE HOTEL_ID = '" + hotelID + "'");
+
         } catch (Exception e) {
             System.err.println("Error clearing room data: " + e.getMessage());
             e.printStackTrace();

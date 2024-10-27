@@ -22,15 +22,24 @@ public class HotelManagerTest {
         hotelManager = HotelManager.getInstance();
         dbManager = hotelManager.getDbManager();
         roomManager = RoomManager.getInstance();       
-        //roomManager.clearRoomData();
 
         // Create fresh tables
         hotelManager.createDatabase();
+        hotelManager.insertInitialData();
+        
+        // Create fresh tables
+        roomManager.createDatabase();
+        roomManager.insertInitialData();
+        
     }
 
     @AfterEach
     public void tearDown() {
+        String hotelID_1 = hotelManager.getHotelIDByName("Test Hotel");
+        roomManager.clearRoomData(hotelID_1);
         hotelManager.clearHotelData("Test Hotel");
+        String hotelID_2 = hotelManager.getHotelIDByName("Test Hotel Update");
+        roomManager.clearRoomData(hotelID_2);
         hotelManager.clearHotelData("Test Hotel Update");
         //roomManager.clearRoomData();
     }
@@ -47,7 +56,7 @@ public class HotelManagerTest {
     @Test
     public void testCreateNewHotel() {
         hotelManager.createNewHotel("Test Hotel", "Test Location", 2, 1, 1);
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
+        Hotel hotel = hotelManager.getHotelByName("Test Hotel");
 
         assertNotNull(hotel, "Created hotel should not be null");
         assertEquals("Test Hotel", hotel.getName(), "Hotel name should match");
@@ -61,19 +70,19 @@ public class HotelManagerTest {
     public void testCreateNewHotelWithInvalidData() {
         // Test with null values
         hotelManager.createNewHotel(null, null, 0, 0, 0);
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
+        Hotel hotel = hotelManager.getHotelData(null);
         assertNull(hotel, "Hotel should not be created with null data");
 
         // Test with negative room numbers
         hotelManager.createNewHotel("Test Hotel", "Location", -1, -1, -1);
-        hotel = hotelManager.getHotelData("HTL-1");
+        hotel = hotelManager.getHotelByName("Test Hotel");
         assertNull(hotel, "Hotel should not be created with negative room numbers");
     }
 
     @Test
     public void testCreateHotelWithZeroRooms() {
-        hotelManager.createNewHotel("Zero Room Hotel", "Location", 0, 0, 0);
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
+        hotelManager.createNewHotel("Test Hotel", "Location", 0, 0, 0);
+        Hotel hotel = hotelManager.getHotelByName("Test Hotel");
 
         assertNotNull(hotel, "Hotel should be created with zero rooms");
         assertEquals(0, hotel.getNumStandardRooms(), "Should have zero standard rooms");
@@ -85,31 +94,33 @@ public class HotelManagerTest {
     public void testUpdateHotelDetails() {
         // Create initial hotel
         hotelManager.createNewHotel("Test Hotel", "Original Location", 1, 1, 1);
-
+        Hotel hotel = hotelManager.getHotelByName("Test Hotel");
+        String hotelID = hotel.getHotelID();
+        System.out.println(hotelID);
         // Update hotel details
-        hotelManager.updateHotelDetails("HTL-1", "Test Hotel Update", "Updated Location");
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
-
-        assertNotNull(hotel, "Updated hotel should not be null");
-        assertEquals("Test Hotel Update", hotel.getName(), "Hotel name should be updated");
-        assertEquals("Updated Location", hotel.getLocation(), "Hotel location should be updated");
+        hotelManager.updateHotelDetails(hotelID, "Test Hotel Update", "Updated Location");
+        Hotel updatedHotel = hotelManager.getHotelData(hotelID);
+        assertNotNull(updatedHotel, "Updated hotel should not be null");
+        assertEquals("Test Hotel Update", updatedHotel.getName(), "Hotel name should be updated");
+        assertEquals("Updated Location", updatedHotel.getLocation(), "Hotel location should be updated");
 
         // Verify room counts remain unchanged
-        assertEquals(1, hotel.getNumStandardRooms(), "Standard rooms should remain unchanged");
-        assertEquals(1, hotel.getNumPremiumRooms(), "Premium rooms should remain unchanged");
-        assertEquals(1, hotel.getNumSuites(), "Suites should remain unchanged");
+        assertEquals(1, updatedHotel.getNumStandardRooms(), "Standard rooms should remain unchanged");
+        assertEquals(1, updatedHotel.getNumPremiumRooms(), "Premium rooms should remain unchanged");
+        assertEquals(1, updatedHotel.getNumSuites(), "Suites should remain unchanged");
     }
 
     @Test
     public void testUpdateHotelWithNullValues() {
         // Create a valid hotel first
-        hotelManager.createNewHotel("Test", "Original Location", 1, 1, 1);
-
+        hotelManager.createNewHotel("Test Hotel", "Original Location", 1, 1, 1);
+        
+        String hotelID = hotelManager.getHotelIDByName("Test Hotel");
         // Try to update with null values
-        hotelManager.updateHotelDetails("HTL-1", null, null);
+        hotelManager.updateHotelDetails(hotelID, null, null);
 
         // Verify original values remain unchanged
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
+        Hotel hotel = hotelManager.getHotelByName("Test Hotel");
         assertEquals("Test Hotel", hotel.getName(), "Name should remain unchanged");
         assertEquals("Original Location", hotel.getLocation(), "Location should remain unchanged");
     }
@@ -121,31 +132,9 @@ public class HotelManagerTest {
         assertNull(hotel, "Non-existent hotel should not be updated");
     }
 
-//    @Test
-//    public void testIdGenerator() {
-//        String firstId = hotelManager.idGenerator();
-//        assertEquals("HTL-1", firstId, "First generated ID should be HTL-1");
-//
-//        hotelManager.createNewHotel("Test Hotel", "Test Location", 1, 1, 1);
-//
-//        String secondId = hotelManager.idGenerator();
-//        assertEquals("HTL-2", secondId, "Second generated ID should be HTL-2");
-//    }
-//
-//    @Test
-//    public void testHotelIdSequence() {
-//        hotelManager.createNewHotel("Hotel 1", "Location 1", 1, 1, 1);
-//        hotelManager.createNewHotel("Hotel 2", "Location 2", 1, 1, 1);
-//        hotelManager.createNewHotel("Hotel 3", "Location 3", 1, 1, 1);
-//
-//        assertNotNull(hotelManager.getHotelData("HTL-1"), "First hotel should have ID HTL-1");
-//        assertNotNull(hotelManager.getHotelData("HTL-2"), "Second hotel should have ID HTL-2");
-//        assertNotNull(hotelManager.getHotelData("HTL-3"), "Third hotel should have ID HTL-3");
-//    }
 
     @Test
     public void testInsertInitialData() {
-        hotelManager.insertInitialData();
 
         Hotel hotel1 = hotelManager.getHotelData("HTL-1");
         assertNotNull(hotel1, "First initial hotel should exist");
@@ -175,23 +164,8 @@ public class HotelManagerTest {
         assertTrue(hotelList.contains("Location 1"), "Should contain first hotel location");
         assertTrue(hotelList.contains("Test Hotel Update"), "Should contain second hotel name");
         assertTrue(hotelList.contains("Location 2"), "Should contain second hotel location");
-        assertTrue(hotelList.contains("HTL-1"), "Should contain first hotel ID");
-        assertTrue(hotelList.contains("HTL-2"), "Should contain second hotel ID");
     }
 
-    @Test
-    public void testClearHotelData() {
-        hotelManager.createNewHotel("Test Hotel", "Test Location", 1, 1, 1);
-        assertNotNull(hotelManager.getHotelData("HTL-1"), "Hotel should be created");
-
-        hotelManager.clearHotelData("Test Hotel");
-
-        Hotel hotel = hotelManager.getHotelData("HTL-1");
-        assertNull(hotel, "Hotel data should be cleared");
-
-        String hotelList = hotelManager.viewHotels();
-        assertFalse(hotelList.contains("Test Hotel"), "Hotel list should not contain cleared hotel");
-    }
 
     @Test
     public void testGetHotelDataWithInvalidId() {

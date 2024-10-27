@@ -174,7 +174,7 @@ public class HotelManager implements DatabaseCreator {
 
     // Method to retrieve and display all hotels from the HOTEL table
     public String viewHotels() {
-        
+
         // SQL query to select all hotel records from the HOTEL table
         String userQuery = "SELECT * FROM HOTEL";
         ResultSet rs = dbManager.queryDB(userQuery);
@@ -242,8 +242,37 @@ public class HotelManager implements DatabaseCreator {
         } catch (SQLException ex) {
             // Log any SQL exceptions that occur while retrieving hotel data
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return hotel; // Return the Hotel object (or null if not found)
+    }
+
+    public Hotel getHotelByName(String hotelName) {
+        Hotel hotel = null;
+        String query = "SELECT * FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                String id = rs.getString("HOTEL_ID");
+                String name = rs.getString("HOTEL_NAME");
+                String location = rs.getString("HOTEL_LOCATION");
+                int standardRooms = rs.getInt("STANDARD");
+                int premiumRooms = rs.getInt("PREMIUM");
+                int suites = rs.getInt("SUITE");
+
+                // Create a Hotel object and set its room counts
+                hotel = new Hotel(id, name, location);
+                hotel.setNumStandardRooms(standardRooms);
+                hotel.setNumPremiumRooms(premiumRooms);
+                hotel.setNumSuites(suites);
+                rs.close(); // Close the result set
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return hotel;
     }
 
     public String idGenerator() {
