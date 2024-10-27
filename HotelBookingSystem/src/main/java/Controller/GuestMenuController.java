@@ -37,6 +37,7 @@ public class GuestMenuController implements ActionListener {
         view.getChangeRoomButton().addActionListener(this);
         view.getLogoutGuestMenuButton().addActionListener(this);
         view.getViewBookings().addActionListener(this);
+        view.getDisplayInvoice().addActionListener(this);
     }
 
     @Override
