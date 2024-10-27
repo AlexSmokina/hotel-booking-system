@@ -210,7 +210,7 @@ public class BookingManager implements DatabaseCreator {
         room.setIsBooked(false);
 
         // Get today's date and convert it
-        String today = dateFormat.format(room.getTodayDate());  // Use new Date() directly
+        String today = dateFormat.format(Room.getTodayDate());  // Use new Date() directly
         java.sql.Date todayDate = convertToSqlDate(today);
         room.setAvailabilityDate(today);
 

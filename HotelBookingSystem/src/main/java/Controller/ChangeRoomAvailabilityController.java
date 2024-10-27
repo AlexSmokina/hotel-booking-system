@@ -4,15 +4,16 @@
  */
 package Controller;
 
+import Model.Booking;
 import Model.BookingManager;
+import Model.Hotel;
 import Model.Room;
 import Model.RoomManager;
-import Model.User;
-import Model.UserManager;
 import Model.HotelManager;
 import View.BookRoomStaff;
 import View.BookingManagement;
-import View.RoomAvailability;
+import View.ChangeRoomAvailability;
+import View.ChangeRoomStaff;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
@@ -23,35 +24,27 @@ import javax.swing.JOptionPane;
  *
  * @author minthihakoko
  */
-public class RoomAvailabilityController implements ActionListener {
+public class ChangeRoomAvailabilityController implements ActionListener {
 
-    RoomAvailability view;
+    ChangeRoomAvailability view;
     private BookingManager bookingManager;
     private RoomManager roomManager;
-    private UserManager userManager;
     private HotelManager hotelManager;
-    private String username;
-    private String checkInDate;
-    private String checkOutDate;
-    private String hotelName;
+    private String bookingID;
     private List<Room> availableRooms;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public RoomAvailabilityController(RoomAvailability view, String username, String checkInDate, String checkOutDate, String hotelName) {
+    public ChangeRoomAvailabilityController(ChangeRoomAvailability view, String bookingID ) {
         this.view = view;
         this.roomManager = RoomManager.getInstance();
         this.bookingManager = BookingManager.getInstance();
-        this.userManager = UserManager.getInstance();
         this.hotelManager = HotelManager.getInstance();
-        this.username = username;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.hotelName = hotelName;
-        initialize();
-    }
+        this.bookingID = bookingID;
+    initialize();
+}
 
     private void initialize() {
-        view.getConfirmBooking().addActionListener(this);
+        view.getChangeBooking().addActionListener(this);
         view.getReturnPreviousMenu().addActionListener(this);
         displayAvailableRooms();
     }
@@ -60,16 +53,16 @@ public class RoomAvailabilityController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
 
-        if ("Confirm Booking".equals(command)) {
-            handleBookingConfirmation();
+        if ("Change Room".equals(command)) {
+            handleChangeRoom();
         } else if ("Return".equals(command)) {
-            BookRoomStaff bookRoomStaff = new BookRoomStaff();
-            bookRoomStaff.setVisible(true);
+            ChangeRoomStaff changeRoomStaff = new ChangeRoomStaff();
+            changeRoomStaff.setVisible(true);
             view.dispose();
         }
     }
 
-    private void handleBookingConfirmation() {
+    private void handleChangeRoom() {
         String roomID = view.getRoomNumber().getText();
         if (roomID == null || roomID.trim().equals("")
                 || roomID.equals("?")) {
@@ -86,45 +79,40 @@ public class RoomAvailabilityController implements ActionListener {
                 break;
             }
         }
-
-        if (selectedRoom == null) {
-            JOptionPane.showMessageDialog(view,
-                    "Selected room is not available",
-                    "Invalid Room",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        User user = userManager.getUserData(username);
-        String hotelID = hotelManager.getHotelIDByName(hotelName);
-        boolean success = bookingManager.createBooking(checkInDate, checkOutDate, selectedRoom, user, hotelID);
-
-        if (success) {
-            JOptionPane.showMessageDialog(view,
-                    "Booking confirmed successfully!\n"
-                    + "Hotel: " + hotelName + "\n"
-                    + "Room ID: " + roomID + "\n"
-                    + "Check-in: " + checkInDate + "\n"
-                    + "Check-out: " + checkOutDate,
-                    "Booking Confirmation",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-            // Return to booking management page
-            BookingManagement bookingManagement = new BookingManagement();
-            bookingManagement.setVisible(true);
-            view.dispose();
-
-        } else {
-            JOptionPane.showMessageDialog(view,
-                    "Failed to create booking. Please try again.",
-                    "Booking Failed",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        
+        bookingManager.changeRoom(bookingID, selectedRoom);
+//
+//        if (success) {
+//            JOptionPane.showMessageDialog(view,
+//                    "Room changed successfully!\n"
+//                    + "New Room ID: " + roomID + "\n"
+//                    + "Room Type: " + selectedRoom.getRoomType() + "\n",
+//                    "Booking Confirmation",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//
+//            // Return to booking management page
+//            BookingManagement bookingManagement = new BookingManagement();
+//            bookingManagement.setVisible(true);
+//            view.dispose();
+//
+//        } else {
+//            JOptionPane.showMessageDialog(view,
+//                    "Failed to create booking. Please try again.",
+//                    "Booking Failed",
+//                    JOptionPane.ERROR_MESSAGE);
+//        }
 
     }
 
     private void displayAvailableRooms() {
-        availableRooms = roomManager.filterByDate(checkInDate, hotelName);
+        
+        String today = dateFormat.format(Room.getTodayDate());  // Use new Date() directly
+        Booking booking =bookingManager.getBookingData(bookingID);
+        String hotelID = booking.getHotelID();
+        Hotel hotel = hotelManager.getHotelData(hotelID);
+        String hotelName = hotel.getName();
+        
+        availableRooms = roomManager.filterByDate(today, hotelName);
 
         StringBuilder roomInfo = new StringBuilder();
 
@@ -142,5 +130,6 @@ public class RoomAvailabilityController implements ActionListener {
         }
         view.getRoomOptionArea().setText(roomInfo.toString());
     }
+
 
 }
