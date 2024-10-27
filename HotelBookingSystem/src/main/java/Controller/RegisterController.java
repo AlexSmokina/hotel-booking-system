@@ -99,11 +99,11 @@ public class RegisterController implements ActionListener {
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
         
-        if (userType == UserType.GUEST) {
+        if (userType.equals(UserType.GUEST)) {
             GuestMenu guestMenu = new GuestMenu();
             guestMenu.setVisible(true);
 
-        } else if (userType == UserType.STAFF) {
+        } else {
             StaffMenu staffMenu = new StaffMenu();
             staffMenu.setVisible(true);
         }

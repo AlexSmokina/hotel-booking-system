@@ -339,7 +339,7 @@ public class RoomManager implements DatabaseCreator {
             hotelRs.close();
             // SQL query to filter rooms by availability date and hotel ID
             String query = "SELECT * FROM ROOM WHERE DATE_FROM <= '" + date
-                + "' AND HOTEL_ID = '" + hotelID + "' AND AVAILABILITY_STATUS != 'Booked'";
+                    + "' AND HOTEL_ID = '" + hotelID + "' AND AVAILABILITY_STATUS != 'Booked'";
 
             ResultSet rs = dbManager.queryDB(query);
             while (rs.next()) {
@@ -357,11 +357,6 @@ public class RoomManager implements DatabaseCreator {
         ResultSet rs = dbManager.queryDB(userQuery);
         StringBuilder roomDetails = new StringBuilder();
 
-        // Header for the room details
-        roomDetails.append(String.format("%s, %s, %s, %s, %s, %s\n",
-                "Room ID", "Room Type", "Price", "Availability Status", "Date From", "Hotel ID"));
-        roomDetails.append("==================================================\n");
-
         try {
             // Iterate through the result set and print each room's details
             while (rs.next()) {
@@ -373,9 +368,13 @@ public class RoomManager implements DatabaseCreator {
                 String hotelID = rs.getString("HOTEL_ID");
 
                 // Append room details to the StringBuilder
-                roomDetails.append(String.format("%s, %s, %.2f, %s, %s, %s\n",
-                        roomID, roomType, price, availabilityStatus,
-                        (dateFrom != null ? dateFrom.toString() : "N/A"), hotelID));
+                roomDetails.append(String.format("Room ID           : %s\n", roomID));
+                roomDetails.append(String.format("Room Type         : %s\n", roomType));
+                roomDetails.append(String.format("Price             : $%.2f\n", price));
+                roomDetails.append(String.format("Availability      : %s\n", availabilityStatus));
+                roomDetails.append(String.format("Date Available    : %s\n", (dateFrom != null ? dateFrom.toString() : "N/A")));
+                roomDetails.append(String.format("Hotel ID          : %s\n", hotelID));
+                roomDetails.append("----------------------------------------\n");
             }
             rs.close(); // Close the result set
 
