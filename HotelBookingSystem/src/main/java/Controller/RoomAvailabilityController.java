@@ -62,16 +62,16 @@ public class RoomAvailabilityController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        String userType = userManager.getCurrentUser().getType().toString();
+        UserType userType = userManager.getCurrentUser().getType();
         String command = e.getActionCommand();
 
         if ("Confirm Booking".equals(command)) {
             handleBookingConfirmation();
-        } else if (userType.equalsIgnoreCase("STAFF") && "Return".equals(command)) {
+        } else if (userType.equals(UserType.STAFF) && "Return".equals(command)) {
             BookRoomStaff bookRoomStaff = new BookRoomStaff();
             bookRoomStaff.setVisible(true);
             view.dispose();
-        } else if (userType.equalsIgnoreCase("GUEST") && "Return".equals(command)) {
+        } else if (userType.equals(UserType.GUEST) && "Return".equals(command)) {
             BookRoomGuest bookRoomGuest = new BookRoomGuest();
             bookRoomGuest.setVisible(true);
             view.dispose();
@@ -118,7 +118,7 @@ public class RoomAvailabilityController implements ActionListener {
                     "Booking Confirmation",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            // Return to booking management page
+            // Returning to the another page depeneding on the user
             navigateAfterSuccess();
 
         } else {
