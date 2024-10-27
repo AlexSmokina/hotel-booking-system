@@ -74,6 +74,7 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
+    // Method to create new booking
     public boolean createBooking(String start, String end, Room room, User user, String hotelID) {
         // Validate room and user
         if (room == null || user == null) {
@@ -398,6 +399,7 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
+    // Method to delete booking
     public void clearBookingData(String username) {
         try {
 
@@ -409,6 +411,7 @@ public class BookingManager implements DatabaseCreator {
         }
     }
 
+    // Method to convert String into SQL date format
     private java.sql.Date convertToSqlDate(String dateStr) {
         try {
             java.util.Date utilDate = dateFormat.parse(dateStr);
@@ -420,6 +423,7 @@ public class BookingManager implements DatabaseCreator {
 
     }
 
+    // Method to convert String into date format 
     private java.util.Date convertToDate(String dateStr) {
         try {
             java.util.Date utilDate = dateFormat.parse(dateStr);

@@ -127,6 +127,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
+    // Method to create new room
     private void createRoomsForHotel(String hotelID, int standardRooms, int premiumRooms, int suites) {
         try {
             // Just create the rooms without updating counts
@@ -247,6 +248,7 @@ public class HotelManager implements DatabaseCreator {
         return hotel; // Return the Hotel object (or null if not found)
     }
 
+    // Method to filter hotels by name
     public Hotel getHotelByName(String hotelName) {
         Hotel hotel = null;
         String query = "SELECT * FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
@@ -275,6 +277,7 @@ public class HotelManager implements DatabaseCreator {
         return hotel;
     }
 
+    // Method to generate ID
     public String idGenerator() {
         String selectSQL = "SELECT MAX(HOTEL_ID) AS MAX_ID FROM HOTEL";
         try {
@@ -293,6 +296,7 @@ public class HotelManager implements DatabaseCreator {
         return "HTL-1"; // Default to HTL-1 if no entries exist or error occurs
     }
 
+    // Method to get hotel names
     public List<String> getHotelNames() {
         List<String> hotelNames = new ArrayList<>();
         String query = "SELECT HOTEL_NAME FROM HOTEL";
@@ -323,6 +327,7 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
+    // Method to get hotel ID by name
     public String getHotelIDByName(String hotelName) {
         String hotelID = null;
 

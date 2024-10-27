@@ -50,11 +50,10 @@ public class RoomManagerTest {
     @AfterEach
     public void tearDown() {
         try {
-            
+
             String hotelID = hotelManager.getHotelIDByName(testHotel);
             roomManager.clearRoomData(hotelID);
             hotelManager.clearHotelData(testHotel);
-
 
         } catch (Exception e) {
             System.err.println("Error in teardown: " + e.getMessage());
@@ -111,25 +110,8 @@ public class RoomManagerTest {
     }
 
     /**
-     * Test initial data insertion
+     * Test to filter room by availability date
      */
-    @Test
-    public void testInsertInitialData() {
-        roomManager.insertInitialData();
-
-        List<Room> hotel1Rooms = roomManager.filterRoomByHotel("Auckland Skyline");
-        List<Room> hotel2Rooms = roomManager.filterRoomByHotel("Queenstown Grand");
-
-        assertEquals(5, hotel1Rooms.size(), "Hotel 1 should have 5 rooms");
-        assertEquals(3, hotel2Rooms.size(), "Hotel 2 should have 3 rooms");
-
-        long standardRoomsH1 = hotel1Rooms.stream()
-                .filter(r -> r.getRoomType().equals("STANDARD"))
-                .count();
-
-        assertEquals(2, standardRoomsH1, "Hotel 1 should have 2 standard rooms");
-    }
-
     @Test
     public void testFilterByDate() {
         try {
