@@ -80,27 +80,27 @@ public class ChangeRoomAvailabilityController implements ActionListener {
             }
         }
         
-        bookingManager.changeRoom(bookingID, selectedRoom);
-//
-//        if (success) {
-//            JOptionPane.showMessageDialog(view,
-//                    "Room changed successfully!\n"
-//                    + "New Room ID: " + roomID + "\n"
-//                    + "Room Type: " + selectedRoom.getRoomType() + "\n",
-//                    "Booking Confirmation",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//
-//            // Return to booking management page
-//            BookingManagement bookingManagement = new BookingManagement();
-//            bookingManagement.setVisible(true);
-//            view.dispose();
-//
-//        } else {
-//            JOptionPane.showMessageDialog(view,
-//                    "Failed to create booking. Please try again.",
-//                    "Booking Failed",
-//                    JOptionPane.ERROR_MESSAGE);
-//        }
+       boolean success = bookingManager.changeRoom(bookingID, selectedRoom);
+
+       if (success) {
+            JOptionPane.showMessageDialog(view,
+                    "Room changed successfully!\n"
+                    + "New Room ID: " + roomID + "\n"
+                    + "Room Type: " + selectedRoom.getRoomType() + "\n",
+                    "Booking Confirmation",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            // Return to booking management page
+            BookingManagement bookingManagement = new BookingManagement();
+            bookingManagement.setVisible(true);
+            view.dispose();
+
+        } else {
+            JOptionPane.showMessageDialog(view,
+                    "Failed to create booking. Please try again.",
+                    "Booking Failed",
+                    JOptionPane.ERROR_MESSAGE);
+        }
 
     }
 
