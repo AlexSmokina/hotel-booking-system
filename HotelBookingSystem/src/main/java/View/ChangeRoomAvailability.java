@@ -59,7 +59,7 @@ public class ChangeRoomAvailability extends javax.swing.JFrame {
         chooseConfirmPrompt.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
         chooseConfirmPrompt.setForeground(new java.awt.Color(0, 0, 0));
         chooseConfirmPrompt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        chooseConfirmPrompt.setText("Choose Room & Change Booking");
+        chooseConfirmPrompt.setText("Choose Room & Confirm Update");
 
         changeBooking.setBackground(new java.awt.Color(153, 0, 153));
         changeBooking.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
@@ -67,6 +67,7 @@ public class ChangeRoomAvailability extends javax.swing.JFrame {
         changeBooking.setText("Change Room");
 
         roomOptionArea.setColumns(20);
+        roomOptionArea.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         roomOptionArea.setRows(5);
         roomOptionArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Available Rooms", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         roomOptionScroll.setViewportView(roomOptionArea);

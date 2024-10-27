@@ -63,6 +63,7 @@ public class ChangeRoomGuest extends javax.swing.JFrame {
         returnPreviousMenu.setText("Return");
 
         bookingTextArea.setColumns(20);
+        bookingTextArea.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
         bookingTextArea.setRows(5);
         bookingTextArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Current Bookings", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         bookingScrollArea.setViewportView(bookingTextArea);

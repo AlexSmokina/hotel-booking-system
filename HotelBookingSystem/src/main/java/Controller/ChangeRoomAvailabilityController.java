@@ -66,6 +66,7 @@ public class ChangeRoomAvailabilityController implements ActionListener {
         }
     }
 
+    // Method that helps to change the room
     private void handleChangeRoom() {
         String roomID = view.getRoomNumber().getText();
         if (roomID == null || roomID.trim().equals("")
@@ -105,6 +106,7 @@ public class ChangeRoomAvailabilityController implements ActionListener {
 
     }
 
+    // Methood to display all available rooms 
     private void displayAvailableRooms() {
 
         String today = dateFormat.format(Room.getTodayDate());  // Use new Date() directly
@@ -129,6 +131,7 @@ public class ChangeRoomAvailabilityController implements ActionListener {
         view.getRoomOptionArea().setText(roomInfo.toString());
     }
     
+    // Method to exit to previous menu based on the UserType
     private void exit(JFrame guestView, JFrame staffView){
         if(userManager.getCurrentUser().getType().equals(UserType.GUEST)){
             guestView.setVisible(true);

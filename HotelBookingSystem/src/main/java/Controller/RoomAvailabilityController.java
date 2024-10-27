@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -61,7 +62,7 @@ public class RoomAvailabilityController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+
         UserType userType = userManager.getCurrentUser().getType();
         String command = e.getActionCommand();
 
@@ -119,7 +120,7 @@ public class RoomAvailabilityController implements ActionListener {
                     JOptionPane.INFORMATION_MESSAGE);
 
             // Returning to the another page depeneding on the user
-            navigateAfterSuccess();
+            exit(new GuestMenu(), new BookingManagement());
 
         } else {
             JOptionPane.showMessageDialog(view,
@@ -149,15 +150,13 @@ public class RoomAvailabilityController implements ActionListener {
         }
         view.getRoomOptionArea().setText(roomInfo.toString());
     }
-    
-    private void navigateAfterSuccess() {
-        if(userManager.getCurrentUser().getType().equals(UserType.GUEST)) {
-            GuestMenu guestMenu = new GuestMenu();
-            guestMenu.setVisible(true);
+
+    private void exit(JFrame guestView, JFrame staffView) {
+        if (userManager.getCurrentUser().getType().equals(UserType.GUEST)) {
+            guestView.setVisible(true);
             view.dispose();
         } else {
-            BookingManagement bookingManagement = new BookingManagement();
-            bookingManagement.setVisible(true);
+            staffView.setVisible(true);
             view.dispose();
         }
     }
