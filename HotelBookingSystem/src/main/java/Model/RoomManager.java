@@ -264,12 +264,11 @@ public class RoomManager implements DatabaseCreator {
     // Method to get room data from the database based on room ID and hotel ID
     public Room getRoomData(String roomID, String hotelID) {
         try {
-            Statement stmt = conn.createStatement();
             // SQL query to retrieve room data
             String query = "SELECT * FROM ROOM WHERE ROOM_ID = '"
                     + roomID + "' AND HOTEL_ID = '" + hotelID + "'";
 
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = dbManager.queryDB(query);
             if (rs.next()) {
                 return extractRoomFromResultSet(rs); // Extract room data
             }
@@ -300,13 +299,25 @@ public class RoomManager implements DatabaseCreator {
     }
 
     // Method to filter rooms by hotel ID and return a list of rooms
-    public List<Room> filterRoomByHotel(String hotelID) {
+    public List<Room> filterRoomByHotel(String hotelName) {
         List<Room> roomList = new ArrayList<>();
         try {
-            Statement stmt = conn.createStatement();
+            String hotelQuery = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet hotelRs = dbManager.queryDB(hotelQuery);
+
+            // Check if hotel exists and get its ID
+            String hotelID = null;
+            if (hotelRs.next()) {
+                hotelID = hotelRs.getString("HOTEL_ID");
+            } else {
+                // If hotel not found, return empty list
+                return roomList;
+            }
+            hotelRs.close();
+            
             // SQL query to filter rooms by hotel ID
             String query = "SELECT * FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'";
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = dbManager.queryDB(query);
 
             while (rs.next()) {
                 roomList.add(extractRoomFromResultSet(rs)); // Add each room to the list
@@ -323,10 +334,10 @@ public class RoomManager implements DatabaseCreator {
 
         // First, get the hotel ID from hotel name
         try {
-            Statement stmt = conn.createStatement();
+            
 
             String hotelQuery = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
-            ResultSet hotelRs = stmt.executeQuery(hotelQuery);
+            ResultSet hotelRs = dbManager.queryDB(hotelQuery);
 
             // Check if hotel exists and get its ID
             String hotelID = null;

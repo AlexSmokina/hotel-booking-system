@@ -45,7 +45,7 @@ public class AddNewHotelController implements ActionListener {
             view.dispose();
         }
     }
-
+    
     private void handleAddHotel() {
         String name = view.getHotelName().getText();
         String address = view.getHotelAddress().getText();
