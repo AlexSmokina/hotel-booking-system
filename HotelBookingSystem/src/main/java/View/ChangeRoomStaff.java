@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.ChangeRoomStaffController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
      */
     public ChangeRoomStaff() {
         initComponents();
+        new ChangeRoomStaffController(this);
     }
 
     /**
@@ -54,11 +57,6 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         enterGuestUsername.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         enterGuestUsername.setForeground(new java.awt.Color(102, 102, 102));
         enterGuestUsername.setText("Enter guest username");
-        enterGuestUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterGuestUsernameActionPerformed(evt);
-            }
-        });
 
         enterBookingID.setBackground(new java.awt.Color(255, 204, 255));
         enterBookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -68,12 +66,7 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
         checkAvailabilityRoom.setBackground(new java.awt.Color(153, 0, 153));
         checkAvailabilityRoom.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         checkAvailabilityRoom.setForeground(new java.awt.Color(255, 255, 255));
-        checkAvailabilityRoom.setText("Check Availability Room");
-        checkAvailabilityRoom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkAvailabilityRoomActionPerformed(evt);
-            }
-        });
+        checkAvailabilityRoom.setText("Check Available Room");
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
@@ -125,10 +118,10 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
                 .addComponent(changeRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(changeRoomPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                     .addComponent(enterGuestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bookingScrollArea, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE)
+                .addComponent(bookingScrollArea, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(enterBookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,51 +135,9 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void enterGuestUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterGuestUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterGuestUsernameActionPerformed
-
-    private void checkAvailabilityRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailabilityRoomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkAvailabilityRoomActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ChangeRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ChangeRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ChangeRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ChangeRoomStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ChangeRoomStaff().setVisible(true);
-            }
-        });
-    }
-
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane bookingScrollArea;
     private javax.swing.JTextArea bookingTextArea;
@@ -199,4 +150,28 @@ public class ChangeRoomStaff extends javax.swing.JFrame {
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextArea getBookingTextArea() {
+        return bookingTextArea;
+    }
+
+    public javax.swing.JTextField getEnterBookingID() {
+        return enterBookingID;
+    }
+
+    public javax.swing.JTextField getEnterGuestUsername() {
+        return enterGuestUsername;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+    public javax.swing.JButton getSearch() {
+        return search;
+    }
+    
+    public javax.swing.JButton getCheckAvailabilityRoom(){
+        return checkAvailabilityRoom;
+    }
 }
