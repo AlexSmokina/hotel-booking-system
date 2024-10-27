@@ -233,43 +233,43 @@ public class BookingManager implements DatabaseCreator {
     }
 
     //Method to change current room
-    public void changeRoom(String bookingID, Room newRoom) {
+    public boolean changeRoom(String bookingID, Room newRoom) {
 
         // Fetching the booking data from the database
         Booking booking = this.getBookingData(bookingID);
         if (booking == null) {
             System.out.println("Booking ID does NOT exist");
+            return false;
         }
 
         if (newRoom == null) {
             System.out.println("New room is not available.");
-            return;
+            return false;
         }
 
         // Freeing up the current room by setting room as available
         Room currentRoom = booking.getRoom();
         if (currentRoom != null) {
-            String todayStr = dateFormat.format(booking.getEndDate());
+            String todayStr = dateFormat.format(Room.getTodayDate());
             String updateCurrentRoomSQL = String.format(
-                    "UPDATE FROM SET AVAILABILITY_STATUS = 'Available', DATE_FROM = '%s' WHERE ROMM_ID = '%s' AND HOTEL_ID = '%s'",
+                    "UPDATE ROOM SET AVAILABILITY_STATUS = 'Available', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
                     todayStr, currentRoom.getRoomID(), booking.getHotelID());
             dbManager.updateDB(updateCurrentRoomSQL);
         }
 
         // Assigning new room - seeting new room as booked
-        if (newRoom != null) {
-            String newEndDateStr = dateFormat.format(booking.getEndDate());
-            String updateNewRoomSQL = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
-                    newEndDateStr, newRoom.getRoomID(), booking.getBookingID());
-            dbManager.updateDB(updateNewRoomSQL);
-        }
+        String newEndDateStr = dateFormat.format(booking.getEndDate());
+        String updateNewRoomSQL = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
+                newEndDateStr, newRoom.getRoomID(), booking.getHotelID());
+        dbManager.updateDB(updateNewRoomSQL);
 
         // Updating booking with new room ID
-        String updateBookingSQL = String.format("UPDATE BOOKING SET ROOM_ID = '%s', WHERE BOOKING_ID = '%s'",
+        String updateBookingSQL = String.format("UPDATE BOOKING SET ROOM_ID = '%s' WHERE BOOKING_ID = '%s'",
                 newRoom.getRoomID(), bookingID);
         dbManager.updateDB(updateBookingSQL);
         booking.setRoom(newRoom);
         booking.calculateTotalCost();
+        return true;
     }
 
     // Method to generate a unique booking ID by incrementing a counter
@@ -293,7 +293,7 @@ public class BookingManager implements DatabaseCreator {
 
     // Method to view booking details based on username
     public String viewBookingsByUser(String username) {
-        
+
         StringBuilder bookingDetails = new StringBuilder();
         // Searching booking using username
         String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
