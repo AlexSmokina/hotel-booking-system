@@ -183,17 +183,25 @@ public class BookingManager implements DatabaseCreator {
         String roomID = room.getRoomID();
         String hotelID = room.getHotelID();
 
-        String sql = "UPDATE BOOKING SET END_DATE = '" + newEndDate + "', BOOKING_STATUS = 'active' WHERE BOOKING_ID = '" + bookingID + "'";
-        dbManager.updateDB(sql);
-
         java.sql.Date checkOut = convertToSqlDate(newEndDate);
+        java.util.Date checkOutDate = convertToDate(newEndDate);
+        
 
         String updateRoomSQL = String.format(
                 "UPDATE ROOM SET DATE_FROM = '%s' "
                 + "WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
                 checkOut, roomID, hotelID
         );
+        
         dbManager.updateDB(updateRoomSQL);
+        booking.setEndDate(checkOutDate);
+        booking.calculateTotalCost();
+        
+        String updateBookingSQL = String.format(
+                "UPDATE BOOKING SET END_DATE = '%s', TOTAL_PRICE = %.2f, BOOKING_STATUS = 'active' WHERE BOOKING_ID = '%s'",
+                checkOut, booking.getTotalPrice(), bookingID
+        );
+        dbManager.updateDB(updateBookingSQL);
         System.out.printf("Booking %s extend succesfully\n", bookingID);
         return true;
     }
@@ -262,20 +270,17 @@ public class BookingManager implements DatabaseCreator {
         String updateNewRoomSQL = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
                 newEndDateStr, newRoom.getRoomID(), booking.getHotelID());
         dbManager.updateDB(updateNewRoomSQL);
-        
 
-        // Calculate and update the total cost for the booking with the new room rate
         booking.setRoom(newRoom);
-        double newTotalPrice = booking.getTotalPrice(); 
+        booking.calculateTotalCost();  // This will update booking.totalPrice
 
-        // Updating booking with new room ID
+        // Updating booking with new room ID and the recalculated total price
         String updateBookingSQL = String.format(
                 "UPDATE BOOKING SET ROOM_ID = '%s', TOTAL_PRICE = %.2f WHERE BOOKING_ID = '%s'",
-                newRoom.getRoomID(), newTotalPrice, bookingID
+                newRoom.getRoomID(), booking.getTotalPrice(), bookingID
         );
         dbManager.updateDB(updateBookingSQL);
-        booking.setRoom(newRoom);
-        booking.calculateTotalCost();
+
         return true;
     }
 
@@ -402,6 +407,17 @@ public class BookingManager implements DatabaseCreator {
         try {
             java.util.Date utilDate = dateFormat.parse(dateStr);
             return new java.sql.Date(utilDate.getTime());
+        } catch (ParseException e) {
+            System.err.println("Error coverting data");
+            return null;
+        }
+
+    }
+    
+     private java.util.Date convertToDate(String dateStr) {
+        try {
+            java.util.Date utilDate = dateFormat.parse(dateStr);
+            return utilDate;
         } catch (ParseException e) {
             System.err.println("Error coverting data");
             return null;
