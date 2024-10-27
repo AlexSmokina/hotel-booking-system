@@ -135,17 +135,14 @@ public class RoomAvailabilityController implements ActionListener {
 
         StringBuilder roomInfo = new StringBuilder();
 
-        // Add header line with labels
-        roomInfo.append("Room Type, Room ID, Price, Availability Status, Available From, Hotel ID\n");
-        roomInfo.append("===================\n");
-
         for (Room room : availableRooms) {
-            roomInfo.append(room.getRoomType()).append(", ")
-                    .append(room.getRoomID()).append(", ")
-                    .append("$").append(room.getPrice()).append(", ")
-                    .append(room.isBooked() ? "Booked" : "Available").append(", ")
-                    .append(dateFormat.format(room.getAvailabilityDate())).append(", ")
-                    .append(room.getHotelID()).append("\n");
+            roomInfo.append(String.format("Room ID           : %s\n", room.getRoomID()));
+            roomInfo.append(String.format("Room Type         : %s\n", room.getRoomType()));
+            roomInfo.append(String.format("Price             : $%.2f\n", room.getPrice()));
+            roomInfo.append(String.format("Availability      : %s\n", (room.isBooked()) ? "Booked" : "Available"));
+            roomInfo.append(String.format("Date Available    : %s\n", room.getAvailabilityDate()));
+            roomInfo.append(String.format("Hotel ID          : %s\n", room.getHotelID()));
+            roomInfo.append("----------------------------------------\n");
         }
         view.getRoomOptionArea().setText(roomInfo.toString());
     }
