@@ -56,11 +56,6 @@ public class DisplayInvoice extends javax.swing.JFrame {
         enterBookingID.setForeground(new java.awt.Color(102, 102, 102));
         enterBookingID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         enterBookingID.setText("Enter booking ID to view invoice");
-        enterBookingID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterBookingIDActionPerformed(evt);
-            }
-        });
 
         search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         search.setForeground(new java.awt.Color(153, 0, 153));
@@ -115,61 +110,23 @@ public class DisplayInvoice extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void enterBookingIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterBookingIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterBookingIDActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DisplayInvoice().setVisible(true);
-            }
-        });
-    }
 
     // Gets the text area component used to display invoice details
     public javax.swing.JTextPane getInvoiceTextArea() {
         return invoiceDisplayArea;
     }
 
-// Gets the search button used to initiate invoice lookup 
+    // Gets the search button used to initiate invoice lookup 
     public javax.swing.JButton getSearch() {
         return search;
     }
 
-// Gets the return button used to navigate back to previous menu
+    // Gets the return button used to navigate back to previous menu
     public javax.swing.JButton getReturnPreviousMenu() {
         return returnPreviousMenu;
     }
 
-// Gets the text field used for entering booking ID
+    // Gets the text field used for entering booking ID
     public javax.swing.JTextField getEnterBookingID() {
         return enterBookingID;
     }
