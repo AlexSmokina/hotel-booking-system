@@ -49,8 +49,9 @@ public class ViewBooking extends javax.swing.JFrame {
         bookings.setPreferredSize(new java.awt.Dimension(220, 50));
 
         bookingViewArea.setColumns(20);
+        bookingViewArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         bookingViewArea.setRows(5);
-        bookingViewArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "booking view", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
+        bookingViewArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Booking details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollBookingsPanel.setViewportView(bookingViewArea);
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
@@ -75,18 +76,18 @@ public class ViewBooking extends javax.swing.JFrame {
                 .addGroup(displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(displayBookingPanelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(enterGuestName, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                        .addComponent(enterGuestName, javax.swing.GroupLayout.DEFAULT_SIZE, 322, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(displayBookingPanelLayout.createSequentialGroup()
-                        .addGap(207, 207, 207)
+                        .addGap(158, 158, 158)
                         .addComponent(bookings, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayBookingPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(returnPreviousMenu)
-                .addGap(252, 252, 252))
+                .addGap(206, 206, 206))
         );
         displayBookingPanelLayout.setVerticalGroup(
             displayBookingPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

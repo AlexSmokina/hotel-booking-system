@@ -156,8 +156,7 @@ public class BookRoomGuest extends javax.swing.JFrame {
     private void checkAvailabilityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkAvailabilityActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkAvailabilityActionPerformed
-    
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bookRoomGuestPanel;
@@ -170,4 +169,25 @@ public class BookRoomGuest extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> hotelChoice;
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextField getCheckInDate() {
+        return checkInDate;
+    }
+
+    public javax.swing.JTextField getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public javax.swing.JButton getCheckAvailability() {
+        return checkAvailability;
+    }
+
+    public javax.swing.JComboBox<String> getHotelChoice() {
+        return hotelChoice;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
 }
