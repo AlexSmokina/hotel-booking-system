@@ -179,6 +179,7 @@ public class HotelManager implements DatabaseCreator {
         String userQuery = "SELECT * FROM HOTEL";
         ResultSet rs = dbManager.queryDB(userQuery);
         StringBuilder hotelDetails = new StringBuilder();
+        int counter = 1;
 
         try {
             // Iterate through the result set and print each hotel's details
@@ -190,13 +191,18 @@ public class HotelManager implements DatabaseCreator {
                 int premiumRooms = rs.getInt("PREMIUM");
                 int suites = rs.getInt("SUITE");
                 
+                hotelDetails.append("==========================\n");
+                hotelDetails.append(String.format("                 HOTEL # %d              \n", counter));
+                hotelDetails.append("==========================\n");
                 hotelDetails.append(String.format("Hotel ID         : %s\n", hotelID));
                 hotelDetails.append(String.format("Hotel Name       : %s\n", hotelName));
                 hotelDetails.append(String.format("Hotel Location   : %s\n", hotelLocation));
                 hotelDetails.append(String.format("Standard Rooms   : %d\n", standardRooms));
                 hotelDetails.append(String.format("Premium Rooms    : %d\n", premiumRooms));
                 hotelDetails.append(String.format("Suites           : %d\n", suites));
-                hotelDetails.append("----------------------------------------\n");
+                hotelDetails.append("-----------------------------------------\n");
+                
+                counter++;
             }
             rs.close(); // Close the result set
 

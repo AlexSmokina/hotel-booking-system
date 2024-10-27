@@ -66,13 +66,18 @@ public class ViewAllRoomsController implements ActionListener {
         }
     }
 
+    // Method to view rooms based on hotel choice
     private void handleSearch() {
         String hotelName = view.getHotelChoice().getSelectedItem().toString();
         List<Room> rooms = roomManager.filterRoomByHotel(hotelName);
 
         StringBuilder roomInfo = new StringBuilder();
+        int counter = 1;
 
         for (Room room : rooms) {
+            roomInfo.append("==========================\n");
+            roomInfo.append(String.format("                 ROOM # %d              \n", counter));
+            roomInfo.append("==========================\n");
             roomInfo.append(String.format("Room ID           : %s\n", room.getRoomID()));
             roomInfo.append(String.format("Room Type         : %s\n", room.getRoomType()));
             roomInfo.append(String.format("Price             : $%.2f\n", room.getPrice()));
@@ -80,10 +85,10 @@ public class ViewAllRoomsController implements ActionListener {
             roomInfo.append(String.format("Date Available    : %s\n", room.getAvailabilityDate()));
             roomInfo.append(String.format("Hotel ID          : %s\n", room.getHotelID()));
             roomInfo.append("----------------------------------------\n");
+
+            counter++;
         }
-
         view.getRoomDisplayArea().setText(roomInfo.toString());
-
     }
 
 }

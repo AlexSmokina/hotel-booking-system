@@ -51,11 +51,10 @@ public class ViewAllRooms extends javax.swing.JFrame {
         roomDisplayArea.setColumns(20);
         roomDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         roomDisplayArea.setRows(5);
-        roomDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        roomDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollRoomPanel.setViewportView(roomDisplayArea);
 
-        hotelChoice.setBackground(new java.awt.Color(255, 204, 255));
-        hotelChoice.setFont(new java.awt.Font("STSong", 0, 18)); // NOI18N
+        hotelChoice.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         hotelChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Auckland Skyline", "Queenstown Grand" }));
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
@@ -65,37 +64,46 @@ public class ViewAllRooms extends javax.swing.JFrame {
         search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         search.setForeground(new java.awt.Color(153, 0, 153));
         search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout viewRoomsPanelLayout = new javax.swing.GroupLayout(viewRoomsPanel);
         viewRoomsPanel.setLayout(viewRoomsPanelLayout);
         viewRoomsPanelLayout.setHorizontalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
             .addGroup(viewRoomsPanelLayout.createSequentialGroup()
-                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(hotelChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(viewRoomsPanelLayout.createSequentialGroup()
-                            .addGap(168, 168, 168)
-                            .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(viewRoomsPanelLayout.createSequentialGroup()
-                            .addGap(206, 206, 206)
-                            .addComponent(returnPreviousMenu))))
-                .addGap(18, 18, 18)
-                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(hotelChoice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                        .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                                .addGap(208, 208, 208)
+                                .addComponent(returnPreviousMenu)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         viewRoomsPanelLayout.setVerticalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewRoomsPanelLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hotelChoice, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollRoomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(hotelChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollRoomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
@@ -105,6 +113,10 @@ public class ViewAllRooms extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
     
     public javax.swing.JButton getReturnPreviousMenu(){
         return returnPreviousMenu;

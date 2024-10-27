@@ -39,6 +39,8 @@ public class RoomAvailability extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        roomAvailabilityPanel.setBackground(new java.awt.Color(255, 255, 255));
+
         roomAvailability.setBackground(new java.awt.Color(255, 255, 255));
         roomAvailability.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
         roomAvailability.setForeground(new java.awt.Color(0, 0, 0));

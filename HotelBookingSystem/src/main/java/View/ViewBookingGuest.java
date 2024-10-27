@@ -47,7 +47,7 @@ public class ViewBookingGuest extends javax.swing.JFrame {
         bookings.setPreferredSize(new java.awt.Dimension(220, 50));
 
         bookingViewArea.setColumns(20);
-        bookingViewArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        bookingViewArea.setFont(new java.awt.Font("Helvetica Neue", 0, 20)); // NOI18N
         bookingViewArea.setRows(5);
         bookingViewArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Booking details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollBookingsPanel.setViewportView(bookingViewArea);

@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.UserManager;
 import View.BookRoomGuest;
 import View.CancelBookingGuest;
 import View.ChangeRoomGuest;

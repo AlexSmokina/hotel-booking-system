@@ -362,40 +362,6 @@ public class RoomManager implements DatabaseCreator {
         return roomList; // Return the list of rooms
     }
 
-    public String viewRooms() {
-        // SQL query to select all room records from the ROOM table
-        String userQuery = "SELECT * FROM ROOM";
-        ResultSet rs = dbManager.queryDB(userQuery);
-        StringBuilder roomDetails = new StringBuilder();
-
-        try {
-            // Iterate through the result set and print each room's details
-            while (rs.next()) {
-                String roomID = rs.getString("ROOM_ID");
-                String roomType = rs.getString("ROOM_TYPE");
-                double price = rs.getDouble("PRICE");
-                String availabilityStatus = rs.getString("AVAILABILITY_STATUS");
-                Date dateFrom = rs.getDate("DATE_FROM");
-                String hotelID = rs.getString("HOTEL_ID");
-
-                // Append room details to the StringBuilder
-                roomDetails.append(String.format("Room ID           : %s\n", roomID));
-                roomDetails.append(String.format("Room Type         : %s\n", roomType));
-                roomDetails.append(String.format("Price             : $%.2f\n", price));
-                roomDetails.append(String.format("Availability      : %s\n", availabilityStatus));
-                roomDetails.append(String.format("Date Available    : %s\n", (dateFrom != null ? dateFrom.toString() : "N/A")));
-                roomDetails.append(String.format("Hotel ID          : %s\n", hotelID));
-                roomDetails.append("----------------------------------------\n");
-            }
-            rs.close(); // Close the result set
-
-        } catch (SQLException ex) {
-            // Log any SQL exceptions that occur while retrieving room data
-            Logger.getLogger(RoomManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return roomDetails.toString();
-    }
-
     // Helper method to extract room data from a ResultSet
     private Room extractRoomFromResultSet(ResultSet rs) throws SQLException {
         String roomID = rs.getString("ROOM_ID");

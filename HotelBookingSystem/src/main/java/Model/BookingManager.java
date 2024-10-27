@@ -185,18 +185,17 @@ public class BookingManager implements DatabaseCreator {
 
         java.sql.Date checkOut = convertToSqlDate(newEndDate);
         java.util.Date checkOutDate = convertToDate(newEndDate);
-        
 
         String updateRoomSQL = String.format(
                 "UPDATE ROOM SET DATE_FROM = '%s' "
                 + "WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
                 checkOut, roomID, hotelID
         );
-        
+
         dbManager.updateDB(updateRoomSQL);
         booking.setEndDate(checkOutDate);
         booking.calculateTotalCost();
-        
+
         String updateBookingSQL = String.format(
                 "UPDATE BOOKING SET END_DATE = '%s', TOTAL_PRICE = %.2f, BOOKING_STATUS = 'active' WHERE BOOKING_ID = '%s'",
                 checkOut, booking.getTotalPrice(), bookingID
@@ -309,10 +308,12 @@ public class BookingManager implements DatabaseCreator {
         StringBuilder bookingDetails = new StringBuilder();
         // Searching booking using username
         String query = "SELECT * FROM BOOKING WHERE USERNAME = '" + username + "'";
-
+        int counter = 1;
+        
         ResultSet rs = dbManager.queryDB(query);
         try {
             while (rs.next()) {
+                
                 String bookingID = rs.getString("BOOKING_ID");
                 Date startDate = rs.getDate("START_DATE");
                 Date endDate = rs.getDate("END_DATE");
@@ -322,6 +323,9 @@ public class BookingManager implements DatabaseCreator {
                 String bookingStatus = rs.getString("BOOKING_STATUS");
 
                 // Formatting each booking with labeled fields
+                bookingDetails.append("=====================\n");
+                bookingDetails.append(String.format("            BOOKING #%d              \n", counter));
+                bookingDetails.append("=====================\n");
                 bookingDetails.append(String.format("Booking ID     : %s\n", bookingID));
                 bookingDetails.append(String.format("Start Date     : %s\n", startDate != null ? startDate.toString() : "N/A"));
                 bookingDetails.append(String.format("End Date       : %s\n", endDate != null ? endDate.toString() : "N/A"));
@@ -330,7 +334,9 @@ public class BookingManager implements DatabaseCreator {
                 bookingDetails.append(String.format("Total Price    : $%.2f\n", totalPrice));
                 bookingDetails.append(String.format("Hotel ID       : %s\n", hotelID));
                 bookingDetails.append(String.format("Booking Status : %s\n", bookingStatus));
-                bookingDetails.append("------------------------------\n");
+                bookingDetails.append("--------------------------------\n");
+                
+                counter++;
             }
             rs.close();
         } catch (SQLException e) {
@@ -376,11 +382,11 @@ public class BookingManager implements DatabaseCreator {
             invoiceText.append(String.format("%-15s: %s\n", "Guest", booking.getUserName()));
             invoiceText.append(String.format("%-15s: %s\n", "Start Date", dateFormat.format(booking.getStartDate())));
             invoiceText.append(String.format("%-15s: %s\n", "End Date", dateFormat.format(booking.getEndDate())));
-            invoiceText.append("--------------------\n");
+            invoiceText.append("------------------------------\n");
             invoiceText.append(String.format("%-15s: $%.2f\n", "$Room Rate", roomPrice));
             invoiceText.append(String.format("%-15s: $%.2f\n", "$Subtotal", totalPrice));
             invoiceText.append(String.format("%-15s: $%.2f\n", "GST (15%)", gst));
-            invoiceText.append("--------------------\n");
+            invoiceText.append("------------------------------\n");
             invoiceText.append(String.format("%-15s: $%.2f\n", "$Total Owing", totalOwing));
             invoiceText.append(String.format("%-15s: %s\n", "Status", booking.getStatus()));
             invoiceText.append("====================\n");
@@ -413,8 +419,8 @@ public class BookingManager implements DatabaseCreator {
         }
 
     }
-    
-     private java.util.Date convertToDate(String dateStr) {
+
+    private java.util.Date convertToDate(String dateStr) {
         try {
             java.util.Date utilDate = dateFormat.parse(dateStr);
             return utilDate;

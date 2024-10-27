@@ -62,7 +62,7 @@ public class DisplayInvoice extends javax.swing.JFrame {
         search.setText("Search");
 
         invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Invoice Overview", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(153, 0, 153))); // NOI18N
-        invoiceDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 17)); // NOI18N
+        invoiceDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         invoiceDisplayScrollPane.setViewportView(invoiceDisplayArea);
 
         javax.swing.GroupLayout displayInvoicePanelLayout = new javax.swing.GroupLayout(displayInvoicePanel);
