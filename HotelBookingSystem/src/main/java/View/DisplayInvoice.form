@@ -126,9 +126,6 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="Enter booking ID to view invoice"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="enterBookingIDActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="search">
           <Properties>

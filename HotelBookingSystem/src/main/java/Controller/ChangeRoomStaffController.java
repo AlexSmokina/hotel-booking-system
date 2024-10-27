@@ -4,6 +4,7 @@
  */
 package Controller;
 
+import Model.Booking;
 import Model.BookingManager;
 import Model.UserManager;
 import View.BookingManagement;
@@ -67,7 +68,8 @@ public class ChangeRoomStaffController implements ActionListener{
 
     private void handleCheckRooms() {
         String bookingID = view.getEnterBookingID().getText();
-        if (bookingManager.getBookingData(bookingID) == null) {
+        Booking booking = bookingManager.getBookingData(bookingID);
+        if (booking == null || booking.getStatus()=="cancelled") {
             JOptionPane.showMessageDialog(view,
                     "Booking does not exist",
                     "Failed",

@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.CancelBookingGuestController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class CancelBookingGuest extends javax.swing.JFrame {
      */
     public CancelBookingGuest() {
         initComponents();
+        new CancelBookingGuestController(this);
     }
 
     /**
@@ -47,11 +50,6 @@ public class CancelBookingGuest extends javax.swing.JFrame {
         confirmCancel.setFont(new java.awt.Font("STSong", 1, 28)); // NOI18N
         confirmCancel.setForeground(new java.awt.Color(255, 255, 255));
         confirmCancel.setText("Confirm");
-        confirmCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmCancelActionPerformed(evt);
-            }
-        });
 
         cancelBooking.setBackground(new java.awt.Color(255, 255, 255));
         cancelBooking.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
@@ -113,45 +111,7 @@ public class CancelBookingGuest extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void confirmCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmCancelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CancelBookingGuest().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CaneclBookingGuestPanel;
@@ -161,4 +121,16 @@ public class CancelBookingGuest extends javax.swing.JFrame {
     private javax.swing.JButton confirmCancel;
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextField getBookingID() {
+        return bookingID;
+    }
+
+    public javax.swing.JButton getConfirmCancel() {
+        return confirmCancel;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
 }
