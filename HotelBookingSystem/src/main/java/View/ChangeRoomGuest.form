@@ -40,12 +40,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="checkRoomAvailability" min="-2" pref="400" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                          <Component id="enterBookingID" min="-2" pref="400" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="enterBookingID" min="-2" pref="400" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="0" pref="52" max="32767" attributes="0"/>
               </Group>
@@ -96,7 +94,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="66" red="66" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enter your current booking ID"/>
+            <Property name="text" type="java.lang.String" value="Enter your booking ID to change room"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="changeRoom">
@@ -127,11 +125,8 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Check Room Availability"/>
+            <Property name="text" type="java.lang.String" value="Check Available Room"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkRoomAvailabilityActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="returnPreviousMenu">
           <Properties>

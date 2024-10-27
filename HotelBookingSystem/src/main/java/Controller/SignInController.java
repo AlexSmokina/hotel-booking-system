@@ -76,11 +76,11 @@ public class SignInController implements ActionListener {
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
 
-            if (user.getType() == UserType.GUEST) {
+            if (user.getType().equals(UserType.GUEST)) {
                 GuestMenu guestMenu = new GuestMenu();
                 guestMenu.setVisible(true);
 
-            } else if (user.getType() == UserType.STAFF) {
+            } else  {
                 StaffMenu staffMenu = new StaffMenu();
                 staffMenu.setVisible(true);
             }

@@ -98,7 +98,7 @@ public class BookingManager implements DatabaseCreator {
                 // Insert the new booking into the database
                 String sqlBooking = String.format("INSERT INTO BOOKING (BOOKING_ID, START_DATE, END_DATE, ROOM_ID, USERNAME, TOTAL_PRICE, HOTEL_ID, BOOKING_STATUS) "
                         + "VALUES ('%s', '%s', '%s', '%s', '%s', %.2f, '%s', '%s')",
-                        bookingID, startDate, endDate, room.getRoomID(), user.getUserName(), calculatedPrice, hotelID, "Booked");
+                        bookingID, startDate, endDate, room.getRoomID(), user.getUserName(), calculatedPrice, hotelID, "active");
 
                 // SQL statement to update the ROOM table
                 String sqlUpdateRoom = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
@@ -262,10 +262,17 @@ public class BookingManager implements DatabaseCreator {
         String updateNewRoomSQL = String.format("UPDATE ROOM SET AVAILABILITY_STATUS = 'Booked', DATE_FROM = '%s' WHERE ROOM_ID = '%s' AND HOTEL_ID = '%s'",
                 newEndDateStr, newRoom.getRoomID(), booking.getHotelID());
         dbManager.updateDB(updateNewRoomSQL);
+        
+
+        // Calculate and update the total cost for the booking with the new room rate
+        booking.setRoom(newRoom);
+        double newTotalPrice = booking.getTotalPrice(); 
 
         // Updating booking with new room ID
-        String updateBookingSQL = String.format("UPDATE BOOKING SET ROOM_ID = '%s' WHERE BOOKING_ID = '%s'",
-                newRoom.getRoomID(), bookingID);
+        String updateBookingSQL = String.format(
+                "UPDATE BOOKING SET ROOM_ID = '%s', TOTAL_PRICE = %.2f WHERE BOOKING_ID = '%s'",
+                newRoom.getRoomID(), newTotalPrice, bookingID
+        );
         dbManager.updateDB(updateBookingSQL);
         booking.setRoom(newRoom);
         booking.calculateTotalCost();

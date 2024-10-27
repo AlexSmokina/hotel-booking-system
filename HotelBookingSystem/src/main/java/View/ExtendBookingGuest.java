@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.ExtendBookingGuestController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class ExtendBookingGuest extends javax.swing.JFrame {
      */
     public ExtendBookingGuest() {
         initComponents();
+        new ExtendBookingGuestController(this);
     }
 
     /**
@@ -60,11 +63,6 @@ public class ExtendBookingGuest extends javax.swing.JFrame {
         confirmExtend.setFont(new java.awt.Font("STSong", 1, 28)); // NOI18N
         confirmExtend.setForeground(new java.awt.Color(255, 255, 255));
         confirmExtend.setText("Confirm");
-        confirmExtend.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmExtendActionPerformed(evt);
-            }
-        });
 
         checkOutDate.setBackground(new java.awt.Color(255, 204, 255));
         checkOutDate.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
@@ -122,45 +120,8 @@ public class ExtendBookingGuest extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void confirmExtendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmExtendActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmExtendActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ExtendBookingGuest.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ExtendBookingGuest().setVisible(true);
-            }
-        });
-    }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookingDetailsPrompt;
@@ -171,4 +132,21 @@ public class ExtendBookingGuest extends javax.swing.JFrame {
     private javax.swing.JPanel extendBookingGuestPanel;
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
+
+
+    public javax.swing.JTextField getBookingID() {
+        return bookingID;
+    }
+
+    public javax.swing.JTextField getCheckOutDate() {
+        return checkOutDate;
+    }
+
+    public javax.swing.JButton getConfirmExtend() {
+        return confirmExtend;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
 }

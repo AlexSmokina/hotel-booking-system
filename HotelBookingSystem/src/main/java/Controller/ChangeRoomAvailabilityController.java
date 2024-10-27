@@ -10,13 +10,18 @@ import Model.Hotel;
 import Model.Room;
 import Model.RoomManager;
 import Model.HotelManager;
+import Model.UserManager;
+import Model.UserType;
 import View.BookingManagement;
 import View.ChangeRoomAvailability;
+import View.ChangeRoomGuest;
 import View.ChangeRoomStaff;
+import View.GuestMenu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,18 +34,20 @@ public class ChangeRoomAvailabilityController implements ActionListener {
     private BookingManager bookingManager;
     private RoomManager roomManager;
     private HotelManager hotelManager;
+    private UserManager userManager;
     private String bookingID;
     private List<Room> availableRooms;
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-    public ChangeRoomAvailabilityController(ChangeRoomAvailability view, String bookingID ) {
+    public ChangeRoomAvailabilityController(ChangeRoomAvailability view, String bookingID) {
         this.view = view;
         this.roomManager = RoomManager.getInstance();
         this.bookingManager = BookingManager.getInstance();
         this.hotelManager = HotelManager.getInstance();
+        this.userManager = UserManager.getInstance();
         this.bookingID = bookingID;
-    initialize();
-}
+        initialize();
+    }
 
     private void initialize() {
         view.getChangeBooking().addActionListener(this);
@@ -55,9 +62,7 @@ public class ChangeRoomAvailabilityController implements ActionListener {
         if ("Change Room".equals(command)) {
             handleChangeRoom();
         } else if ("Return".equals(command)) {
-            ChangeRoomStaff changeRoomStaff = new ChangeRoomStaff();
-            changeRoomStaff.setVisible(true);
-            view.dispose();
+            exit(new ChangeRoomGuest(), new ChangeRoomStaff());
         }
     }
 
@@ -78,10 +83,10 @@ public class ChangeRoomAvailabilityController implements ActionListener {
                 break;
             }
         }
-        
-       boolean success = bookingManager.changeRoom(bookingID, selectedRoom);
 
-       if (success) {
+        boolean success = bookingManager.changeRoom(bookingID, selectedRoom);
+
+        if (success) {
             JOptionPane.showMessageDialog(view,
                     "Room changed successfully!\n"
                     + "New Room ID: " + roomID + "\n"
@@ -89,10 +94,7 @@ public class ChangeRoomAvailabilityController implements ActionListener {
                     "Booking Confirmation",
                     JOptionPane.INFORMATION_MESSAGE);
 
-            // Return to booking management page
-            BookingManagement bookingManagement = new BookingManagement();
-            bookingManagement.setVisible(true);
-            view.dispose();
+            exit(new GuestMenu(), new BookingManagement());
 
         } else {
             JOptionPane.showMessageDialog(view,
@@ -104,31 +106,38 @@ public class ChangeRoomAvailabilityController implements ActionListener {
     }
 
     private void displayAvailableRooms() {
-        
+
         String today = dateFormat.format(Room.getTodayDate());  // Use new Date() directly
-        Booking booking =bookingManager.getBookingData(bookingID);
+        Booking booking = bookingManager.getBookingData(bookingID);
         String hotelID = booking.getHotelID();
         Hotel hotel = hotelManager.getHotelData(hotelID);
         String hotelName = hotel.getName();
-        
+
         availableRooms = roomManager.filterByDate(today, hotelName);
 
         StringBuilder roomInfo = new StringBuilder();
 
-        // Add header line with labels
-        roomInfo.append("Room Type, Room ID, Price, Availability Status, Available From, Hotel ID\n");
-        roomInfo.append("===================\n");
-
         for (Room room : availableRooms) {
-            roomInfo.append(room.getRoomType()).append(", ")
-                    .append(room.getRoomID()).append(", ")
-                    .append("$").append(room.getPrice()).append(", ")
-                    .append(room.isBooked() ? "Booked" : "Available").append(", ")
-                    .append(dateFormat.format(room.getAvailabilityDate())).append(", ")
-                    .append(room.getHotelID()).append("\n");
+            roomInfo.append(String.format("Room ID           : %s\n", room.getRoomID()));
+            roomInfo.append(String.format("Room Type         : %s\n", room.getRoomType()));
+            roomInfo.append(String.format("Price             : $%.2f\n", room.getPrice()));
+            roomInfo.append(String.format("Availability      : %s\n", (room.isBooked()) ? "Booked" : "Available"));
+            roomInfo.append(String.format("Date Available    : %s\n", room.getAvailabilityDate()));
+            roomInfo.append(String.format("Hotel ID          : %s\n", hotelID));
+            roomInfo.append("----------------------------------------\n");
         }
         view.getRoomOptionArea().setText(roomInfo.toString());
     }
-
+    
+    private void exit(JFrame guestView, JFrame staffView){
+        if(userManager.getCurrentUser().getType().equals(UserType.GUEST)){
+            guestView.setVisible(true);
+            view.dispose();
+        }
+        else{
+            staffView.setVisible(true);
+            view.dispose();
+        }
+    }
 
 }
