@@ -4,12 +4,15 @@
  */
 package Controller;
 
+import Model.UserManager;
 import View.BookRoomGuest;
 import View.CancelBookingGuest;
 import View.ChangeRoomGuest;
+import View.DisplayInvoice;
 import View.ExtendBookingGuest;
 import View.GuestMenu;
 import View.StartMenu;
+import View.ViewBookingGuest;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -18,20 +21,24 @@ import javax.swing.JFrame;
  *
  * @author minthihakoko
  */
-public class GuestMenuController implements ActionListener{
+public class GuestMenuController implements ActionListener {
+
     GuestMenu view;
+
     public GuestMenuController(GuestMenu view) {
         this.view = view;
         initialise();
-        
+
     }
-    
-    private void initialise(){
+
+    private void initialise() {
         view.getBookRoomButton().addActionListener(this);
         view.getCancelBookingButton().addActionListener(this);
         view.getExtendBookingButton().addActionListener(this);
         view.getChangeRoomButton().addActionListener(this);
         view.getLogoutGuestMenuButton().addActionListener(this);
+        view.getViewBookings().addActionListener(this);
+        view.getDisplayInvoice().addActionListener(this);
     }
 
     @Override
@@ -50,17 +57,23 @@ public class GuestMenuController implements ActionListener{
             case "Change Room":
                 showView(new ChangeRoomGuest());
                 break;
-             case "Logout":
+            case "View Bookings":
+                showView(new ViewBookingGuest());
+                break;
+            case "Display Invoice":
+                showView(new DisplayInvoice());
+                break;
+            case "Logout":
                 showView(new StartMenu());
                 break;
             default:
                 throw new AssertionError();
         }
     }
-    
+
     private void showView(JFrame newView) {
         newView.setVisible(true);
         view.dispose();
     }
-    
+
 }

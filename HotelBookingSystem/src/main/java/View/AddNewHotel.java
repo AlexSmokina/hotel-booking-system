@@ -58,22 +58,27 @@ public class AddNewHotel extends javax.swing.JFrame {
         createNewHotelPrompt.setText("Create new hotel");
 
         hotelName.setBackground(new java.awt.Color(255, 204, 255));
+        hotelName.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         hotelName.setForeground(new java.awt.Color(102, 102, 102));
         hotelName.setText("Enter Hotel Name");
 
         hotelAddress.setBackground(new java.awt.Color(255, 204, 255));
+        hotelAddress.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         hotelAddress.setForeground(new java.awt.Color(102, 102, 102));
         hotelAddress.setText("Enter Hotel Address");
 
         standardRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
+        standardRoomsNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         standardRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
         standardRoomsNumber.setText("Enter Number of Standard Rooms");
 
         premiumRoomsNumber.setBackground(new java.awt.Color(255, 204, 255));
+        premiumRoomsNumber.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         premiumRoomsNumber.setForeground(new java.awt.Color(102, 102, 102));
         premiumRoomsNumber.setText("Enter Number of Premium Rooms");
 
         numberOfSuites.setBackground(new java.awt.Color(255, 204, 255));
+        numberOfSuites.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         numberOfSuites.setForeground(new java.awt.Color(102, 102, 102));
         numberOfSuites.setText("Enter Number of Suites");
 
@@ -120,9 +125,9 @@ public class AddNewHotel extends javax.swing.JFrame {
         newHotelPanelLayout.setVerticalGroup(
             newHotelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newHotelPanelLayout.createSequentialGroup()
-                .addGap(65, 65, 65)
+                .addGap(57, 57, 57)
                 .addComponent(guestMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(createNewHotelPrompt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addComponent(hotelAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,4 +192,9 @@ public class AddNewHotel extends javax.swing.JFrame {
     public javax.swing.JTextField getStandardRoomsNumber() {
         return standardRoomsNumber;
     }
+    
+    public javax.swing.JButton getReturnPreviousMenu(){
+        return returnPreviousMenu;
+    }
+
 }

@@ -31,9 +31,11 @@ public class DisplayInvoice extends javax.swing.JFrame {
 
         displayInvoicePanel = new javax.swing.JPanel();
         invoice = new javax.swing.JLabel();
-        scrollInvoicePanel = new javax.swing.JScrollPane();
-        invoiceDisplayArea = new javax.swing.JTextArea();
         returnPreviousMenu = new javax.swing.JButton();
+        enterBookingID = new javax.swing.JTextField();
+        search = new javax.swing.JButton();
+        invoiceDisplayScrollPane = new javax.swing.JScrollPane();
+        invoiceDisplayArea = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -46,15 +48,22 @@ public class DisplayInvoice extends javax.swing.JFrame {
         invoice.setText("Invoice");
         invoice.setPreferredSize(new java.awt.Dimension(220, 50));
 
-        invoiceDisplayArea.setColumns(20);
-        invoiceDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
-        invoiceDisplayArea.setRows(5);
-        invoiceDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        scrollInvoicePanel.setViewportView(invoiceDisplayArea);
-
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
+
+        enterBookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        enterBookingID.setForeground(new java.awt.Color(102, 102, 102));
+        enterBookingID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        enterBookingID.setText("Enter booking ID to view invoice");
+
+        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 0, 153));
+        search.setText("Search");
+
+        invoiceDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Invoice Overview", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 14), new java.awt.Color(153, 0, 153))); // NOI18N
+        invoiceDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        invoiceDisplayScrollPane.setViewportView(invoiceDisplayArea);
 
         javax.swing.GroupLayout displayInvoicePanelLayout = new javax.swing.GroupLayout(displayInvoicePanel);
         displayInvoicePanel.setLayout(displayInvoicePanelLayout);
@@ -65,10 +74,20 @@ public class DisplayInvoice extends javax.swing.JFrame {
                 .addComponent(invoice, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(173, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, displayInvoicePanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(returnPreviousMenu)
-                .addGap(207, 207, 207))
-            .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(displayInvoicePanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(returnPreviousMenu)
+                        .addGap(201, 201, 201))
+                    .addGroup(displayInvoicePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(invoiceDisplayScrollPane)
+                            .addGroup(displayInvoicePanelLayout.createSequentialGroup()
+                                .addComponent(enterBookingID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap())
         );
         displayInvoicePanelLayout.setVerticalGroup(
             displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -76,7 +95,11 @@ public class DisplayInvoice extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(invoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollInvoicePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addGroup(displayInvoicePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(enterBookingID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(invoiceDisplayScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
@@ -87,51 +110,34 @@ public class DisplayInvoice extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DisplayInvoice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DisplayInvoice().setVisible(true);
-            }
-        });
-    }
-    
-    public javax.swing.JTextArea getInvoiceTextArea(){
+    // Gets the text area component used to display invoice details
+    public javax.swing.JTextPane getInvoiceTextArea() {
         return invoiceDisplayArea;
     }
-    
+
+    // Gets the search button used to initiate invoice lookup 
+    public javax.swing.JButton getSearch() {
+        return search;
+    }
+
+    // Gets the return button used to navigate back to previous menu
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
+
+    // Gets the text field used for entering booking ID
+    public javax.swing.JTextField getEnterBookingID() {
+        return enterBookingID;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel displayInvoicePanel;
+    private javax.swing.JTextField enterBookingID;
     private javax.swing.JLabel invoice;
-    private javax.swing.JTextArea invoiceDisplayArea;
+    private javax.swing.JTextPane invoiceDisplayArea;
+    private javax.swing.JScrollPane invoiceDisplayScrollPane;
     private javax.swing.JButton returnPreviousMenu;
-    private javax.swing.JScrollPane scrollInvoicePanel;
+    private javax.swing.JButton search;
     // End of variables declaration//GEN-END:variables
 }

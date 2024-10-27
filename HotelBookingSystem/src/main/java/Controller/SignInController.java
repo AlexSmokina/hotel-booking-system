@@ -22,12 +22,12 @@ import javax.swing.JOptionPane;
 public class SignInController implements ActionListener {
 
     private SignIn view;
-    private UserManager um;
+    private UserManager userManager;
     
 
     public SignInController(SignIn view) {
         this.view = view;
-        this.um = UserManager.getInstance();
+        this.userManager = UserManager.getInstance();
         initalise();
     }
 
@@ -63,7 +63,7 @@ public class SignInController implements ActionListener {
             return;
         }
 
-        User user = um.signIn(username, password);
+        User user = userManager.signIn(username, password);
 
         if (user == null) {
             JOptionPane.showMessageDialog(view,
@@ -71,12 +71,16 @@ public class SignInController implements ActionListener {
                     "Login Failed",
                     JOptionPane.ERROR_MESSAGE);
         } else {
+            JOptionPane.showMessageDialog(view,
+                username+" signed in successfully!",
+                "Success",
+                JOptionPane.INFORMATION_MESSAGE);
 
-            if (user.getType() == UserType.GUEST) {
+            if (user.getType().equals(UserType.GUEST)) {
                 GuestMenu guestMenu = new GuestMenu();
                 guestMenu.setVisible(true);
 
-            } else if (user.getType() == UserType.STAFF) {
+            } else  {
                 StaffMenu staffMenu = new StaffMenu();
                 staffMenu.setVisible(true);
             }

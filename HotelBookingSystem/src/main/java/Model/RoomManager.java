@@ -46,7 +46,7 @@ public class RoomManager implements DatabaseCreator {
             statement = conn.createStatement();
             // Check if ROOM table exists, if yes, drop it
             if (dbManager.doesTableExist("ROOM")) {
-                statement.executeUpdate("DROP TABLE ROOM");
+                return;
             }
 
             // SQL statement to create the ROOM table with necessary fields
@@ -81,17 +81,36 @@ public class RoomManager implements DatabaseCreator {
 
     @Override
     public void insertInitialData() {
-        // Insert rooms for hotel HTL-1
-        createRoom("Standard", "HTL-1"); 
-        createRoom("Standard", "HTL-1"); 
-        createRoom("Premium", "HTL-1");  
-        createRoom("Premium", "HTL-1");  
-        createRoom("Suite", "HTL-1");    
+        try {
+            // Check if ROOM table exists
+            if (!dbManager.doesTableExist("ROOM")) {
+                System.out.println("ROOM table does not exist.");
+                return;
+            }
+            // Check if ROOM table has any data
+            String checkDataSQL = "SELECT COUNT(*) FROM ROOM";
+            ResultSet rs = dbManager.queryDB(checkDataSQL);
 
-        // Insert rooms for hotel HTL-2
-        createRoom("Standard", "HTL-2"); 
-        createRoom("Premium", "HTL-2");  
-        createRoom("Suite", "HTL-2");    
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("ROOM table already has data.");
+                rs.close();
+                return;
+            }
+            // Insert rooms for hotel HTL-1
+            createRoom("Standard", "HTL-1");
+            createRoom("Standard", "HTL-1");
+            createRoom("Premium", "HTL-1");
+            createRoom("Premium", "HTL-1");
+            createRoom("Suite", "HTL-1");
+
+            // Insert rooms for hotel HTL-2
+            createRoom("Standard", "HTL-2");
+            createRoom("Premium", "HTL-2");
+            createRoom("Suite", "HTL-2");
+        } catch (SQLException e) {
+            System.out.println("Error inserting initial ROOM data: " + e.getMessage());
+
+        }
     }
 
     // Method to insert a new room record into the ROOM table
@@ -111,7 +130,49 @@ public class RoomManager implements DatabaseCreator {
                 + "'" + hotelID + "')";
 
         dbManager.updateDB(insertRoomSQL);
-        System.out.printf("Room %s created successfully.%n", roomID);
+
+        String roomCountColumn = getRoomColumnName(roomType);
+
+    }
+
+    // Method to delete ROOM
+    public boolean removeRoom(String roomID, String hotelID) {
+        try {
+            // Get the room type before deleting, to update the hotel room count correctly
+            String getRoomTypeSQL = "SELECT ROOM_TYPE FROM ROOM WHERE ROOM_ID = '" + roomID + "'";
+            ResultSet rs = dbManager.queryDB(getRoomTypeSQL);
+
+            if (!rs.next()) {
+                System.out.println("Room not found.");
+                return false;
+            }
+
+            // Retrieve the room type
+            String roomType = rs.getString("ROOM_TYPE").toUpperCase();
+            RoomType type = RoomType.valueOf(roomType);
+
+            // Delete the room from the ROOM table
+            String deleteRoomSQL = "DELETE FROM ROOM WHERE ROOM_ID = '" + roomID + "'";
+            dbManager.updateDB(deleteRoomSQL);
+            System.out.printf("Room %s removed successfully.%n", roomID);
+
+            // Determine which room count column to decrement in the HOTEL table
+            String roomCountColumn = getRoomColumnName(roomType);
+
+            // Update the hotel room count in the HOTEL table
+            String updateHotelSQL = "UPDATE HOTEL SET " + roomCountColumn + " = " + roomCountColumn + " - 1 WHERE HOTEL_ID = '" + hotelID + "'";
+            dbManager.updateDB(updateHotelSQL);
+
+            // Update the ROOM_COUNTER table
+            String updateCounterSQL = "UPDATE ROOM_COUNTER SET CURRENT_COUNT = CURRENT_COUNT - 1 "
+                    + "WHERE HOTEL_ID = '" + hotelID + "' AND ROOM_TYPE = '" + roomType + "'";
+            dbManager.updateDB(updateCounterSQL);
+            return true;
+
+        } catch (SQLException ex) {
+            System.out.println("Error removing room: " + ex.getMessage());
+            return false;
+        }
     }
 
     // Method to generate a unique room ID by incrementing a counter
@@ -203,12 +264,11 @@ public class RoomManager implements DatabaseCreator {
     // Method to get room data from the database based on room ID and hotel ID
     public Room getRoomData(String roomID, String hotelID) {
         try {
-            Statement stmt = conn.createStatement();
             // SQL query to retrieve room data
             String query = "SELECT * FROM ROOM WHERE ROOM_ID = '"
                     + roomID + "' AND HOTEL_ID = '" + hotelID + "'";
 
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = dbManager.queryDB(query);
             if (rs.next()) {
                 return extractRoomFromResultSet(rs); // Extract room data
             }
@@ -239,13 +299,25 @@ public class RoomManager implements DatabaseCreator {
     }
 
     // Method to filter rooms by hotel ID and return a list of rooms
-    public List<Room> filterRoomByHotel(String hotelID) {
+    public List<Room> filterRoomByHotel(String hotelName) {
         List<Room> roomList = new ArrayList<>();
         try {
-            Statement stmt = conn.createStatement();
+            String hotelQuery = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet hotelRs = dbManager.queryDB(hotelQuery);
+
+            // Check if hotel exists and get its ID
+            String hotelID = null;
+            if (hotelRs.next()) {
+                hotelID = hotelRs.getString("HOTEL_ID");
+            } else {
+                // If hotel not found, return empty list
+                return roomList;
+            }
+            hotelRs.close();
+            
             // SQL query to filter rooms by hotel ID
             String query = "SELECT * FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'";
-            ResultSet rs = stmt.executeQuery(query);
+            ResultSet rs = dbManager.queryDB(query);
 
             while (rs.next()) {
                 roomList.add(extractRoomFromResultSet(rs)); // Add each room to the list
@@ -257,15 +329,30 @@ public class RoomManager implements DatabaseCreator {
     }
 
     // Method to filter rooms by availability date and hotel ID
-    public List<Room> filterByDate(String date, String hotelID) {
+    public List<Room> filterByDate(String date, String hotelName) {
         List<Room> roomList = new ArrayList<>();
-        try {
-            Statement stmt = conn.createStatement();
-            // SQL query to filter rooms by availability date and hotel ID
-            String query = "SELECT * FROM ROOM WHERE DATE_FROM = '" + date
-                    + "' AND HOTEL_ID = '" + hotelID + "'";
 
-            ResultSet rs = stmt.executeQuery(query);
+        // First, get the hotel ID from hotel name
+        try {
+            
+
+            String hotelQuery = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet hotelRs = dbManager.queryDB(hotelQuery);
+
+            // Check if hotel exists and get its ID
+            String hotelID = null;
+            if (hotelRs.next()) {
+                hotelID = hotelRs.getString("HOTEL_ID");
+            } else {
+                // If hotel not found, return empty list
+                return roomList;
+            }
+            hotelRs.close();
+            // SQL query to filter rooms by availability date and hotel ID
+            String query = "SELECT * FROM ROOM WHERE DATE_FROM <= '" + date
+                    + "' AND HOTEL_ID = '" + hotelID + "' AND AVAILABILITY_STATUS != 'Booked'";
+
+            ResultSet rs = dbManager.queryDB(query);
             while (rs.next()) {
                 roomList.add(extractRoomFromResultSet(rs)); // Add each room to the list
             }
@@ -273,42 +360,6 @@ public class RoomManager implements DatabaseCreator {
             Logger.getLogger(RoomManager.class.getName()).log(Level.SEVERE, null, ex);
         }
         return roomList; // Return the list of rooms
-    }
-
-    // Method to get a list of all room IDs in the ROOM table
-    public List<String> getAllRoomIDs() {
-        List<String> roomIDs = new ArrayList<>();
-        try {
-            Statement stmt = conn.createStatement();
-            // SQL query to retrieve all room IDs
-            String query = "SELECT ROOM_ID FROM ROOM";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                roomIDs.add(rs.getString("ROOM_ID")); // Add each room ID to the list
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return roomIDs; // Return the list of room IDs
-    }
-
-    // Method to get a list of all rooms in the ROOM table
-    public List<Room> getAllRooms() {
-        List<Room> rooms = new ArrayList<>();
-        try {
-            Statement stmt = conn.createStatement();
-            // SQL query to retrieve all rooms
-            String query = "SELECT * FROM ROOM";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                rooms.add(extractRoomFromResultSet(rs)); // Add each room to the list
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(RoomManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return rooms; // Return the list of rooms
     }
 
     // Helper method to extract room data from a ResultSet
@@ -321,6 +372,44 @@ public class RoomManager implements DatabaseCreator {
         room.setIsBooked(rs.getString("AVAILABILITY_STATUS").equals("Booked")); // Set booking status
         room.setAvailabilityDate(rs.getDate("DATE_FROM").toString()); // Set availability date
         return room; // Return the Room object
+    }
+    public Room getBookingByHotelID(String hotelID) {
+        String query = "SELECT * FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'";
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                // Create a Booking object using the retrieved data
+                return extractRoomFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving booking: " + e.getMessage());
+        }
+        return null;
+    }
+
+    public void clearRoomData(String hotelID) {
+        try {
+            dbManager.updateDB("DELETE FROM ROOM WHERE HOTEL_ID = '" + hotelID + "'");
+            dbManager.updateDB("DELETE FROM ROOM_COUNTER WHERE HOTEL_ID = '" + hotelID + "'");
+
+        } catch (Exception e) {
+            System.err.println("Error clearing room data: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    // Helper method to get the column name
+    private String getRoomColumnName(String roomType) {
+        switch (roomType.toUpperCase()) {
+            case "STANDARD":
+                return "STANDARD";
+            case "PREMIUM":
+                return "PREMIUM";
+            case "SUITE":
+                return "SUITE";
+            default:
+                throw new IllegalArgumentException("Invalid room type: " + roomType);
+        }
     }
 
 }

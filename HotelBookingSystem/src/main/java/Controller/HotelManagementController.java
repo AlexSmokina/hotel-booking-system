@@ -43,6 +43,7 @@ public class HotelManagementController implements ActionListener{
             view.dispose();
         } else if("View All Hotels".equals(command)){
             ViewAllHotels viewHotelsPage = new ViewAllHotels();
+            viewHotelsPage.setVisible(true);
             view.dispose();
         } else {
             StaffMenu staffMenuPage = new StaffMenu();

@@ -43,7 +43,7 @@ public class Room {
     }
 
     // Method to get the current date formatted as yyyy-MM-dd
-    public final Date getTodayDate() {
+    public static final Date getTodayDate() {
         String todayStr = dateFormat.format(new Date());
         try {
             return dateFormat.parse(todayStr);

@@ -20,6 +20,7 @@ import java.awt.event.ActionListener;
 public class StaffMenuController implements ActionListener{
     private StaffMenu view;
     
+    
     public StaffMenuController(StaffMenu view){
         this.view = view;
         initialise();
@@ -37,6 +38,7 @@ public class StaffMenuController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String command = e.getActionCommand();
         if ("Logout".equals(command)) {
+            
             StartMenu startPage = new StartMenu();
             startPage.setVisible(true);
             view.dispose();

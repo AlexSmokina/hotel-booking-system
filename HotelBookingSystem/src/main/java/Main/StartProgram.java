@@ -4,11 +4,11 @@
  */
 package Main;
 
+import Model.BookingManager;
 import Model.DbManager;
 import Model.HotelManager;
 import Model.RoomManager;
 import Model.UserManager;
-import View.RoomManagement;
 import View.StartMenu;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -55,9 +55,11 @@ public class StartProgram {
         UserManager userManager = UserManager.getInstance();
         HotelManager hotelManager = HotelManager.getInstance();
         RoomManager roomManager = RoomManager.getInstance();
+        BookingManager bookingManager = BookingManager.getInstance();
         userManager.createDatabase();
         hotelManager.createDatabase();
         roomManager.createDatabase();
+        bookingManager.createDatabase();
         
         hotelManager.insertInitialData();
         roomManager.insertInitialData();

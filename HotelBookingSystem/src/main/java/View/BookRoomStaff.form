@@ -55,9 +55,9 @@
                               </Group>
                               <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="checkInDate" min="-2" pref="400" max="-2" attributes="0"/>
-                                  <Component id="confirmBooking" min="-2" pref="400" max="-2" attributes="0"/>
+                                  <Component id="checkAvailability" min="-2" pref="400" max="-2" attributes="0"/>
                                   <Component id="checkOutDate" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
-                                  <Component id="checkInDate1" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
+                                  <Component id="username" alignment="1" min="-2" pref="400" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="chooseHotel" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -91,13 +91,13 @@
                       <Component id="chooseHotel" alignment="3" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="checkInDate1" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="username" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="checkInDate" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="checkOutDate" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="confirmBooking" min="-2" pref="60" max="-2" attributes="0"/>
+                  <Component id="checkAvailability" min="-2" pref="60" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="returnPreviousMenu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
@@ -151,9 +151,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Check-in date (yyyy-mm-dd)"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkInDateActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="checkOutDate">
           <Properties>
@@ -169,7 +166,7 @@
             <Property name="text" type="java.lang.String" value="Check-out date (yyyy-mm-dd)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="confirmBooking">
+        <Component class="javax.swing.JButton" name="checkAvailability">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
@@ -182,9 +179,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Check Availability"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmBookingActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="hotelChoice">
           <Properties>
@@ -220,7 +214,7 @@
             <Property name="text" type="java.lang.String" value="Choose Hotel"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="checkInDate1">
+        <Component class="javax.swing.JTextField" name="username">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="cc" red="ff" type="rgb"/>
@@ -233,9 +227,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Enter guest username"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkInDate1ActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="returnPreviousMenu">
           <Properties>

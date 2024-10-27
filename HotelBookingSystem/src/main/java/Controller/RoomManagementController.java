@@ -30,7 +30,7 @@ public class RoomManagementController implements ActionListener{
         view.getPreviousMenuButton().addActionListener(this);
         view.getAddRoomButton().addActionListener(this);
         view.getRemoveRoomButton().addActionListener(this);
-        view.getViewAllRoomsButton().addActionListener(this);
+        view.getUpdateRoomDetailsButton().addActionListener(this);
         view.getViewAllRoomsButton().addActionListener(this);
     }
 
@@ -58,8 +58,8 @@ public class RoomManagementController implements ActionListener{
         
         } else if("View All Rooms".equals(command)){
             ViewAllRooms viewAllRoomsPage = new ViewAllRooms();
+            viewAllRoomsPage.setVisible(true);
             view.dispose();
-            
         }  
     }
 }

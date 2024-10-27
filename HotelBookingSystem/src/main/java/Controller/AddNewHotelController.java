@@ -6,7 +6,7 @@ package Controller;
 
 import View.AddNewHotel;
 import Model.HotelManager;
-import View.StaffMenu;
+import View.HotelManagement;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -18,19 +18,19 @@ import javax.swing.JOptionPane;
 public class AddNewHotelController implements ActionListener {
 
     AddNewHotel view;
-    private HotelManager hm;
+    private HotelManager hotelManager;
     private static final String DEFAULT_NAME = "Enter Hotel Name";
     private static final String DEFAULT_ADDRESS = "Enter Hotel Address";
 
     public AddNewHotelController(AddNewHotel view) {
         this.view = view;
-        this.hm = HotelManager.getInstance();
+        this.hotelManager = HotelManager.getInstance();
         initalise();
     }
 
     private void initalise() {
         view.getAddNewHotel().addActionListener(this);
-
+        view.getReturnPreviousMenu().addActionListener(this);
     }
 
     @Override
@@ -38,12 +38,14 @@ public class AddNewHotelController implements ActionListener {
         String command = e.getActionCommand();
         if ("Add New Hotel".equals(command)) {
             handleAddHotel();
-            StaffMenu staffMenu = new StaffMenu();
-            staffMenu.setVisible(true);
+
+        } else if ("Return".equals(command)) {
+            HotelManagement hotelManagement = new HotelManagement();
+            hotelManagement.setVisible(true);
             view.dispose();
         }
     }
-
+    
     private void handleAddHotel() {
         String name = view.getHotelName().getText();
         String address = view.getHotelAddress().getText();
@@ -70,13 +72,15 @@ public class AddNewHotelController implements ActionListener {
             return;
         }
         // Create the new hotel
-        hm.createNewHotel(name, address, standardRooms, premiumRooms, suites);
+        hotelManager.createNewHotel(name, address, standardRooms, premiumRooms, suites);
 
         JOptionPane.showMessageDialog(view,
                 "Hotel created successfully!",
                 "Success",
                 JOptionPane.INFORMATION_MESSAGE);
-        
+        HotelManagement hotelManagementMenu = new HotelManagement();
+        hotelManagementMenu.setVisible(true);
+        view.dispose();
 
     }
 

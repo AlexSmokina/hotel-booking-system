@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.ViewAllRoomsController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class ViewAllRooms extends javax.swing.JFrame {
      */
     public ViewAllRooms() {
         initComponents();
+        new ViewAllRoomsController(this);
     }
 
     /**
@@ -30,7 +33,9 @@ public class ViewAllRooms extends javax.swing.JFrame {
         rooms = new javax.swing.JLabel();
         scrollRoomPanel = new javax.swing.JScrollPane();
         roomDisplayArea = new javax.swing.JTextArea();
+        hotelChoice = new javax.swing.JComboBox<>();
         returnPreviousMenu = new javax.swing.JButton();
+        search = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -44,37 +49,61 @@ public class ViewAllRooms extends javax.swing.JFrame {
         rooms.setPreferredSize(new java.awt.Dimension(220, 50));
 
         roomDisplayArea.setColumns(20);
-        roomDisplayArea.setFont(new java.awt.Font("STSong", 0, 13)); // NOI18N
+        roomDisplayArea.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
         roomDisplayArea.setRows(5);
-        roomDisplayArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        roomDisplayArea.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Room details", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Helvetica Neue", 1, 13), new java.awt.Color(153, 0, 153))); // NOI18N
         scrollRoomPanel.setViewportView(roomDisplayArea);
+
+        hotelChoice.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
+        hotelChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Auckland Skyline", "Queenstown Grand" }));
 
         returnPreviousMenu.setFont(new java.awt.Font("STSong", 1, 18)); // NOI18N
         returnPreviousMenu.setForeground(new java.awt.Color(153, 0, 153));
         returnPreviousMenu.setText("Return");
 
+        search.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
+        search.setForeground(new java.awt.Color(153, 0, 153));
+        search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout viewRoomsPanelLayout = new javax.swing.GroupLayout(viewRoomsPanel);
         viewRoomsPanel.setLayout(viewRoomsPanelLayout);
         viewRoomsPanelLayout.setHorizontalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                .addGap(0, 182, Short.MAX_VALUE)
+            .addComponent(scrollRoomPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
                 .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                        .addComponent(returnPreviousMenu)
-                        .addGap(207, 207, 207))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, viewRoomsPanelLayout.createSequentialGroup()
-                        .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(180, 180, 180))))
+                    .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(hotelChoice, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                        .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                                .addGap(180, 180, 180)
+                                .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(viewRoomsPanelLayout.createSequentialGroup()
+                                .addGap(208, 208, 208)
+                                .addComponent(returnPreviousMenu)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         viewRoomsPanelLayout.setVerticalGroup(
             viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(viewRoomsPanelLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(9, 9, 9)
                 .addComponent(rooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scrollRoomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                .addGroup(viewRoomsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(search, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(hotelChoice, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scrollRoomPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(returnPreviousMenu)
                 .addContainerGap())
@@ -85,46 +114,36 @@ public class ViewAllRooms extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewAllRooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewAllRooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewAllRooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewAllRooms.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_searchActionPerformed
+    
+    public javax.swing.JButton getReturnPreviousMenu(){
+        return returnPreviousMenu;
+    }
+    
+    public javax.swing.JTextArea getRoomDisplayArea(){
+        return roomDisplayArea;
+    } 
+    
+    public javax.swing.JComboBox<String> getHotelChoice() {
+        return hotelChoice;
+    }
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewAllRooms().setVisible(true);
-            }
-        });
+    public javax.swing.JButton getSearch() {
+        return search;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> hotelChoice;
     private javax.swing.JButton returnPreviousMenu;
     private javax.swing.JTextArea roomDisplayArea;
     private javax.swing.JLabel rooms;
     private javax.swing.JScrollPane scrollRoomPanel;
+    private javax.swing.JButton search;
     private javax.swing.JPanel viewRoomsPanel;
     // End of variables declaration//GEN-END:variables
+
+   
+   
 }

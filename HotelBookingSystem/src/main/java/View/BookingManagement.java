@@ -145,7 +145,7 @@ public class BookingManagement extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     public javax.swing.JButton getBookNewRoomButton() {
         return bookNewRoom;
     }
@@ -169,7 +169,11 @@ public class BookingManagement extends javax.swing.JFrame {
     public javax.swing.JButton getViewGuestBookingButton() {
         return viewGuestBooking;
     }
-    
+
+    public javax.swing.JButton getDisplayInvoice() {
+        return displayInvoice;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bookNewRoom;
@@ -184,6 +188,4 @@ public class BookingManagement extends javax.swing.JFrame {
     private javax.swing.JButton viewGuestBooking;
     // End of variables declaration//GEN-END:variables
 
-
-    
 }

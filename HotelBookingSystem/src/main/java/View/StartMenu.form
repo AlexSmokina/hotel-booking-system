@@ -44,7 +44,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="welcome" max="32767" attributes="0"/>
+                  <Component id="welcome" pref="488" max="32767" attributes="0"/>
                   <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
@@ -63,7 +63,7 @@
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="151" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Component id="hotelImage" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
               </Group>
@@ -144,6 +144,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="hotelImage">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="2" name="/Users/alex/Alex/AUT/4 Semester/COMP603/Assignment 1 - 2/hotel-booking-system/HotelBookingSystem/resources/hotel.png"/>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

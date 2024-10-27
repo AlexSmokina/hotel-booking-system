@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.CancelBookingStaffController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class CancelBookingStaff extends javax.swing.JFrame {
      */
     public CancelBookingStaff() {
         initComponents();
+        new CancelBookingStaffController(this);
     }
 
     /**
@@ -27,7 +30,6 @@ public class CancelBookingStaff extends javax.swing.JFrame {
     private void initComponents() {
 
         cancelBookingStaffPanel = new javax.swing.JPanel();
-        guestUsername = new javax.swing.JTextField();
         bookingID = new javax.swing.JTextField();
         confirmCancel = new javax.swing.JButton();
         cancelBooking = new javax.swing.JLabel();
@@ -39,16 +41,8 @@ public class CancelBookingStaff extends javax.swing.JFrame {
 
         cancelBookingStaffPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        guestUsername.setBackground(new java.awt.Color(255, 204, 255));
-        guestUsername.setForeground(new java.awt.Color(102, 102, 102));
-        guestUsername.setText("Enter guest username");
-        guestUsername.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                guestUsernameActionPerformed(evt);
-            }
-        });
-
         bookingID.setBackground(new java.awt.Color(255, 204, 255));
+        bookingID.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         bookingID.setForeground(new java.awt.Color(102, 102, 102));
         bookingID.setText("Enter booking ID you want to cancel");
 
@@ -56,11 +50,6 @@ public class CancelBookingStaff extends javax.swing.JFrame {
         confirmCancel.setFont(new java.awt.Font("STSong", 1, 24)); // NOI18N
         confirmCancel.setForeground(new java.awt.Color(255, 255, 255));
         confirmCancel.setText("Confirm");
-        confirmCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmCancelActionPerformed(evt);
-            }
-        });
 
         cancelBooking.setBackground(new java.awt.Color(255, 255, 255));
         cancelBooking.setFont(new java.awt.Font("STSong", 1, 48)); // NOI18N
@@ -82,42 +71,41 @@ public class CancelBookingStaff extends javax.swing.JFrame {
         cancelBookingStaffPanel.setLayout(cancelBookingStaffPanelLayout);
         cancelBookingStaffPanelLayout.setHorizontalGroup(
             cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
-                .addContainerGap(52, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
-                        .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
                         .addComponent(cancelBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(101, 101, 101))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cancelBookingStaffPanelLayout.createSequentialGroup()
                         .addComponent(returnPreviousMenu)
-                        .addGap(205, 205, 205))))
+                        .addGap(209, 209, 209))))
+            .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
+                .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
+                            .addGap(163, 163, 163)
+                            .addComponent(bookingDetailsPrompt, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
+                            .addGap(49, 49, 49)
+                            .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         cancelBookingStaffPanelLayout.setVerticalGroup(
             cancelBookingStaffPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(cancelBookingStaffPanelLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(cancelBooking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
+                .addGap(44, 44, 44)
                 .addComponent(bookingDetailsPrompt)
-                .addGap(55, 55, 55)
-                .addComponent(guestUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(69, 69, 69)
                 .addComponent(bookingID, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(confirmCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(44, 44, 44)
                 .addComponent(returnPreviousMenu)
-                .addContainerGap(93, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         getContentPane().add(cancelBookingStaffPanel, java.awt.BorderLayout.CENTER);
@@ -125,49 +113,7 @@ public class CancelBookingStaff extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void guestUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guestUsernameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_guestUsernameActionPerformed
-
-    private void confirmCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmCancelActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmCancelActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelBookingStaff.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CancelBookingStaff().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel bookingDetailsPrompt;
@@ -175,7 +121,18 @@ public class CancelBookingStaff extends javax.swing.JFrame {
     private javax.swing.JLabel cancelBooking;
     private javax.swing.JPanel cancelBookingStaffPanel;
     private javax.swing.JButton confirmCancel;
-    private javax.swing.JTextField guestUsername;
     private javax.swing.JButton returnPreviousMenu;
     // End of variables declaration//GEN-END:variables
+
+    public javax.swing.JTextField getBookingID() {
+        return bookingID;
+    }
+
+    public javax.swing.JButton getConfirmCancel() {
+        return confirmCancel;
+    }
+
+    public javax.swing.JButton getReturnPreviousMenu() {
+        return returnPreviousMenu;
+    }
 }

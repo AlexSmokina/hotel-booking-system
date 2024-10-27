@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,16 +30,16 @@ public class HotelManager implements DatabaseCreator {
         return instance;
     }
 
-// Method to create the HOTEL table in the database
+    // Method to create the HOTEL table in the database
     @Override
     public void createDatabase() {
         try {
             // Create a new SQL statement
             statement = conn.createStatement();
 
-            // Check if the HOTEL table exists, if yes, drop it
+            // Check if the HOTEL table exists, if yes, return
             if (dbManager.doesTableExist("HOTEL")) {
-                statement.executeUpdate("DROP TABLE HOTEL");
+                return;
             }
 
             // SQL query to create the HOTEL table with necessary columns
@@ -58,9 +60,25 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to insert initial hotel data into the HOTEL table
+    // Method to insert initial hotel data into the HOTEL table
+    @Override
     public void insertInitialData() {
         try {
+            // Check if HOTEL table exists
+            if (!dbManager.doesTableExist("HOTEL")) {
+                System.out.println("HOTEL table does not exist.");
+                return;
+            }
+
+            // Check if HOTEL table has any data
+            String checkDataSQL = "SELECT COUNT(*) FROM HOTEL";
+            ResultSet rs = dbManager.queryDB(checkDataSQL);
+
+            if (rs.next() && rs.getInt(1) > 0) {
+                System.out.println("HOTEL table already has data.");
+                rs.close();
+                return;
+            }
             // SQL query to insert initial data (two hotel entries)
             String insertHotelSQL = "INSERT INTO HOTEL VALUES "
                     + "('HTL-1', 'Auckland Skyline', 'Auckland', 2, 2, 1), " // First hotel details
@@ -77,67 +95,92 @@ public class HotelManager implements DatabaseCreator {
         }
     }
 
-// Method to create a new hotel entry in the HOTEL table
+    // Method to create a new hotel entry in the HOTEL table
     public void createNewHotel(String name, String location, int numStandardRooms, int numPremiumRooms, int numSuites) {
-        String hotelID = idGenerator();
-        // Check if the hotel already exists by looking up its hotel ID
-        if (getHotelData(hotelID) != null) {
-            System.out.println("Hotel with ID '" + hotelID + "' already exists.");
-            return; // Exit the method if hotel already exists
+        // Input validation
+        if (name == null || location == null
+                || numStandardRooms < 0 || numPremiumRooms < 0 || numSuites < 0) {
+            System.out.println("Invalid hotel data provided");
+            return;
         }
 
-        // SQL query to insert the new hotel data into the HOTEL table
-        String sql = "INSERT INTO HOTEL (HOTEL_ID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
-                + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', "
-                + numStandardRooms + ", " + numPremiumRooms + ", " + numSuites + ")";
+        String hotelID = idGenerator();
+        // Check if the hotel already exists
+        if (getHotelData(hotelID) != null) {
+            System.out.println("Hotel with ID '" + hotelID + "' already exists.");
+            return;
+        }
 
         try {
-            // Execute the SQL query to add the new hotel
+            // Create the hotel record with initial room counts
+            String sql = "INSERT INTO HOTEL (HOTEL_ID, HOTEL_NAME, HOTEL_LOCATION, STANDARD, PREMIUM, SUITE) "
+                    + "VALUES ('" + hotelID + "', '" + name + "', '" + location + "', "
+                    + numStandardRooms + ", " + numPremiumRooms + ", " + numSuites + ")";
+
             dbManager.updateDB(sql);
             System.out.println("Hotel '" + name + "' added successfully.");
+
+            // Create the rooms without updating counts
             createRoomsForHotel(hotelID, numStandardRooms, numPremiumRooms, numSuites);
         } catch (Exception e) {
-            // Print error message if hotel creation fails
             System.out.println("Error creating new hotel: " + e.getMessage());
         }
     }
 
+    // Method to create new room
     private void createRoomsForHotel(String hotelID, int standardRooms, int premiumRooms, int suites) {
-        for (int i = 0; i < standardRooms; i++) {
-            roomManager.createRoom("Standard", hotelID);
-        }
-        for (int i = 0; i < premiumRooms; i++) {
-            roomManager.createRoom("Premium", hotelID);
-        }
-        for (int i = 0; i < suites; i++) {
-            roomManager.createRoom("Suite", hotelID);
+        try {
+            // Just create the rooms without updating counts
+            for (int i = 0; i < standardRooms; i++) {
+                roomManager.createRoom("Standard", hotelID);
+            }
+            for (int i = 0; i < premiumRooms; i++) {
+                roomManager.createRoom("Premium", hotelID);
+            }
+            for (int i = 0; i < suites; i++) {
+                roomManager.createRoom("Suite", hotelID);
+            }
+        } catch (Exception e) {
+            System.out.println("Error creating rooms: " + e.getMessage());
         }
     }
 
-// Method to update the name and location of a specific hotel in the HOTEL table
+    // Method to update the name and location of a specific hotel in the HOTEL table
     public void updateHotelDetails(String hotelID, String name, String location) {
+        // Input validation
+        if (hotelID == null || name == null || location == null) {
+            System.out.println("Invalid update data provided");
+            return;
+        }
 
-        // SQL query to update the hotel's name and location based on its hotel ID
-        String sql = "UPDATE HOTEL SET "
-                + "HOTEL_NAME = '" + name + "', "
-                + "HOTEL_LOCATION = '" + location + "'"
-                + "WHERE HOTEL_ID = '" + hotelID + "'";
+        // Verify hotel exists
+        if (getHotelData(hotelID) == null) {
+            System.out.println("Hotel with ID '" + hotelID + "' does not exist.");
+            return;
+        }
 
         try {
-            // Execute the SQL query to update the hotel details
+            // Only update name and location
+            String sql = "UPDATE HOTEL SET "
+                    + "HOTEL_NAME = '" + name + "', "
+                    + "HOTEL_LOCATION = '" + location + "' "
+                    + "WHERE HOTEL_ID = '" + hotelID + "'";
+
             dbManager.updateDB(sql);
             System.out.println("Hotel ID: '" + hotelID + "' updated successfully");
         } catch (Exception e) {
-            // Print error message if hotel update fails
             System.out.println("Error updating hotel: " + e.getMessage());
         }
     }
 
-// Method to retrieve and display all hotels from the HOTEL table
-    public void viewHotels() {
+    // Method to retrieve and display all hotels from the HOTEL table
+    public String viewHotels() {
+
         // SQL query to select all hotel records from the HOTEL table
         String userQuery = "SELECT * FROM HOTEL";
         ResultSet rs = dbManager.queryDB(userQuery);
+        StringBuilder hotelDetails = new StringBuilder();
+        int counter = 1;
 
         try {
             // Iterate through the result set and print each hotel's details
@@ -148,13 +191,19 @@ public class HotelManager implements DatabaseCreator {
                 int standardRooms = rs.getInt("STANDARD");
                 int premiumRooms = rs.getInt("PREMIUM");
                 int suites = rs.getInt("SUITE");
-
-                // Print the hotel details to the console
-                System.out.println("Hotel ID: " + hotelID + ", Name: " + hotelName
-                        + ", Location: " + hotelLocation
-                        + ", Standard Rooms: " + standardRooms
-                        + ", Premium Rooms: " + premiumRooms
-                        + ", Suites: " + suites);
+                
+                hotelDetails.append("==========================\n");
+                hotelDetails.append(String.format("                 HOTEL # %d              \n", counter));
+                hotelDetails.append("==========================\n");
+                hotelDetails.append(String.format("Hotel ID         : %s\n", hotelID));
+                hotelDetails.append(String.format("Hotel Name       : %s\n", hotelName));
+                hotelDetails.append(String.format("Hotel Location   : %s\n", hotelLocation));
+                hotelDetails.append(String.format("Standard Rooms   : %d\n", standardRooms));
+                hotelDetails.append(String.format("Premium Rooms    : %d\n", premiumRooms));
+                hotelDetails.append(String.format("Suites           : %d\n", suites));
+                hotelDetails.append("-----------------------------------------\n");
+                
+                counter++;
             }
             rs.close(); // Close the result set
 
@@ -162,9 +211,10 @@ public class HotelManager implements DatabaseCreator {
             // Log any SQL exceptions that occur while retrieving hotel data
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return hotelDetails.toString();
     }
 
-// Method to retrieve hotel data based on the hotel ID
+    // Method to retrieve hotel data based on the hotel ID
     public Hotel getHotelData(String hotelID) {
         Hotel hotel = null;
         // SQL query to select a hotel by its hotel ID
@@ -193,33 +243,107 @@ public class HotelManager implements DatabaseCreator {
         } catch (SQLException ex) {
             // Log any SQL exceptions that occur while retrieving hotel data
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
         }
         return hotel; // Return the Hotel object (or null if not found)
     }
 
-    // Method to generate a unique hotel ID by incrementing a counter
-    public String idGenerator() {
-        // Get the next hotel count from the database
-        int currentCount = getNextHotelCount();
-        return "HTL-" + currentCount; // Return the full hotel ID
+    // Method to filter hotels by name
+    public Hotel getHotelByName(String hotelName) {
+        Hotel hotel = null;
+        String query = "SELECT * FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            if (rs.next()) {
+                String id = rs.getString("HOTEL_ID");
+                String name = rs.getString("HOTEL_NAME");
+                String location = rs.getString("HOTEL_LOCATION");
+                int standardRooms = rs.getInt("STANDARD");
+                int premiumRooms = rs.getInt("PREMIUM");
+                int suites = rs.getInt("SUITE");
+
+                // Create a Hotel object and set its room counts
+                hotel = new Hotel(id, name, location);
+                hotel.setNumStandardRooms(standardRooms);
+                hotel.setNumPremiumRooms(premiumRooms);
+                hotel.setNumSuites(suites);
+                rs.close(); // Close the result set
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        return hotel;
     }
 
-// Method to get the next available hotel count
-    private int getNextHotelCount() {
+    // Method to generate ID
+    public String idGenerator() {
+        String selectSQL = "SELECT MAX(HOTEL_ID) AS MAX_ID FROM HOTEL";
         try {
-            // SQL query to get the current hotel count
-            String selectSQL = "SELECT COUNT(*) AS HOTEL_COUNT FROM HOTEL";
-
             ResultSet rs = dbManager.queryDB(selectSQL);
 
             if (rs.next()) {
-                // Return the current count incremented by one
-                return rs.getInt("HOTEL_COUNT") + 1;
+                String maxId = rs.getString("MAX_ID");
+                if (maxId != null) {
+                    int nextId = Integer.parseInt(maxId.split("-")[1]) + 1;
+                    return "HTL-" + nextId;
+                }
             }
         } catch (SQLException ex) {
             Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return 1; // Default to 1 if an error occurs or no hotels exist
+        return "HTL-1"; // Default to HTL-1 if no entries exist or error occurs
+    }
+
+    // Method to get hotel names
+    public List<String> getHotelNames() {
+        List<String> hotelNames = new ArrayList<>();
+        String query = "SELECT HOTEL_NAME FROM HOTEL";
+
+        try {
+            ResultSet rs = dbManager.queryDB(query);
+            while (rs.next()) {
+                hotelNames.add(rs.getString("HOTEL_NAME"));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hotelNames;
+    }
+
+    // Method to return DbManager instance
+    public DbManager getDbManager() {
+        return dbManager;
+    }
+
+    public void clearHotelData(String hotelName) {
+        try {
+            // Delete all records instead of dropping the table
+            dbManager.updateDB("DELETE FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'");
+        } catch (Exception e) {
+            System.out.println("Error clearing hotel data: " + e.getMessage());
+        }
+    }
+
+    // Method to get hotel ID by name
+    public String getHotelIDByName(String hotelName) {
+        String hotelID = null;
+
+        try {
+            // Create the prepared statement with the hotel name
+            String query = "SELECT HOTEL_ID FROM HOTEL WHERE HOTEL_NAME = '" + hotelName + "'";
+            ResultSet rs = dbManager.queryDB(query);
+
+            if (rs.next()) {
+                hotelID = rs.getString("HOTEL_ID");
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(HotelManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return hotelID;
     }
 
 }
