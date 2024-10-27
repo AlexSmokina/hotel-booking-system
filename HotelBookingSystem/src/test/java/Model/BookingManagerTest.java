@@ -30,6 +30,7 @@ public class BookingManagerTest {
         hotelManager = HotelManager.getInstance();
 
         // Creating fresh tables
+        userManager.createDatabase();
         hotelManager.createDatabase();
         roomManager.createDatabase();
         bookingManager.createDatabase();
