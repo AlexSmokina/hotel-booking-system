@@ -4,6 +4,8 @@
  */
 package View;
 
+import Controller.BookRoomGuestController;
+
 /**
  *
  * @author alex
@@ -15,6 +17,7 @@ public class BookRoomGuest extends javax.swing.JFrame {
      */
     public BookRoomGuest() {
         initComponents();
+        new BookRoomGuestController();
     }
 
     /**
